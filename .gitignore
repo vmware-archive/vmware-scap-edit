@@ -1,4 +1,6 @@
 .settings
 .classpath
-target
+.project
+.svn
+target/
 .iml
