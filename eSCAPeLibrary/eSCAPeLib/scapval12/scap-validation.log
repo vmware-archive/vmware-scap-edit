@@ -1,0 +1,15 @@
+2012-11-21 12:44:59,259 INFO [scap-log] - <Preparing to validate SCAP content C:\Users\CHRIST~1\AppData\Local\Temp\apache-22-site-2226.zip...>
+2012-11-21 12:44:59,521 INFO [scap-log] - <SUBMITTED_RESOURCE - [apache-22-site-2226.zip] Resource apache-22-site-2226.zip was submitted.>
+2012-11-21 12:45:00,070 INFO [scap-log] - <APPLICATION - File is less than 12 hours old, skipping download for C:\Projects\MACE\MACELib\scapval12\data_feeds\official-cpe-dictionary_v2.2.xml.>
+2012-11-21 12:45:00,070 INFO [scap-log] - <APPLICATION - Hashing inputs.>
+2012-11-21 12:45:00,073 INFO [scap-log] - <HASH - [apache-22-site-2226.zip] SHA-256 : E01F2F3D033BBEBF6997D2AD587CF55756CFABE5D337C6B97D269BFDF129AE28>
+2012-11-21 12:45:00,292 INFO [scap-log] - <HASH - [nvdcce-0.1-feed.xml] SHA-256 : D192469E48117C7028FD7CF56844A1C4166668DA1073E59C6C6127EBB99623D3>
+2012-11-21 12:45:00,810 INFO [scap-log] - <HASH - [official-cpe-dictionary_v2.2.xml] SHA-256 : 7400912156FC3C5B5DE11E2283D0D9BC5A3BDA3E761C02EC5CA6D58797E44090>
+2012-11-21 12:45:00,810 INFO [scap-log] - <APPLICATION - Validating against XML schemas.>
+2012-11-21 12:45:00,810 INFO [scap-log] - <APPLICATION - Running XML schema validation against component apache-22-site-oval.xml>
+2012-11-21 12:45:01,428 INFO [scap-log] - <APPLICATION - Running XML schema validation against component apache-22-site-xccdf.xml>
+2012-11-21 12:45:01,477 INFO [scap-log] - <APPLICATION - Applying SCAP schematron rules to content.>
+2012-11-21 12:45:01,480 INFO [scap-log] - <APPLICATION - Running Schematron rule oval-definitions-schematron-5.6.sch against source apache-22-site-oval.xml>
+2012-11-21 12:45:03,398 INFO [scap-log] - <APPLICATION - Running Schematron rule source-data-stream-1.0.sch with phase VULNERABILITY_XCCDF_OVAL against source apache-22-site-2226.zip>
+2012-11-21 12:45:03,424 INFO [scap-log] - <APPLICATION - Finished SCAP content validation in 00:00:04.164.>
+2012-11-21 12:45:03,457 INFO [scap-log] - <See results in C:\Users\CHRIST~1\AppData\Local\Temp\scapvalResult2737542129612651425.html.>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Benchmark xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cpe="http://cpe.mitre.org/language/2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" id="Windows_7_STIG" xml:lang="en" xsi:schemaLocation="http://checklists.nist.gov/xccdf/1.1 http://nvd.nist.gov/schema/xccdf-1.1.4.xsd http://cpe.mitre.org/dictionary/2.0 http://cpe.mitre.org/files/cpe-dictionary_2.1.xsd" xmlns="http://checklists.nist.gov/xccdf/1.1">
+	<status date="2012-08-22">accepted</status>
+	<title>Windows 7 Security Technical Implementation Guide</title>
+	<description>The Windows 7 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems.  The requirements were developed from DoD consensus, as well as the Windows 7 Security Guide and security templates published by Microsoft Corporation.  Comments or proposed revisions to this document should be sent via e-mail to the following address:  disa.letterkenny.FSO.mbx.stig-customer-support-mailbox@mail.mil.  </description>
+	<notice id="terms-of-use" xml:lang="en">Developed_by_DISA_for_the_DoD</notice>
+	<reference href="http://iase.disa.mil">
+		<dc:publisher>DISA, Field Security Operations</dc:publisher>
+		<dc:source>STIG.DOD.MIL</dc:source>
+	</reference>
+	<plain-text id="release-info">Release: 10 Benchmark Date: 26 Oct 2012</plain-text>
+	<platform idref="cpe:/o:microsoft:windows_7"/>
+	<version>1</version>
+	<Profile id="MAC-1_Public">
+		<title>I - Mission Critical Public</title>
+		<description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description>
+		<select idref="V-1073" selected="true"/>
+	</Profile>
+
+	<Group id="V-1073">
+		<title>Unsupported Service Packs</title>
+		<description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+		<Rule id="SV-25257r2_rule" severity="high" weight="10.0">
+			<version>2.005</version>
+			<title>Systems must be at supported service pack (SP) or release levels.</title>
+			<description>&lt;VulnDiscussion&gt;Systems at unsupported service packs or releases will not receive security updates for new vulnerabilities and leaves them subject to exploitation.   Systems must be maintained at a service pack level supported by the vendor with new security updates.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;HK&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;VIVM-1&lt;/IAControls&gt;</description>
+			<reference>
+				<dc:title>VMS Target Windows 7</dc:title>
+				<dc:publisher>DISA FSO</dc:publisher>
+				<dc:type>VMS Target</dc:type>
+				<dc:subject>Windows 7</dc:subject>
+				<dc:identifier>1712</dc:identifier>
+			</reference>
+			<fixtext fixref="F-30098r1_fix">Update the system to a supported service pack.
+
+Application of new service packs should be thoroughly tested before deploying in a production environment.</fixtext>
+			<fixtext fixref="cre_mil.disa.fso_25257-7_fix">Install the latest service pack.</fixtext>			
+			<fix id="F-30098r1_fix"/>
+			<fix id="cre_mil.disa.fso_25257-7_fix" system="http://cre.mite.org/cre.xsd">cre:mil.disa.fso:25257-7</fix>
+			<check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+				<check-content-ref name="oval:mil.disa.fso.windows:def:3862" href="U_Windows_7_V1R14_STIG_Benchmark-oval.xml"/>
+			</check>
+		</Rule>
+	</Group>
+
+</Benchmark>

@@ -1,0 +1,1888 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:windows-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" xmlns:independent-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#windows windows-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd">
+	<generator>
+		<oval:product_name>eSCAPe</oval:product_name>
+		<oval:schema_version>5.7</oval:schema_version>
+		<oval:timestamp>2011-07-20T08:00:00</oval:timestamp>
+	</generator>
+	<definitions>
+		<definition id="oval:gov.dod.cndrtpmo:def:60002" version="1" class="compliance">
+			<metadata>
+				<!--V-17888-->
+				<title>(U//FOUO) The HBSS console tabbed browsing is disabled</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description>(U//FOUO) Ensure that the browser used with the ePO console has tabbed browsing disabled. In the Registry Editor, navigate to the following registry key: Registry Hive: HKEY_LOCAL_MACHINE Subkey: SOFTWARE\Policies\Microsoft\Internet Explorer\TabbedBrowsing Value Name: Enabled Data Type: REG_DWORD Value Data: 00000000 If the Value Data is not set to ‘00000000,’ this is a finding.</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Internet Explorer\TabbedBrowsing!Enabled type equals reg_dword and value equals 00000000" test_ref="oval:gov.dod.cndrtpmo:tst:60002"/>
+			</criteria>
+		</definition>
+		<definition id="oval:gov.dod.cndrtpmo:def:60003" version="1" class="compliance">
+			<metadata>
+				<!--V-17887-->
+				<title>(U) The ePO server has the user timeout parameter set properly</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description>(U) Open the ‘?: program files\mcafee\epolicy orchestrator\server\conf\web.xml file.’ (’?’ Indicates drive letter.) Examine the session-timeout parameter and ensure that it is set at 15 or less. If it is set to greater than 15, this is a finding. Note: The effectiveness of this parameter needs to be correlated to the dashboard refresh rate. The dashboard refresh rate should be set to a parameter greater than the session timeout parameter. Note: If the console is being used as part of an operations center type environment, requiring continuous, real-time screen display (which requires a lower rate), the following needs to be documented with the IAO: -The logon session does not have administrator rights. -The display station (i.e., keyboard, CRT, etc.) is located in a controlled access area.</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="Session timeout matches the pattern ^([0-9]|1[0-5])$" test_ref="oval:gov.dod.cndrtpmo:tst:60003"/>
+			</criteria>
+		</definition>
+		<definition id="oval:gov.dod.cndrtpmo:def:60004" version="1" class="compliance">
+			<metadata>
+				<!--V-24161-->
+				<title>(U) The HBSS keystore permissions are set correctly</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description>(U) From Windows explorer, find the ?:\Program Files\McAfee\ePolicy Orchestrator\keystore directory (? is the drive letter). Examine the permissions on the directory. Only administrators and system should be able to update or write into this directory. If any other user can update or write into this directory, this is a finding.</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="No one but the Administrators group and the SYSTEM user can write to the Keystore directory" test_ref="oval:gov.dod.cndrtpmo:tst:60004"/>
+			</criteria>
+		</definition>
+		<definition id="oval:gov.dod.cndrtpmo:def:60005" version="1" class="compliance">
+			<metadata>
+				<!--V-14510-->
+				<title>(U//FOUO) The ePO SQL database installation is dedicated to HBSS.</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description>(U//FOUO) From the SQL Server Management Studio: Locate the SQL server used for ePO. Expand the databases folder. The following databases should exist: ePO4_{MachineName} master model msdb tempdb If any other databases exist, this is a finding.</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="Count of databases unrelated to HBSS or SQL Server equals 0" test_ref="oval:gov.dod.cndrtpmo:tst:60005"/>
+			</criteria>
+		</definition>
+		<definition id="oval:gov.dod.cndrtpmo:def:60006" version="1" class="compliance">
+			<metadata>
+				<!--V-14572-->
+				<title>(U) SA account is not used within the application.</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description>(U) Using a browser, navigate to https://localhost/core/config or https://eponame/core/config. Logon. Examine the User Name field. If the user name is SA, this is a finding.</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="SQL Server database account does not match the pattern ^[Ss][Aa]$" test_ref="oval:gov.dod.cndrtpmo:tst:60006"/>
+			</criteria>
+		</definition>
+		<definition id="oval:gov.dod.cndrtpmo:def:60007" version="1" class="compliance">
+			<metadata>
+				<!--V-14500-->
+				<title>(U)HBSS has the current security patches installed.</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description> (U) For the ePO server, determine the current patch level by clicking on Help, and then, selecting About ePolicy Orchestrator. If the value is less than 4.5.1.851, this is a finding.</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="ePO version is greater than or equal to 4.5.1.851" test_ref="oval:gov.dod.cndrtpmo:tst:60007"/>
+			</criteria>
+		</definition>
+		<definition id="oval:gov.dod.cndrtpmo:def:60008" version="1" class="compliance">
+			<metadata>
+				<!--V-14501-->
+				<title>(U) The ePO server is not using the default keys.</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description>(U) Ensure that the default keys have been replaced on the ePO server. There are two methods to determine this finding. 1. From the ePO server console, select the ‘Configuration’ tab, then select ‘the Server Settings’ tab. Select the ‘Console Security Keys' category. Ensure that the legacy key 'HMW9L9yM2AbJY8qrvmNCNJpYXAI=' does not exist. Note: The character before the second = sign is a capital letter I, as in India. 2. From the SQL Server Management Studio: Ensure that the database pull-down has the ePO server database. Execute the following command by typing the command into the query window and then clicking on the ‘Execute’ button: Select NodeName, AgentGUID from epoLeafNode where ServerKeyHash ='HMW9L9yM2AbJY8qrvmNCNJpYXAI=' Note: The character before the second = sign is a capital letter I, as in India. Finding Determination: Determine if the ePO server is listed within these results. If the ePO server is listed from this query, this is a finding. Note: A typo in the query may result in a false negative. An error message may indicate that the wrong database is selected. Note: After fixing this finding, all affected ePO clients will need to have the client software reinstalled. This should be done before deployment to avoid duplication of work.</description>
+			</metadata>
+			<criteria operator="OR">
+				<criterion comment="Count of default agent-server communication keys equals 0" test_ref="oval:gov.dod.cndrtpmo:tst:60008"/>
+				<criterion comment="Count of default agent-server communication keys used by the ePO server equals 0" test_ref="oval:gov.dod.cndrtpmo:tst:60009"/>
+			</criteria>
+		</definition>
+		<definition id="oval:gov.dod.cndrtpmo:def:60009" version="1" class="compliance">
+			<metadata>
+				<!--V-14502-->
+				<title>(U) The ePO server has all clients using non-default keys.</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description>(U) Verify that no serviced clients are using the default key. This procedure will be run at least weekly. From the SQL Server Management Studio: Ensure that the database pull-down has the ePO server database. Execute the following command by typing the command into the query window and clicking on the ‘Execute’ button: Select NodeName, AgentGUID from epoLeafNode where ServerKeyHash ='HMW9L9yM2AbJY8qrvmNCNJpYXAI=' Note: The character before the second ‘=’ sign is a capital letter I, as in India. If there are records returned from this query, this is a finding. If the SA (or the DBA) is not running this process at least weekly, this is a finding. Note: The procedures for removing the default keys are detailed in the HBSS Configuration Guide. Note: A typo in the query may result in a false negative. An error message may indicate that the wrong database is selected.</description>
+			</metadata>
+			<criteria operator="OR">
+				<criterion comment="Count of default agent-server communication keys equals 0" test_ref="oval:gov.dod.cndrtpmo:tst:60008"/>
+				<criterion comment="Count of default agent-server communication keys used by any system equals 0" test_ref="oval:gov.dod.cndrtpmo:tst:60010"/>
+			</criteria>
+		</definition>
+		<definition id="oval:gov.dod.cndrtpmo:def:60010" version="1" class="compliance">
+			<metadata>
+				<!--V-17885-->
+				<title>(U) The ePO server has MyAverts disabled.</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description>(U) From the ePO server console, select the ‘Configuration’ option, followed by the ‘Server Setting’ tab, then select the ‘MyAverts Security Threats’. Ensure that the ‘Updating’ parameter is set to disabled. If the updating parameter is not set to disabled, this is a finding.</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="MyAvert Security Threats updating status is disabled" test_ref="oval:gov.dod.cndrtpmo:tst:60011"/>
+			</criteria>
+		</definition>
+		<definition id="oval:gov.dod.cndrtpmo:def:60011" version="1" class="compliance">
+			<metadata>
+				<!--V-17897-->
+				<title>(U) ePO accounts are not configured with shared Windows accounts.</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description>(U) From SQL Server Management Studio: Ensure that the database pull-down has the ePO server database. Execute the following command by typing the command into the query window and then clicking on the ‘Execute’ button: Select count(name), AuthURI from dbo.orionusers where authURI like ‘auth:ntlm%’ group by AuthURI If any resulting AuthURI has a corresponding number other than ‘1’, this is a finding.</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="Count of ePO accounts assigned to each AuthURI that uses Windows authentication equals 1" test_ref="oval:gov.dod.cndrtpmo:tst:60012"/>
+			</criteria>
+		</definition>
+		<definition id="oval:gov.dod.cndrtpmo:def:60012" version="1" class="compliance">
+			<metadata>
+				<!--V-24011-->
+				<title>(U) HBSS Client Authentication Module is enabled.</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description>(U) From the ePO server console, select the ‘Configuration’ menu option, then select the ‘Server Settings’ tab. Select the ‘Console Certificates’ category. Ensure ‘Client Authentication’ is set to ‘Enabled’. If ‘Client Authentication’ is not set to ‘Enabled’, this is a finding.</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="Client authentication status is enabled" test_ref="oval:gov.dod.cndrtpmo:tst:60013"/>
+			</criteria>
+		</definition>
+		<definition id="oval:gov.dod.cndrtpmo:def:60013" version="1" class="compliance">
+			<metadata>
+				<!--V-24012-->
+				<title>(U) HBSS Client Authentication is set to current version.</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description>(U) From the ePO server console, select the ‘Software' menu option, then select the ‘Extensions’ tab. Under ‘McAfee’, select ‘ePolicy Orchestrator’. Examine the ‘Certificate Authentication’ extension’s version number. If the version is not at least 4.5.1.6, this is a finding.</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="Versions of all installed Certificate Authentication extensions are greater than or equal to 4.5.1.6" test_ref="oval:gov.dod.cndrtpmo:tst:60014"/>
+			</criteria>
+		</definition>
+		<definition id="oval:gov.dod.cndrtpmo:def:60014" version="1" class="compliance">
+			<metadata>
+				<!--V-24013-->
+				<title>(U) Limit number of non-PK enabled accounts.</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description>(U) From SQL Server Management Studio: Ensure that the database pull-down has the ePO server database. Execute the following command by typing the command into the query window and then clicking on the ‘Execute’ button: Select name, AuthURI from dbo.orionusers where authURI not like ‘auth:cert%’ Finding Determination: If there are more than two userids listed, this is finding.</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="Count of non-PK enabled accounts is less than or equal to 2" test_ref="oval:gov.dod.cndrtpmo:tst:60015"/>
+			</criteria>
+		</definition>
+		<definition id="oval:gov.dod.cndrtpmo:def:60015" version="1" class="compliance">
+			<metadata>
+				<!--V-24023-->
+				<title>(U) OCSP Responder URL configured.</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description>(U) From the ePO server console, select the ‘Configuration’ menu option, then select ‘Server Settings’ tab. Select the ‘Console Certificates’ category. Click the Edit button. Ensure the OCSP responder URL is populated with http://ocsp.disa.mil (or an appropriate .mil CRL for the location). If it is not populated correctly, this is a finding.</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="OCSP Responder URL matches the pattern ^.*\.[Mm][Ii][Ll].*$" test_ref="oval:gov.dod.cndrtpmo:tst:60016"/>
+			</criteria>
+		</definition>
+		<definition id="oval:gov.dod.cndrtpmo:def:60016" version="1" class="compliance">
+			<metadata>
+				<!--V-24024-->
+				<title>(U//FOUO) Port used for Console-to-Server communication is set correctly.</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description>(U//FOUO) From the ePO server console, select the ‘Configuration’ menu option, then select the ‘Server Settings’ tab. Select the ‘Console Certificates’ category. Click the Edit button. If the Console-to-Server port is not set to ‘8007’, this is a finding.</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="Console-to-Server Port equals 8007" test_ref="oval:gov.dod.cndrtpmo:tst:60017"/>
+			</criteria>
+		</definition>
+		<definition id="oval:gov.dod.cndrtpmo:def:60017" version="1" class="compliance">
+			<metadata>
+				<!--V-24162-->
+				<title>(U//FOUO) SSL in use for SQL Server.</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description>(U//FOUO) From SQL Server Configuration Manager, expand SQL Server Network Configuration, and right-click the protocols for the ePO server. Click Properties. From the Flags tab, ensure that the Force Encryption Parameter is set to Yes. If it is not set to Yes, this is a finding.</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\_Instance_ID_\MSSQLServer\SuperSocketNetLib!ForceEncryption equals 1" test_ref="oval:gov.dod.cndrtpmo:tst:60021"/>
+			</criteria>
+		</definition>
+		<definition id="oval:gov.dod.cndrtpmo:def:60018" version="1" class="compliance">
+			<metadata>
+				<!--V-24170-->
+				<title>(U) Agent-to-server communication port is set correctly.</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description>(U//FOUO) From the ePO interface, select the Configuration option, then select the Server Settings option. Select the Ports option. Ensure the Agent-to-server communication is set to 80. If this is not set to 80, this is a finding.</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="Agent-to-Server communication ports equal 80" test_ref="oval:gov.dod.cndrtpmo:tst:60022"/>
+			</criteria>
+		</definition>
+		<definition id="oval:gov.dod.cndrtpmo:def:60019" version="1" class="compliance">
+			<metadata>
+				<!--V-24171-->
+				<title>(U) Agent-to-server communication secure port is set correctly.</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description>(U//FOUO) From the ePO interface, select the Configuration option, then select the server settings option. Select the Ports option. Ensure the Agent-to-server communication secure is set to 443. If this is not set to 443, this is a finding.</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="Agent-to-Server communication secure ports equal 443" test_ref="oval:gov.dod.cndrtpmo:tst:60023"/>
+			</criteria>
+		</definition>
+		<definition id="oval:gov.dod.cndrtpmo:def:60020" version="1" class="compliance">
+			<metadata>
+				<!--V-24172-->
+				<title>(U) Agent wake-up communication port set correctly.</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description>(U//FOUO) From the ePO interface, select the Configuration option, then select the server settings option. Select the Ports option. Ensure the Agent wakeup communication is set to 591. If this is not set to 591, this is a finding.</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="Agent wake-up communication ports equal 591" test_ref="oval:gov.dod.cndrtpmo:tst:60024"/>
+			</criteria>
+		</definition>
+		<definition id="oval:gov.dod.cndrtpmo:def:60021" version="1" class="compliance">
+			<metadata>
+				<!--V-24173-->
+				<title>(U) Agent broadcast port is set correctly.</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description>(U//FOUO) From the ePO interface, select the Configuration option, then select the server settings option. Select the Ports option. Ensure the Agent broadcast is set to 8082. If this is not set to 8082, this is a finding.</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="Agent broadcast ports equal 8082" test_ref="oval:gov.dod.cndrtpmo:tst:60025"/>
+			</criteria>
+		</definition>
+		<definition id="oval:gov.dod.cndrtpmo:def:60022" version="1" class="compliance">
+			<metadata>
+				<!--V-24174-->
+				<title>(U) Console-to-application server communication port is set correctly.</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description>(U//FOUO) From the ePO interface, select the Configuration option, then select the server settings option. Select the Ports option. Ensure the Console-to-application server communication is set to 8005. If this is not set to 8005, this is a finding.</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="Console-to-application server communication ports equal 8005" test_ref="oval:gov.dod.cndrtpmo:tst:60026"/>
+			</criteria>
+		</definition>
+		<definition id="oval:gov.dod.cndrtpmo:def:60023" version="1" class="compliance">
+			<metadata>
+				<!--V-24175-->
+				<title>(U) Client-to-server authenticated communication port is set correctly.</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description>(U//FOUO) From the ePO interface, select the Configuration option, then select the server settings option. Select the Ports option. Ensure the Client-to-server authenticated communication is set to 8443. If this is not set to 8443, this is a finding.</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="Client-to-server authenticated communication ports equal 8443" test_ref="oval:gov.dod.cndrtpmo:tst:60027"/>
+			</criteria>
+		</definition>
+		<definition id="oval:gov.dod.cndrtpmo:def:60024" version="1" class="compliance">
+			<metadata>
+				<!--V-14512-->
+				<title>(U) The SQL database connection account is configured as least privilege.</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description>(U) Using a browser, navigate to https://localhost/core/config or https://eponame/core/config. Logon. Note the User Name field. Through the SQL Server Management Studio, verify that the accounts being used are not part of the 'System Administrators' server role. If the account is part of the System Administrators role, this is a finding.</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="ePO SQL Server account does not have SQL Server sysadmin role membership" test_ref="oval:gov.dod.cndrtpmo:tst:60028"/>
+			</criteria>
+		</definition>
+		<definition id="oval:gov.dod.cndrtpmo:def:60025" version="1" class="compliance">
+			<metadata>
+				<!--V-14548-->
+				<title>(U//FOUO) The HIPS policy for Medium Severity is set properly.</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description>(U//FOUO) This check needs to be checked for the active policy that controls the ePO server. From the ePO server console, select the asset to be checked, then select ‘Policies,’ followed by ‘Host Intrusion Prevention 7:IPS’ from the product list. From the ‘IPS Protection’ category, select the applicable policy. From the 'Reaction Based on signature protection level' section, ensure that for the Severity level of ‘Medium,’ the reaction is set to at least the level of ‘Log.’ If it is not set to ‘Log’ (recommended) or ‘Prevent,’ this is a finding.</description>
+			</metadata>
+			<criteria operator="OR">
+				<criterion comment="Setting 'ReactionForMedium' for the HIPS IPS Protection policy that controls the ePO server equals 2 (Log)" test_ref="oval:gov.dod.cndrtpmo:tst:60029"/>
+				<criterion comment="Setting 'ReactionForMedium' for the HIPS IPS Protection policy that controls the ePO server equals 3 (Prevent)" test_ref="oval:gov.dod.cndrtpmo:tst:60030"/>
+			</criteria>
+		</definition>
+		<definition id="oval:gov.dod.cndrtpmo:def:60026" version="1" class="compliance">
+			<metadata>
+				<!--V-14554-->
+				<title>(U//FOUO) The HIPS policy includes the signature for protection of the ePO Server KeyStore.</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description>(U//FOUO) This check needs to be checked for the active policy that controls the ePO server. From the ePO server console, then select the asset to be checked, select ‘Policies’, followed by ‘Host Intrusion Prevention 7:IPS’ from the product list. From the ‘IPS Rules’ category, select the applicable policy. From the ‘IPS Rules,’ select the ‘Signatures’ tab. Ensure that the signature of ‘Protect ePO Server Console Keystore’ is present. In addition to the signature being present, ‘Severity’ must be ‘high,’ ‘Log Status’ must be ‘enabled,’ and ‘Allow client rules’ must be ‘disabled.’ If the signature is not present or the properties are set incorrectly, this is a finding.</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="Settings exist for the HIPS IPS Rules signature 'Protect ePO Server Console Keystore' for the policy that controls the ePO server" test_ref="oval:gov.dod.cndrtpmo:tst:60031"/>
+				<criterion comment="Setting 'ModSeverityLevel' for the HIPS IPS Rules signature 'Protect ePO Server Console Keystore' for the policy that controls the ePO server equals 4 (High)" test_ref="oval:gov.dod.cndrtpmo:tst:60032"/>
+				<criterion comment="Setting 'ModLogStatus' for the HIPS IPS Rules signature 'Protect ePO Server Console Keystore' for the policy that controls the ePO server equals 1 (Enabled)" test_ref="oval:gov.dod.cndrtpmo:tst:60033"/>
+				<criterion comment="Setting 'ModCreateLocalExStatus' for the HIPS IPS Rules signature 'Protect ePO Server Console Keystore' for the policy that controls the ePO server equals 0 (Disabled)" test_ref="oval:gov.dod.cndrtpmo:tst:60034"/>
+			</criteria>
+		</definition>
+		<definition id="oval:gov.dod.cndrtpmo:def:60027" version="1" class="compliance">
+			<metadata>
+				<!--V-14556-->
+				<title>(U//FOUO) The HIPS policy includes the signature for protection of Server.ini.</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description>(U//FOUO) From the ePO server console, select the asset to be checked, then select ‘Policies’, followed by ‘Host Intrusion Prevention 7:IPS’ from the product list. From the ‘IPS Rules’ category, select the applicable policy. From the ‘IPS Rules,’ select the ‘Signatures’ tab. Ensure that the signature of ‘Protect ePO Server.ini’ is present. In addition to the signature being present, ‘Severity’ must be ‘high,’ ‘Log Status’ must be ‘enabled,’ and ‘Allow client rules’ must be ‘disabled.’ If the signature is not present or the properties are set incorrectly, this is a finding.</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="Settings exist for the HIPS IPS Rules signature 'Protect ePO Server.ini' for the policy that controls the ePO server" test_ref="oval:gov.dod.cndrtpmo:tst:60035"/>
+				<criterion comment="Setting 'ModSeverityLevel' for the HIPS IPS Rules signature 'Protect ePO Server.ini' for the policy that controls the ePO server equals 4 (High)" test_ref="oval:gov.dod.cndrtpmo:tst:60036"/>
+				<criterion comment="Setting 'ModLogStatus' for the HIPS IPS Rules signature 'Protect ePO Server.ini' for the policy that controls the ePO server equals 1 (Enabled)" test_ref="oval:gov.dod.cndrtpmo:tst:60037"/>
+				<criterion comment="Setting 'ModCreateLocalExStatus' for the HIPS IPS Rules signature 'Protect ePO Server.ini' for the policy that controls the ePO server equals 0 (Disabled)" test_ref="oval:gov.dod.cndrtpmo:tst:60038"/>
+			</criteria>
+		</definition>
+		<definition id="oval:gov.dod.cndrtpmo:def:60028" version="1" class="compliance">
+			<metadata>
+				<!--V-14560-->
+				<title>(U) The HIPS for the ePO server has the firewall installed and enabled.</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description>(U) From the ePO server console, select the asset to be checked, then select ‘Policies’, followed by ‘Host Intrusion Prevention 7: Firewall’ from the product list. From the ‘Firewall Options’ category, select the applicable policy. From the ‘Firewall Options’ section, ensure the ‘Enable Firewall’ option is checked. If the ‘Enabled Firewall’ option is not checked, this is a finding. Severity Determination: If H20200: HBSS Specific Perimeter Defense is a finding, this is a CAT I finding.</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="Setting 'FWStatus' for HIPS Firewall Options policies equals 1 (Enabled)" test_ref="oval:gov.dod.cndrtpmo:tst:60039"/>
+			</criteria>
+		</definition>
+		<definition id="oval:gov.dod.cndrtpmo:def:60029" version="1" class="compliance">
+			<metadata>
+				<!--V-14561-->
+				<title>(U//FOUO) The HIPS for the ePO server has the firewall set for regular protection.</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description>(U//FOUO) From the ePO server console, select the asset to be checked, then select ‘Policies’, followed by ‘Host Intrusion Prevention 7:Firewall’ from the product list. From the ‘Firewall Options’ category, select the applicable policy. From the Firewall Options Section, ensure the ‘Regular protection’ option is checked. If the ‘Regular protection’ is not checked, this is a finding.</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="Setting 'AuditModeStatus' for HIPS Firewall Options policies equals 0" test_ref="oval:gov.dod.cndrtpmo:tst:60040"/>
+				<criterion comment="Setting 'InLearnModeStatus' for HIPS Firewall Options policies equals 0" test_ref="oval:gov.dod.cndrtpmo:tst:60041"/>
+				<criterion comment="Setting 'OutLearnModeStatus' for HIPS Firewall Options policies equals 0" test_ref="oval:gov.dod.cndrtpmo:tst:60042"/>
+			</criteria>
+		</definition>
+		<definition id="oval:gov.dod.cndrtpmo:def:60030" version="1" class="compliance">
+			<metadata>
+				<!--V-14562-->
+				<title>(U//FOUO) The HIPS for the ePO server has the firewall set to not retain client rules.</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description>(U//FOUO) From the ePO server console, select the asset to be checked, then select ‘Policies’, followed by ‘Host Intrusion Prevention 7: Firewall’ from the product list. From the ‘Firewall Options category,’ select the applicable policy. From the ‘Client rules’ section, ensure the ‘Retain existing Client Rules when this policy is enforced’ option is not checked. If the ‘Retain existing Client Rules when this policy is enforced’ is checked, this is a finding.</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="Setting 'MergeRules' for HIPS Firewall Options policies equals 0" test_ref="oval:gov.dod.cndrtpmo:tst:60043"/>
+			</criteria>
+		</definition>
+		<definition id="oval:gov.dod.cndrtpmo:def:60031" version="1" class="compliance">
+			<metadata>
+				<!--V-17894-->
+				<title>(U//FOUO) The HIPS policy includes the signature for protection of ePO Server Agent Keystore.</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description>(U//FOUO) From the ePO server console, select the asset to be checked, then select ‘Policies’, followed by ‘Host Intrusion Prevention 7:IPS’ from the product list. From the ‘IPS Rules’ category, select the applicable policy. From the ‘IPS Rules,’ select the ‘Signatures’ tab. Ensure that the signature of ‘Protect ePO Server Agent Keystore’ is present. In addition to the signature being present, ‘Severity’ must be ‘high,’ ‘Log Status’ must be ‘enabled,’ and ‘Allow client rules’ must be ‘disabled.’ If the signature is not present or the properties are set incorrectly, this is a finding.</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="Settings exist for the HIPS IPS Rules signature 'Protect ePO Server Agent Keystore' for the policy that controls the ePO server" test_ref="oval:gov.dod.cndrtpmo:tst:60044"/>
+				<criterion comment="Setting 'ModSeverityLevel' for the HIPS IPS Rules signature 'Protect ePO Server Agent Keystore' for the policy that controls the ePO server equals 4 (High)" test_ref="oval:gov.dod.cndrtpmo:tst:60045"/>
+				<criterion comment="Setting 'ModLogStatus' for the HIPS IPS Rules signature 'Protect ePO Server Agent Keystore' for the policy that controls the ePO server equals 1 (Enabled)" test_ref="oval:gov.dod.cndrtpmo:tst:60046"/>
+				<criterion comment="Setting 'ModCreateLocalExStatus' for the HIPS IPS Rules signature 'Protect ePO Server Agent Keystore' for the policy that controls the ePO server equals 0 (Disabled)" test_ref="oval:gov.dod.cndrtpmo:tst:60047"/>
+			</criteria>
+		</definition>
+		<definition id="oval:gov.dod.cndrtpmo:def:60032" version="1" class="compliance">
+			<metadata>
+				<!--V-17895-->
+				<title>(U//FOUO) The HIPS policy includes the signature for protection of Protect Product Folders.</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description>(U//FOUO) From the ePO server console, select the asset to be checked, then select ‘Policies’, followed by ‘Host Intrusion Prevention 7:IPS’ from the product list. From the ‘IPS Rules’ category, select the applicable policy. From the ‘IPS Rules,’ select the ‘Signatures’ tab. Ensure that the signature of ‘Protect Product Folders’ is present. In addition to the signature being present, ‘Severity’ must be ‘high,’ ‘Log Status’ must be ‘enabled,’ and ‘Allow client rules’ must be ‘disabled.’ If the signature is not present or the properties are set incorrectly, this is a finding.</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="Settings exist for the HIPS IPS Rules signature 'Protect Product Folders' for the policy that controls the ePO server" test_ref="oval:gov.dod.cndrtpmo:tst:60048"/>
+				<criterion comment="Setting 'ModSeverityLevel' for the HIPS IPS Rules signature 'Protect Product Folders' for the policy that controls the ePO server equals 4 (High)" test_ref="oval:gov.dod.cndrtpmo:tst:60049"/>
+				<criterion comment="Setting 'ModLogStatus' for the HIPS IPS Rules signature 'Protect Product Folders' for the policy that controls the ePO server equals 1 (Enabled)" test_ref="oval:gov.dod.cndrtpmo:tst:60050"/>
+				<criterion comment="Setting 'ModCreateLocalExStatus' for the HIPS IPS Rules signature 'Protect Product Folders' for the policy that controls the ePO server equals 0 (Disabled)" test_ref="oval:gov.dod.cndrtpmo:tst:60051"/>
+			</criteria>
+		</definition>
+		<definition id="oval:gov.dod.cndrtpmo:def:60033" version="1" class="compliance">
+			<metadata>
+				<!--V-17889-->
+				<title>(U//FOUO) The HBSS does not have vendor site supplied data dashboards in use.</title>
+				<affected family="windows">
+					<product>McAfee ePolicy Orchestrator</product>
+				</affected>
+				<description>(U//FOUO) From the ePO server console, select the ‘Dashboard’ tab, then select the ‘Manage Dashboards’ option. Ensure that there are no dashboards using any item from the categories of ‘McAfee Links’ or ‘MyAvert Web Service.’ If any dashboards exist using items from either of those categories, this is a finding.</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="Number of times 'McAfee Links' or 'MyAvert Web Service' dashboards are used equals 0" test_ref="oval:gov.dod.cndrtpmo:tst:60052"/>
+			</criteria>
+		</definition>
+	</definitions>
+	<tests>
+		<registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.dod.cndrtpmo:tst:60002" version="1" check_existence="at_least_one_exists" check="all" comment="HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Internet Explorer\TabbedBrowsing!Enabled type equals reg_dword and value equals 00000000">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60003"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60001"/>
+		</registry_test>
+		<xmlfilecontent_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60003" version="1" check_existence="at_least_one_exists" check="all" comment="Session timeout matches the pattern ^([0-9]|1[0-5])$">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60004"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60002"/>
+		</xmlfilecontent_test>
+		<fileeffectiverights53_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.dod.cndrtpmo:tst:60004" version="1" check_existence="any_exist" check="all" comment="No one but the Administrators group and the SYSTEM user can write to the Keystore directory">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60005"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60003"/>
+		</fileeffectiverights53_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60005" version="1" check_existence="all_exist" check="all" comment="Count of databases unrelated to HBSS or SQL Server equals 0">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60013"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60004"/>
+		</sql57_test>
+		<variable_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60006" version="1" check_existence="at_least_one_exists" check="none satisfy" comment="SQL Server database account does not match the pattern ^[Ss][Aa]$">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60014"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60005"/>
+		</variable_test>
+		<textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60007" version="1" check_existence="at_least_one_exists" check="all" comment="ePO version is greater than or equal to 4.5.1.851">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60015"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60006"/>
+		</textfilecontent54_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60008" version="1" check_existence="all_exist" check="all" comment="Count of default agent-server communication keys equals 0">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60017"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60007"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60009" version="1" check_existence="all_exist" check="all" comment="Count of default agent-server communication keys used by the ePO server equals 0">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60018"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60008"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60010" version="1" check_existence="all_exist" check="all" comment="Count of default agent-server communication keys used by any system equals 0">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60019"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60009"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60011" version="1" check_existence="all_exist" check="all" comment="MyAvert Security Threats updating status is disabled">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60020"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60010"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60012" version="1" check_existence="all_exist" check="all" comment="Count of ePO accounts assigned to each AuthURI that uses Windows authentication equals 1">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60021"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60011"/>
+		</sql57_test>
+		<textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60013" version="1" check_existence="at_least_one_exists" check="all" comment="Client authentication status is enabled">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60022"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60012"/>
+		</textfilecontent54_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60014" version="1" check_existence="all_exist" check="all" comment="Versions of all installed Certificate Authentication extensions are greater than or equal to 4.5.1.6">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60023"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60013"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60015" version="1" check_existence="all_exist" check="all" comment="Count of non-PK enabled accounts is less than or equal to 2">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60024"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60014"/>
+		</sql57_test>
+		<textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60016" version="1" check_existence="at_least_one_exists" check="all" comment="OCSP Responder URL matches the pattern ^.*\.[Mm][Ii][Ll].*$">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60025"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60015"/>
+		</textfilecontent54_test>
+		<textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60017" version="1" check_existence="at_least_one_exists" check="all" comment="Console-to-Server Port equals 8007">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60026"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60016"/>
+		</textfilecontent54_test>
+		<variable_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60018" version="1" check_existence="at_least_one_exists" check="all" comment="ePO uses a default SQL Server instance">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60027"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60017"/>
+		</variable_test>
+		<variable_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60019" version="1" check_existence="at_least_one_exists" check="all" comment="ePO uses a named SQL Server instance">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60027"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60018"/>
+		</variable_test>
+		<registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.dod.cndrtpmo:tst:60021" version="1" check_existence="at_least_one_exists" check="all" comment="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\_Instance_ID_\MSSQLServer\SuperSocketNetLib!ForceEncryption equals 1">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60031"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60019"/>
+		</registry_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60022" version="1" check_existence="all_exist" check="all" comment="Agent-to-Server communication ports equal 80">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60032"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60020"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60023" version="1" check_existence="all_exist" check="all" comment="Agent-to-Server communication secure ports equal 443">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60033"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60021"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60024" version="1" check_existence="all_exist" check="all" comment="Agent wake-up communication ports equal 591">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60034"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60022"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60025" version="1" check_existence="all_exist" check="all" comment="Agent broadcast ports equal 8082">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60035"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60023"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60026" version="1" check_existence="all_exist" check="all" comment="Console-to-application server communication ports equal 8005">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60036"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60024"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60027" version="1" check_existence="all_exist" check="all" comment="Client-to-server authenticated communication ports equal 8443">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60037"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60025"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60028" version="1" check_existence="all_exist" check="all" comment="ePO SQL Server account does not have SQL Server sysadmin role membership">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60039"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60026"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60029" version="1" check_existence="all_exist" check="all" comment="Setting 'ReactionForMedium' for the HIPS IPS Protection policy that controls the ePO server equals 2 (Log)">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60041"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60027"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60030" version="1" check_existence="all_exist" check="all" comment="Setting 'ReactionForMedium' for the HIPS IPS Protection policy that controls the ePO server equals 3 (Prevent)">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60041"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60028"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60031" version="1" check_existence="all_exist" check="all" comment="Settings exist for the HIPS IPS Rules signature 'Protect ePO Server Console Keystore' for the policy that controls the ePO server">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60042"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60032" version="1" check_existence="all_exist" check="all" comment="Setting 'ModSeverityLevel' for the HIPS IPS Rules signature 'Protect ePO Server Console Keystore' for the policy that controls the ePO server equals 4 (High)">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60043"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60029"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60033" version="1" check_existence="all_exist" check="all" comment="Setting 'ModLogStatus' for the HIPS IPS Rules signature 'Protect ePO Server Console Keystore' for the policy that controls the ePO server equals 1 (Enabled)">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60044"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60030"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60034" version="1" check_existence="all_exist" check="all" comment="Setting 'ModCreateLocalExStatus' for the HIPS IPS Rules signature 'Protect ePO Server Console Keystore' for the policy that controls the ePO server equals 0 (Disabled)">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60045"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60031"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60035" version="1" check_existence="all_exist" check="all" comment="Settings exist for the HIPS IPS Rules signature 'Protect ePO Server.ini' for the policy that controls the ePO server">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60046"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60036" version="1" check_existence="all_exist" check="all" comment="Setting 'ModSeverityLevel' for the HIPS IPS Rules signature 'Protect ePO Server.ini' for the policy that controls the ePO server equals 4 (High)">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60047"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60032"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60037" version="1" check_existence="all_exist" check="all" comment="Setting 'ModLogStatus' for the HIPS IPS Rules signature 'Protect ePO Server.ini' for the policy that controls the ePO server equals 1 (Enabled)">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60048"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60033"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60038" version="1" check_existence="all_exist" check="all" comment="Setting 'ModCreateLocalExStatus' for the HIPS IPS Rules signature 'Protect ePO Server.ini' for the policy that controls the ePO server equals 0 (Disabled)">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60049"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60034"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60039" version="1" check_existence="all_exist" check="all" comment="Setting 'FWStatus' for HIPS Firewall Options policies equals 1 (Enabled)">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60050"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60035"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60040" version="1" check_existence="all_exist" check="all" comment="Setting 'AuditModeStatus' for HIPS Firewall Options policies equals 0">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60051"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60036"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60041" version="1" check_existence="all_exist" check="all" comment="Setting 'InLearnModeStatus' for HIPS Firewall Options policies equals 0">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60052"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60037"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60042" version="1" check_existence="all_exist" check="all" comment="Setting 'OutLearnModeStatus' for HIPS Firewall Options policies equals 0">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60053"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60038"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60043" version="1" check_existence="all_exist" check="all" comment="Setting 'MergeRules' for HIPS Firewall Options policies equals 0">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60054"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60039"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60044" version="1" check_existence="all_exist" check="all" comment="Settings exist for the HIPS IPS Rules signature 'Protect ePO Server Agent Keystore' for the policy that controls the ePO server">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60055"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60045" version="1" check_existence="all_exist" check="all" comment="Setting 'ModSeverityLevel' for the HIPS IPS Rules signature 'Protect ePO Server Agent Keystore' for the policy that controls the ePO server equals 4 (High)">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60056"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60040"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60046" version="1" check_existence="all_exist" check="all" comment="Setting 'ModLogStatus' for the HIPS IPS Rules signature 'Protect ePO Server Agent Keystore' for the policy that controls the ePO server equals 1 (Enabled)">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60057"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60041"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60047" version="1" check_existence="all_exist" check="all" comment="Setting 'ModCreateLocalExStatus' for the HIPS IPS Rules signature 'Protect ePO Server Agent Keystore' for the policy that controls the ePO server equals 0 (Disabled)">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60058"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60042"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60048" version="1" check_existence="all_exist" check="all" comment="Settings exist for the HIPS IPS Rules signature 'Protect Product Folders' for the policy that controls the ePO server">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60059"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60049" version="1" check_existence="all_exist" check="all" comment="Setting 'ModSeverityLevel' for the HIPS IPS Rules signature 'Protect Product Folders' for the policy that controls the ePO server equals 4 (High)">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60060"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60043"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60050" version="1" check_existence="all_exist" check="all" comment="Setting 'ModLogStatus' for the HIPS IPS Rules signature 'Protect Product Folders' for the policy that controls the ePO server equals 1 (Enabled)">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60061"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60044"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60051" version="1" check_existence="all_exist" check="all" comment="Setting 'ModCreateLocalExStatus' for the HIPS IPS Rules signature 'Protect Product Folders' for the policy that controls the ePO server equals 0 (Disabled)">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60062"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60045"/>
+		</sql57_test>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:tst:60052" version="1" check_existence="all_exist" check="all" comment="Number of times 'McAfee Links' or 'MyAvert Web Service' dashboards are used equals 0">
+			<object object_ref="oval:gov.dod.cndrtpmo:obj:60063"/>
+			<state state_ref="oval:gov.dod.cndrtpmo:ste:60046"/>
+		</sql57_test>
+	</tests>
+	<objects>
+		<registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.dod.cndrtpmo:obj:60002" version="1" comment="HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MCAFEEEVENTPARSERSRV!ImagePath">
+			<hive datatype="string">HKEY_LOCAL_MACHINE</hive>
+			<key datatype="string">SYSTEM\CurrentControlSet\Services\MCAFEEEVENTPARSERSRV</key>
+			<name datatype="string">ImagePath</name>
+		</registry_object>
+		<registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.dod.cndrtpmo:obj:60003" version="1" comment="HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Internet Explorer\TabbedBrowsing!Enabled">
+			<hive datatype="string">HKEY_LOCAL_MACHINE</hive>
+			<key datatype="string">SOFTWARE\Policies\Microsoft\Internet Explorer\TabbedBrowsing</key>
+			<name datatype="string">Enabled</name>
+		</registry_object>
+		<xmlfilecontent_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60004" version="1" comment="Session timeout">
+			<path datatype="string" var_ref="oval:gov.dod.cndrtpmo:var:60002" var_check="all"/>
+			<filename datatype="string">web.xml</filename>
+			<!--<xpath datatype="string">/web-app/session-config/session-timeout/text()</xpath>-->
+			<!--<xpath datatype="string">//*[name()='session-timeout' and namespace-uri()='http://java.sun.com/xml/ns/j2ee']/text()</xpath>-->
+			<!-- Removal of namespace-uri call provides better overall scanner support at this time. -->
+			<xpath datatype="string">//*[name()='session-timeout']/text()</xpath>
+		</xmlfilecontent_object>
+		<fileeffectiverights53_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.dod.cndrtpmo:obj:60005" version="1" comment="The file effective rights on the Keystore directory for every user/group except Administrators and the SYSTEM user">
+			<set xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" set_operator="INTERSECTION">
+				<set set_operator="COMPLEMENT">
+					<object_reference>oval:gov.dod.cndrtpmo:obj:60006</object_reference>
+					<object_reference>oval:gov.dod.cndrtpmo:obj:60007</object_reference>
+				</set>
+				<set set_operator="COMPLEMENT">
+					<object_reference>oval:gov.dod.cndrtpmo:obj:60006</object_reference>
+					<object_reference>oval:gov.dod.cndrtpmo:obj:60008</object_reference>
+				</set>
+			</set>
+		</fileeffectiverights53_object>
+		<fileeffectiverights53_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.dod.cndrtpmo:obj:60006" version="1" comment="The file effective rights on the Keystore directory for every user/group">
+			<!--<behaviors resolve_group="true"/> - Deprecated behavior. -->
+			<path datatype="string" var_ref="oval:gov.dod.cndrtpmo:var:60003" var_check="all"/>
+			<filename xsi:nil="true"/>
+			<trustee_sid operation="pattern match">^.*$</trustee_sid>
+		</fileeffectiverights53_object>
+		<fileeffectiverights53_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.dod.cndrtpmo:obj:60007" version="1" comment="The file effective rights on the Keystore directory for the SYSTEM user">
+			<path datatype="string" var_ref="oval:gov.dod.cndrtpmo:var:60003" var_check="all"/>
+			<filename xsi:nil="true"/>
+			<trustee_sid>S-1-5-18</trustee_sid>
+		</fileeffectiverights53_object>
+		<fileeffectiverights53_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.dod.cndrtpmo:obj:60008" version="1" comment="The file effective rights on the Keystore directory for the Administrators group">
+			<!--<behaviors resolve_group="true"/> - Deprecated behavior. -->
+			<path datatype="string" var_ref="oval:gov.dod.cndrtpmo:var:60003" var_check="all"/>
+			<filename xsi:nil="true"/>
+			<trustee_sid>S-1-5-32-544</trustee_sid>
+		</fileeffectiverights53_object>
+		<textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60009" version="1" comment="SQL Server database account">
+			<path datatype="string" var_ref="oval:gov.dod.cndrtpmo:var:60004" var_check="all"/>
+			<filename datatype="string">db.properties</filename>
+			<pattern datatype="string" operation="pattern match">^db.user.name=(.+)$</pattern>
+			<!-- Example: db.user.name=eposql -->
+			<instance datatype="int">1</instance>
+		</textfilecontent54_object>
+		<textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60010" version="1" comment="ePO database name">
+			<path datatype="string" var_ref="oval:gov.dod.cndrtpmo:var:60004" var_check="all"/>
+			<filename datatype="string">db.properties</filename>
+			<pattern datatype="string" operation="pattern match">^db.database.name=(.+)$</pattern>
+			<!-- Example: db.database.name=ePO4_HBSS-4-2010 -->
+			<instance datatype="int">1</instance>
+		</textfilecontent54_object>
+		<textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60011" version="1" comment="SQL Server name">
+			<path datatype="string" var_ref="oval:gov.dod.cndrtpmo:var:60004" var_check="all"/>
+			<filename datatype="string">db.properties</filename>
+			<pattern datatype="string" operation="pattern match">^db.server.name=(.+)$</pattern>
+			<!-- Example: db.server.name=HBSS-4-2010 -->
+			<instance datatype="int">1</instance>
+		</textfilecontent54_object>
+		<textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60012" version="1" comment="Raw SQL Server instance name used by ePO (textfilecontent_item->subexpression will be blank if the default SQL Server instance is used)">
+			<path datatype="string" var_ref="oval:gov.dod.cndrtpmo:var:60004" var_check="all"/>
+			<filename datatype="string">db.properties</filename>
+			<pattern datatype="string" operation="pattern match">^db.instance.name=(.*)$</pattern>
+			<!-- Named SQL Server instance example: db.instance.name=mySQLServerInstance -->
+			<!-- Default SQL Server instance example: db.instance.name= -->
+			<instance datatype="int">1</instance>
+		</textfilecontent54_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60013" version="1" comment="Count of databases unrelated to HBSS or SQL Server">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60012" var_check="all"/>
+		</sql57_object>
+		<variable_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60014" version="1" comment="SQL Server database account">
+			<var_ref>oval:gov.dod.cndrtpmo:var:60005</var_ref>
+		</variable_object>
+		<textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60015" version="1" comment="ePO version">
+			<path datatype="string" var_ref="oval:gov.dod.cndrtpmo:var:60013" var_check="all"/>
+			<filename datatype="string">Server.ini</filename>
+			<pattern datatype="string" operation="pattern match">^[Vv][Ee][Rr][Ss][Ii][Oo][Nn]=(.+)$</pattern>
+			<!-- Example: Version=4.5.0.937 -->
+			<instance datatype="int">1</instance>
+		</textfilecontent54_object>
+		<registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.dod.cndrtpmo:obj:60016" version="1" comment="HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\ComputerName\ActiveComputerName!ComputerName">
+			<hive datatype="string">HKEY_LOCAL_MACHINE</hive>
+			<key datatype="string">SYSTEM\CurrentControlSet\Control\ComputerName\ActiveComputerName</key>
+			<name datatype="string">ComputerName</name>
+		</registry_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60017" version="1" comment="Count of default agent-server communication keys">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60015" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60018" version="1" comment="Count of default agent-server communication keys used by the ePO server">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60016" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60019" version="1" comment="Count of default agent-server communication keys used by any system">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60017" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60020" version="1" comment="MyAvert Security Threats updating status">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60018" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60021" version="1" comment="AuthURIs that use Windows authentication and the count of ePO accounts assigned to each AuthURI">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60019" var_check="all"/>
+		</sql57_object>
+		<textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60022" version="1" comment="Client authentication status">
+			<path datatype="string" var_ref="oval:gov.dod.cndrtpmo:var:60004" var_check="all"/>
+			<filename datatype="string">orion.properties</filename>
+			<pattern datatype="string" operation="pattern match">^orion.clientauth.status=(.+)$</pattern>
+			<!-- Example: orion.clientauth.status=Disabled -->
+			<instance datatype="int">1</instance>
+		</textfilecontent54_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60023" version="1" comment="Versions of all installed Certificate Authentication extensions">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60020" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60024" version="1" comment="Count of non-PK enabled accounts">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60021" var_check="all"/>
+		</sql57_object>
+		<textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60025" version="1" comment="OCSP Responder URL">
+			<path datatype="string" var_ref="oval:gov.dod.cndrtpmo:var:60004" var_check="all"/>
+			<filename datatype="string">orion.properties</filename>
+			<pattern datatype="string" operation="pattern match">^orion.clientauth.ocspurl=(.+)$</pattern>
+			<!-- Example: orion.clientauth.ocspurl=http\://ocsp.disa.mil -->
+			<instance datatype="int">1</instance>
+		</textfilecontent54_object>
+		<textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60026" version="1" comment="Console-to-Server Port">
+			<path datatype="string" var_ref="oval:gov.dod.cndrtpmo:var:60004" var_check="all"/>
+			<filename datatype="string">orion.properties</filename>
+			<pattern datatype="string" operation="pattern match">^orion.clientauth.connectorPort=(.+)$</pattern>
+			<!-- Example: orion.clientauth.connectorPort=8007 -->
+			<instance datatype="int">1</instance>
+		</textfilecontent54_object>
+		<variable_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60027" version="1" comment="Raw SQL Server instance name used by ePO (variable_item->value will be blank if the default SQL Server instance is used)">
+			<var_ref>oval:gov.dod.cndrtpmo:var:60008</var_ref>
+		</variable_object>
+		<registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.dod.cndrtpmo:obj:60029" version="1" comment="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\Instance Names\SQL!_Instance_Name_">
+			<hive datatype="string">HKEY_LOCAL_MACHINE</hive>
+			<key datatype="string">SOFTWARE\Microsoft\Microsoft SQL Server\Instance Names\SQL</key>
+			<name datatype="string" var_ref="oval:gov.dod.cndrtpmo:var:60037" var_check="all"/>
+		</registry_object>
+		<registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.dod.cndrtpmo:obj:60031" version="1" comment="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\_Instance_ID_\MSSQLServer\SuperSocketNetLib!ForceEncryption">
+			<hive datatype="string">HKEY_LOCAL_MACHINE</hive>
+			<key datatype="string" var_ref="oval:gov.dod.cndrtpmo:var:60026" var_check="all"/>
+			<name datatype="string">ForceEncryption</name>
+		</registry_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60032" version="1" comment="Agent-to-Server communication ports">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60027" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60033" version="1" comment="Agent-to-Server communication secure ports">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60028" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60034" version="1" comment="Agent wake-up communication ports">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60029" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60035" version="1" comment="Agent broadcast ports">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60030" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60036" version="1" comment="Console-to-application server communication ports">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60031" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60037" version="1" comment="Client-to-server authenticated communication ports">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60032" var_check="all"/>
+		</sql57_object>
+		<textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60038" version="1" comment="SQL Server database account domain (textfilecontent_item->subexpression will be blank if SQL Server authentication is used)">
+			<path datatype="string" var_ref="oval:gov.dod.cndrtpmo:var:60004" var_check="all"/>
+			<filename datatype="string">db.properties</filename>
+			<pattern datatype="string" operation="pattern match">^db.user.domain=(.*)$</pattern>
+			<!-- Example: db.user.domain=hbss-5-2011 -->
+			<!-- Example if SQL Server authentication is in use (will be blank): db.user.domain= -->
+			<instance datatype="int">1</instance>
+		</textfilecontent54_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60039" version="1" comment="Value of 1 or more if the ePO SQL Server account has SQL Server sysadmin role membership, 0 otherwise">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60033" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60040" version="1" comment="Hostname of the local system (the ePO server)">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60035" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60041" version="1" comment="Setting 'ReactionForMedium' for the HIPS IPS Protection policy that controls the ePO server">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60038" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60042" version="1" comment="Settings for the HIPS IPS Rules signature 'Protect ePO Server Console Keystore' for the policy that controls the ePO server">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60039" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60043" version="1" comment="Setting 'ModSeverityLevel' for the HIPS IPS Rules signature 'Protect ePO Server Console Keystore' for the policy that controls the ePO server">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60040" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60044" version="1" comment="Setting 'ModLogStatus' for the HIPS IPS Rules signature 'Protect ePO Server Console Keystore' for the policy that controls the ePO server">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60041" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60045" version="1" comment="Setting 'ModCreateLocalExStatus' for the HIPS IPS Rules signature 'Protect ePO Server Console Keystore' for the policy that controls the ePO server">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60042" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60046" version="1" comment="Settings for the HIPS IPS Rules signature 'Protect ePO Server.ini' for the policy that controls the ePO server">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60043" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60047" version="1" comment="Setting 'ModSeverityLevel' for the HIPS IPS Rules signature 'Protect ePO Server.ini' for the policy that controls the ePO server">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60044" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60048" version="1" comment="Setting 'ModLogStatus' for the HIPS IPS Rules signature 'Protect ePO Server.ini' for the policy that controls the ePO server">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60045" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60049" version="1" comment="Setting 'ModCreateLocalExStatus' for the HIPS IPS Rules signature 'Protect ePO Server.ini' for the policy that controls the ePO server">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60046" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60050" version="1" comment="Setting 'FWStatus' for HIPS Firewall Options policies">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60047" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60051" version="1" comment="Setting 'AuditModeStatus' for HIPS Firewall Options policies">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60048" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60052" version="1" comment="Setting 'InLearnModeStatus' for HIPS Firewall Options policies">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60049" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60053" version="1" comment="Setting 'OutLearnModeStatus' for HIPS Firewall Options policies">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60050" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60054" version="1" comment="Setting 'MergeRules' for HIPS Firewall Options policies">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60051" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60055" version="1" comment="Settings for the HIPS IPS Rules signature 'Protect ePO Server Agent Keystore' for the policy that controls the ePO server">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60052" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60056" version="1" comment="Setting 'ModSeverityLevel' for the HIPS IPS Rules signature 'Protect ePO Server Agent Keystore' for the policy that controls the ePO server">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60053" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60057" version="1" comment="Setting 'ModLogStatus' for the HIPS IPS Rules signature 'Protect ePO Server Agent Keystore' for the policy that controls the ePO server">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60054" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60058" version="1" comment="Setting 'ModCreateLocalExStatus' for the HIPS IPS Rules signature 'Protect ePO Server Agent Keystore' for the policy that controls the ePO server">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60055" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60059" version="1" comment="Settings for the HIPS IPS Rules signature 'Protect Product Folders' for the policy that controls the ePO server">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60056" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60060" version="1" comment="Setting 'ModSeverityLevel' for the HIPS IPS Rules signature 'Protect Product Folders' for the policy that controls the ePO server">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60057" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60061" version="1" comment="Setting 'ModLogStatus' for the HIPS IPS Rules signature 'Protect Product Folders' for the policy that controls the ePO server">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60058" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60062" version="1" comment="Setting 'ModCreateLocalExStatus' for the HIPS IPS Rules signature 'Protect Product Folders' for the policy that controls the ePO server">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60059" var_check="all"/>
+		</sql57_object>
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:obj:60063" version="1" comment="Number of times 'McAfee Links' or 'MyAvert Web Service' dashboards are used">
+			<engine var_ref="oval:gov.dod.cndrtpmo:var:60009" var_check="all"/>
+			<version var_ref="oval:gov.dod.cndrtpmo:var:60010" var_check="all"/>
+			<connection_string var_ref="oval:gov.dod.cndrtpmo:var:60011" var_check="all"/>
+			<sql var_ref="oval:gov.dod.cndrtpmo:var:60060" var_check="all"/>
+		</sql57_object>
+	</objects>
+	<states>
+		<registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.dod.cndrtpmo:ste:60001" version="1" comment="type equals reg_dword and value equals 00000000">
+			<type operation="equals">reg_dword</type>
+			<value operation="equals">00000000</value>
+		</registry_state>
+		<xmlfilecontent_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60002" version="1" comment="value-of matches the pattern ^([0-9]|1[0-5])$">
+			<value_of datatype="string" operation="pattern match">^([0-9]|1[0-5])$</value_of>
+			<!-- Match an integer that is less than or equal to 15. We can't use a datatype of int here because doing so fails Schematron validation. -->
+		</xmlfilecontent_state>
+		<fileeffectiverights53_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.dod.cndrtpmo:ste:60003" version="1" comment="Write access is denied">
+			<standard_delete datatype="boolean" operation="equals" entity_check="all">0</standard_delete>
+			<standard_write_dac datatype="boolean" operation="equals" entity_check="all">0</standard_write_dac>
+			<standard_write_owner datatype="boolean" operation="equals" entity_check="all">0</standard_write_owner>
+			<generic_write datatype="boolean" operation="equals" entity_check="all">0</generic_write>
+			<file_write_data datatype="boolean" operation="equals" entity_check="all">0</file_write_data>
+			<file_append_data datatype="boolean" operation="equals" entity_check="all">0</file_append_data>
+			<file_write_ea datatype="boolean" operation="equals" entity_check="all">0</file_write_ea>
+			<file_delete_child datatype="boolean" operation="equals" entity_check="all">0</file_delete_child>
+			<file_write_attributes datatype="boolean" operation="equals" entity_check="all">0</file_write_attributes>
+		</fileeffectiverights53_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60004" version="1" comment="count equals 0">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="count" datatype="int" operation="equals">0</field>
+			</result>
+		</sql57_state>
+		<variable_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60005" version="1" comment="value matches the pattern ^[Ss][Aa]$">
+			<value datatype="string" operation="pattern match">^[Ss][Aa]$</value>
+		</variable_state>
+		<textfilecontent54_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60006" version="1" comment="subexpression is greater than or equal to 4.5.1.851">
+			<subexpression datatype="version" operation="greater than or equal">4.5.1.851</subexpression>
+		</textfilecontent54_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60007" version="1" comment="count equals 0">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="count" datatype="int" operation="equals">0</field>
+			</result>
+		</sql57_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60008" version="1" comment="count equals 0">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="count" datatype="int" operation="equals">0</field>
+			</result>
+		</sql57_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60009" version="1" comment="count equals 0">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="count" datatype="int" operation="equals">0</field>
+			</result>
+		</sql57_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60010" version="1" comment="status equals disabled">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="status" datatype="string" operation="case insensitive equals">disabled</field>
+			</result>
+		</sql57_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60011" version="1" comment="count equals 1">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="count" datatype="int" operation="equals">1</field>
+			</result>
+		</sql57_state>
+		<textfilecontent54_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60012" version="1" comment="subexpression equals enabled">
+			<subexpression datatype="string" operation="case insensitive equals">enabled</subexpression>
+		</textfilecontent54_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60013" version="1" comment="version is greater than or equal to 4.5.1.6">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="version" datatype="version" operation="greater than or equal">4.5.1.6</field>
+			</result>
+		</sql57_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60014" version="1" comment="count is less than or equal to 2">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="count" datatype="int" operation="less than or equal">2</field>
+			</result>
+		</sql57_state>
+		<textfilecontent54_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60015" version="1" comment="subexpression matches the pattern ^.*\.[Mm][Ii][Ll].*$">
+			<subexpression datatype="string" operation="pattern match">^.*\.[Mm][Ii][Ll].*$</subexpression>
+		</textfilecontent54_state>
+		<textfilecontent54_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60016" version="1" comment="subexpression equals 8007">
+			<subexpression datatype="int" operation="equals">8007</subexpression>
+		</textfilecontent54_state>
+		<variable_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60017" version="1" comment="value equals empty string">
+			<value datatype="string" operation="equals"/>
+		</variable_state>
+		<variable_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60018" version="1" comment="value matches the pattern ^.+$">
+			<value datatype="string" operation="pattern match">^.+$</value>
+		</variable_state>
+		<registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.dod.cndrtpmo:ste:60019" version="1" comment="value equals 1">
+			<value operation="equals">1</value>
+		</registry_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60020" version="1" comment="serverhttpport equals 80">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="serverhttpport" datatype="int" operation="equals">80</field>
+			</result>
+		</sql57_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60021" version="1" comment="serverhttpsport equals 443">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="serverhttpsport" datatype="int" operation="equals">443</field>
+			</result>
+		</sql57_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60022" version="1" comment="agenthttpport equals 591">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="agenthttpport" datatype="int" operation="equals">591</field>
+			</result>
+		</sql57_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60023" version="1" comment="agentbroadcastport equal 8082">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="agentbroadcastport" datatype="int" operation="equals">8082</field>
+			</result>
+		</sql57_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60024" version="1" comment="rmdsecurehttpport equal 8005">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="rmdsecurehttpport" datatype="int" operation="equals">8005</field>
+			</result>
+		</sql57_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60025" version="1" comment="sensorsecurehttpport equal 8443">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="sensorsecurehttpport" datatype="int" operation="equals">8443</field>
+			</result>
+		</sql57_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60026" version="1" comment="count equals 0">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="count" datatype="int" operation="equals">0</field>
+			</result>
+		</sql57_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60027" version="1" comment="settingvalue equals 2">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="settingvalue" datatype="int" operation="equals">2</field>
+			</result>
+		</sql57_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60028" version="1" comment="settingvalue equals 3">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="settingvalue" datatype="int" operation="equals">3</field>
+			</result>
+		</sql57_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60029" version="1" comment="settingvalue equals 4">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="settingvalue" datatype="int" operation="equals">4</field>
+			</result>
+		</sql57_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60030" version="1" comment="settingvalue equals 1">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="settingvalue" datatype="int" operation="equals">1</field>
+			</result>
+		</sql57_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60031" version="1" comment="settingvalue equals 0">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="settingvalue" datatype="int" operation="equals">0</field>
+			</result>
+		</sql57_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60032" version="1" comment="settingvalue equals 4">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="settingvalue" datatype="int" operation="equals">4</field>
+			</result>
+		</sql57_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60033" version="1" comment="settingvalue equals 1">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="settingvalue" datatype="int" operation="equals">1</field>
+			</result>
+		</sql57_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60034" version="1" comment="settingvalue equals 0">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="settingvalue" datatype="int" operation="equals">0</field>
+			</result>
+		</sql57_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60035" version="1" comment="settingvalue equals 1">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="settingvalue" datatype="int" operation="equals">1</field>
+			</result>
+		</sql57_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60036" version="1" comment="settingvalue equals 0">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="settingvalue" datatype="int" operation="equals">0</field>
+			</result>
+		</sql57_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60037" version="1" comment="settingvalue equals 0">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="settingvalue" datatype="int" operation="equals">0</field>
+			</result>
+		</sql57_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60038" version="1" comment="settingvalue equals 0">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="settingvalue" datatype="int" operation="equals">0</field>
+			</result>
+		</sql57_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60039" version="1" comment="settingvalue equals 0">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="settingvalue" datatype="int" operation="equals">0</field>
+			</result>
+		</sql57_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60040" version="1" comment="settingvalue equals 4">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="settingvalue" datatype="int" operation="equals">4</field>
+			</result>
+		</sql57_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60041" version="1" comment="settingvalue equals 1">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="settingvalue" datatype="int" operation="equals">1</field>
+			</result>
+		</sql57_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60042" version="1" comment="settingvalue equals 0">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="settingvalue" datatype="int" operation="equals">0</field>
+			</result>
+		</sql57_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60043" version="1" comment="settingvalue equals 4">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="settingvalue" datatype="int" operation="equals">4</field>
+			</result>
+		</sql57_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60044" version="1" comment="settingvalue equals 1">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="settingvalue" datatype="int" operation="equals">1</field>
+			</result>
+		</sql57_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60045" version="1" comment="settingvalue equals 0">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="settingvalue" datatype="int" operation="equals">0</field>
+			</result>
+		</sql57_state>
+		<sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.dod.cndrtpmo:ste:60046" version="1" comment="count equals 0">
+			<result datatype="record" operation="equals">
+				<field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" name="count" datatype="int" operation="equals">0</field>
+			</result>
+		</sql57_state>
+	</states>
+	<variables>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60001" version="1" comment="_ePO_installation_directory_" datatype="string">
+			<regex_capture pattern="^\x22?(.*)\\[Ee][Vv][Ee][Nn][Tt][Pp][Aa][Rr][Ss][Ee][Rr]\.[Ee][Xx][Ee].*$">
+				<object_component object_ref="oval:gov.dod.cndrtpmo:obj:60002" item_field="value"/>
+				<!-- Example: "D:\Program Files\McAfee\ePolicy Orchestrator\EventParser.exe" -->
+			</regex_capture>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60002" version="1" comment="_ePO_installation_directory_\Server\Conf" datatype="string">
+			<concat>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60001"/>
+				<literal_component datatype="string">\Server\Conf</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60003" version="1" comment="_ePO_installation_directory_\Server\Keystore" datatype="string">
+			<concat>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60001"/>
+				<literal_component datatype="string">\Server\Keystore</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60004" version="1" comment="_ePO_installation_directory_\Server\Conf\Orion" datatype="string">
+			<concat>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60001"/>
+				<literal_component datatype="string">\Server\Conf\Orion</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60005" version="1" comment="SQL Server database account" datatype="string">
+			<object_component object_ref="oval:gov.dod.cndrtpmo:obj:60009" item_field="subexpression"/>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60006" version="1" comment="ePO database name" datatype="string">
+			<object_component object_ref="oval:gov.dod.cndrtpmo:obj:60010" item_field="subexpression"/>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60007" version="1" comment="SQL Server name" datatype="string">
+			<object_component object_ref="oval:gov.dod.cndrtpmo:obj:60011" item_field="subexpression"/>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60008" version="1" comment="Raw SQL Server instance name used by ePO (this will be blank if the default SQL Server instance is used)" datatype="string">
+			<object_component object_ref="oval:gov.dod.cndrtpmo:obj:60012" item_field="subexpression"/>
+		</local_variable>
+		<constant_variable id="oval:gov.dod.cndrtpmo:var:60009" version="1" datatype="string" comment="DBMS engine">
+			<value>sqlserver</value>
+		</constant_variable>
+		<constant_variable id="oval:gov.dod.cndrtpmo:var:60010" version="1" datatype="string" comment="DBMS version">
+			<value>9.0</value>
+		</constant_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60011" version="1" datatype="string" comment="DBMS connection string that connects to the SQL Server instance used by ePO">
+			<concat>
+				<literal_component>server=</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60037"/>
+				<literal_component>;</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60012" version="1" datatype="string" comment="SQL query that returns the count of databases unrelated to HBSS or SQL Server">
+			<concat>
+				<literal_component>SELECT COUNT(*) AS 'count' FROM master.sys.databases WHERE name NOT IN ('master', 'model', 'msdb', 'tempdb', '</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>')</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60013" version="1" comment="_ePO_installation_directory_\DB" datatype="string">
+			<concat>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60001"/>
+				<literal_component datatype="string">\DB</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60014" version="1" comment="Hostname of the local system (the ePO server) - registry_object method" datatype="string">
+			<object_component object_ref="oval:gov.dod.cndrtpmo:obj:60016" item_field="value"/>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60015" version="1" datatype="string" comment="SQL query that returns the count of default agent-server communication keys">
+			<concat>
+				<literal_component>SELECT COUNT(*) AS 'count' FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOServerKeys WHERE KeyHash = 'HMW9L9yM2AbJY8qrvmNCNJpYXAI='</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60016" version="1" datatype="string" comment="SQL query that returns the count of default agent-server communication keys used by the ePO server">
+			<concat>
+				<literal_component>SELECT COUNT(*) AS 'count' FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOLeafNode WHERE NodeName = '</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60014"/>
+				<literal_component>' AND ServerKeyHash = 'HMW9L9yM2AbJY8qrvmNCNJpYXAI='</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60017" version="1" datatype="string" comment="SQL query that returns the count of default agent-server communication keys used by any system">
+			<concat>
+				<literal_component>SELECT COUNT(*) AS 'count' FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOLeafNode WHERE ServerKeyHash = 'HMW9L9yM2AbJY8qrvmNCNJpYXAI='</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60018" version="1" datatype="string" comment="SQL query that returns the MyAvert Security Threats updating status">
+			<concat>
+				<literal_component>SELECT status FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAvertSettings</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60019" version="1" datatype="string" comment="SQL query that returns AuthURIs that use Windows authentication and the count of ePO accounts assigned to each AuthURI">
+			<concat>
+				<literal_component>SELECT COUNT(name) AS 'count', AuthURI FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.OrionUsers WHERE AuthURI LIKE 'auth:ntlm%' GROUP BY AuthURI</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60020" version="1" datatype="string" comment="SQL query that returns the versions of all installed Certificate Authentication extensions">
+			<concat>
+				<literal_component>SELECT version FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.OrionExtensions WHERE Name = 'CertAuthModule'</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60021" version="1" datatype="string" comment="SQL query that returns the count of non-PK enabled accounts">
+			<concat>
+				<literal_component>SELECT COUNT(*) AS 'count' FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.OrionUsers WHERE AuthURI NOT LIKE 'auth:cert%'</literal_component>
+			</concat>
+		</local_variable>
+		<constant_variable id="oval:gov.dod.cndrtpmo:var:60022" version="1" datatype="string" comment="Default SQL Server instance name">
+			<value>MSSQLServer</value>
+		</constant_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60024" version="1" comment="Instance ID of the SQL Server instance used by ePO" datatype="string">
+			<object_component object_ref="oval:gov.dod.cndrtpmo:obj:60029" item_field="value"/>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60026" version="1" datatype="string" comment="SOFTWARE\Microsoft\Microsoft SQL Server\_Instance_ID_\MSSQLServer\SuperSocketNetLib">
+			<concat>
+				<literal_component>SOFTWARE\Microsoft\Microsoft SQL Server\</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60024"/>
+				<literal_component>\MSSQLServer\SuperSocketNetLib</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60027" version="1" datatype="string" comment="SQL query that returns the Agent-to-Server communication ports">
+			<concat>
+				<literal_component>SELECT serverhttpport FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOServerInfo</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60028" version="1" datatype="string" comment="SQL query that returns the Agent-to-Server communication secure ports">
+			<concat>
+				<literal_component>SELECT serverhttpsport FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOServerInfo</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60029" version="1" datatype="string" comment="SQL query that returns the Agent wake-up communication ports">
+			<concat>
+				<literal_component>SELECT agenthttpport FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOServerInfo</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60030" version="1" datatype="string" comment="SQL query that returns the Agent broadcast ports">
+			<concat>
+				<literal_component>SELECT agentbroadcastport FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOServerInfo</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60031" version="1" datatype="string" comment="SQL query that returns the Console-to-application server communication ports">
+			<concat>
+				<literal_component>SELECT rmdsecurehttpport FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOServerInfo</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60032" version="1" datatype="string" comment="SQL query that returns the Client-to-server authenticated communication ports">
+			<concat>
+				<literal_component>SELECT sensorsecurehttpport FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOServerInfo</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60033" version="1" datatype="string" comment="SQL query that returns a value of 1 or more if the ePO SQL Server account has SQL Server sysadmin role membership, 0 otherwise">
+			<concat>
+				<literal_component>SELECT COUNT(sp.name) AS 'count' FROM master.sys.server_role_members srm, master.sys.server_principals sp WHERE srm.role_principal_id = SUSER_ID('sysadmin') AND srm.member_principal_id = sp.principal_id AND (sp.name = '</literal_component>
+				<object_component object_ref="oval:gov.dod.cndrtpmo:obj:60009" item_field="subexpression"/>
+				<!-- SQL Server database account -->
+				<literal_component>' OR sp.name = '</literal_component>
+				<object_component object_ref="oval:gov.dod.cndrtpmo:obj:60038" item_field="subexpression"/>
+				<!-- SQL Server database account domain (textfilecontent_item->subexpression will be blank if SQL Server authentication is used) -->
+				<literal_component>\</literal_component>
+				<object_component object_ref="oval:gov.dod.cndrtpmo:obj:60009" item_field="subexpression"/>
+				<!-- SQL Server database account -->
+				<literal_component>')</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60034" version="1" comment="Hostname of the local system (the ePO server) - sql57_object method" datatype="string">
+			<object_component object_ref="oval:gov.dod.cndrtpmo:obj:60040" item_field="value"/>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60035" version="1" datatype="string" comment="SQL query that returns the hostname of the local system (the ePO server)">
+			<concat>
+				<literal_component>SELECT TOP 1 computername FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOServerInfo</literal_component>
+			</concat>
+		</local_variable>
+		<!--
+			The following variable should evaluate to "_Instance_Name_@MSSQLServer@" without the quotes.
+			The value for "_Instance_Name_" is pulled from ePO's db.properties file.
+			The value pulled from db.properties is the name of the SQL Server instance used by ePO.
+			If ePO is using a named SQL Server instance, then the value pulled from db.properties will be a non-empty 
+			string (resulting variable value: "_Instance_Name_@MSSQLServer@" where _Instance_Name_ is a named instance). 
+			If ePO is using a default SQL Server instance, then the value pulled from db.properties will be an empty string (resulting 
+			variable value: "@MSSQLServer@"). We will use this resulting variable value to determine the actual SQL Server 
+			instance used by ePO.
+		-->
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60036" version="1" datatype="string" comment="Concatenation of the raw SQL Server instance name used by ePO and the default SQL Server instance name">
+			<concat>
+				<object_component object_ref="oval:gov.dod.cndrtpmo:obj:60012" item_field="subexpression"/>
+				<literal_component>@</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60022"/>
+				<literal_component>@</literal_component>
+			</concat>
+		</local_variable>
+		<!--
+			The following variable should evaluate to the actual SQL Server instance name used by ePO.
+			We determine this instance name by looking for it in ePO's db.properties file.
+			If ePO is using a named SQL Server instance, then the value pulled from db.properties will be a non-empty 
+			string that is the actual instance name. If ePO is using a default SQL Server instance, then the value pulled 
+			from db.properties will be an empty string. If an empty string is used, then we need the SQL Server instance
+			name to be the default instance name - "MSSQLServer". This OVAL variable tries to detect this situation by using 
+			a concatenation of the raw SQL Server instance name used by ePO and the default SQL Server instance name. 
+			A regular expression is then processed on the concatenation to determine the actual SQL Server instance name.
+		-->
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60037" version="1" datatype="string" comment="Actual SQL Server instance name used by ePO">
+			<regex_capture pattern="([^@]+)(?=@)">
+				<!-- Regular expression that searches for the first series of characters that end with "@". According to the OVAL 5.8 documentation, only the first subexpression result will be returned if there is more than one result. -->
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60036"/>
+			</regex_capture>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60038" version="1" datatype="string" comment="SQL query that returns the setting 'ReactionForMedium' for the HIPS IPS Protection policy that controls the ePO server">
+			<concat>
+				<literal_component>SELECT ap.nodename, psv.settingname, psv.settingvalue FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE ap.FeatureTextID LIKE 'HOSTIPS%IPS' AND ap.TypeTextID = 'IPS_Reaction' AND psv.SettingName = 'ReactionForMedium' AND ap.NodeName = '</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60014"/>
+				<literal_component>'</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60039" version="1" datatype="string" comment="SQL query that returns settings for the HIPS IPS Rules signature 'Protect ePO Server Console Keystore' for the policy that controls the ePO server">
+			<concat>
+				<literal_component>SELECT ap.nodename, psv.settingname, psv.settingvalue, psv.policysettingsid FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE ap.FeatureTextID LIKE 'HOSTIPS%IPS' AND ap.TypeTextID = 'IPS_Rules' AND psv.SettingName = 'Name' AND psv.SettingValue = 'Protect ePO Server Console Keystore' AND psv.SectionName = '2' AND ap.NodeName = '</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60014"/>
+				<literal_component>'</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60040" version="1" datatype="string" comment="SQL query that returns the setting 'ModSeverityLevel' for the HIPS IPS Rules signature 'Protect ePO Server Console Keystore' for the policy that controls the ePO server">
+			<concat>
+				<literal_component>SELECT ap.nodename, psv.settingname, psv.settingvalue, psv.policysettingsid FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE psv.policysettingsid = </literal_component>
+				<object_component item_field="result" record_field="policysettingsid" object_ref="oval:gov.dod.cndrtpmo:obj:60042"/>
+				<literal_component> AND ap.NodeName = '</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60014"/>
+				<literal_component>' AND psv.SettingName = 'ModSeverityLevel' UNION SELECT nodename='', settingname = '', settingvalue = '4', policysettingsid = '' WHERE NOT EXISTS (SELECT ap.nodename, psv.settingname, psv.settingvalue, psv.policysettingsid FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE psv.policysettingsid = </literal_component>
+				<object_component item_field="result" record_field="policysettingsid" object_ref="oval:gov.dod.cndrtpmo:obj:60042"/>
+				<literal_component> AND ap.NodeName = '</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60014"/>
+				<literal_component>' AND psv.SettingName = 'ModSeverityLevel')</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60041" version="1" datatype="string" comment="SQL query that returns the setting 'ModLogStatus' for the HIPS IPS Rules signature 'Protect ePO Server Console Keystore' for the policy that controls the ePO server">
+			<concat>
+				<literal_component>SELECT ap.nodename, psv.settingname, psv.settingvalue, psv.policysettingsid FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE psv.policysettingsid = </literal_component>
+				<object_component item_field="result" record_field="policysettingsid" object_ref="oval:gov.dod.cndrtpmo:obj:60042"/>
+				<literal_component> AND ap.NodeName = '</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60014"/>
+				<literal_component>' AND psv.SettingName = 'ModLogStatus' UNION SELECT nodename='', settingname = '', settingvalue = '1', policysettingsid = '' WHERE NOT EXISTS (SELECT ap.nodename, psv.settingname, psv.settingvalue, psv.policysettingsid FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE psv.policysettingsid = </literal_component>
+				<object_component item_field="result" record_field="policysettingsid" object_ref="oval:gov.dod.cndrtpmo:obj:60042"/>
+				<literal_component> AND ap.NodeName = '</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60014"/>
+				<literal_component>' AND psv.SettingName = 'ModLogStatus')</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60042" version="1" datatype="string" comment="SQL query that returns the setting 'ModCreateLocalExStatus' for the HIPS IPS Rules signature 'Protect ePO Server Console Keystore' for the policy that controls the ePO server">
+			<concat>
+				<literal_component>SELECT ap.nodename, psv.settingname, psv.settingvalue, psv.policysettingsid FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE psv.policysettingsid = </literal_component>
+				<object_component item_field="result" record_field="policysettingsid" object_ref="oval:gov.dod.cndrtpmo:obj:60042"/>
+				<literal_component> AND ap.NodeName = '</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60014"/>
+				<literal_component>' AND psv.SettingName = 'ModCreateLocalExStatus' UNION SELECT nodename='', settingname = '', settingvalue = '1', policysettingsid = '' WHERE NOT EXISTS (SELECT ap.nodename, psv.settingname, psv.settingvalue, psv.policysettingsid FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE psv.policysettingsid = </literal_component>
+				<object_component item_field="result" record_field="policysettingsid" object_ref="oval:gov.dod.cndrtpmo:obj:60042"/>
+				<literal_component> AND ap.NodeName = '</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60014"/>
+				<literal_component>' AND psv.SettingName = 'ModCreateLocalExStatus')</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60043" version="1" datatype="string" comment="SQL query that returns settings for the HIPS IPS Rules signature 'Protect ePO Server.ini' for the policy that controls the ePO server">
+			<concat>
+				<literal_component>SELECT ap.nodename, psv.settingname, psv.settingvalue, psv.policysettingsid FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE ap.FeatureTextID LIKE 'HOSTIPS%IPS' AND ap.TypeTextID = 'IPS_Rules' AND psv.SettingName = 'Name' AND psv.SettingValue = 'Protect ePO Server.ini' AND psv.SectionName = '2' AND ap.NodeName = '</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60014"/>
+				<literal_component>'</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60044" version="1" datatype="string" comment="SQL query that returns the setting 'ModSeverityLevel' for the HIPS IPS Rules signature 'Protect ePO Server.ini' for the policy that controls the ePO server">
+			<concat>
+				<literal_component>SELECT ap.nodename, psv.settingname, psv.settingvalue, psv.policysettingsid FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE psv.policysettingsid = </literal_component>
+				<object_component item_field="result" record_field="policysettingsid" object_ref="oval:gov.dod.cndrtpmo:obj:60046"/>
+				<literal_component> AND ap.NodeName = '</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60014"/>
+				<literal_component>' AND psv.SettingName = 'ModSeverityLevel' UNION SELECT nodename='', settingname = '', settingvalue = '4', policysettingsid = '' WHERE NOT EXISTS (SELECT ap.nodename, psv.settingname, psv.settingvalue, psv.policysettingsid FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE psv.policysettingsid = </literal_component>
+				<object_component item_field="result" record_field="policysettingsid" object_ref="oval:gov.dod.cndrtpmo:obj:60046"/>
+				<literal_component> AND ap.NodeName = '</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60014"/>
+				<literal_component>' AND psv.SettingName = 'ModSeverityLevel')</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60045" version="1" datatype="string" comment="SQL query that returns the setting 'ModLogStatus' for the HIPS IPS Rules signature 'Protect ePO Server.ini' for the policy that controls the ePO server">
+			<concat>
+				<literal_component>SELECT ap.nodename, psv.settingname, psv.settingvalue, psv.policysettingsid FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE psv.policysettingsid = </literal_component>
+				<object_component item_field="result" record_field="policysettingsid" object_ref="oval:gov.dod.cndrtpmo:obj:60046"/>
+				<literal_component> AND ap.NodeName = '</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60014"/>
+				<literal_component>' AND psv.SettingName = 'ModLogStatus' UNION SELECT nodename='', settingname = '', settingvalue = '1', policysettingsid = '' WHERE NOT EXISTS (SELECT ap.nodename, psv.settingname, psv.settingvalue, psv.policysettingsid FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE psv.policysettingsid = </literal_component>
+				<object_component item_field="result" record_field="policysettingsid" object_ref="oval:gov.dod.cndrtpmo:obj:60046"/>
+				<literal_component> AND ap.NodeName = '</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60014"/>
+				<literal_component>' AND psv.SettingName = 'ModLogStatus')</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60046" version="1" datatype="string" comment="SQL query that returns the setting 'ModCreateLocalExStatus' for the HIPS IPS Rules signature 'Protect ePO Server.ini' for the policy that controls the ePO server">
+			<concat>
+				<literal_component>SELECT ap.nodename, psv.settingname, psv.settingvalue, psv.policysettingsid FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE psv.policysettingsid = </literal_component>
+				<object_component item_field="result" record_field="policysettingsid" object_ref="oval:gov.dod.cndrtpmo:obj:60046"/>
+				<literal_component> AND ap.NodeName = '</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60014"/>
+				<literal_component>' AND psv.SettingName = 'ModCreateLocalExStatus' UNION SELECT nodename='', settingname = '', settingvalue = '1', policysettingsid = '' WHERE NOT EXISTS (SELECT ap.nodename, psv.settingname, psv.settingvalue, psv.policysettingsid FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE psv.policysettingsid = </literal_component>
+				<object_component item_field="result" record_field="policysettingsid" object_ref="oval:gov.dod.cndrtpmo:obj:60046"/>
+				<literal_component> AND ap.NodeName = '</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60014"/>
+				<literal_component>' AND psv.SettingName = 'ModCreateLocalExStatus')</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60047" version="1" datatype="string" comment="SQL query that returns the setting 'FWStatus' for HIPS Firewall Options policies">
+			<concat>
+				<literal_component>SELECT ap.nodename, psv.settingname, psv.settingvalue FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE ap.FeatureTextID LIKE 'HOSTIPS%FW' AND ap.TypeTextID = 'FW_StatusMode' AND psv.SettingName = 'FWStatus'</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60048" version="1" datatype="string" comment="SQL query that returns the setting 'AuditModeStatus' for HIPS Firewall Options policies">
+			<concat>
+				<literal_component>SELECT ap.nodename, psv.settingname, psv.settingvalue FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE ap.FeatureTextID LIKE 'HOSTIPS%FW' AND ap.TypeTextID = 'FW_StatusMode' AND psv.SettingName = 'AuditModeStatus'</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60049" version="1" datatype="string" comment="SQL query that returns the setting 'InLearnModeStatus' for HIPS Firewall Options policies">
+			<concat>
+				<literal_component>SELECT ap.nodename, psv.settingname, psv.settingvalue FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE ap.FeatureTextID LIKE 'HOSTIPS%FW' AND ap.TypeTextID = 'FW_StatusMode' AND psv.SettingName = 'InLearnModeStatus'</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60050" version="1" datatype="string" comment="SQL query that returns the setting 'OutLearnModeStatus' for HIPS Firewall Options policies">
+			<concat>
+				<literal_component>SELECT ap.nodename, psv.settingname, psv.settingvalue FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE ap.FeatureTextID LIKE 'HOSTIPS%FW' AND ap.TypeTextID = 'FW_StatusMode' AND psv.SettingName = 'OutLearnModeStatus'</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60051" version="1" datatype="string" comment="SQL query that returns the setting 'MergeRules' for HIPS Firewall Options policies">
+			<concat>
+				<literal_component>SELECT ap.nodename, psv.settingname, psv.settingvalue FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE ap.FeatureTextID LIKE 'HOSTIPS%FW' AND ap.TypeTextID = 'FW_StatusMode' AND psv.SettingName = 'MergeRules'</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60052" version="1" datatype="string" comment="SQL query that returns settings for the HIPS IPS Rules signature 'Protect ePO Server Agent Keystore' for the policy that controls the ePO server">
+			<concat>
+				<literal_component>SELECT ap.nodename, psv.settingname, psv.settingvalue, psv.policysettingsid FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE ap.FeatureTextID LIKE 'HOSTIPS%IPS' AND ap.TypeTextID = 'IPS_Rules' AND psv.SettingName = 'Name' AND psv.SettingValue = 'Protect ePO Server Agent Keystore' AND psv.SectionName = '2' AND ap.NodeName = '</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60014"/>
+				<literal_component>'</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60053" version="1" datatype="string" comment="SQL query that returns the setting 'ModSeverityLevel' for the HIPS IPS Rules signature 'Protect ePO Server Agent Keystore' for the policy that controls the ePO server">
+			<concat>
+				<literal_component>SELECT ap.nodename, psv.settingname, psv.settingvalue, psv.policysettingsid FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE psv.policysettingsid = </literal_component>
+				<object_component item_field="result" record_field="policysettingsid" object_ref="oval:gov.dod.cndrtpmo:obj:60055"/>
+				<literal_component> AND ap.NodeName = '</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60014"/>
+				<literal_component>' AND psv.SettingName = 'ModSeverityLevel' UNION SELECT nodename='', settingname = '', settingvalue = '4', policysettingsid = '' WHERE NOT EXISTS (SELECT ap.nodename, psv.settingname, psv.settingvalue, psv.policysettingsid FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE psv.policysettingsid = </literal_component>
+				<object_component item_field="result" record_field="policysettingsid" object_ref="oval:gov.dod.cndrtpmo:obj:60055"/>
+				<literal_component> AND ap.NodeName = '</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60014"/>
+				<literal_component>' AND psv.SettingName = 'ModSeverityLevel')</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60054" version="1" datatype="string" comment="SQL query that returns the setting 'ModLogStatus' for the HIPS IPS Rules signature 'Protect ePO Server Agent Keystore' for the policy that controls the ePO server">
+			<concat>
+				<literal_component>SELECT ap.nodename, psv.settingname, psv.settingvalue, psv.policysettingsid FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE psv.policysettingsid = </literal_component>
+				<object_component item_field="result" record_field="policysettingsid" object_ref="oval:gov.dod.cndrtpmo:obj:60055"/>
+				<literal_component> AND ap.NodeName = '</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60014"/>
+				<literal_component>' AND psv.SettingName = 'ModLogStatus' UNION SELECT nodename='', settingname = '', settingvalue = '1', policysettingsid = '' WHERE NOT EXISTS (SELECT ap.nodename, psv.settingname, psv.settingvalue, psv.policysettingsid FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE psv.policysettingsid = </literal_component>
+				<object_component item_field="result" record_field="policysettingsid" object_ref="oval:gov.dod.cndrtpmo:obj:60055"/>
+				<literal_component> AND ap.NodeName = '</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60014"/>
+				<literal_component>' AND psv.SettingName = 'ModLogStatus')</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60055" version="1" datatype="string" comment="SQL query that returns the setting 'ModCreateLocalExStatus' for the HIPS IPS Rules signature 'Protect ePO Server Agent Keystore' for the policy that controls the ePO server">
+			<concat>
+				<literal_component>SELECT ap.nodename, psv.settingname, psv.settingvalue, psv.policysettingsid FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE psv.policysettingsid = </literal_component>
+				<object_component item_field="result" record_field="policysettingsid" object_ref="oval:gov.dod.cndrtpmo:obj:60055"/>
+				<literal_component> AND ap.NodeName = '</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60014"/>
+				<literal_component>' AND psv.SettingName = 'ModCreateLocalExStatus' UNION SELECT nodename='', settingname = '', settingvalue = '1', policysettingsid = '' WHERE NOT EXISTS (SELECT ap.nodename, psv.settingname, psv.settingvalue, psv.policysettingsid FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE psv.policysettingsid = </literal_component>
+				<object_component item_field="result" record_field="policysettingsid" object_ref="oval:gov.dod.cndrtpmo:obj:60055"/>
+				<literal_component> AND ap.NodeName = '</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60014"/>
+				<literal_component>' AND psv.SettingName = 'ModCreateLocalExStatus')</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60056" version="1" datatype="string" comment="SQL query that returns settings for the HIPS IPS Rules signature 'Protect Product Folders' for the policy that controls the ePO server">
+			<concat>
+				<literal_component>SELECT ap.nodename, psv.settingname, psv.settingvalue, psv.policysettingsid FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE ap.FeatureTextID LIKE 'HOSTIPS%IPS' AND ap.TypeTextID = 'IPS_Rules' AND psv.SettingName = 'Name' AND psv.SettingValue = 'Protect Product Folders' AND psv.SectionName = '2' AND ap.NodeName = '</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60014"/>
+				<literal_component>'</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60057" version="1" datatype="string" comment="SQL query that returns the setting 'ModSeverityLevel' for the HIPS IPS Rules signature 'Protect Product Folders' for the policy that controls the ePO server">
+			<concat>
+				<literal_component>SELECT ap.nodename, psv.settingname, psv.settingvalue, psv.policysettingsid FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE psv.policysettingsid = </literal_component>
+				<object_component item_field="result" record_field="policysettingsid" object_ref="oval:gov.dod.cndrtpmo:obj:60059"/>
+				<literal_component> AND ap.NodeName = '</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60014"/>
+				<literal_component>' AND psv.SettingName = 'ModSeverityLevel' UNION SELECT nodename='', settingname = '', settingvalue = '4', policysettingsid = '' WHERE NOT EXISTS (SELECT ap.nodename, psv.settingname, psv.settingvalue, psv.policysettingsid FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE psv.policysettingsid = </literal_component>
+				<object_component item_field="result" record_field="policysettingsid" object_ref="oval:gov.dod.cndrtpmo:obj:60059"/>
+				<literal_component> AND ap.NodeName = '</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60014"/>
+				<literal_component>' AND psv.SettingName = 'ModSeverityLevel')</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60058" version="1" datatype="string" comment="SQL query that returns the setting 'ModLogStatus' for the HIPS IPS Rules signature 'Protect Product Folders' for the policy that controls the ePO server">
+			<concat>
+				<literal_component>SELECT ap.nodename, psv.settingname, psv.settingvalue, psv.policysettingsid FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE psv.policysettingsid = </literal_component>
+				<object_component item_field="result" record_field="policysettingsid" object_ref="oval:gov.dod.cndrtpmo:obj:60059"/>
+				<literal_component> AND ap.NodeName = '</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60014"/>
+				<literal_component>' AND psv.SettingName = 'ModLogStatus' UNION SELECT nodename='', settingname = '', settingvalue = '1', policysettingsid = '' WHERE NOT EXISTS (SELECT ap.nodename, psv.settingname, psv.settingvalue, psv.policysettingsid FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE psv.policysettingsid = </literal_component>
+				<object_component item_field="result" record_field="policysettingsid" object_ref="oval:gov.dod.cndrtpmo:obj:60059"/>
+				<literal_component> AND ap.NodeName = '</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60014"/>
+				<literal_component>' AND psv.SettingName = 'ModLogStatus')</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60059" version="1" datatype="string" comment="SQL query that returns the setting 'ModCreateLocalExStatus' for the HIPS IPS Rules signature 'Protect Product Folders' for the policy that controls the ePO server">
+			<concat>
+				<literal_component>SELECT ap.nodename, psv.settingname, psv.settingvalue, psv.policysettingsid FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE psv.policysettingsid = </literal_component>
+				<object_component item_field="result" record_field="policysettingsid" object_ref="oval:gov.dod.cndrtpmo:obj:60059"/>
+				<literal_component> AND ap.NodeName = '</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60014"/>
+				<literal_component>' AND psv.SettingName = 'ModCreateLocalExStatus' UNION SELECT nodename='', settingname = '', settingvalue = '1', policysettingsid = '' WHERE NOT EXISTS (SELECT ap.nodename, psv.settingname, psv.settingvalue, psv.policysettingsid FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOAssignedPolicy ap INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicyObjectToSettings pots ON (ap.PolicyObjectID = pots.PolicyObjectID) INNER JOIN [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.EPOPolicySettingValues psv ON (pots.PolicySettingsID = psv.PolicySettingsID) WHERE psv.policysettingsid = </literal_component>
+				<object_component item_field="result" record_field="policysettingsid" object_ref="oval:gov.dod.cndrtpmo:obj:60059"/>
+				<literal_component> AND ap.NodeName = '</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60014"/>
+				<literal_component>' AND psv.SettingName = 'ModCreateLocalExStatus')</literal_component>
+			</concat>
+		</local_variable>
+		<local_variable id="oval:gov.dod.cndrtpmo:var:60060" version="1" datatype="string" comment="SQL query that returns the number of times 'McAfee Links' or 'MyAvert Web Service' dashboards are used">
+			<concat>
+				<literal_component>SELECT COUNT(*) AS 'count' FROM [</literal_component>
+				<variable_component var_ref="oval:gov.dod.cndrtpmo:var:60006"/>
+				<literal_component>].dbo.OrionDashboardPage WHERE ((Elements like '%AvertAlerts%') OR (Elements like '%EPOCore.linksDashboardFactory%'))</literal_component>
+			</concat>
+		</local_variable>
+	</variables>
+</oval_definitions>

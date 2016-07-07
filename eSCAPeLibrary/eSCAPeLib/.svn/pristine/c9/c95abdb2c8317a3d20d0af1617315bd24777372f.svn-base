@@ -1,0 +1,1772 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ocil xsi:schemaLocation="http://www.mitre.org/ocil/2 ocil.xsd" xmlns="http://www.mitre.org/ocil/2"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    
+    <generator>
+        <author>
+            <name>Jeff Ito</name>
+            <organization>G2, Inc.</organization>
+        </author>
+        <schema_version>2.0</schema_version>
+        <timestamp>2009-12-28T12:34:08</timestamp>       
+    </generator>
+    
+    <document>
+        <title>Regional Computer Security Officer (RCSO) Physical Security &amp; Procedural Controls Checklist</title>
+        <description />        
+    </document>
+    
+    <questionnaires>       
+         <questionnaire id="ocil:gov.state.ocil:questionnaire:1">            
+            <title>Physical Access - Computer Room</title>
+            <actions operation="AND">
+                <test_action_ref>ocil:gov.state.ocil:testaction:10001</test_action_ref>                
+                <test_action_ref>ocil:gov.state.ocil:testaction:10002</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:10003</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:10004</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:10005</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:10006</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:10007</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:10008</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:10009</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:10010</test_action_ref>                
+            </actions>                        
+        </questionnaire>
+        <questionnaire id="ocil:gov.state.ocil:questionnaire:2">
+            <title>Location/Constrution Details</title>
+            <actions operation="AND">
+                <test_action_ref>ocil:gov.state.ocil:testaction:20001</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:20002</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:20003</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:20004</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:20005</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:20006</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:20007</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:20008</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:20009</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:20010</test_action_ref>
+            </actions>
+        </questionnaire>
+        <questionnaire id="ocil:gov.state.ocil:questionnaire:3">
+            <title>Electrical Power</title>
+            <actions operation="AND">
+                <test_action_ref>ocil:gov.state.ocil:testaction:30001</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:30002</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:30003</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:30004</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:30005</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:30006</test_action_ref>                
+            </actions>
+        </questionnaire>
+        <questionnaire id="ocil:gov.state.ocil:questionnaire:4">
+            <title>Service Continuity Planning</title>
+            <actions operation="AND">
+                <test_action_ref>ocil:gov.state.ocil:testaction:40001</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:40002</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:40003</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:40004</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:40005</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:40006</test_action_ref>                
+                <test_action_ref>ocil:gov.state.ocil:testaction:40007</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:40008</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:40009</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:40010</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:40011</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:40012</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:40013</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:40014</test_action_ref>
+            </actions>
+        </questionnaire>
+        <questionnaire id="ocil:gov.state.ocil:questionnaire:5">
+            <title>Connectivity</title>
+            <actions operation="AND">
+                <test_action_ref>ocil:gov.state.ocil:testaction:50001</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:50002</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:50003</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:50004</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:50005</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:50006</test_action_ref>                
+                <test_action_ref>ocil:gov.state.ocil:testaction:50007</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:50008</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:50009</test_action_ref>                
+            </actions>
+        </questionnaire>
+        <questionnaire id="ocil:gov.state.ocil:questionnaire:6">
+            <title>Workstations</title>
+            <actions operation="AND">
+                <test_action_ref>ocil:gov.state.ocil:testaction:60001</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:60002</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:60003</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:60004</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:60005</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:60006</test_action_ref>                
+                <test_action_ref>ocil:gov.state.ocil:testaction:60007</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:60008</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:60009</test_action_ref>                
+                <test_action_ref>ocil:gov.state.ocil:testaction:60010</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:60011</test_action_ref>
+            </actions>
+        </questionnaire>
+        <questionnaire id="ocil:gov.state.ocil:questionnaire:7">
+            <title>Medical Sensitive AIS</title>
+            <actions operation="AND">
+                <test_action_ref>ocil:gov.state.ocil:testaction:70001</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:70002</test_action_ref>
+                <test_action_ref>ocil:gov.state.ocil:testaction:70003</test_action_ref>                
+            </actions>
+        </questionnaire>  
+
+    </questionnaires>
+    
+    
+    <!-- Test Actions -->    
+    <test_actions>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:10001"
+            id="ocil:gov.state.ocil:testaction:10001">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:10001" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>            
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:10001" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>            
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:10002"
+            id="ocil:gov.state.ocil:testaction:10002">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:10002" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>            
+            </when_true>
+            <when_false>
+                <result>FAIL</result>                
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:10002" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>            
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:10003"
+            id="ocil:gov.state.ocil:testaction:10003">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:10003" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>            
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:10003" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>            
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:10004"
+            id="ocil:gov.state.ocil:testaction:10004">            
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:10004" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>            
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:10004" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>            
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:10005"
+            id="ocil:gov.state.ocil:testaction:10005">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:10005" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>            
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:10005" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>            
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:10006"
+            id="ocil:gov.state.ocil:testaction:10006">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:10006" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>            
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:10006" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>            
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:10007"
+            id="ocil:gov.state.ocil:testaction:10007">            
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:10007" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>                         
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:10007" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>            
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:10008"
+            id="ocil:gov.state.ocil:testaction:10008">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:10008" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>            
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:10008" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>            
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:10009"
+            id="ocil:gov.state.ocil:testaction:10009">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:10009" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>            
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:10009" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>            
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:10010"
+            id="ocil:gov.state.ocil:testaction:10010">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:10010" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>            
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:10010" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>            
+            </when_false>
+        </boolean_question_test_action>
+
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:20001"
+            id="ocil:gov.state.ocil:testaction:20001">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:20001" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>            
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:20001" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>            
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:20002"
+            id="ocil:gov.state.ocil:testaction:20002">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:20002" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:20002" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:20003"
+            id="ocil:gov.state.ocil:testaction:20003">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:20003" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:20003" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:20004"
+            id="ocil:gov.state.ocil:testaction:20004">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:20004" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:20004" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:20005"
+            id="ocil:gov.state.ocil:testaction:20005">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:20005" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:20005" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:20006"
+            id="ocil:gov.state.ocil:testaction:20006">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:20006" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:20006" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:20007"
+            id="ocil:gov.state.ocil:testaction:20007">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:20007" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:20007" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:20008"
+            id="ocil:gov.state.ocil:testaction:20008">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:20008" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:20008" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:20009"
+            id="ocil:gov.state.ocil:testaction:20009">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:20009" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:20009" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:20010"
+            id="ocil:gov.state.ocil:testaction:20010">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:20010" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:20010" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:30001"
+            id="ocil:gov.state.ocil:testaction:30001">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:30001" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:30001" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:30002"
+            id="ocil:gov.state.ocil:testaction:30002">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:30002" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:30002" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:30003"
+            id="ocil:gov.state.ocil:testaction:30003">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:30003" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:30003" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:30004"
+            id="ocil:gov.state.ocil:testaction:30004">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:30004" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:30004" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:30005"
+            id="ocil:gov.state.ocil:testaction:30005">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:30005" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:30005" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:30006"
+            id="ocil:gov.state.ocil:testaction:30006">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:30006" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:30006" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:40001"
+            id="ocil:gov.state.ocil:testaction:40001">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:40001" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:40001" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:40002"
+            id="ocil:gov.state.ocil:testaction:40002">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:40002" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:40002" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:40003"
+            id="ocil:gov.state.ocil:testaction:40003">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:40003" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:40003" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:40004"
+            id="ocil:gov.state.ocil:testaction:40004">
+            <when_true>
+                <result>PASS</result>                
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:40004" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:40004" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:40005"
+            id="ocil:gov.state.ocil:testaction:40005">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:40005" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:40005" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:40006"
+            id="ocil:gov.state.ocil:testaction:40006">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:40006" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:40006" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:40007"
+            id="ocil:gov.state.ocil:testaction:40007">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:40007" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:40007" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:40008"
+            id="ocil:gov.state.ocil:testaction:40008">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:40008" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:40008" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:40009"
+            id="ocil:gov.state.ocil:testaction:40009">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:40009" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:40009" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:40010"
+            id="ocil:gov.state.ocil:testaction:40010">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:40010" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:40010" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:40011"
+            id="ocil:gov.state.ocil:testaction:40011">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:40011" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:40011" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:40012"
+            id="ocil:gov.state.ocil:testaction:40012">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:40012" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:40012" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:40013"
+            id="ocil:gov.state.ocil:testaction:40013">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:40013" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:40013" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:40014"
+            id="ocil:gov.state.ocil:testaction:40014">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:40014" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:40014" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:50001"
+            id="ocil:gov.state.ocil:testaction:50001">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:50001" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:50001" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:50002"
+            id="ocil:gov.state.ocil:testaction:50002">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:50002" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:50002" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:50003"
+            id="ocil:gov.state.ocil:testaction:50003">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:50003" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:50003" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:50004"
+            id="ocil:gov.state.ocil:testaction:50004">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:50004" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:50004" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:50005"
+            id="ocil:gov.state.ocil:testaction:50005">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:50005" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:50005" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:50006"
+            id="ocil:gov.state.ocil:testaction:50006">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:50006" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:50006" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:50007"
+            id="ocil:gov.state.ocil:testaction:50007">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:50007" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:50007" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:50008"
+            id="ocil:gov.state.ocil:testaction:50008">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:50008" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:50008" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:50009"
+            id="ocil:gov.state.ocil:testaction:50009">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:50009" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:50009" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:60001"
+            id="ocil:gov.state.ocil:testaction:60001">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:60001" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:60001" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:60002"
+            id="ocil:gov.state.ocil:testaction:60002">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:60002" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:60002" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:60003"
+            id="ocil:gov.state.ocil:testaction:60003">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:60003" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:60003" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:60004"
+            id="ocil:gov.state.ocil:testaction:60004">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:60004" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:60004" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:60005"
+            id="ocil:gov.state.ocil:testaction:60005">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:60005" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:60005" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:60006"
+            id="ocil:gov.state.ocil:testaction:60006">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:60006" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:60006" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:60007"
+            id="ocil:gov.state.ocil:testaction:60007">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:60007" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:60007" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:60008"
+            id="ocil:gov.state.ocil:testaction:60008">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:60008" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:60008" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:60009"
+            id="ocil:gov.state.ocil:testaction:60009">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:60009" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:60009" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:60010"
+            id="ocil:gov.state.ocil:testaction:60010">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:60010" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:60010" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:60011"
+            id="ocil:gov.state.ocil:testaction:60011">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:60011" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:60011" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:70001"
+            id="ocil:gov.state.ocil:testaction:70001">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:70001" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:70001" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:70002"
+            id="ocil:gov.state.ocil:testaction:70002">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:70002" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:70002" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        <boolean_question_test_action question_ref="ocil:gov.state.ocil:question:70003"
+            id="ocil:gov.state.ocil:testaction:70003">
+            <when_true>
+                <result>PASS</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:70003" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_true>
+            <when_false>
+                <result>FAIL</result>
+                <artifacts>
+                    <artifact id="ocil:gov.state.ocil:artifact:70003" required="false">
+                        <title>Comments</title>
+                        <description>Please type comments here</description>
+                    </artifact>
+                </artifacts>
+            </when_false>
+        </boolean_question_test_action>
+        
+        
+        
+    </test_actions>
+    
+    <!-- Questions -->    
+    <questions>
+        <boolean_question id="ocil:gov.state.ocil:question:10001" model="MODEL_YES_NO">
+            <notes>12 FAM 629.1-3 a</notes>
+            <notes>PE-2</notes>            
+            <question_text>Is an access control list posted for the computer room?</question_text>
+        </boolean_question>        
+        <boolean_question id="ocil:gov.state.ocil:question:10002" model="MODEL_YES_NO">
+            <notes>12 FAM 621.3-4 a</notes>
+            <notes>PE-2</notes>
+            <question_text>Has the computer room been designated as a limited access area (LAA) restricted to authorized personnel only?</question_text>
+        </boolean_question>        
+        <boolean_question id="ocil:gov.state.ocil:question:10003" model="MODEL_YES_NO">
+            <notes>12 FAM 629.1-3 c</notes>
+            <notes>PE-2</notes>
+            <question_text>Is there a visitor's log for the computer room for persons not on the access list?</question_text>
+        </boolean_question>        
+        <boolean_question id="ocil:gov.state.ocil:question:10004" model="MODEL_YES_NO">
+            <notes>12 FAM 629.1-3 c</notes>
+            <notes>PE-2</notes>
+            <question_text>Is the visitor's log maintained and current?</question_text>
+        </boolean_question>        
+        <boolean_question id="ocil:gov.state.ocil:question:10005" model="MODEL_YES_NO">
+            <notes>12 FAM 629.4-5 B, a</notes>
+            <notes>PE-3</notes>
+            <question_text>Is a DS approved spin-dial (S&amp;G 8400, 8500 or XO7/X08) or deadbolt lock (Medeco) installed on the IPF/Computer Room main doors. (For nighttime access control.)?</question_text>
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:10006" model="MODEL_YES_NO">
+            <notes>12 FAM 629.4-5 B, a</notes>
+            <notes>PE-3</notes>
+            <question_text>Are the main doors to the IPF and the Computer Room equipped with DS approved pushbutton combination locks (Simplex, Unican -- for daytime access control.)?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:10007" model="MODEL_YES_NO">
+            <notes>12 FAM 629.4-5 A, c</notes>
+            <notes>PE-3</notes>
+            <question_text>Are the combinations for all push button locks changed every 6 months, when someone with the number changes positions or if the combination has been possibly compromised?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:10008" model="MODEL_YES_NO">
+            <notes>12 FAM 622.1-4 f</notes>
+            <notes>MP-4</notes>
+            <question_text>Is all the computer hardware located in the computer room marked to its highest level of classification?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:10009" model="MODEL_YES_NO">
+            <notes>12 FAM 622.1-4 f</notes>            
+            <question_text>Are all system peripherals labeled to their highest level of classification?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:10010" model="MODEL_YES_NO">
+            <notes>12 FAM 622.1-7 c</notes>
+            <notes>MP-3</notes>
+            <notes>AC-15</notes>
+            <question_text>Is all removed and removable media marked to its highest level of classification?</question_text>            
+        </boolean_question>
+        
+        <boolean_question id="ocil:gov.state.ocil:question:20001" model="MODEL_YES_NO">
+            <notes>12 FAM 624.2 c</notes>
+            <notes>PE-2</notes>            
+            <question_text>Does the computer room have slab to slab perimeter walls?</question_text>
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:20002" model="MODEL_YES_NO">
+            <notes>12 FAM 624.2</notes>
+            <notes>PE-2</notes>            
+            <question_text>Does the computer room have exterior windows?</question_text>
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:20003" model="MODEL_YES_NO">
+            <notes>12 FAM 624.2 a</notes>
+            <notes>PE-2</notes>            
+            <question_text>Are any exterior windows protected with Shatter Resistant Window Film (SRWF) Mylar?</question_text>
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:20004" model="MODEL_YES_NO">
+            <notes>12 FAM 624.2 a</notes>
+            <notes>PE-2</notes>            
+            <question_text>Are there any necessary window coverings?</question_text>
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:20005" model="MODEL_YES_NO">
+            <notes>12 FAM 624.2 d</notes>
+            <notes>PE-2</notes>            
+            <question_text>Are any wall or ceiling penetrations (air ducts, etc.) larger than 90 sq. inches screened with 12 gauge expanded metal?</question_text>
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:20006" model="MODEL_YES_NO">
+            <notes>12 FAM 624.2</notes>
+            <notes>PE-18</notes>            
+            <question_text>Is the computer room located way from areas subject to frequent use?</question_text>
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:20007" model="MODEL_YES_NO">
+            <notes>12 FAM 629.4-2</notes>
+            <notes>PE-18</notes>            
+            <question_text>Is the computer room located above ground level?</question_text>
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:20008" model="MODEL_YES_NO">
+            <notes>12 FAM 629.4-2</notes>
+            <notes>PE-15</notes>            
+            <question_text>Is the computer room not beneath water pipes or other areas prone to flooding?</question_text>
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:20009" model="MODEL_YES_NO">
+            <notes>12 FAM 629.4-2</notes>
+            <notes>PE-13</notes>            
+            <question_text>Is the computer room located away from fire hazards?</question_text>
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:20010" model="MODEL_YES_NO">
+            <notes>12 FAM 624.2</notes>
+            <notes>PE-18</notes>            
+            <question_text>Is the computer room located in the interior of the building?</question_text>
+        </boolean_question>
+        
+        <boolean_question id="ocil:gov.state.ocil:question:30001" model="MODEL_YES_NO">
+            <notes>12 FAM 629.4-3 a</notes>
+            <notes>PE-11</notes>            
+            <question_text>Are electrical panels labeled to indicate what equipment they serve?</question_text>
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:30002" model="MODEL_YES_NO">
+            <notes>12 FAM 629.4-3 a</notes>
+            <notes>PE-11</notes>            
+            <question_text>Are they located in an area with adequate protection from accidental or malicious power interruptions?</question_text>
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:30003" model="MODEL_YES_NO">
+            <notes>12 FAM 629.4-3 b</notes>
+            <notes>PE-10</notes>            
+            <question_text>Is there an Emergency Power Off Control that is readily accessible?</question_text>
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:30004" model="MODEL_YES_NO">
+            <notes>12 FAM 629.4-3 b</notes>
+            <notes>PE-10</notes>            
+            <question_text>Is the Emergency Power Off outside the main computer room door?</question_text>
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:30005" model="MODEL_YES_NO">
+            <notes>12 FAM 629.4-3 b</notes>
+            <notes>PE-10</notes>            
+            <question_text>Does it have a clear plastic cover to protect from accidental triggering?</question_text>
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:30006" model="MODEL_YES_NO">
+            <notes>12 FAM 629.4-3 c</notes>
+            <notes>PE-10</notes>            
+            <question_text>Does it disconnect ventilation system power as well as computer power?</question_text>
+        </boolean_question>
+        
+        <boolean_question id="ocil:gov.state.ocil:question:40001" model="MODEL_YES_NO">
+            <notes>12 FAM 643.2-5</notes>
+            <notes>PE-9</notes>            
+            <question_text>Are data and power cables installed in a manner to avoid any potential disruptions to continuity of operations?</question_text>            
+        </boolean_question>        
+        <boolean_question id="ocil:gov.state.ocil:question:40002" model="MODEL_YES_NO">
+            <notes>12 FAM 629.4-4 b</notes>
+            <notes>PE-13</notes>            
+            <question_text>Are the fire alarms installed and fully functional?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:40003" model="MODEL_YES_NO">
+            <notes>12 FAM 629.4-4 b</notes>
+            <notes>PE-13</notes>            
+            <question_text>Are the fire alarms annunciated at a location staffed 24 hours a day?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:40004" model="MODEL_YES_NO">
+            <notes>12 FAM 629.4-4 c</notes>
+            <notes>PE-14</notes>            
+            <question_text>Are air conditioning and humidity controls and gauges located in the computer room (to ensure environment is within equipment specifications)?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:40005" model="MODEL_YES_NO">
+            <notes>12 FAM 629.4-4 a</notes>
+            <notes>Architectual &amp; Engineering Design Guidelines for U.S. Diplomatic Mission Bldgs, July 2003 Chapter 12, Section 12.5, Para 2.3</notes>
+            <notes>PE-13</notes>            
+            <question_text>Is each computer room protected by a minimum of two 2.2 Kilo (5BC) CO2 and one 4A40BC multipurpose extinguishers?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:40006" model="MODEL_YES_NO">
+            <notes>12 FAM 629.4-4 a</notes>
+            <notes>PE-13</notes>            
+            <question_text>Is there at least one spare extinguisher in stock.?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:40007" model="MODEL_YES_NO">
+            <notes>12 FAM 629.4-4 a</notes>
+            <notes>PE-13</notes>            
+            <question_text>Are extinguishers mounted and locations "signed" or marked?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:40008" model="MODEL_YES_NO">
+            <notes>12 FAM 622.3-1 e</notes>
+            <notes>CP-6</notes>            
+            <question_text>Is there a secure location to store backup media for AISs to ensure continuity of operations?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:40009" model="MODEL_YES_NO">
+            <notes>12 FAM 622.3-1 e</notes>
+            <notes>PE-14</notes>            
+            <question_text>Is the media storage room protected from environmental conditions such as extreme heat, humidity and air pollution?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:40010" model="MODEL_YES_NO">
+            <notes>12 FAM 624.2 d</notes>
+            <notes>PE-2</notes>            
+            <question_text>Are any wall or ceiling penetrations (air ducts, etc.) in the media storage room larger than 90 sq. inches screened with 12 gauge expanded metal?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:40011" model="MODEL_YES_NO">
+            <notes>12 FAM 624.2 c</notes>
+            <notes>PE-2</notes>            
+            <question_text>Does the media storage room have slab-to-slab construction for the perimeter walls?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:40012" model="MODEL_YES_NO">
+            <notes>12 FAM 629.4-5 e</notes>
+            <notes>PE-3</notes>            
+            <question_text>Is the media storage room kept locked at all times?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:40013" model="MODEL_YES_NO">
+            <notes>12 FAM 629.4-5 a &amp; d</notes>
+            <notes>PE-3</notes>            
+            <question_text>Does the primary entrance to the media storage room have a DS approved lock (Simplex or Unican)?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:40014" model="MODEL_YES_NO">
+            <notes>12 FAM 629.4-5 a &amp; d</notes>
+            <notes>PE-3</notes>            
+            <question_text>Does any secondary entrance to the media storage room have DS approved deadbolt locks?</question_text>            
+        </boolean_question>
+        
+        <boolean_question id="ocil:gov.state.ocil:question:50001" model="MODEL_YES_NO">
+            <notes>12 FAM 643.2-6 a</notes>
+            <notes>SC-13</notes>            
+            <question_text>Is SBU data that transits non-USG controlled space protected by use of encryption?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:50002" model="MODEL_YES_NO">
+            <notes>12 FAM 643.2-6 c</notes>
+            <notes>SC-13</notes>            
+            <question_text>Are the encryption devices operational (bypass and plain-text modes disabled) and properly keyed?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:50003" model="MODEL_YES_NO">
+            <notes>12 FAM 645.2 a</notes>
+            <notes>AC-17</notes>            
+            <question_text>Are there any USG-owned workstations in official or private residences?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:50004" model="MODEL_YES_NO">
+            <notes>12 FAM 644.1</notes>
+            <notes>PE-3</notes>            
+            <question_text>Are all residential hubs/routers/switched located in suitable locked cabinets?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:50005" model="MODEL_YES_NO">
+            <notes>12 FAM 642.4-4</notes>                     
+            <question_text>Are there any DoS-owned computers connected to any other USG systems?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:50006" model="MODEL_YES_NO">
+            <notes>12 FAM 645.1</notes>                     
+            <question_text>Are there any DoS-owned computers connected to non-USG systems?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:50007" model="MODEL_YES_NO">
+            <notes>12 FAM 645.1 a</notes>                     
+            <question_text>Is there any simultaneous connectivity between DoS connected systems and non-DoS connected systems?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:50008" model="MODEL_YES_NO">
+            <notes>12 FAM 634.1 h</notes>                     
+            <question_text>Do workstations or servers have any unauthorized connections (dual NICs on different networks or modems)?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:50009" model="MODEL_YES_NO">
+            <notes>12 FAM 634.1</notes>                     
+            <question_text>Is there any wireless (WAP) LAN connectivity to the OpenNet/OpenNet+ network?</question_text>            
+        </boolean_question>
+        
+        <boolean_question id="ocil:gov.state.ocil:question:60001" model="MODEL_YES_NO">
+            <notes>12 FAM 625.1 a</notes>                     
+            <question_text>Are workstations located in offices with DS approved locks (Simplex, Unican or deadbolt) for after hours access control?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:60002" model="MODEL_YES_NO">
+            <notes>12 FAM 622.1-4 f</notes>                     
+            <question_text>Are all system components labeled correctly for Unclassified/SBU processing?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:60003" model="MODEL_YES_NO">
+            <notes>12 FAM 543 a</notes>                     
+            <question_text>Are monitors positioned to avoid being observed by unauthorized persons or from the exterior of the building?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:60004" model="MODEL_YES_NO">
+            <notes>12 FAM 622.1-3 c</notes>                     
+            <question_text>Are users maintaining the private nature of their passwords (not writing them on or near workstations)?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:60005" model="MODEL_YES_NO">
+            <notes>State 134874</notes>
+            <notes>State 160483</notes>
+            <notes>SC-3</notes>
+            <question_text>Are A/B or KVM switches being used between the SBU and Classified networks?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:60006" model="MODEL_YES_NO">            
+            <notes>State 160483</notes>
+            <notes>SC-3</notes>
+            <question_text>Are A/B or KVM switches used between the OpenNet and Internet LANs DS approved models (Raritan or Wang)?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:60007" model="MODEL_YES_NO">            
+            <notes>12 FAM 622.1-3 f</notes>
+            <notes>SC-3</notes>
+            <question_text>Are the A/B or KVM switch boxes labeled to their highest level of classification?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:60008" model="MODEL_YES_NO">            
+            <notes>12 FAM 625.2-1 f</notes>
+            <notes>12 FAM 625.2-3</notes>
+            <notes>12 FAM 643.2-9</notes>            
+            <question_text>Is there any PDA connectivity to the SBU OpenNet/OpenNet+ network?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:60009" model="MODEL_YES_NO">                        
+            <notes>12 FAM 622.1-4e</notes>            
+            <question_text>Are workstations left logged on when unattended/after hours?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:60010" model="MODEL_YES_NO">                        
+            <notes>12 FAM 643.2-5</notes>            
+            <question_text>Are Data and Power cables installed in a manner that will avoid any potential disruptions to continuity of operations?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:60011" model="MODEL_YES_NO">                        
+            <notes>12 FAM 644.2 b</notes>            
+            <question_text>Are unencrypted lines transmitting unclassified information, when routed through unmonitored areas between facilities within a U.S. Government compound, encased within a protected distribution system (PDS)?</question_text>            
+        </boolean_question>
+        
+        <boolean_question id="ocil:gov.state.ocil:question:70001" model="MODEL_YES_NO">                        
+            <notes>12 FAM 622.1-4 c</notes>
+            <notes>AC-6</notes>
+            <question_text>Are these AISs under the direct supervision and control of the regional medical officer or designee?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:70002" model="MODEL_YES_NO">                        
+            <notes>12 FAM 622.1-4 c</notes>            
+            <question_text>Are these computer systems containing medically privileged information connected to the SBU OpenNet/OpenNet+ network?</question_text>            
+        </boolean_question>
+        <boolean_question id="ocil:gov.state.ocil:question:70003" model="MODEL_YES_NO">                        
+            <notes>12 FAM 629.4-5 a &amp; d</notes>            
+            <question_text>Do the doors to the health unit/rooms housing the computers with medically privileged information have DS approved locks?</question_text>            
+        </boolean_question>    
+    </questions>
+         
+</ocil>

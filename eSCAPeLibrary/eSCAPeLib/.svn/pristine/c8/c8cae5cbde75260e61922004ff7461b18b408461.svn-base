@@ -1,0 +1,1977 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ocil xmlns="http://scap.nist.gov/schema/ocil/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://scap.nist.gov/schema/ocil/2.0 ocil-2.0.xsd">
+   <generator>
+      <author>
+         <name>CND R&amp;T PMO</name>
+      </author>
+      <schema_version>2.0</schema_version>
+      <timestamp>2011-07-20T12:34:56</timestamp>
+   </generator>
+   <document>
+      <title>HBSS McAfee ePO 4.5 Site Security Technical Implementation Guide</title>
+      <description>OCIL questionnaires for requirements from the 29 Apr 2011 HBSS McAfee ePO 4.5 Site STIG which could not be checked through automated means.</description>
+      <notice/>
+   </document>
+   <questionnaires>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7001">
+         <title>(U) A static IP address exists for the ePO server.</title>
+         <description>(U) Navigate to the ‘Start/Settings/ControlPanel/NetworkConnections’ and choose the ‘Local Area Network’ connection. From the ‘General’ tab, select ‘Properties’, and then select the ‘Internet Protocol’ (TCP/IP). Click the ‘Properties’ button. Ensure that an IP address is present, and that the ‘Obtain an IP address’ is not checked. If there is more than one Network Connection – all of the IPs addresses should be checked for compliance. If a static IP address is not assigned, this is a finding.</description><!--V-14282-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7001</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7002">
+         <title>(U) The ePO server is located in a protected Enclave Security Services DMZ or screened subnet.</title>
+         <description>(U) Validate the scope of clients that the ePO server is servicing. If the ePO is servicing clients outside the local enclave, the requirement is that the ePO server must be in a protected Security Services Enclave DMZ (and not part of the public DMZ.) Review the network topology diagram. Check the ePO server IP address and subnet mask to validate that it is in the documented subnet for the non-public DMZ. (A network diagram must be available – or the checks should be done by looking at the firewall controlling the DMZ). If the ePO server is not in a Security Services Enclave DMZ, this is a finding. If it is in a public DMZ, this is a finding. If the ePO server is only serving clients inside the local enclave, the requirement is to be in a separate controlled access subnet and not part of the public DMZ that houses the public web servers. In addition, it needs to be isolated via a controlled access mechanism from the local general population LAN. Review the network topology diagram. Check the ePO IP address and subnet mask to validate that it is in the documented subnet for the non-public DMZ. Also, validate that it is in a controlled access subnet that is isolated from the general population LAN. The checks can be done by looking at a network diagram, or by looking at the network infrastructure devices controlling the network. If the ePO server is in a public DMZ, this is a finding. If the ePO server is not isolated from the general population LAN, this is a finding.</description><!--V-14483-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7002</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7003">
+         <title>(U//FOUO) The ePO server’s management workstations, outside the enclave, use NIST certified encrypted VPNs for access and the traffic is logged.</title>
+         <description>(U//FOUO) For the scenario where management (i.e., system or database administration) traffic must cross a DoD boundary, a VPN must be used to encapsulate and encrypt the remote access traffic using NIST certified encryption. The VPN must terminate at the firewall. An audit record of each session must also be logged. Verify if there are remote connections from outside the ePO's enclave. If there is not, this check should be considered NA. If there are, verify that this traffic is encapsulated and encrypted within the VPN tunnel, and the traffic is logged. In addition, the VPN must either translate remote console into specific IP addresses or designate a pool of IP addresses for remote consoles. If there is no VPN, this is a finding. If the VPN connection does not terminate at the firewall, this is a finding. If the session is not logged, this is a finding. If the IP address translation of remote console is not done via a designated pool of IP addresses or has dedicated IP assignments for them, this is a finding.</description><!--V-14484-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7003</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7004">
+         <title>(U) VPN traffic into the ePO is visible to a network intrusion detection system.</title>
+         <description>(U) Examine the network topology and the network intrusion detection system, and determine if the VPN data into the ePO is visible. If it is not visible, this is a finding.</description><!--V-14485-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7004</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7005">
+         <title>(U) The ePO server perimeter protection is in deny by default with allowable exceptions.</title>
+         <description>(U//FOUO) This requirement is looking for the protection at the local enclave perimeter. It can be fulfilled by using any network protection except the local host-based firewall. Please refer to the Network Infrastructure STIG for additional guidance about perimeter protection. Ensure that there is a deny by default access control list (ACL) both inbound and outbound within the perimeter protecting the ePO server. If there is not, this is a finding. The only inbound allowable exceptions are as follows: VPN Client addresses (from the VPN concentrator). IP addresses (or ranges) of clients with specific ports inbound to the ePO server from outside the perimeter are permitted if they are being serviced by this ePO server. The only outbound allowable exceptions are as follows: Outbound-initiated traffic to access updates (DoD download servers) and only specific ports. (There will not be an allowance for IP addresses for this function without port restrictions.) Outbound-initiated traffic for updates and wakeup calls to serviced clients is allowed (including updates to distributed repositories).</description><!--V-14486-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7005</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7006">
+         <title>(U) The ePO server is being protected by a local network IDS.</title>
+         <description>(U) Verify that the traffic into the ePO server is visible to the local network IDS. If there is no local network IDS in place, this is a finding. Note: This cannot be closed or considered Not a Finding via the host-based product on the local ePO server. Note: The intent of this finding is to ensure traffic flowing to the ePO server is being monitored by the device that is already required or point out that the enclave does not have an IDS. In most cases, the ePO server will be on a screened subnet. As long as the interface for that subnet is being monitored, that will meet the intent of the finding.</description><!--V-14488-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7006</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7007">
+         <title>(U) The site has registered the HBSS server within the Ports and Protocols database.</title>
+         <description>(U//FOUO) Verify that the server has been registered in the Ports and Protocols database (https://pnp.cert.smil.mil) for the site. If it is not registered, this is a finding. Verify the following ports are registered: 4.0 --------------- Agent-to-server: 80 (HTTP) Agent wake-up: 591 Agent broadcast: 8082 Event parser-to-application: 8445 Sensor-to-server: 8443 Console-to-application: 443 4.5 --------------- Agent-to-server: 80 (HTTP) / 443 (HTTPS) Agent wake-up: 591 Agent broadcast: 8082 Event parser-to-application: 8445 Sensor-to-server: 8443 Console-to-application: 8005 Console-to-application (PKI): 8007 Note: PM registration of the ports does not indicate compliance. Registration is also required at the site level.</description><!--V-14489-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7007</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7008">
+         <title>(U) The HBSS is under direct control of a site CCB.</title>
+         <description>(U) Review the documented configuration management process for HBSS. The process must document and approve both configuration changes to the ePO server, as well as policy updates that are being applied to clients. This process also needs to include the exceptions to policy and alerts. Process must include a site Configuration Control Board (CCB). If a documented configuration management plan does not exist, this is a finding. If a documented configuration management plan exists and does not contain a CCB, this is a finding.</description><!--V-14491-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7008</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7009">
+         <title>(U) The ePO server uses only the DoD-controlled source repository.</title>
+         <description>(U//FOUO) Ensure that the DoD-controlled entry (mcafee.csd.disa.mil) for source repositories is present. Note: If this is a disconnected network, this requirement can be met via the use of a manual distribution. The process must be documented and adhered to and must meet the requirements for frequency as defined in this document. Note: If the ePO server is outside of the .mil address space (such as, .edu, .gov, etc.), connection to the DoD-controlled servers for updates will not be possible and, in this case, updates from the vendor are acceptable and this check should be marked NA.</description><!--V-14493-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7009</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7010">
+         <title>(U) A DoD-controlled DNS server is used for resolution for the ePO server.</title>
+         <description>(U) Navigate to the Start/Settings/ControlPanel/NetworkConnections, and choose the Local Area Network connection. From the ‘General' tab, select ‘Properties.’ Select the 'Internet Protocol (TCP/IP)', and click the ‘Properties’ button. Note the DNS server IP addresses. At a command prompt, type in ‘ NSLOOKUP {DNS Server IP}’. If the NSLOOKUP of DNS server IP does not resolve to a .mil address, this is a finding. Note: If the ePO server is outside of the .mil address space (such as, .edu, .gov, etc.), connection to the DoD-controlled DNS servers for resolution will not be possible and, in this case, a locally-controlled DNS server is acceptable.</description><!--V-14494-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7010</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7011">
+         <title>(U//FOUO) The ePO server firewall rules are set correctly.</title>
+         <description>(U//FOUO) All of the following checks must be true in order for the check to be considered Not a Finding: The firewall must be in deny by default for bi-directional traffic. Explicit rule must exist to only allow inbound TCP on Port 8005 (SPIPE) from the ePO Server and remote console IP addresses (or remote console IP addresses from the VPN Concentrator pool) using user authentication. Explicit rule must exist to only allow inbound TCP on Port 8007 (SPIPE) from the ePO Server and remote console IP addresses (or remote console IP addresses from the VPN Concentrator pool) using PKI authentication. Explicit rule to only allow inbound TCP on Port 80 and 443 from IP Ranges of clients serviced by the ePO server. (SPIPE) Explicit rule to only allow outbound TCP on Port 591 (SPIPE – Agent wakeup calls) to clients being serviced by the ePO server and Super Agent Distributed Repository IP addresses. Inbound only from itself. Explicit rule for WSUS updates to the DoD HBSS WSUS site, if it is being used, when approved. ***All other rules present must be explicitly identified by scope and purpose. If any of these items are not compliant, this is a finding. Note: The IP address of the site’s vulnerability scanner can be configured to allow all ports – but it must be restricted by IP for the vulnerability scanner IP only and the rule can only be active when there is an actual scheduled scan in process. Refer to checks H36220, H36260, and H40220 as to additional requirements for scanning the ePO server. If running ePO in a virtual environment and if the hosting platform has either inbound or outbound access to the Internet, this is a finding. If the firewall does not have explicit IP definitions for port 1433, this is a CAT I finding. If H20200: HBSS Specific Perimeter Defense, was a finding and the host firewall is not in a deny by default configuration for bidirectional traffic, this is a CAT I finding.</description><!--V-14495-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7011</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7012">
+         <title>(U) HBSS is not operating on different classification levels or across mixed DoD and non-DoD systems or networks.</title>
+         <description>(U) Verify with the IAO and ePO administrators that the clients being serviced by the HBSS ePO server are from a single classification level and are not servicing clients from DoD information systems operating at different classification levels. Additionally there is no mixing of information from DoD and non-DoD systems or networks. Note: Non-DoD systems or networks (for this check) refers to the systems that are owned and controlled by a non-DoD agency or contractor that may, or may not, reside within DoD space.</description><!--V-14496-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7012</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7013">
+         <title>(U) The ePO server is dedicated to HBSS.</title>
+         <description>(U) Check for other web sites, other database installations (both SQL and others), and services. Search for other applications (such as Office products) or other management products (such as WSUS application or Hercules Server Application, etc.). If there are any other applications installed or running on this machine, this is a finding. Note: If the machine has multiple images in a virtual environment, this check can be satisfied by having a logically dedicated image or a thin client solution. Note: If the platform is being remotely managed, management software is permitted. See H30620 for the requirements of the machine to be used for remote management of the platform. Note: HBSS components/add-ons can be present on the server.</description><!--V-14497-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7013</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7014">
+         <title>(U) The ePO software directories are adequately protected from unauthorized modification.</title>
+         <description>(U) Examine the ePO installation directory and ensure that only authorized users have update access to the files. These directories include, by default, McAfee directories under the ‘c:\program files\common files’ and ‘?:\program files\mcafee.’ (’?’ Indicates the drive letter). If any regular user groups, such as ‘Users’, or any other locally-defined groups, which contain non-privileged users, have modify, write, or full control, this is a finding.</description><!--V-14499-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7014</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7018">
+         <title>(U) The ePO server has a scheduled task to pull updates daily from the authorized source repository.</title>
+         <description>(U) From the ePO server console, select the ‘Automation’ menu item, then select the ‘Server Tasks’ tab, and examine the list of tasks. Examine a task (by highlighting, and then clicking ‘View link’ that represents the ‘Repository Pull’). Verify that the task has a task type of ‘Repository Pull.’ It must be enabled and scheduled to run at least once per day (every hour is preferred). Ensure the source repository is the DoD server. If at least one task does not exist that meets all the above criteria, this is a finding.</description><!--V-14503-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7018</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7019">
+         <title>(U) The ePO server has a scheduled task to replicate changes to distributed repositories daily.</title>
+         <description>(U) From the ePO server console, select the ‘Automation' menu option, then select ‘Server Tasks’ tab, and examine the list of tasks. Examine a task by highlighting and clicking the ‘View link’ that represents the daily replication. Verify that it is a task type of ‘Repository Replication.’ The task must be enabled and scheduled to run once per day after the pull task from H30500 has completed. The replication type must be ‘Incremental.’ All the distributed repositories must be accounted for. This can be accomplished through separate tasks or via the ‘Replicate to all the repositories.’ If at least one task does not exist that meets all the above criteria, this is a finding. Note: If check H30560 is being done daily, this check can be marked as NA.</description><!--V-14504-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7019</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7020">
+         <title>(U) The ePO server has a scheduled task to do complete repository updates at least weekly. </title>
+         <description>(U) From the ePO server console, select the ‘Automation Tab,’ select the ‘Server Tasks’ tab, and examine the list of tasks. Examine a task by highlighting it and clicking the View link that represents the weekly replication. Verify that it is a task type of ‘Repository Replication.’ The task must be enabled and scheduled to run at least once per week. The type must be ‘Full Replication.’ All the distributed repositories must be accounted for. This can be accomplished through separate tasks or via the ‘Replicate to all the repositories.’ If at least one task does not exist that meets all the above criteria, this is a finding. Note: If this task is being done daily, check H30540 can be marked as NA.</description><!--V-14505-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7020</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7021">
+         <title>(U) The ePO server has a scheduled task to identify Inactive Agents daily.</title>
+         <description>(U) From the ePO server console, select the ‘Automation’ menu option, then select the ‘Server Tasks’ tab, and examine the list of tasks. Examine a task by highlighting and then clicking the ‘View link’ that represents the inactive agent task. Verify that it is a task type of ‘Run Query’ with a query name of ‘ePO: Inactive Agents.’ The task must be enabled and scheduled to run at least daily. A specific action is not required, but a consistent action will be determined at the site level to ensure action for inactive agents. If at least one task does not exist that meets all the above criteria or if the SA is not examining the results of this task, it is a finding. This finding can be met by other means if the inactive agents are being reported to the SA, and the SA is taking action on them.</description><!--V-14506-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7021</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7022">
+         <title>(U//FOUO) The ePO server cannot be part of a domain. </title>
+         <description>(U//FOUO) From Windows Explorer, right-click on the ePO server name (or My Computer), and then click on the ‘properties’ link. Select the ‘Computer Name’ tab. If the Workgroup designator is present, this is not a finding. If the machine is part of a domain, this is a finding. If running the ePO server in a virtual environment and if the hosting platform is in a domain, this is a finding.</description><!--V-14507-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7022</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7023">
+         <title>(U//FOUO) Only a dedicated machine can be use to manage the ePO server.</title>
+         <description>(U//FOUO) This requirement deals with remote management of the ePO server platform (i.e., the OS, database, etc.) using a tool such as Terminal Services. The ePO server can only be remotely managed via a tool like Terminal Services (where the userid is not stored on the management machine) from the dedicated machines. If remote administration is being performed from any other machine, this is a finding.</description><!--V-14508-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7023</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7024">
+         <title>(U) The ePO server is regularly checked for file integrity.</title>
+         <description>(U) If the site does not use a tool to compare system files (*.exe, *.bat, *.com,*.cmd and *.dll) on servers against a baseline on a weekly basis, this is a finding. For the ePO server, this procedure must include all system files on all drives and all directories. This means that all system files on all drives and directories must be baselined and compared to a known baseline on a weekly basis. Note: This is an expansion of the Windows requirement -V0002907/1.024: System files are not checked for unauthorized changes. Note: The Asset module within HBSS does not meet this requirement. Note: A properly configured Policy Auditor 5.2, or later, File Integrity Monitor (FIM) module does meet the requirement for file integrity checking.</description><!--V-14509-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7024</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7026">
+         <title>(U//FOUO) The SQL database installation partition is separated from the other parts of the application.</title>
+         <description>(U//FOUO) Ensure the SQL Server Installation partition and the SQL data files are separated (at least via separate directory structure – preferably separate partitions) from both the ePO installation directory and the Tomcat and Apache installation and data directories. If there is not a separation at least by directories, this is a finding.</description><!--V-14511-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7026</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7028">
+         <title>(U) Rogue System Detection is in place.</title>
+         <description>(U//FOUO) Identify each of the network broadcast segments. Verify that there is coverage of the segment by a Rogue Sensor. If the network segment is not covered by a Rogue Sensor, this is a finding. The information concerning the network segments can be obtained from the site's network diagram. The site's HBSS implementation plan may also contain this information. It is recommended to include the site’s DHCP server as a Rogue Sensor. It is recommended to not use a Domain Controller as a Rogue Sensor.</description><!--V-14519-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7028</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7029">
+         <title>(U//FOUO) The ePO Server’s HIPS Trusted Network address list allows only acceptable networks.</title>
+         <description>(U//FOUO) This check needs to be completed for the policy that is assigned to the ePO server. From the ePO server console, select the asset to be checked, then select ‘Assigned Policies,’ followed by ‘Host Intrusion Prevention 7: General’ from the product list. From the ‘Trusted Networks’ category, select the applicable policy. From the ‘Trusted Networks’ section, examine the list of trusted network entries. The only two allowable trusted network entries that are trusted for Network IPS are the local ePO server and the IP address of the vulnerability scanner (no ranges). If any other entries are present that are trusted for IPS, this is a finding. Note: Other entries can exist, but they cannot be trusted for IPS.</description><!--V-14538-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7029</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7036">
+         <title>(U) Default operating system passwords do not exist on the HBSS server.</title>
+         <description>(U) Attempt to logon to the Windows ePO server using the default credentials. Attempt to logon to the Windows ePO server using Admin with a blank password. If either of these attempts is successful, this is a finding.</description><!--V-14566-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7036</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7037">
+         <title>(U) Default passwords do not exist within the HBSS application.</title>
+         <description>(U) Attempt to logon to the ePO console using the default credentials. Attempt to logon to Windows using the default SQL server account credentials. Attempt to logon on SQL server using the default credentials. If any of the attempts is successful, this is a finding.</description><!--V-14567-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7037</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7038">
+         <title>(U) The ePO has users assigned in appropriate roles.</title>
+         <description> (U) From the ePO console, select the ‘User Management' menu option, then select the ‘Users’ tab. For each of the users, highlight the user, and examine the Permission Sets option for the user. Verify that all accounts have the need for the access granted. Verify that all accounts that have Global Admin access have the need for, and are authorized for, administrative privileges for all client machines for this ePO. Verify that users with Site Admin permissions have the need for, and are authorized for, administrator privileges for all client machines within that site and sites under it. Any user who only needs to view data should be assigned as either a Global Reviewer or a Site Reviewer. Verify that all accounts that have Global Reviewer or Executive Reviewer access have the need for, and are authorized for, read permissions for all client machines for this ePO. For a user who only needs to view certain machines, Group Reviewer access should be granted. Verify that users with Group Reviewer permissions have the need for, and are authorized, to view data for all client machines within that site and groups under it. If access is granted for users who are not authorized, or do not have a need to know, this is a finding. If there are no individual userids assigned, this is a finding.</description><!--V-14568-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7038</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7039">
+         <title>(U) The ePO users are granted access with proper procedures and/or verification of need to know. </title>
+         <description>(U) Ensure that for all userids identified in check H40140, the IAM maintains documentation (Form 2875 or equivalent) of the assignment of ePO accounts and roles. If not, this is a finding.</description><!--V-14569-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7039</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7040">
+         <title>(U//FOUO) The ePO has a comprehensive account management process.</title>
+         <description>(U//FOUO) If Windows security is being used within the application, this check does not apply. Since accounts are maintained at the application level, a comprehensive account management process must exist. These processes must include a manual process for inactivating dormant accounts (35 days of inactivity) and a process for deleting accounts (following 180 days after being disabled or when access is no longer needed). If PKI is not being used, a process must exist that also forces a password change at least every 60 days. If an account management plan does not exist for these items, this is a finding.</description><!--V-14570-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7040</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7041">
+         <title>(U//FOUO) The account used for vulnerability scanning on the ePO server meets creation and deletion requirements.</title>
+         <description>(U//FOUO) A process must be in place to account for the required monthly vulnerability scans. Each time a scan is run, a new admin account is created and a complex password is assigned. The account will be deleted (not disabled) upon completion of the monthly scan. Interview the SA to determine which account is being used for the scan. Verify that the account does not exist. Verify that the site is following the procedure for account deletion. If the account exists or the site does not delete the account after completion of the required scan, this is a finding. Note: Allowance for other mandated required scanning is permitted; any account created for scanning must be deleted when scan is complete.</description><!--V-14571-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7041</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7043">
+         <title>(U//FOUO) A plan for grouping of machines for updates and alerts is in place.</title>
+         <description>(U//FOUO) Verify the site has a written HBSS deployment plan that includes the grouping of machines for policy updates. If a plan does not exist or is not being used that details the grouping of the machines for receiving policy updates, this is a finding. Note: Care should be given to appropriately group machines with respect to function (servers and workstations) to aid in the implementation of HBSS policies.</description><!--V-14573-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7043</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7044">
+         <title>(U) Procedures exist and are followed to mark classified or sensitive data.</title>
+         <description>(U) Verify that written procedures exist and are followed to ensure proper markings in accordance with the HBSS classification guide. If procedures do not exist, this is a finding. Question users to determine if they are aware of the procedures and are following them. If they are not aware or are not following them, this is a finding.</description><!--V-14574-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7044</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7045">
+         <title>(U) HBSS Audit Logs are retained for at least one year.</title>
+         <description>(U) Determine if procedures and policies are in place to retain backups of HBSS audit data for at least one year. Verify that the procedures include the Windows event files, the SQL log files, the SQL table dbo.orion.audit.log (within the ePO database), and ProgramFiles/McAfee/ePolicy Orchestrator/DB/Logs. If the logs are not retained or do not include the directories listed, this is a finding.</description><!--V-14575-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7045</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7046">
+         <title>(U) HBSS audit log reviews are performed at least weekly.</title>
+         <description>(U) Verify that HBSS audit data (as defined in check H60100) is reviewed weekly and that any IA policy violations are analyzed and reported. It is important to note that this review needs to be non-dependent upon the functionality of HBSS itself. If the review is not being performed at least weekly, this is a finding.</description><!--V-14577-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7046</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7047">
+         <title>(U) The HBSS audit data is properly protected from unauthorized access.</title>
+         <description>(U) For each of the following tables or directories, ensure only the System and Auditors have full control (Admins and the SQL Server User account having read is allowed): SQL table dbo.orion.audit.log (SQL server table) ProgramFiles/McAfee/ePolicy Orchestrtor/DB/Logs (Directory). If any other account or group can update, this is a finding.</description><!--V-14579-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7047</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7048">
+         <title>(U) The Remote Admin access of ePO is reviewed.</title>
+         <description>(U) Verify the review the log of every instance of remote access for privileged functions session (OS and database administration) is being performed on at least a weekly basis. This is for remote access of system and database admin functions. (This review includes the VPN logs.) If this review is not being performed at least weekly, this is a finding.</description><!--V-14580-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7048</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7049">
+         <title>(U) The disaster recovery plan includes HBSS.</title>
+         <description>(U//FOUO) Ask for a copy of the site’s Continuity of Operations Planning (COOP). Verify that the ePO server is specifically mentioned in the plan. Ensure that the plan addresses restoration of the ePO server within 24 hours of activation. Additionally, ensure that ePO restoration is validated a least annually as part of the normal COOP testing process. If any of these requirements are not met, this is a finding.</description><!--V-14581-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7049</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7050">
+         <title>(U) The ePO Data Backup Frequency or content is complete.</title>
+         <description>(U//FOUO) Data backup is performed daily, and recovery media are stored at an off-site location. This backup data should include, at a minimum, Windows OS (to include user account information), SQL databases, and the ePO product directories. If the data is not being backed up at least daily, is not stored offsite, and does not include the listed items, this is a finding. If a backup of the ePO server keys does not exist, this is a finding.</description><!--V-14582-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7050</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7051">
+         <title>(U//FOUO) The ePO server is registered in VMS.</title>
+         <description>(U//FOUO) Use VMS and navigate to the site’s assets. Ensure the ePO server is registered within VMS. If it is not registered, this is a finding.</description><!--V-14583-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7051</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7052">
+         <title>(U//FOUO) The ePO has the correct attributes within VMS.</title>
+         <description>(U//FOUO) If check H90120 is a finding, this should be marked a finding also. If the asset is registered, verify that the following postures are registered. If any of the postures are not registered, this is a finding. The following postures must be present: Win2k3 Internet Explorer Database SQL Server Installation 2005 Database SQL Server Database 2005 – Model Database SQL Server Database 2005 – Master Database SQL Server Database 2005 – MSDB Database SQL Server Database 2005 – TempDB Database SQL Server Database 2005 – ePO _Server Name Antivirus Antispyware JVM J2SE ePolicy Orchestrator McAfee ePO Agent McAfee Host Intrusion Protection Module McAfee Policy Auditor McAfee Infocon Asset Tracking .Net Framework 1.1 .Net Framework 2 .Net Framework 3 Apache Instance 2.x (Default) Apache Site 2.x Tomcat Web Instance 5.x (Default) Tomcat Web Site 5x Tomcat 5.x (application server) Ensure that the ePO is registered as an HBSS program asset (tied to the HBSS program). If the ePO server is not tied to HBSS as a program, this is a finding. (This is viewed from the Organization tab of the asset.) If the machine was an HBSS project-provided machine, ensure that the serial number of the machine is recorded within VMS. If the serial number is not recorded, record this as a CAT III finding (if all other criteria of the finding is met). Note: If the SQL database is on a separate server from the ePO, the SQL server postures will not appear on the ePO server but must be accounted for on the database server to be considered Not a Finding.</description><!--V-14584-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7052</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7053">
+         <title>(U//FOUO) HBSS is incorporated into the site’s incident response plan.</title>
+         <description>(U//FOUO) Verify that HBSS (along with designated thresholds) has been incorporated into the site’s incident response plan, including coordination with the appropriate Computer Network Defense Service Provider (CNDSP). If the incorporation into the incident response plan (including interaction with the site’s CNDSP) has not been completed or there is no incident response plan, this is a finding.</description><!--V-14585-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7053</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7054">
+         <title>(U) The site is using a proxy for http/https traffic.</title>
+         <description>(U//FOUO) Review the firewall specification sheet. Verify the data entering or leaving the site is being proxied to destinations outside the enclave or the firewall is configured to implement the content, protocol, and flow control inspections, defined below: HTTP inspection - Inspection of HTTP traffic to servers residing in the enclave is required. Inspection of HTTP traffic from clients in the enclave to servers outside the enclave is required. HTTP and HTTP/S inspection will be configured to filter Java applets and ActiveX objects to meet the enclave security policy. Review the security policy with the Information Assurance Officer and look for Java and ActiveX filters if the security policy requires restrictions. Note: Not required for web services. This is client only, in an outbound direction. At a minimum, http/https ports 443, 8443, 80, 8008, and 591 must be proxied. Verify by examining the enclave firewall that there are proxies present for the http ports being used by the ePO server. If there is no http/https proxing being done or all these ports are not being proxied, this is a finding.</description><!--V-14843-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7054</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7055">
+         <title>(U//FOUO) The account management process enforces password complexity. </title>
+         <description>(U//FOUO) This is a manual procedure to ensure that the password complexity rules are being used when passwords for accounts are created. This password complexity and length must be defined via policy. The password needs to be 15 characters in length and contain a mix of at least one lowercase, one uppercase, one numbers, and one special characters. If strong passwords are not being used, this is a finding. If Windows security is being used for the application or all accounts have been converted to use PKI, this check does not apply.</description><!--V-14868-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7055</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7056">
+         <title>(U) The SQL database is configured as least privilege or only authorized users have access to data.</title>
+         <description>(U) Through SQL Server Management Studio, ensure that the only logins that have access into the ePO database are the accounts that are used for access from the application (see H50110 to determine the accounts) and the defined DBA group. Other read-only accounts are permitted (specifically for data reporting/metrics) if the access has been approved by IAM/IAO, and the need to know is documented. If any other account has access, this is a finding. Ensure that no non-privileged users have access to the master database. If any other non-privileged account has access, this is a finding.</description><!--V-14939-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7056</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7057">
+         <title>(U//FOUO) The site scans hosts before installation of the HBSS client.</title>
+         <description>(U//FOUO) For all existing/active systems, all organizations must perform a malware/spyware scan no more than one week before the installation of the HBSS client. This scan will include full anti-virus scans and scans for known bad hashes on all hosts before loading the HBSS client. This requirement is to minimize the chance of deploying the HBSS client on a host that already contains malware. If scans were not performed or there is no process to scan before installation on existing hosts, this is a finding. (See H90300 for requirement of installation on new hosts.)</description><!--V-15346-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7057</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7058">
+         <title>(U//FOUO) Offline copies of the HBSS database are encrypted.</title>
+         <description>(U//FOUO) All offline copies of the HBSS database must be encrypted, via FIPS 140-2 validated encryption. If the data backup or any other copies of the HBSS database is not being encrypted by FIPS 140-2 validated encryption, this is a finding. Although keeping a backup copy of data on the ePO server is not recommended, if a backup copy of the data exists on the machine, it is deemed as offline for the purpose of this finding and also is required to be encrypted.</description><!--V-15354-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7058</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7059">
+         <title>(U//FOUO) The HBSS SAs or Analysts have completed training.</title>
+         <description>(U//FOUO) Verify that the applicable SAs for HBSS and HBSS Analysts have completed classroom or computer based training (CBT) for HBSS. If the training has not been completed, this is a finding. Note: V0015357/H90200 does not apply to read-only/report-only access to the data maintained on a McAfee ePO Roll-Up server.</description><!--V-15357-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7059</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7060">
+         <title>(U//FOUO) The site incorporates the installation of HBSS agents on new hosts prior to network connection.</title>
+         <description>(U//FOUO) Ensure that HBSS agent installation on all new hosts is part of the documented connection process for the site. An HBSS agent must be installed on new systems (defined as a system that has been freshly built and has not yet been added to the network) prior to being added to the network. If there is not a documented process or it is not being followed, this is a finding. (See H35000 for requirement on installation of existing hosts.)</description><!--V-15358-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7060</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7061">
+         <title>(U) HBSS application has a DoD certificate installed.</title>
+         <description>(U) Launch the ePO console. Examine the properties of the server certificate. In Internet Explorer, this can be done by selecting ‘File/Properties’, and then selecting the ‘Certificates’ button. Ensure that the certification path leads back to a DoD root certificate. If there is not a certificate, or a non-DoD certificate exists, this is a finding.</description><!--V-17880-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7061</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7062">
+         <title>(U) HBSS is using the approved WSUS HBSS site for Microsoft patches.</title>
+         <description>(U) If the ePO server is using Windows update, it must use the DoD HBSS WSUS site. To determine if automatic updates are being utilized, examine: HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate\AU NoAutoUpdate. If the value is 0, validate that the DoD HBSS WSUS site is referenced. Using the Windows registry editor – navigate to: HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate and confirm that the values of 'WUServer' and 'WUStatusServer' point to the DoD HBSS WSUS site. Additionally, HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate\AU UseWUServer, must be 1. If automatic updates are being used, and if the three registry keys above are not set to be compliant, this is a finding. If automatic updates are not being used, this check can be considered Not Applicable.</description><!--V-17882-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7062</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7064">
+         <title>(U) The ePO server displays the correct warning banner.</title>
+         <description>(U) Start the ePO interface. Verify that the DoD banner appears below the logon prompt. Validate the verbiage. If the banner is not present or it does not contain the following exact verbiage, this is a finding. *************** “You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. By using this IS (which includes any device attached to this IS), you consent to the following conditions: -The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations. -At any time, the USG may inspect and seize data stored on this IS. -Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose. -This IS includes security measures (e.g., authentication and access controls) to protect USG interests—not for your personal benefit or privacy. -Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.” *************** Note: Deviations are not permitted except as authorized by the Deputy Assistant Secretary of Defense for Information and Identity Assurance.</description><!--V-17886-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7064</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7068">
+         <title>(U//FOUO) The HBSS dashboard refresh rate is set properly.</title>
+         <description>(U//FOUO) From the ePO server console, select the ‘Dashboard’ tab, followed by ‘Options’, and finally, ‘Edit Dashboard Preferences.’ Ensure that the ‘Dashboard page refresh interval’ is set to at least 20 minutes. Reference check H30760 for information about timeouts. If the interval is less than 20 minutes, this is a finding. Note: If the console is being used as part of an operations center type environment, requiring continuous, real-time screen display which requires a lower rate, the following needs to be documented with the IAO: -The logon session does not have Administrator rights. -The display station (i.e., keyboard, CRT, etc.) is located in a controlled access area.</description><!--V-17890-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7068</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7072">
+         <title>(U) Application Report Header is configured correctly.</title>
+         <description>(U//FOUO) From the ePO server console, select the ‘Configuration’ option, then the ‘Server Setting’ tab. Examine the Printing and Exporting category and ensure that the Logo area (headers and footers for exported documents parameter) represents the proper marking for the system. For unclassified systems, the text should be FOR OFFICIAL USE ONLY. For SIPRNet systems, the text should be SECRET. If the appropriate markings are not present, this is a finding.</description><!--V-17898-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7072</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7073">
+         <title>(U) HBSS Event Logs are being retained for at least one year.</title>
+         <description>(U) Determine if procedures and policies are in place to retain backups of HBSS event data for at least one year. (This is the HIPS event data - not the system event/log files.) If the event data is not being retained, this is a finding.</description><!--V-17899-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7073</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7077">
+         <title>(U) Remove all user certificates after import.</title>
+         <description>(U) From Windows explorer, search for *.cer. If any user certificate is found, this is a finding.</description><!--V-24014-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7077</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7078">
+         <title>(U) Certificate Authority folder populated for intermediate CAs.</title>
+         <description>(U) From the ePO server console, select the ‘Configuration’ menu option, then select the ‘Server Settings’ tab. Select the ‘Console Certificates’ category. Click the Edit button. Note the name of the directory of the Trusted Store Certificates. From Windows explorer, find the noted directory. Ensure that the intermediate DoD Root certificates are present (dodCA-*.crt). If it is not present, this is a finding.</description><!--V-24017-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7078</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7079">
+         <title>(U) Permissions on the CRL directory must be set correctly.</title>
+         <description>(U) From the ePO server console, select the ‘Configuration’ menu option, then select the ‘Server Settings’ tab. Select the ‘Console Certificates’ category. Click the Edit button. Note the name of the directory of the Local Path to directory of the CRL files. From Windows explorer, find the noted directory. Examine the permissions on the directory. Only Administrators and System should be able to update or write into this directory. If any other user can update or write to this directory, this is a finding.</description><!--V-24020-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7079</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7080">
+         <title>(U) CRL Directory Content is complete.</title>
+         <description> (U) If the ePO is on a disconnected network, from the ePO server console, select the ‘Configuration’ menu option, then select the ‘Server Settings’ tab. Select the ‘Console Certificates’ category. Click the Edit button. Note the name of the directory of the Local Path to the directory of CRL files. From Windows explorer, find the noted directory. Ensure that the DoD Root certificate CRL is present. If it is not present, this is a finding. If the ePO is not on a disconnected network, this check is NA.</description><!--V-24021-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7080</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7081">
+         <title>(U) Local CRL checking is enabled.</title>
+         <description>(U) If the ePO is on a disconnected network, from the ePO server console, select the ‘Configuration’ menu option, then select the ‘Server Settings’ tab. Select the ‘Console Certificates’ category. Click the Edit button. Note the name of the directory of the Local Path to directory of CRL files. If the ePO is not on a disconnected network, this check is NA.</description><!--V-24022-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7081</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7086">
+         <title>(U//FOUO) A DoD certificate is used for encryption.</title>
+         <description>(U//FOUO) From SQL Server Configuration Manager, expand SQL Server Network Configuration, and right-click the protocols for the ePO server. Click Properties. From the Certificates tab, ensure that there is a certificate present, and it has been issued from a DoD CA. If there is not a certificate or it has not been issued from a DoD CA, this is a finding.</description><!--V-24165-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7086</test_action_ref>
+         </actions>
+      </questionnaire><!--<questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7093">
+         <title>(U) The ePO server, if hosting Symantec AV, will only use the DoD-controlled SEPM server, when available.</title>
+         <description>(U) NA until DoD SEPM exists.</description>--><!--V-24305--><!--<actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7093</test_action_ref>
+         </actions>
+      </questionnaire>-->
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7094">
+         <title>(U) Sensitive data is not included in e-mail notifications.</title>
+         <description>(U) From the ePO console, select Automation. For all Enabled Responses, view the Response. If the Actions category indicated Send Email, click Edit, then select the Actions tab and examine the Subject and Body of e-mail. If sensitive data is included in the e-mail, this is a finding. After examining the response, click Cancel to exit.</description><!--V-24306-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7094</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7095">
+         <title>(U) The Site ePO server has the account used by the Rollup server to pull data from the Site ePO to be configured with read-only access to the ePO data. </title>
+         <description>(U) Through SQL Server Management Studio, verify that the account being used by the Rollup server to connect to the Site ePO is not part of the 'System Administrators' server role. If the account is part of the 'System Administrators' role, this is a finding. Verify that the account being used by the Rollup server to connect to the Site ePO does not have a greater privilege to the ePO database (and underlying data tables) than read. If the permission is greater than read-only access, this is a finding.</description><!--V-24307-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7095</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7096">
+         <title>(U//FOUO) The notification connector is set to the loopback adapter.</title>
+         <description>(U//FOUO) Open the Tomcat server.xml in Notepad. Locate the notification-secure-port connector. Verify that the address is set to 127.0.0.1. If the connector is not set to 127.0.0.1, this is a finding.</description><!--V-25504-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7096</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7097">
+         <title>(U) HBSS audit data is backed up at least weekly to a different system or media.</title>
+         <description>(U) This check applies only to classified systems. Verify that the HBSS audit data is being backed up weekly to another media or system. Any backup mechanism must ensure the data is encrypted at rest. If the audit data is not being backed at least weekly or the backup mechanism is not encrypting the data at rest, this is a finding.</description><!--V-14578-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7097</test_action_ref>
+         </actions>
+      </questionnaire>
+      <questionnaire id="ocil:gov.dod.cndrtpmo:questionnaire:7098">
+         <title>(U//FOUO) Credentials cannot be stored outside HBSS.</title>
+         <description>(U//FOUO) Examine any backup jobs or any other management connections for HBSS. No HBSS credentials can be stored for use in this way. (For example, a backup job cannot store credentials for execution from the backup server.) If any credentials are found, this is a finding. Note: Scanning credentials are permitted in accordance with check H40220.</description><!--V-24169-->
+         <actions>
+            <test_action_ref>ocil:gov.dod.cndrtpmo:testaction:7098</test_action_ref>
+         </actions>
+      </questionnaire>
+   </questionnaires>
+   <test_actions>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7001" question_ref="ocil:gov.dod.cndrtpmo:question:7001">
+         <title>(U) Is the system configured with a static IP address?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7002" question_ref="ocil:gov.dod.cndrtpmo:question:7002">
+         <title>(U) If the ePO is servicing clients outside the local enclave, is that the ePO server in a protected Security Services Enclave DMZ. Is it in the documented subnet for the non-public DMZ? If the ePO server is only serving clients inside the local enclave, is it in a separate controlled access subnet and not part of the public DMZ?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7003" question_ref="ocil:gov.dod.cndrtpmo:question:7003">
+         <title>(U//FOUO) If management traffic must cross a DoD boundary, is a VPN used? Does the VPN terminate at the firewall? Is an audit record of each session logged? Is IP address translation of remote console is done via a designated pool of IP addresses?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7004" question_ref="ocil:gov.dod.cndrtpmo:question:7004">
+         <title>(U) Is VPN data into the ePO visible?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7005" question_ref="ocil:gov.dod.cndrtpmo:question:7005">
+         <title>(U//FOUO) Is there network protection at the local enclave perimeter? Is there a deny by default access control list (ACL) for both inbound and outbound within the perimeter protecting the ePO server?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7006" question_ref="ocil:gov.dod.cndrtpmo:question:7006">
+         <title>(U) Is traffic into the ePO server is visible to the local network IDS?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7007" question_ref="ocil:gov.dod.cndrtpmo:question:7007">
+         <title>(U//FOUO) Has the server has been registered in the Ports and Protocols database with all the necessary ports?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7008" question_ref="ocil:gov.dod.cndrtpmo:question:7008">
+         <title>(U) Does the configuration management process for HBSS documents and approves configuration changes to the ePO server? Does the process include exceptions to the policy and alerts. Ensure that there is a site Configuration Control Board (CCB).</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7009" question_ref="ocil:gov.dod.cndrtpmo:question:7009">
+         <title>(U//FOUO) Is the DoD-controlled entry (mcafee.csd.disa.mil) for source repositories present?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7010" question_ref="ocil:gov.dod.cndrtpmo:question:7010">
+         <title>(U) Does the NSLOOKUP of the DNS server IP resolve to a .mil address?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7011" question_ref="ocil:gov.dod.cndrtpmo:question:7011">
+         <title>(U//FOUO) Is the firewall is in deny by default for bi-directional traffic? Are the following explicit rules defined: allow inbound TCP on Port 8005 (SPIPE) from the ePO Server and remote console IP addresses (or remote console IP addresses from the VPN Concentrator pool) using user authentication; allow inbound TCP on Port 8007 (SPIPE) from the ePO Server and remote console IP addresses (or remote console IP addresses from the VPN Concentrator pool) using PKI authentication; allow inbound TCP on Port 80 and 443 from IP Ranges of clients serviced by the ePO server; allow only outbound TCP on Port 591 (SPIPE – Agent wakeup calls) to clients being serviced by the ePO server and Super Agent Distributed Repository IP addresses; allow inbound only from itself; allow WSUS updates to the DoD HBSS WSUS site (if it is being used, when approved)?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7012" question_ref="ocil:gov.dod.cndrtpmo:question:7012">
+         <title>(U) Are the clients being serviced by the HBSS ePO server from a single classification level and not servicing clients from DoD information systems operating at different classification levels?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7013" question_ref="ocil:gov.dod.cndrtpmo:question:7013">
+         <title>(U) Are there other databases, applications (Office products or other management products) or services are installed or running on this machine?</title>
+         <when_true>
+            <result>FAIL</result>
+         </when_true>
+         <when_false>
+            <result>PASS</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7014" question_ref="ocil:gov.dod.cndrtpmo:question:7014">
+         <title>(U) Are only authorized users granted update access to files in the ePO installation directory?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7018" question_ref="ocil:gov.dod.cndrtpmo:question:7018">
+         <title>(U) Is the Repository Pull tack is enabled and scheduled to run at least once per day? Is the source repository is a DoD server?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7019" question_ref="ocil:gov.dod.cndrtpmo:question:7019">
+         <title>(U) Is there a task type of ‘Repository Replication’ enabled and scheduled to run once per day, with replication type ‘Incremental’ after the pull task from H30500 has completed? Are all the distributed repositories must be accounted for?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7020" question_ref="ocil:gov.dod.cndrtpmo:question:7020">
+         <title>(U) Under the 'Automation' - 'Server Tasks', is there a task type of ‘Repository Replication’ enabled and scheduled to run once per day, with replication type ‘Full Replication’? Are all the distributed repositories must be accounted for?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7021" question_ref="ocil:gov.dod.cndrtpmo:question:7021">
+         <title>(U) Under 'Automation' - 'Server Tasks', is there a task type of ‘Run Query’ with a query name of ‘ePO: Inactive Agents’ that is enabled and scheduled to run at least daily?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7022" question_ref="ocil:gov.dod.cndrtpmo:question:7022">
+         <title>(U//FOUO) Is the ePO server part of a Domain?</title>
+         <when_true>
+            <result>FAIL</result>
+         </when_true>
+         <when_false>
+            <result>PASS</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7023" question_ref="ocil:gov.dod.cndrtpmo:question:7023">
+         <title>(U//FOUO) If remote management of the ePO server is being performed, is only a tool like Terminal Services used?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7024" question_ref="ocil:gov.dod.cndrtpmo:question:7024">
+         <title>(U) Does the site use a tool to compare system files on servers against a baseline on a weekly basis?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7026" question_ref="ocil:gov.dod.cndrtpmo:question:7026">
+         <title>(U//FOUO) Are the SQL Server Installation partition and the SQL data files are separated from both the ePO installation directory and the Tomcat and Apache installation and data directories?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7028" question_ref="ocil:gov.dod.cndrtpmo:question:7028">
+         <title>(U//FOUO) Is there coverage of each network broadcast segment by a Rogue Sensor?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7029" question_ref="ocil:gov.dod.cndrtpmo:question:7029">
+         <title>(U//FOUO) Are the only two allowable trusted network entries that are trusted for Network IPS, the local ePO server and the IP address of the vulnerability scanner (no ranges)?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7036" question_ref="ocil:gov.dod.cndrtpmo:question:7036">
+         <title>(U) Is it possible to logon to the Windows ePO server using the default credential or a blank password?</title>
+         <when_true>
+            <result>FAIL</result>
+         </when_true>
+         <when_false>
+            <result>PASS</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7037" question_ref="ocil:gov.dod.cndrtpmo:question:7037">
+         <title>(U) Is it possible to logon to the ePO console using the default credentials? Is it possible to logon to Windows using the default SQL server account credentials? Is it possible to logon on SQL server using the default credentials?</title>
+         <when_true>
+            <result>FAIL</result>
+         </when_true>
+         <when_false>
+            <result>PASS</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7038" question_ref="ocil:gov.dod.cndrtpmo:question:7038">
+         <title>(U) Do all accounts that have Global Admin access have the need for, and are authorized for administrative privileges for all client machines for this ePO? Do all users with Site Admin permissions have the need for, and are authorized for, administrator privileges for all client machines within that site and sites under it? So all accounts that have Global Reviewer or Executive Reviewer access have the need for, and are authorized for, read permissions for all client machines for this ePO?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7039" question_ref="ocil:gov.dod.cndrtpmo:question:7039">
+         <title>(U) For all userids identified in check H40140 does the IAM maintain documentation (Form 2875 or equivalent) of the assignment of ePO accounts and roles?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7040" question_ref="ocil:gov.dod.cndrtpmo:question:7040">
+         <title>(U//FOUO) Does a comprehensive account management process exist that includes a manual process for inactivating dormant accounts (35 days of inactivity), for deleting accounts and for forcing a password change at least every 60 days?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7041" question_ref="ocil:gov.dod.cndrtpmo:question:7041">
+         <title>(U//FOUO) Is a process in place to account for the required monthly vulnerability scans? Each time a scan is run, is a new admin account created, a complex password assigned and upon completion of the scan the account deleted (not disabled)?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7043" question_ref="ocil:gov.dod.cndrtpmo:question:7043">
+         <title>(U//FOUO) Does the site have a written HBSS deployment plan that includes the grouping of machines for policy updates?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7044" question_ref="ocil:gov.dod.cndrtpmo:question:7044">
+         <title>(U) Do written procedures exist and are they being followed to ensure proper markings in accordance with the HBSS classification guide?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7045" question_ref="ocil:gov.dod.cndrtpmo:question:7045">
+         <title>(U) Are procedures and policies are in place to retain backups of HBSS audit data for at least one year? Do the procedures include the Windows event files, the SQL log files, the SQL table dbo.orion.audit.log (within the ePO database), and ProgramFiles/McAfee/ePolicy Orchestrator/DB/Logs?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7046" question_ref="ocil:gov.dod.cndrtpmo:question:7046">
+         <title>(U) Is HBSS audit data (as defined in check H60100) reviewed weekly and any IA policy violations analyzed and reported?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7047" question_ref="ocil:gov.dod.cndrtpmo:question:7047">
+         <title>(U) For each of the following tables or directories, do only the System and Auditors have full control (Admins and the SQL Server User account having read is allowed): SQL table dbo.orion.audit.log (SQL server table) ProgramFiles/McAfee/ePolicy Orchestrtor/DB/Logs (Directory)?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7048" question_ref="ocil:gov.dod.cndrtpmo:question:7048">
+         <title>(U) Is a review the log of every instance of remote access for privileged functions (OS and database administration) performed on at least a weekly basis? </title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7049" question_ref="ocil:gov.dod.cndrtpmo:question:7049">
+         <title>(U//FOUO) Is the ePO server specifically mentioned in the Continuity of Operations Plan (COOP)? Does the plan include restoration of the ePO server within 24 hours of activation? Is the ePO restoration validated a least annually as part of the normal COOP testing process?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7050" question_ref="ocil:gov.dod.cndrtpmo:question:7050">
+         <title>(U//FOUO) Is data backup being performed daily (Windows OS (to include user account information), SQL databases, and the ePO product directories), and are recovery media stored at an off-site location?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7051" question_ref="ocil:gov.dod.cndrtpmo:question:7051">
+         <title>(U//FOUO) Is the ePO server registered within VMS?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7052" question_ref="ocil:gov.dod.cndrtpmo:question:7052">
+         <title>(U//FOUO) Is ePO registered as an HBSS program asset and are the following postures are installed: Win2k3 Internet Explorer Database SQL Server Installation 2005 Database SQL Server Database 2005 – Model Database SQL Server Database 2005 – Master Database SQL Server Database 2005 – MSDB Database SQL Server Database 2005 – TempDB Database SQL Server Database 2005 – ePO _Server Name Antivirus Antispyware JVM J2SE ePolicy Orchestrator McAfee ePO Agent McAfee Host Intrusion Protection Module McAfee Policy Auditor McAfee Infocon Asset Tracking .Net Framework 1.1 .Net Framework 2 .Net Framework 3 Apache Instance 2.x (Default) Apache Site 2.x Tomcat Web Instance 5.x (Default) Tomcat Web Site 5x Tomcat 5.x. Note: If the SQL database is on a separate server from the ePO, the SQL server postures will not appear on the ePO server but must be accounted for on the database server to be considered Not a Finding? If the machine was an HBSS project-provided machine, is the serial number of the machine recorded within VMS?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7053" question_ref="ocil:gov.dod.cndrtpmo:question:7053">
+         <title>(U//FOUO) Has HBSS been incorporated into the site’s incident response plan, including coordination with the appropriate Computer Network Defense Service Provider (CNDSP)?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7054" question_ref="ocil:gov.dod.cndrtpmo:question:7054">
+         <title>(U//FOUO) Is data entering or leaving the site is proxied to destinations outside the enclave or is the firewall configured to implement content, protocol, and flow control inspections? Is inspection of HTTP traffic from clients in the enclave to servers outside the enclave conducted? Does the security policy require Java and ActiveX filters? Are at least http/https ports 443, 8443, 80, 8008, and 591 being used by the ePO server proxied?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7055" question_ref="ocil:gov.dod.cndrtpmo:question:7055">
+         <title>(U//FOUO) Is the password complexity and length defined via policy to be 15 characters in length and contain a mix of at least one lowercase, one uppercase, one number, and one special character?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7056" question_ref="ocil:gov.dod.cndrtpmo:question:7056">
+         <title>(U) Are the only logins that have access into the ePO database accounts that are used for access from the application? Do any non-privileged users have access to the master database?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7057" question_ref="ocil:gov.dod.cndrtpmo:question:7057">
+         <title>(U//FOUO) Is malware/spyware scanning of the end system prior to installing the HBSS client (no more than one week before) part of the documented connection process?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7058" question_ref="ocil:gov.dod.cndrtpmo:question:7058">
+         <title>(U//FOUO) Are all offline copies of the HBSS database, including copies stored on the machine, encrypted via FIPS 140-2 validated encryption?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7059" question_ref="ocil:gov.dod.cndrtpmo:question:7059">
+         <title>(U//FOUO) Have all applicable SAs for HBSS and HBSS Analysts completed classroom or computer based training (CBT) for HBSS?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7060" question_ref="ocil:gov.dod.cndrtpmo:question:7060">
+         <title>(U//FOUO) Is the HBSS agent installation on all new hosts part of the documented connection process for the site?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7061" question_ref="ocil:gov.dod.cndrtpmo:question:7061">
+         <title>(U) Does the server certification path lead back to a DoD root certificate?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7062" question_ref="ocil:gov.dod.cndrtpmo:question:7062">
+         <title>(U) If the ePO server is using Windows update is it using the DoD HBSS WSUS site?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7064" question_ref="ocil:gov.dod.cndrtpmo:question:7064">
+         <title>(U) Does the DoD banner appear below the logon prompt and contain the correct verbiage?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7068" question_ref="ocil:gov.dod.cndrtpmo:question:7068">
+         <title>(U//FOUO) Is the ‘Dashboard page refresh interval’ set to at least 20 minutes?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7072" question_ref="ocil:gov.dod.cndrtpmo:question:7072">
+         <title>(U//FOUO) Do the Logo area headers and footers represent the proper marking for the system?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7073" question_ref="ocil:gov.dod.cndrtpmo:question:7073">
+         <title>(U) Are procedures and policies are in place to retain backups of HBSS event data for at least one year?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7077" question_ref="ocil:gov.dod.cndrtpmo:question:7077">
+         <title>(U) Are there any certificate files accessible on the system?</title>
+         <when_true>
+            <result>FAIL</result>
+         </when_true>
+         <when_false>
+            <result>PASS</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7078" question_ref="ocil:gov.dod.cndrtpmo:question:7078">
+         <title>(U) Are the intermediate DoD Root certificates present (dodCA-*.crt)?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7079" question_ref="ocil:gov.dod.cndrtpmo:question:7079">
+         <title>(U) Are only Administrators and System user groups able to update or write to the CRL file directory?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7080" question_ref="ocil:gov.dod.cndrtpmo:question:7080">
+         <title>(U) Is the DoD Root certificate CRL present on the system?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <string_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7081" question_ref="ocil:gov.dod.cndrtpmo:question:7081">
+         <title>(U) What is the name of the directory of the Local Path to directory of CRL files?</title>
+         <when_not_applicable>
+            <result>PASS</result>
+         </when_not_applicable>
+         <when_pattern>
+            <result>PASS</result>
+            <artifact_refs>
+               <artifact_ref idref="ocil:gov.dod.cndrtpmo:artifact:1" required="true"/>
+            </artifact_refs>
+            <pattern>.*?</pattern>
+         </when_pattern>
+      </string_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7086" question_ref="ocil:gov.dod.cndrtpmo:question:7086">
+         <title>(U//FOUO) Is there is a certificate present for the ePO server protocols that has been issued from a DoD CA?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action><!--<boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7093" question_ref="ocil:gov.dod.cndrtpmo:question:7093">
+         <title>(U) The ePO server, if hosting Symantec AV, will only use the DoD-controlled SEPM server, when available.</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>-->
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7094" question_ref="ocil:gov.dod.cndrtpmo:question:7094">
+         <title>(U) Is any sensitive data included in the subject and body of the e-mail automated e-mail response messages?</title>
+         <when_true>
+            <result>FAIL</result>
+         </when_true>
+         <when_false>
+            <result>PASS</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7095" question_ref="ocil:gov.dod.cndrtpmo:question:7095">
+         <title>(U) Is the account being used by the Rollup server to connect to the Site ePO not part of the 'System Administrators' server role? Does the account used by the Rollup server to connect to the Site ePO not have a greater privilege to the ePO database than read?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7096" question_ref="ocil:gov.dod.cndrtpmo:question:7096">
+         <title>(U//FOUO) Is the notification Secure Port connector address is step to the loopback address (127.0.0.1)?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7097" question_ref="ocil:gov.dod.cndrtpmo:question:7097">
+         <title>(U) Is the HBSS audit data being backed up and encrypted on a weekly basis?</title>
+         <when_true>
+            <result>PASS</result>
+         </when_true>
+         <when_false>
+            <result>FAIL</result>
+         </when_false>
+      </boolean_question_test_action>
+      <boolean_question_test_action id="ocil:gov.dod.cndrtpmo:testaction:7098" question_ref="ocil:gov.dod.cndrtpmo:question:7098">
+         <title>(U) Are any HBSS credentials being stored outside HBSS (by backup jobs or any other management connections)?</title>
+         <when_true>
+            <result>FAIL</result>
+         </when_true>
+         <when_false>
+            <result>PASS</result>
+         </when_false>
+      </boolean_question_test_action>
+   </test_actions>
+   <questions>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7001">
+         <notes>(U) Ensure that the system is configured with a static IP address.</notes>
+         <question_text>(U) Is the system configured with a static IP address?</question_text>
+         <instructions>
+            <title>Inspect the System Network Settings</title>
+            <step>
+               <description>(U) Navigate to the ‘Start/Settings/ControlPanel/NetworkConnections’ and choose the ‘Local Area Network’ connection.</description>
+            </step>
+            <step>
+               <description>(U) From the ‘General’ tab, select ‘Properties’, and then select the ‘Internet Protocol’ (TCP/IP). Click the ‘Properties’ button. Ensure that an IP address is present, and that the ‘Obtain an IP address’ is not checked. If there is more than one Network Connection – all of the IPs addresses should be checked for compliance. If a static IP address is not assigned, this is a finding.</description>
+            </step>
+            <step>
+               <description>(U) Click the ‘Properties’ button. Ensure that an IP address is present, and that the ‘Obtain an IP address’ is not checked.</description>
+            </step>
+            <step>
+               <description>(U) If there is more than one Network Connection – all of the IPs addresses should be checked for compliance. If a static IP address is not assigned, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7002">
+         <notes>(U) If the ePO is servicing clients outside the local enclave, the requirement is that the ePO server must be in a protected Security Services Enclave DMZ. Validate that it is in the documented subnet for the non-public DMZ. If the ePO server is only serving clients inside the local enclave, the requirement is to be in a separate controlled access subnet and not part of the public DMZ that houses the public web servers. Note: The checks can be done by looking at a network diagram, or by looking at the network infrastructure devices controlling the network.</notes>
+         <question_text>(U) If the ePO is servicing clients outside the local enclave, is that the ePO server in a protected Security Services Enclave DMZ. Is it in the documented subnet for the non-public DMZ? If the ePO server is only serving clients inside the local enclave, is it in a separate controlled access subnet and not part of the public DMZ?</question_text>
+         <instructions>
+            <title>Inspect the Network Configuration / Interview the NA</title>
+            <step>
+               <description>(U) Validate the scope of clients that the ePO server is servicing. If the ePO is servicing clients outside the local enclave, the requirement is that the ePO server must be in a protected Security Services Enclave DMZ (and not part of the public DMZ.)</description>
+            </step>
+            <step>
+               <description>(U) Review the network topology diagram. Check the ePO server IP address and subnet mask to validate that it is in the documented subnet for the non-public DMZ. (A network diagram must be available – or the checks should be done by looking at the firewall controlling the DMZ). If the ePO server is not in a Security Services Enclave DMZ, this is a finding. If it is in a public DMZ, this is a finding.</description>
+            </step>
+            <step>
+               <description>(U) If the ePO server is only serving clients inside the local enclave, the requirement is to be in a separate controlled access subnet and not part of the public DMZ that houses the public web servers. In addition, it needs to be isolated via a controlled access mechanism from the local general population LAN.</description>
+            </step>
+            <step>
+               <description>(U) Review the network topology diagram. Check the ePO IP address and subnet mask to validate that it is in the documented subnet for the non-public DMZ. Also, validate that it is in a controlled access subnet that is isolated from the general population LAN. If the ePO server is in a public DMZ, this is a finding. If the ePO server is not isolated from the general population LAN, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7003">
+         <notes>(U//FOUO) Ensure that if management traffic (i.e., system or database administration) crosses a DoD boundary that a VPN is used. Ensure that the VPN terminates at the firewall. Ensure that an audit record of each session logged. Ensure that IP address translation of remote console is done via a designated pool of IP addresses.</notes>
+         <question_text>(U//FOUO) If management traffic must cross a DoD boundary, is a VPN used? Does the VPN terminate at the firewall? Is an audit record of each session logged? Is IP address translation of remote console is done via a designated pool of IP addresses?</question_text>
+         <instructions>
+            <title>Inspect the Network Configuration / Interview the NA</title>
+            <step>
+               <description>(U//FOUO) For the scenario where management traffic (i.e., system or database administration) must cross a DoD boundary, a VPN must be used to encapsulate and encrypt the remote access traffic using NIST certified encryption. The VPN must terminate at the firewall. An audit record of each session must also be logged.</description>
+            </step>
+            <step>
+               <description>(U//FOUO) Verify if there are remote connections from outside the ePO's enclave. If there is not, this check should be considered NA. If there are, verify that this traffic is encapsulated and encrypted within the VPN tunnel, and the traffic is logged.</description>
+            </step>
+            <step>
+               <description>(U//FOUO) In addition, the VPN must either translate remote console into specific IP addresses or designate a pool of IP addresses for remote consoles. If there is no VPN, this is a finding.</description>
+            </step>
+            <step>
+               <description>(U//FOUO) If the VPN connection does not terminate at the firewall, this is a finding.</description>
+            </step>
+            <step>
+               <description>(U//FOUO) If the session is not logged, this is a finding.</description>
+            </step>
+            <step>
+               <description>(U//FOUO) If the IP address translation of remote console is not done via a designated pool of IP addresses or has dedicated IP assignments for them, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7004">
+         <notes>(U) Ensure that VPN data into the ePO is visible.</notes>
+         <question_text>(U) Is VPN data into the ePO visible?</question_text>
+         <instructions>
+            <title>Inspect the Network Configuration / Interview the NA</title>
+            <step>
+               <description>(U) Examine the network topology and the network intrusion detection system, and determine if the VPN data into the ePO is visible. If it is not visible, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7005">
+         <notes>(U//FOUO) Ensure that there is network protection at the local enclave perimeter (can be fulfilled by using any network protection except the local host-based firewall). Ensure that there is a deny by default access control list (ACL) both inbound and outbound within the perimeter protecting the ePO server.</notes>
+         <question_text>(U//FOUO) Is there network protection at the local enclave perimeter? Is there a deny by default access control list (ACL) for both inbound and outbound within the perimeter protecting the ePO server?</question_text>
+         <instructions>
+            <title>Inspect the Network Configuration / Interview the NA</title>
+            <step>
+               <description>(U//FOUO) This requirement is looking for the protection at the local enclave perimeter. It can be fulfilled by using any network protection except the local host-based firewall. Please refer to the Network Infrastructure STIG for additional guidance about perimeter protection.</description>
+            </step>
+            <step>
+               <description>(U//FOUO) Ensure that there is a deny by default access control list (ACL) both inbound and outbound within the perimeter protecting the ePO server. If there is not, this is a finding.</description>
+            </step>
+            <step>
+               <description>(U//FOUO) The only inbound allowable exceptions are as follows: VPN Client addresses (from the VPN concentrator). IP addresses (or ranges) of clients with specific ports inbound to the ePO server from outside the perimeter are permitted if they are being serviced by this ePO server.</description>
+            </step>
+            <step>
+               <description>(U//FOUO) The only outbound allowable exceptions are as follows: Outbound-initiated traffic to access updates (DoD download servers) and only specific ports. (There will not be an allowance for IP addresses for this function without port restrictions.) Outbound-initiated traffic for updates and wakeup calls to serviced clients is allowed (including updates to distributed repositories).</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7006">
+         <notes>(U) Ensure that traffic into the ePO server is visible to the local network IDS. Note: This cannot be closed or considered Not a Finding via the host-based product on the local ePO server. Note: The intent of this finding is to ensure traffic flowing to the ePO server is being monitored by the device that is already required or point out that the enclave does not have an IDS. In most cases, the ePO server will be on a screened subnet. As long as the interface for that subnet is being monitored, that will meet the intent of the finding.</notes>
+         <question_text>(U) Is traffic into the ePO server is visible to the local network IDS?</question_text>
+         <instructions>
+            <title>Inspect the Network Configuration</title>
+            <step>
+               <description>(U) Verify that the traffic into the ePO server is visible to the local network IDS. If there is no local network IDS in place, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7007">
+         <notes>(U//FOUO) Ensure that the server is registered in the Ports and Protocols database and that the following ports are registered: Agent-to-server: 80 (HTTP) / 443 (HTTPS) Agent wake-up: 591 Agent broadcast: 8082 Event parser-to-application: 8445 Sensor-to-server: 8443 Console-to-application: 8005 Console-to-application (PKI): 8007. Note: PM registration of the ports does not indicate compliance.</notes>
+         <question_text>(U//FOUO) Has the server has been registered in the Ports and Protocols database with all the necessary ports?</question_text>
+         <instructions>
+            <title>Interview the NA</title>
+            <step>
+               <description>(U//FOUO) Verify that the server has been registered in the Ports and Protocols database (https://pnp.cert.smil.mil) for the site. If it is not registered, this is a finding.</description>
+            </step>
+            <step>
+               <description>(U//FOUO) Verify the following ports are registered: 4.0 --------------- Agent-to-server: 80 (HTTP) Agent wake-up: 591 Agent broadcast: 8082 Event parser-to-application: 8445 Sensor-to-server: 8443 Console-to-application: 443 4.5 --------------- Agent-to-server: 80 (HTTP) / 443 (HTTPS) Agent wake-up: 591 Agent broadcast: 8082 Event parser-to-application: 8445 Sensor-to-server: 8443 Console-to-application: 8005 Console-to-application (PKI): 8007 Registration is also required at the site level.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7008">
+         <notes>(U) Ensure that the configuration management process for HBSS documents and approves configuration changes to the ePO server. Ensure that the process includes exceptions to the policy and alerts. Ensure that there is a site Configuration Control Board (CCB).</notes>
+         <question_text>(U) Does the configuration management process for HBSS documents and approves configuration changes to the ePO server? Does the process include exceptions to the policy and alerts. Ensure that there is a site Configuration Control Board (CCB).</question_text>
+         <instructions>
+            <title>Interview the Information Assurance Officer</title>
+            <step>
+               <description>(U) Review the documented configuration management process for HBSS. The process must document and approve both configuration changes to the ePO server, as well as policy updates that are being applied to clients. This process also needs to include the exceptions to policy and alerts. Process must include a site Configuration Control Board (CCB). If a documented configuration management plan does not exist, this is a finding. If a documented configuration management plan exists and does not contain a CCB, this is a finding.</description>
+            </step>
+            <step>
+               <description>(U) Process must include a site Configuration Control Board (CCB). If a documented configuration management plan does not exist, this is a finding. If a documented configuration management plan exists and does not contain a CCB, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7009">
+         <notes>(U//FOUO) Ensure that the DoD-controlled entry (mcafee.csd.disa.mil) for source repositories is present. Note: If this is a disconnected network, this requirement can be met via the use of a manual distribution. The process must be documented and adhered to and must meet the requirements for frequency as defined in this document. Note: If the ePO server is outside of the .mil address space (such as, .edu, .gov, etc.), connection to the DoD-controlled servers for updates will not be possible and, in this case, updates from the vendor are acceptable and this check should be marked NA.</notes>
+         <question_text>(U//FOUO) Is the DoD-controlled entry (mcafee.csd.disa.mil) for source repositories present?</question_text>
+         <instructions>
+            <title>Inspect the Network Configuration</title>
+            <step>
+               <description>(U//FOUO) Ensure that the DoD-controlled entry (mcafee.csd.disa.mil) for source repositories is present.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7010">
+         <notes>(U) Ensure that the NSLOOKUP of the DNS server IP resolves to a .mil address. Note: If the ePO server is outside of the .mil address space (such as, .edu, .gov, etc.), connection to the DoD-controlled DNS servers for resolution will not be possible and, in this case, a locally-controlled DNS server is acceptable.</notes>
+         <question_text>(U) Does the NSLOOKUP of the DNS server IP resolve to a .mil address?</question_text>
+         <instructions>
+            <title>Inspect the System Properties</title>
+            <step>
+               <description>(U) Navigate to the Start/Settings/ControlPanel/NetworkConnections, and choose the Local Area Network connection.</description>
+            </step>
+            <step>
+               <description>(U) From the ‘General' tab, select ‘Properties.’ Select the 'Internet Protocol (TCP/IP)', and click the ‘Properties’ button. Note the DNS server IP addresses.</description>
+            </step>
+            <step>
+               <description>(U) At a command prompt, type in ‘ NSLOOKUP {DNS Server IP}’. If the NSLOOKUP of DNS server IP does not resolve to a .mil address, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7011">
+         <notes>(U//FOUO) Ensure that the firewall is in deny by default for bi-directional traffic. Ensure that the following explicit rules are defined: allow inbound TCP on Port 8005 (SPIPE) from the ePO Server and remote console IP addresses (or remote console IP addresses from the VPN Concentrator pool) using user authentication; allow inbound TCP on Port 8007 (SPIPE) from the ePO Server and remote console IP addresses (or remote console IP addresses from the VPN Concentrator pool) using PKI authentication; allow inbound TCP on Port 80 and 443 from IP Ranges of clients serviced by the ePO server; allow only outbound TCP on Port 591 (SPIPE – Agent wakeup calls) to clients being serviced by the ePO server and Super Agent Distributed Repository IP addresses; allow inbound only from itself; allow WSUS updates to the DoD HBSS WSUS site, if it is being used, when approved. Note: The IP address of the site’s vulnerability scanner can be configured to allow all ports – but it must be restricted by IP for the vulnerability scanner IP only and the rule can only be active when there is an actual scheduled scan in process. Refer to checks H36220, H36260, and H40220 as to additional requirements for scanning the ePO server. If running ePO in a virtual environment and if the hosting platform has either inbound or outbound access to the Internet, this is a finding. If the firewall does not have explicit IP definitions for port 1433, this is a CAT I finding. If H20200: HBSS Specific Perimeter Defense, was a finding and the host firewall is not in a deny by default configuration for bidirectional traffic, this is a CAT I finding.</notes>
+         <question_text>(U//FOUO) Is the firewall is in deny by default for bi-directional traffic? Are the following explicit rules defined: allow inbound TCP on Port 8005 (SPIPE) from the ePO Server and remote console IP addresses (or remote console IP addresses from the VPN Concentrator pool) using user authentication; allow inbound TCP on Port 8007 (SPIPE) from the ePO Server and remote console IP addresses (or remote console IP addresses from the VPN Concentrator pool) using PKI authentication; allow inbound TCP on Port 80 and 443 from IP Ranges of clients serviced by the ePO server; allow only outbound TCP on Port 591 (SPIPE – Agent wakeup calls) to clients being serviced by the ePO server and Super Agent Distributed Repository IP addresses; allow inbound only from itself; allow WSUS updates to the DoD HBSS WSUS site (if it is being used, when approved)?</question_text>
+         <instructions>
+            <title>Inspect the Network Configuration</title>
+            <step>
+               <description>(U//FOUO) All of the following checks must be true in order for the check to be considered Not a Finding: The firewall must be in deny by default for bi-directional traffic.</description>
+            </step>
+            <step>
+               <description>(U//FOUO) Explicit rule must exist to only allow inbound TCP on Port 8005 (SPIPE) from the ePO Server and remote console IP addresses (or remote console IP addresses from the VPN Concentrator pool) using user authentication.</description>
+            </step>
+            <step>
+               <description>(U//FOUO) Explicit rule to only allow inbound TCP on Port 80 and 443 from IP Ranges of clients serviced by the ePO server.</description>
+            </step>
+            <step>
+               <description>(U//FOUO) (SPIPE) Explicit rule to only allow outbound TCP on Port 591 (SPIPE – Agent wakeup calls) to clients being serviced by the ePO server and Super Agent Distributed Repository IP addresses. Inbound only from itself.</description>
+            </step>
+            <step>
+               <description>(U//FOUO) Explicit rule for WSUS updates to the DoD HBSS WSUS site, if it is being used, when approved. ***All other rules present must be explicitly identified by scope and purpose. If any of these items are not compliant, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7012">
+         <notes>(U) Ensure that the clients serviced by the HBSS ePO server are from a single classification level and are not servicing clients from DoD information systems operating at different classification levels. Note: Non-DoD systems or networks (for this check) refers to the systems that are owned and controlled by a non-DoD agency or contractor that may, or may not, reside within DoD space.</notes>
+         <question_text>(U) Are the clients being serviced by the HBSS ePO server from a single classification level and not servicing clients from DoD information systems operating at different classification levels?</question_text>
+         <instructions>
+            <title>Interview the Information Assurance Officer</title>
+            <step>
+               <description>(U) Verify with the IAO and ePO administrators that the clients being serviced by the HBSS ePO server are from a single classification level and are not servicing clients from DoD information systems operating at different classification levels. Additionally there is no mixing of information from DoD and non-DoD systems or networks.</description>
+            </step>
+            <step>
+               <description>(U) Additionally there is no mixing of information from DoD and non-DoD systems or networks.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7013">
+         <notes>(U) Ensure that no other databases, applications (Office products or other management products) or services are installed or running on this machine. Note: If the machine has multiple images in a virtual environment, this check can be satisfied by having a logically dedicated image or a thin client solution. Note: If the platform is being remotely managed, management software is permitted. See H30620 for the requirements of the machine to be used for remote management of the platform. Note: HBSS components/add-ons can be present on the server.</notes>
+         <question_text>(U) Are there other databases, applications (Office products or other management products) or services are installed or running on this machine?</question_text>
+         <instructions>
+            <title>Inspect the System Settings</title>
+            <step>
+               <description>(U) Check for other web sites, other database installations (both SQL and others), and services. Search for other applications (such as Office products) or other management products (such as WSUS application or Hercules Server Application, etc.). If there are any other applications installed or running on this machine, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7014">
+         <notes>(U) Ensure that only authorized users have update access to files in the ePO installation directory. Note: by default, McAfee directories are under the ‘c:\program files\common files’ and ‘?:\program files\mcafee.’ (’?’ Indicates the drive letter) paths.</notes>
+         <question_text>(U) Are only authorized users granted update access to files in the ePO installation directory?</question_text>
+         <instructions>
+            <title>Inspect the System Settings</title>
+            <step>
+               <description>(U) Examine the ePO installation directory and ensure that only authorized users have update access to the files. These directories include, by default, McAfee directories under the ‘c:\program files\common files’ and ‘?:\program files\mcafee.’ (’?’ Indicates the drive letter).</description>
+            </step>
+            <step>
+               <description>(U) If any regular user groups, such as ‘Users’, or any other locally-defined groups, which contain non-privileged users, have modify, write, or full control, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7018">
+         <notes>(U) Verify that the Repository Pull tack is enabled and scheduled to run at least once per day. Ensure the source repository is the DoD server.</notes>
+         <question_text>(U) Is the Repository Pull tack is enabled and scheduled to run at least once per day? Is the source repository is a DoD server?</question_text>
+         <instructions>
+            <title>Inspect the ePO Server Settings</title>
+            <step>
+               <description>(U) From the ePO server console, select the ‘Automation’ menu item, then select the ‘Server Tasks’ tab, and examine the list of tasks. Examine a task (by highlighting, and then clicking ‘View link’ that represents the ‘Repository Pull’).</description>
+            </step>
+            <step>
+               <description>(U) Verify that the task has a task type of ‘Repository Pull.’ It must be enabled and scheduled to run at least once per day (every hour is preferred). Ensure the source repository is the DoD server. If at least one task does not exist that meets all the above criteria, this is a finding.</description>
+            </step>
+            <step>
+               <description>(U) Ensure the source repository is the DoD server. If at least one task does not exist that meets all the above criteria, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7019">
+         <notes>(U) Ensure that under the 'Automation' - 'Server Tasks' there is a task type of ‘Repository Replication’ with a replication type of ‘Incremental.’ Ensure the is enabled and scheduled to run once per day after the pull task from H30500 has completed. Ensure all the distributed repositories are accounted for. Note: If check H30560 is being done daily, this check can be marked as NA.</notes>
+         <question_text>(U) Is there a task type of ‘Repository Replication’ enabled and scheduled to run once per day, with replication type ‘Incremental’ after the pull task from H30500 has completed? Are all the distributed repositories must be accounted for?</question_text>
+         <instructions>
+            <title>Inspect the ePO Server Settings</title>
+            <step>
+               <description>(U) From the ePO server console, select the ‘Automation' menu option, then select ‘Server Tasks’ tab, and examine the list of tasks.</description>
+            </step>
+            <step>
+               <description>(U) Examine a task by highlighting and clicking the ‘View link’ that represents the daily replication. Verify that it is a task type of ‘Repository Replication.’ The task must be enabled and scheduled to run once per day after the pull task from H30500 has completed. The replication type must be ‘Incremental.’</description>
+            </step>
+            <step>
+               <description>(U) All the distributed repositories must be accounted for. This can be accomplished through separate tasks or via the ‘Replicate to all the repositories.’ If at least one task does not exist that meets all the above criteria, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7020">
+         <notes>(U) Ensure that under the 'Automation' - 'Server Tasks' there is a task type of ‘Repository Replication’ with a replication type of ‘Full Replication.’ Ensure the task is enabled and scheduled to run at least once per week. Ensure all the distributed repositories are accounted for. Note: If check H30560 is being done daily, this check can be marked as NA.</notes>
+         <question_text>(U) Under the 'Automation' - 'Server Tasks', is there a task type of ‘Repository Replication’ enabled and scheduled to run once per day, with replication type ‘Full Replication’? Are all the distributed repositories must be accounted for?</question_text>
+         <instructions>
+            <title>Inspect the ePO Server Settings</title>
+            <step>
+               <description>(U) From the ePO server console, select the ‘Automation Tab,’ select the ‘Server Tasks’ tab, and examine the list of tasks. Examine a task by highlighting it and clicking the View link that represents the weekly replication.</description>
+            </step>
+            <step>
+               <description>(U) Verify that it is a task type of ‘Repository Replication.’ The task must be enabled and scheduled to run at least once per week. The type must be ‘Full Replication.’ All the distributed repositories must be accounted for. This can be accomplished through separate tasks or via the ‘Replicate to all the repositories.’ If at least one task does not exist that meets all the above criteria, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7021">
+         <notes>(U) Ensure that under the 'Automation' - 'Server Tasks' there is a task type of ‘Run Query’ with a query name of ‘ePO: Inactive Agents.’ Ensure the task is enabled and scheduled to run at least daily. This finding can be met by other means if the inactive agents are being reported to the SA, and the SA is taking action on them.</notes>
+         <question_text>(U) Under 'Automation' - 'Server Tasks', is there a task type of ‘Run Query’ with a query name of ‘ePO: Inactive Agents’ that is enabled and scheduled to run at least daily?</question_text>
+         <instructions>
+            <title>Inspect the ePO Server Settings</title>
+            <step>
+               <description>(U) From the ePO server console, select the ‘Automation’ menu option, then select the ‘Server Tasks’ tab, and examine the list of tasks. Examine a task by highlighting and then clicking the ‘View link’ that represents the inactive agent task.</description>
+            </step>
+            <step>
+               <description>(U) Verify that it is a task type of ‘Run Query’ with a query name of ‘ePO: Inactive Agents.’ The task must be enabled and scheduled to run at least daily. A specific action is not required, but a consistent action will be determined at the site level to ensure action for inactive agents.</description>
+            </step>
+            <step>
+               <description>(U) If at least one task does not exist that meets all the above criteria or if the SA is not examining the results of this task, it is a finding. This finding can be met by other means if the inactive agents are being reported to the SA, and the SA is taking action on them.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7022">
+         <notes>(U//FOUO) Ensure that the ePO server is not part of a Domain.</notes>
+         <question_text>(U//FOUO) Is the ePO server part of a Domain?</question_text>
+         <instructions>
+            <title>Inspect the System Network Settings</title>
+            <step>
+               <description>(U//FOUO) From Windows Explorer, right-click on the ePO server name (or My Computer), and then click on the ‘properties’ link. Select the ‘Computer Name’ tab. If the Workgroup designator is present, this is not a finding. If the machine is part of a domain, this is a finding.</description>
+            </step>
+            <step>
+               <description>(U//FOUO) If running the ePO server in a virtual environment and if the hosting platform is in a domain, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7023">
+         <notes>(U//FOUO) Ensure that if remote management of the ePO server is being performed, only a tool like Terminal Services is used.</notes>
+         <question_text>(U//FOUO) If remote management of the ePO server is being performed, is only a tool like Terminal Services used?</question_text>
+         <instructions>
+            <title>Inspect the System Network Settings</title>
+            <step>
+               <description>(U//FOUO) This requirement deals with remote management of the ePO server platform (i.e., the OS, database, etc.) using a tool such as Terminal Services. The ePO server can only be remotely managed via a tool like Terminal Services (where the userid is not stored on the management machine) from the dedicated machines. If remote administration is being performed from any other machine, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7024">
+         <notes>(U) Ensure the site uses a tool to compare system files on servers against a baseline on a weekly basis. Note: This is an expansion of the Windows requirement -V0002907/1.024: System files are not checked for unauthorized changes. Note: The Asset module within HBSS does not meet this requirement. Note: A properly configured Policy Auditor 5.2, or later, File Integrity Monitor (FIM) module does meet the requirement for file integrity checking.</notes>
+         <question_text>(U) Does the site use a tool to compare system files on servers against a baseline on a weekly basis?</question_text>
+         <instructions>
+            <title>Interview the SA</title>
+            <step>
+               <description>(U) If the site does not use a tool to compare system files (*.exe, *.bat, *.com,*.cmd and *.dll) on servers against a baseline on a weekly basis, this is a finding. For the ePO server, this procedure must include all system files on all drives and all directories. This means that all system files on all drives and directories must be baselined and compared to a known baseline on a weekly basis.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7026">
+         <notes>(U//FOUO) Ensure the SQL Server Installation partition and the SQL data files are separated from both the ePO installation directory and the Tomcat and Apache installation and data directories.</notes>
+         <question_text>(U//FOUO) Are the SQL Server Installation partition and the SQL data files are separated from both the ePO installation directory and the Tomcat and Apache installation and data directories?</question_text>
+         <instructions>
+            <title>Inspect the System Settings</title>
+            <step>
+               <description>(U//FOUO) Ensure the SQL Server Installation partition and the SQL data files are separated (at least via separate directory structure – preferably separate partitions) from both the ePO installation directory and the Tomcat and Apache installation and data directories. If there is not a separation at least by directories, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7028">
+         <notes>(U//FOUO) Ensure that there is coverage of the segment by a Rogue Sensor. The site's HBSS implementation plan may also contain this information. It is recommended to include the site’s DHCP server as a Rogue Sensor. It is recommended to not use a Domain Controller as a Rogue Sensor.</notes>
+         <question_text>(U//FOUO) Is there coverage of each network broadcast segment by a Rogue Sensor?</question_text>
+         <instructions>
+            <title>Inspect the Network Configuration / Interview the NA</title>
+            <step>
+               <description>(U//FOUO) Identify each of the network broadcast segments. Verify that there is coverage of the segment by a Rogue Sensor. If the network segment is not covered by a Rogue Sensor, this is a finding.</description>
+            </step>
+            <step>
+               <description>(U//FOUO) The information concerning the network segments can be obtained from the site's network diagram. The site's HBSS implementation plan may also contain this information. It is recommended to include the site’s DHCP server as a Rogue Sensor. It is recommended to not use a Domain Controller as a Rogue Sensor.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7029">
+         <notes>(U//FOUO) Ensure that the only two allowable trusted network entries that are trusted for Network IPS are the local ePO server and the IP address of the vulnerability scanner (no ranges).</notes>
+         <question_text>(U//FOUO) Are the only two allowable trusted network entries that are trusted for Network IPS, the local ePO server and the IP address of the vulnerability scanner (no ranges)?</question_text>
+         <instructions>
+            <title>Inspect the ePO Server Settings</title>
+            <step>
+               <description>(U//FOUO) This check needs to be completed for the policy that is assigned to the ePO server. From the ePO server console, select the asset to be checked, then select ‘Assigned Policies,’ followed by ‘Host Intrusion Prevention 7: General’ from the product list.</description>
+            </step>
+            <step>
+               <description>(U//FOUO) From the ‘Trusted Networks’ category, select the applicable policy. From the ‘Trusted Networks’ section, examine the list of trusted network entries.</description>
+            </step>
+            <step>
+               <description>(U//FOUO) The only two allowable trusted network entries that are trusted for Network IPS are the local ePO server and the IP address of the vulnerability scanner (no ranges). If any other entries are present that are trusted for IPS, this is a finding. Note: Other entries can exist, but they cannot be trusted for IPS.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7036">
+         <notes>(U) Ensure that it is not possible to logon to the Windows ePO server using the default credentials or a blank password.</notes>
+         <question_text>(U) Is it possible to logon to the Windows ePO server using the default credential or a blank password?</question_text>
+         <instructions>
+            <title>Inspect the System Configuration</title>
+            <step>
+               <description>(U) Attempt to logon to the Windows ePO server using the default credentials. Attempt to logon to the Windows ePO server using Admin with a blank password. If either of these attempts is successful, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7037">
+         <notes>(U) Ensure that it is not possible to logon to the ePO console using the default credentials. Ensure that it is not possible to logon to Windows using the default SQL server account credentials. Ensure that it is not possible to logon on SQL server using the default credentials.</notes>
+         <question_text>(U) Is it possible to logon to the ePO console using the default credentials? Is it possible to logon to Windows using the default SQL server account credentials? Is it possible to logon on SQL server using the default credentials?</question_text>
+         <instructions>
+            <title>Inspect the System Configuration</title>
+            <step>
+               <description>(U) Attempt to logon to the ePO console using the default credentials.</description>
+            </step>
+            <step>
+               <description>(U) Attempt to logon to Windows using the default SQL server account credentials.</description>
+            </step>
+            <step>
+               <description>(U) Attempt to logon on SQL server using the default credentials. If any of the attempts is successful, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7038">
+         <notes>(U) Verify that all accounts have the need for the access granted. Ensure that all accounts that have Global Admin access have the need for, and are authorized for administrative privileges for all client machines for this ePO. Ensure that users with Site Admin permissions have the need for, and are authorized for, administrator privileges for all client machines within that site and sites under it. Ensure that all accounts that have Global Reviewer or Executive Reviewer access have the need for, and are authorized for, read permissions for all client machines for this ePO.</notes>
+         <question_text>(U) Do all accounts that have Global Admin access have the need for, and are authorized for administrative privileges for all client machines for this ePO? Do all users with Site Admin permissions have the need for, and are authorized for, administrator privileges for all client machines within that site and sites under it? So all accounts that have Global Reviewer or Executive Reviewer access have the need for, and are authorized for, read permissions for all client machines for this ePO?</question_text>
+         <instructions>
+            <title>Inspect the ePO Server Settings</title>
+            <step>
+               <description>(U) From the ePO console, select the ‘User Management' menu option, then select the ‘Users’ tab. For each of the users, highlight the user, and examine the Permission Sets option for the user.</description>
+            </step>
+            <step>
+               <description>(U) Verify that all accounts have the need for the access granted. Verify that all accounts that have Global Admin access have the need for, and are authorized for, administrative privileges for all client machines for this ePO.</description>
+            </step>
+            <step>
+               <description>(U) Verify that users with Site Admin permissions have the need for, and are authorized for, administrator privileges for all client machines within that site and sites under it. Any user who only needs to view data should be assigned as either a Global Reviewer or a Site Reviewer.</description>
+            </step>
+            <step>
+               <description>(U) Verify that all accounts that have Global Reviewer or Executive Reviewer access have the need for, and are authorized for, read permissions for all client machines for this ePO. For a user who only needs to view certain machines, Group Reviewer access should be granted.</description>
+            </step>
+            <step>
+               <description>(U) Verify that users with Group Reviewer permissions have the need for, and are authorized, to view data for all client machines within that site and groups under it. If access is granted for users who are not authorized, or do not have a need to know, this is a finding. If there are no individual userids assigned, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7039">
+         <notes>(U) Ensure that for all userids identified in check H40140, the IAM maintains documentation (Form 2875 or equivalent) of the assignment of ePO accounts and roles.</notes>
+         <question_text>(U) For all userids identified in check H40140 does the IAM maintain documentation (Form 2875 or equivalent) of the assignment of ePO accounts and roles?</question_text>
+         <instructions>
+            <title>Interview the SA</title>
+            <step>
+               <description>(U) Ensure that for all userids identified in check H40140, the IAM maintains documentation (Form 2875 or equivalent) of the assignment of ePO accounts and roles. If not, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7040">
+         <notes>(U//FOUO) Since accounts are maintained at the application level, a comprehensive account management process must exist and must include a manual process for inactivating dormant accounts (35 days of inactivity), a process for deleting accounts and a process to force a password change at least every 60 days. If Windows security is being used within the application, this check does not apply.</notes>
+         <question_text>(U//FOUO) Does a comprehensive account management process exist that includes a manual process for inactivating dormant accounts (35 days of inactivity), for deleting accounts and for forcing a password change at least every 60 days?</question_text>
+         <instructions>
+            <title>Inspect the System Settings</title>
+            <step>
+               <description>(U//FOUO) Verify that the account management processes include a manual process for inactivating dormant accounts (35 days of inactivity) and a process for deleting accounts (following 180 days after being disabled or when access is no longer needed).</description>
+            </step>
+            <step>
+               <description>(U//FOUO) If PKI is not being used, a process must exist that also forces a password change at least every 60 days. If an account management plan does not exist for these items, this is a finding. If Windows security is being used within the application, this check does not apply.</description>
+            </step>
+            <step>
+               <description>(U//FOUO) If an account management plan does not exist for these items, this is a finding. If Windows security is being used within the application, this check does not apply.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7041">
+         <notes>(U//FOUO) A process must be in place to account for the required monthly vulnerability scans. Ensure that each time a scan is run, a new admin account is created and a complex password is assigned and that upon completion of the scan the account is deleted (not disabled). Note: Allowance for other mandated required scanning is permitted; any account created for scanning must be deleted when scan is complete.</notes>
+         <question_text>(U//FOUO) Is a process in place to account for the required monthly vulnerability scans? Each time a scan is run, is a new admin account created, a complex password assigned and upon completion of the scan the account deleted (not disabled)?</question_text>
+         <instructions>
+            <title>Interview the SA</title>
+            <step>
+               <description>(U//FOUO) Verify that a process is in place to account for the required monthly vulnerability scans. Each time a scan is run, a new admin account is created and a complex password is assigned. The account will be deleted (not disabled) upon completion of the monthly scan.</description>
+            </step>
+            <step>
+               <description>(U//FOUO) Interview the SA to determine which account is being used for the scan. Verify that the account does not exist.</description>
+            </step>
+            <step>
+               <description>(U//FOUO) Verify that the site is following the procedure for account deletion. If the account exists or the site does not delete the account after completion of the required scan, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7043">
+         <notes>(U//FOUO) Ensure that the site has a written HBSS deployment plan that includes the grouping of machines for policy updates. Note: Care should be given to appropriately group machines with respect to function (servers and workstations) to aid in the implementation of HBSS policies.</notes>
+         <question_text>(U//FOUO) Does the site have a written HBSS deployment plan that includes the grouping of machines for policy updates?</question_text>
+         <instructions>
+            <title>Interview the SA</title>
+            <step>
+               <description>(U//FOUO) Verify the site has a written HBSS deployment plan that includes the grouping of machines for policy updates. If a plan does not exist or is not being used that details the grouping of the machines for receiving policy updates, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7044">
+         <notes>(U) Verify that written procedures exist and are followed to ensure proper markings in accordance with the HBSS classification guide.</notes>
+         <question_text>(U) Do written procedures exist and are they being followed to ensure proper markings in accordance with the HBSS classification guide?</question_text>
+         <instructions>
+            <title>Interview the SA</title>
+            <step>
+               <description>Verify that written procedures exist and are followed to ensure proper markings in accordance with the HBSS classification guide. If procedures do not exist, this is a finding.</description>
+            </step>
+            <step>
+               <description>Question users to determine if they are aware of the procedures and are following them. If they are not aware or are not following them, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7045">
+         <notes>(U) Determine if procedures and policies are in place to retain backups of HBSS audit data for at least one year. Verify that the procedures include the Windows event files, the SQL log files, the SQL table dbo.orion.audit.log (within the ePO database), and ProgramFiles/McAfee/ePolicy Orchestrator/DB/Logs.</notes>
+         <question_text>(U) Are procedures and policies are in place to retain backups of HBSS audit data for at least one year? Do the procedures include the Windows event files, the SQL log files, the SQL table dbo.orion.audit.log (within the ePO database), and ProgramFiles/McAfee/ePolicy Orchestrator/DB/Logs?</question_text>
+         <instructions>
+            <title>Interview the SA</title>
+            <step>
+               <description>(U) Determine if procedures and policies are in place to retain backups of HBSS audit data for at least one year.</description>
+            </step>
+            <step>
+               <description>(U) Verify that the procedures include the Windows event files, the SQL log files, the SQL table dbo.orion.audit.log (within the ePO database), and ProgramFiles/McAfee/ePolicy Orchestrator/DB/Logs. If the logs are not retained or do not include the directories listed, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7046">
+         <notes>(U) Verify that HBSS audit data (as defined in check H60100) is reviewed weekly and that any IA policy violations are analyzed and reported. Note: It is important to note that this review needs to be non-dependent upon the functionality of HBSS itself.</notes>
+         <question_text>(U) Is HBSS audit data (as defined in check H60100) reviewed weekly and any IA policy violations analyzed and reported?</question_text>
+         <instructions>
+            <title>Interview the SA</title>
+            <step>
+               <description>(U) Verify that HBSS audit data (as defined in check H60100) is reviewed weekly and that any IA policy violations are analyzed and reported. It is important to note that this review needs to be non-dependent upon the functionality of HBSS itself. If the review is not being performed at least weekly, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7047">
+         <notes>(U) For each of the following tables or directories, ensure only the System and Auditors have full control (Admins and the SQL Server User account having read is allowed): SQL table dbo.orion.audit.log (SQL server table) ProgramFiles/McAfee/ePolicy Orchestrtor/DB/Logs (Directory).</notes>
+         <question_text>(U) For each of the following tables or directories, do only the System and Auditors have full control (Admins and the SQL Server User account having read is allowed): SQL table dbo.orion.audit.log (SQL server table) ProgramFiles/McAfee/ePolicy Orchestrtor/DB/Logs (Directory)?</question_text>
+         <instructions>
+            <title>Inspect the Systems Settings</title>
+            <step>
+               <description>(U) For each of the following tables or directories, ensure only the System and Auditors have full control (Admins and the SQL Server User account having read is allowed): SQL table dbo.orion.audit.log (SQL server table) ProgramFiles/McAfee/ePolicy Orchestrtor/DB/Logs (Directory). If any other account or group can update, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7048">
+         <notes>(U) Ensure that the review the log of every instance of remote access for privileged functions (OS and database administration) is being performed on at least a weekly basis.</notes>
+         <question_text>(U) Is a review the log of every instance of remote access for privileged functions (OS and database administration) performed on at least a weekly basis? </question_text>
+         <instructions>
+            <title>Interview the SA</title>
+            <step>
+               <description>(U) Verify the review the log of every instance of remote access for privileged functions session (OS and database administration) is being performed on at least a weekly basis. This is for remote access of system and database admin functions. (This review includes the VPN logs.) If this review is not being performed at least weekly, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7049">
+         <notes>(U//FOUO) Ensure that the ePO server is specifically mentioned in the Continuity of Operations Plan (COOP). Ensure that the plan addresses restoration of the ePO server within 24 hours of activation. Ensure that ePO restoration is validated a least annually as part of the normal COOP testing process.</notes>
+         <question_text>(U//FOUO) Is the ePO server specifically mentioned in the Continuity of Operations Plan (COOP)? Does the plan include restoration of the ePO server within 24 hours of activation? Is the ePO restoration validated a least annually as part of the normal COOP testing process?</question_text>
+         <instructions>
+            <title>Interview the SA</title>
+            <step>
+               <description>(U//FOUO) Ask for a copy of the site’s Continuity of Operations Planning (COOP). Verify that the ePO server is specifically mentioned in the plan. Ensure that the plan addresses restoration of the ePO server within 24 hours of activation. Additionally, ensure that ePO restoration is validated a least annually as part of the normal COOP testing process. If any of these requirements are not met, this is a finding.</description>
+            </step>
+            <step>
+               <description>(U//FOUO) Verify that the ePO server is specifically mentioned in the plan. Ensure that the plan addresses restoration of the ePO server within 24 hours of activation.</description>
+            </step>
+            <step>
+               <description>(U//FOUO) Additionally, ensure that ePO restoration is validated a least annually as part of the normal COOP testing process. If any of these requirements are not met, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7050">
+         <notes>(U//FOUO) Ensure that data backup is performed daily, and recovery media are stored at an off-site location. This backup data should include, at a minimum, Windows OS (to include user account information), SQL databases, and the ePO product directories.</notes>
+         <question_text>(U//FOUO) Is data backup being performed daily (Windows OS (to include user account information), SQL databases, and the ePO product directories), and are recovery media stored at an off-site location?</question_text>
+         <instructions>
+            <title>Interview the SA</title>
+            <step>
+               <description>(U//FOUO) Verify that data backup is performed daily, and recovery media are stored at an off-site location. This backup data should include, at a minimum, Windows OS (to include user account information), SQL databases, and the ePO product directories. If the data is not being backed up at least daily, is not stored offsite, and does not include the listed items, this is a finding. If a backup of the ePO server keys does not exist, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7051">
+         <notes>(U//FOUO) Ensure the ePO server is registered within VMS.</notes>
+         <question_text>(U//FOUO) Is the ePO server registered within VMS?</question_text>
+         <instructions>
+            <title>Inspect the System Network Settings</title>
+            <step>
+               <description>(U//FOUO) Use VMS and navigate to the site’s assets.</description>
+            </step>
+            <step>
+               <description>(U//FOUO) Ensure the ePO server is registered within VMS. If it is not registered, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7052">
+         <notes>(U//FOUO) Ensure that the ePO is registered as an HBSS program asset, that the following postures are installed: Win2k3 Internet Explorer Database SQL Server Installation 2005 Database SQL Server Database 2005 – Model Database SQL Server Database 2005 – Master Database SQL Server Database 2005 – MSDB Database SQL Server Database 2005 – TempDB Database SQL Server Database 2005 – ePO _Server Name Antivirus Antispyware JVM J2SE ePolicy Orchestrator McAfee ePO Agent McAfee Host Intrusion Protection Module McAfee Policy Auditor McAfee Infocon Asset Tracking .Net Framework 1.1 .Net Framework 2 .Net Framework 3 Apache Instance 2.x (Default) Apache Site 2.x Tomcat Web Instance 5.x (Default) Tomcat Web Site 5x Tomcat 5.x. Note: If the SQL database is on a separate server from the ePO, the SQL server postures will not appear on the ePO server but must be accounted for on the database server to be considered Not a Finding. If the machine was an HBSS project-provided machine, ensure that the serial number of the machine is recorded within VMS.</notes>
+         <question_text>(U//FOUO) Is ePO registered as an HBSS program asset and are the following postures are installed: Win2k3 Internet Explorer Database SQL Server Installation 2005 Database SQL Server Database 2005 – Model Database SQL Server Database 2005 – Master Database SQL Server Database 2005 – MSDB Database SQL Server Database 2005 – TempDB Database SQL Server Database 2005 – ePO _Server Name Antivirus Antispyware JVM J2SE ePolicy Orchestrator McAfee ePO Agent McAfee Host Intrusion Protection Module McAfee Policy Auditor McAfee Infocon Asset Tracking .Net Framework 1.1 .Net Framework 2 .Net Framework 3 Apache Instance 2.x (Default) Apache Site 2.x Tomcat Web Instance 5.x (Default) Tomcat Web Site 5x Tomcat 5.x. Note: If the SQL database is on a separate server from the ePO, the SQL server postures will not appear on the ePO server but must be accounted for on the database server to be considered Not a Finding? If the machine was an HBSS project-provided machine, is the serial number of the machine recorded within VMS?</question_text>
+         <instructions>
+            <title>Inspect the System Settings</title>
+            <step>
+               <description>(U//FOUO) If the asset is registered, verify that the following postures are registered. If any of the postures are not registered, this is a finding. The following postures must be present: Win2k3 Internet Explorer Database SQL Server Installation 2005 Database SQL Server Database 2005 – Model Database SQL Server Database 2005 – Master Database SQL Server Database 2005 – MSDB Database SQL Server Database 2005 – TempDB Database SQL Server Database 2005 – ePO _Server Name Antivirus Antispyware JVM J2SE ePolicy Orchestrator McAfee ePO Agent McAfee Host Intrusion Protection Module McAfee Policy Auditor McAfee Infocon Asset Tracking .Net Framework 1.1 .Net Framework 2 .Net Framework 3 Apache Instance 2.x (Default) Apache Site 2.x Tomcat Web Instance 5.x (Default) Tomcat Web Site 5x Tomcat 5.x (application server) Ensure that the ePO is registered as an HBSS program asset (tied to the HBSS program).</description>
+            </step>
+            <step>
+               <description>(U//FOUO) If the ePO server is not tied to HBSS as a program, this is a finding. (This is viewed from the Organization tab of the asset.) If the machine was an HBSS project-provided machine, ensure that the serial number of the machine is recorded within VMS. If the serial number is not recorded, record this as a CAT III finding (if all other criteria of the finding is met). If check H90120 is a finding, this should be marked a finding also.</description>
+            </step>
+            <step>
+               <description>(U//FOUO) If the machine was an HBSS project-provided machine, ensure that the serial number of the machine is recorded within VMS. If the serial number is not recorded, record this as a CAT III finding (if all other criteria of the finding is met). If check H90120 is a finding, this should be marked a finding also.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7053">
+         <notes>(U//FOUO) Ensure that HBSS (along with designated thresholds) has been incorporated into the site’s incident response plan, including coordination with the appropriate Computer Network Defense Service Provider (CNDSP)</notes>
+         <question_text>(U//FOUO) Has HBSS been incorporated into the site’s incident response plan, including coordination with the appropriate Computer Network Defense Service Provider (CNDSP)?</question_text>
+         <instructions>
+            <title>Interview the Information Assurance Officer</title>
+            <step>
+               <description>(U//FOUO) Verify that HBSS (along with designated thresholds) has been incorporated into the site’s incident response plan, including coordination with the appropriate Computer Network Defense Service Provider (CNDSP). If the incorporation into the incident response plan (including interaction with the site’s CNDSP) has not been completed or there is no incident response plan, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7054">
+         <notes>(U//FOUO) Ensure that data entering or leaving the site is proxied to destinations outside the enclave or the firewall is configured to implement content, protocol, and flow control inspections. Inspection of HTTP traffic from clients in the enclave to servers outside the enclave is required. Look for Java and ActiveX filters if the security policy requires restrictions. Ensure that at least http/https ports 443, 8443, 80, 8008, and 591 being used by the ePO server are proxied. Note: Not required for web services.</notes>
+         <question_text>(U//FOUO) Is data entering or leaving the site is proxied to destinations outside the enclave or is the firewall configured to implement content, protocol, and flow control inspections? Is inspection of HTTP traffic from clients in the enclave to servers outside the enclave conducted? Does the security policy require Java and ActiveX filters? Are at least http/https ports 443, 8443, 80, 8008, and 591 being used by the ePO server proxied?</question_text>
+         <instructions>
+            <title>Inspect the Network Configuration / Interview the Information Assurance Officer</title>
+            <step>
+               <description>(U//FOUO) Review the firewall specification sheet. Verify the data entering or leaving the site is being proxied to destinations outside the enclave or the firewall is configured to implement the content, protocol, and flow control inspections defined below.</description>
+            </step>
+            <step>
+               <description>(U//FOUO) Inspection of HTTP traffic from clients in the enclave to servers outside the enclave is required. HTTP and HTTP/S inspection will be configured to filter Java applets and ActiveX objects to meet the enclave security policy.</description>
+            </step>
+            <step>
+               <description>(U//FOUO) Review the security policy with the Information Assurance Officer and look for Java and ActiveX filters if the security policy requires restrictions. This is client only, in an outbound direction. At a minimum, http/https ports 443, 8443, 80, 8008, and 591 must be proxied.</description>
+            </step>
+            <step>
+               <description>(U//FOUO) Verify by examining the enclave firewall that there are proxies present for the http ports being used by the ePO server. If there is no http/https proxing being done or all these ports are not being proxied, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7055">
+         <notes>(U//FOUO) This is a manual procedure to ensure that the password complexity rules are being used when passwords for accounts are created. If Windows security is being used for the application or all accounts have been converted to use PKI, this check does not apply.</notes>
+         <question_text>(U//FOUO) Is the password complexity and length defined via policy to be 15 characters in length and contain a mix of at least one lowercase, one uppercase, one number, and one special character?</question_text>
+         <instructions>
+            <title>Interview the SA</title>
+            <step>
+               <description>(U//FOUO) This password complexity and length must be defined via policy. The password needs to be 15 characters in length and contain a mix of at least one lowercase, one uppercase, one number, and one special character. If strong passwords are not being used, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7056">
+         <notes>(U) Ensure that the only logins that have access into the ePO database are the accounts that are used for access from the application. Ensure that no non-privileged users have access to the master database.</notes>
+         <question_text>(U) Are the only logins that have access into the ePO database accounts that are used for access from the application? Do any non-privileged users have access to the master database?</question_text>
+         <instructions>
+            <title>Inspect the Server Settings</title>
+            <step>
+               <description>(U) Through SQL Server Management Studio, ensure that the only logins that have access into the ePO database are the accounts that are used for access from the application (see H50110 to determine the accounts) and the defined DBA group. Other read-only accounts are permitted (specifically for data reporting/metrics) if the access has been approved by IAM/IAO, and the need to know is documented. If any other account has access, this is a finding.</description>
+            </step>
+            <step>
+               <description>(U) Ensure that no non-privileged users have access to the master database. If any other non-privileged account has access, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7057">
+         <notes>(U//FOUO) Ensure that prior to installing the HBSS client that malware/spyware scanning of the end system (no more than one week before) is part of the documented connection process.</notes>
+         <question_text>(U//FOUO) Is malware/spyware scanning of the end system prior to installing the HBSS client (no more than one week before) part of the documented connection process?</question_text>
+         <instructions>
+            <title>Interview the SA</title>
+            <step>
+               <description>For all existing/active systems, all organizations must perform a malware/spyware scan no more than one week before the installation of the HBSS client. This scan will include full anti-virus scans and scans for known bad hashes on all hosts before loading the HBSS client. This requirement is to minimize the chance of deploying the HBSS client on a host that already contains malware. If scans were not performed or there is no process to scan before installation on existing hosts, this is a finding. (See H90300 for requirement of installation on new hosts.)</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7058">
+         <notes>(U//FOUO) All offline copies of the HBSS database must be encrypted, via FIPS 140-2 validated encryption.</notes>
+         <question_text>(U//FOUO) Are all offline copies of the HBSS database, including copies stored on the machine, encrypted via FIPS 140-2 validated encryption?</question_text>
+         <instructions>
+            <title>Interview the SA</title>
+            <step>
+               <description>(U//FOUO) All offline copies of the HBSS database must be encrypted, via FIPS 140-2 validated encryption. If the data backup or any other copies of the HBSS database is not being encrypted by FIPS 140-2 validated encryption, this is a finding. Although keeping a backup copy of data on the ePO server is not recommended, if a backup copy of the data exists on the machine, it is deemed as offline for the purpose of this finding and also is required to be encrypted.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7059">
+         <notes>(U//FOUO) Verify that the applicable SAs for HBSS and HBSS Analysts have completed classroom or computer based training (CBT) for HBSS. Note: V0015357/H90200 does not apply to read-only/report-only access to the data maintained on a McAfee ePO Roll-Up server.</notes>
+         <question_text>(U//FOUO) Have all applicable SAs for HBSS and HBSS Analysts completed classroom or computer based training (CBT) for HBSS?</question_text>
+         <instructions>
+            <title>Interview the SA</title>
+            <step>
+               <description>Verify that the applicable SAs for HBSS and HBSS Analysts have completed classroom or computer based training (CBT) for HBSS. If the training has not been completed, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7060">
+         <notes>(U//FOUO) Ensure that HBSS agent installation on all new hosts is part of the documented connection process for the site (see H35000 for requirement on installation of existing hosts).</notes>
+         <question_text>(U//FOUO) Is the HBSS agent installation on all new hosts part of the documented connection process for the site?</question_text>
+         <instructions>
+            <title>Interview the SA</title>
+            <step>
+               <description>Ensure that HBSS agent installation on all new hosts is part of the documented connection process for the site. An HBSS agent must be installed on new systems (defined as a system that has been freshly built and has not yet been added to the network) prior to being added to the network. If there is not a documented process or it is not being followed, this is a finding. (See H35000 for requirement on installation of existing hosts.)</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7061">
+         <notes>(U) Verify the properties of the server certificate and ensure that the certification path leads back to a DoD root certificate.</notes>
+         <question_text>(U) Does the server certification path lead back to a DoD root certificate?</question_text>
+         <instructions>
+            <title>Inspect the ePO Server Settings</title>
+            <step>
+               <description>(U) Launch the ePO console.</description>
+            </step>
+            <step>
+               <description>(U) Examine the properties of the server certificate. In Internet Explorer, this can be done by selecting ‘File/Properties’, and then selecting the ‘Certificates’ button.</description>
+            </step>
+            <step>
+               <description>(U) Ensure that the certification path leads back to a DoD root certificate. If there is not a certificate, or a non-DoD certificate exists, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7062">
+         <notes>(U) If the ePO server is using Windows update, it must use the DoD HBSS WSUS site. If automatic updates are not being used, this check can be considered Not Applicable.</notes>
+         <question_text>(U) If the ePO server is using Windows update is it using the DoD HBSS WSUS site?</question_text>
+         <instructions>
+            <title>Inspect the System Settings</title>
+            <step>
+               <description>(U) If the ePO server is using Windows update, it must use the DoD HBSS WSUS site. To determine if automatic updates are being utilized, examine: HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate\AU NoAutoUpdate.</description>
+            </step>
+            <step>
+               <description>(U) If the value is 0, validate that the DoD HBSS WSUS site is referenced. Using the Windows registry editor – navigate to: HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate and confirm that the values of 'WUServer' and 'WUStatusServer' point to the DoD HBSS WSUS site.</description>
+            </step>
+            <step>
+               <description>(U) Additionally, HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate\AU UseWUServer, must be 1. If automatic updates are being used, and if the three registry keys above are not set to be compliant, this is a finding. If automatic updates are not being used, this check can be considered Not Applicable.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7064">
+         <notes>(U) Ensure that the DoD banner appears below the logon prompt and contains the correct verbiage. Note: Deviations are not permitted except as authorized by the Deputy Assistant Secretary of Defense for Information and Identity Assurance.</notes>
+         <question_text>(U) Does the DoD banner appear below the logon prompt and contain the correct verbiage?</question_text>
+         <instructions>
+            <title>Inspect the ePO Server Settings</title>
+            <step>
+               <description>(U) Start the ePO interface. Verify that the DoD banner appears below the logon prompt. Validate the verbiage.</description>
+            </step>
+            <step>
+               <description>(U) If the banner is not present or it does not contain the following exact verbiage, this is a finding. ********** “You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. By using this IS (which includes any device attached to this IS), you consent to the following conditions: -The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations. -At any time, the USG may inspect and seize data stored on this IS. -Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose. -This IS includes security measures (e.g., authentication and access controls) to protect USG interests—not for your personal benefit or privacy. -Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.” **********</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7068">
+         <notes>(U//FOUO) Ensure that the ‘Dashboard page refresh interval’ is set to at least 20 minutes. Reference check H30760 for information about timeouts. Note: If the console is being used as part of an operations center type environment, requiring continuous, real-time screen display which requires a lower rate, the following needs to be documented with the IAO: -The logon session does not have Administrator rights. -The display station (i.e., keyboard, CRT, etc.) is located in a controlled access area.</notes>
+         <question_text>(U//FOUO) Is the ‘Dashboard page refresh interval’ set to at least 20 minutes?</question_text>
+         <instructions>
+            <title>Inspect the ePO Server Settings</title>
+            <step>
+               <description>From the ePO server console, select the ‘Dashboard’ tab, followed by ‘Options’, and finally, ‘Edit Dashboard Preferences.’ Ensure that the ‘Dashboard page refresh interval’ is set to at least 20 minutes. If the interval is less than 20 minutes, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7072">
+         <notes>(U//FOUO) Ensure that the Logo area (headers and footers for exported documents parameter) represents the proper marking for the system.</notes>
+         <question_text>(U//FOUO) Do the Logo area headers and footers represent the proper marking for the system?</question_text>
+         <instructions>
+            <title>Inspect the ePO Server Settings</title>
+            <step>
+               <description>(U//FOUO) From the ePO server console, select the ‘Configuration’ option, then the ‘Server Setting’ tab.</description>
+            </step>
+            <step>
+               <description>(U//FOUO) Examine the Printing and Exporting category and ensure that the Logo area (headers and footers for exported documents parameter) represents the proper marking for the system. For unclassified systems, the text should be FOR OFFICIAL USE ONLY. For SIPRNet systems, the text should be SECRET. If the appropriate markings are not present, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7073">
+         <notes>(U) Ensure that procedures and policies are in place to retain backups of HBSS event data for at least one year. (This is the HIPS event data - not the system event/log files.)</notes>
+         <question_text>(U) Are procedures and policies are in place to retain backups of HBSS event data for at least one year?</question_text>
+         <instructions>
+            <title>Interview the SA</title>
+            <step>
+               <description>(U) Determine if procedures and policies are in place to retain backups of HBSS event data for at least one year. If the event data is not being retained, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7077">
+         <notes>(U) Ensure that there are not any certificate files accessible on the system.</notes>
+         <question_text>(U) Are there any certificate files accessible on the system?</question_text>
+         <instructions>
+            <title>Inspect the System</title>
+            <step>
+               <description>(U) From Windows explorer, search for *.cer. If any user certificate is found, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7078">
+         <notes>(U) Ensure that the intermediate DoD Root certificates are present (dodCA-*.crt).</notes>
+         <question_text>(U) Are the intermediate DoD Root certificates present (dodCA-*.crt)?</question_text>
+         <instructions>
+            <title>Inspect the ePO Server Settings</title>
+            <step>
+               <description>(U) From the ePO server console, select the ‘Configuration’ menu option, then select the ‘Server Settings’ tab.</description>
+            </step>
+            <step>
+               <description>(U) Select the ‘Console Certificates’ category. Click the Edit button. Note the name of the directory of the Trusted Store Certificates.</description>
+            </step>
+            <step>
+               <description>(U) From Windows explorer, find the noted directory. Ensure that the intermediate DoD Root certificates are present (dodCA-*.crt). If it is not present, this is a finding.</description>
+            </step>
+            <step>
+               <description>(U) Click the Edit button. Note the name of the directory of the Trusted Store Certificates. From Windows explorer, find the noted directory. Ensure that the intermediate DoD Root certificates are present (dodCA-*.crt). If it is not present, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7079">
+         <notes>(U) Ensure that only Administrators and System user groups should be able to update or write to the CRL file directory.</notes>
+         <question_text>(U) Are only Administrators and System user groups able to update or write to the CRL file directory?</question_text>
+         <instructions>
+            <title>Inspect the ePO Server Settings</title>
+            <step>
+               <description>(U) From the ePO server console, select the ‘Configuration’ menu option, then select the ‘Server Settings’ tab.</description>
+            </step>
+            <step>
+               <description>(U) Select the ‘Console Certificates’ category. Click the Edit button.</description>
+            </step>
+            <step>
+               <description>(U) Note the name of the directory of the Local Path to directory of the CRL files. From Windows explorer, find the noted directory.</description>
+            </step>
+            <step>
+               <description>(U) Examine the permissions on the directory. Only Administrators and System should be able to update or write into this directory. If any other user can update or write to this directory, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7080">
+         <notes>(U) Ensure that the DoD Root certificate CRL is present. If the ePO is not on a disconnected network, this check is NA.</notes>
+         <question_text>(U) Is the DoD Root certificate CRL present on the system?</question_text>
+         <instructions>
+            <title>Inspect the ePO Server Settings</title>
+            <step>
+               <description>(U) If the ePO is on a disconnected network, from the ePO server console, select the ‘Configuration’ menu option, then select the ‘Server Settings’ tab.</description>
+            </step>
+            <step>
+               <description>(U) Select the ‘Console Certificates’ category. Click the Edit button. Note the name of the directory of the Local Path to the directory of CRL files.</description>
+            </step>
+            <step>
+               <description>(U) From Windows explorer, find the noted directory. Ensure that the DoD Root certificate CRL is present. If it is not present, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <string_question id="ocil:gov.dod.cndrtpmo:question:7081">
+         <notes>(U) Note the name of the directory of the Local Path to directory of CRL files. If the ePO is not on a disconnected network, this check is NA.</notes>
+         <question_text>(U) What is the name of the directory of the Local Path to directory of CRL files?</question_text>
+         <instructions>
+            <title>Inspect the ePO Server Settings</title>
+            <step>
+               <description>(U) If the ePO is on a disconnected network, from the ePO server console, select the ‘Configuration’ menu option, then select the ‘Server Settings’ tab.</description>
+            </step>
+            <step>
+               <description>(U) Select the ‘Console Certificates’ category. Click the Edit button. Note the name of the directory of the Local Path to directory of CRL files.</description>
+            </step>
+         </instructions>
+      </string_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7086">
+         <notes>(U//FOUO) Ensure that there is a certificate present for the ePO server protocols, and it has been issued from a DoD CA.</notes>
+         <question_text>(U//FOUO) Is there is a certificate present for the ePO server protocols that has been issued from a DoD CA?</question_text>
+         <instructions>
+            <title>Inspect the SQL Server Settings</title>
+            <step>
+               <description>(U//FOUO) From SQL Server Configuration Manager, expand SQL Server Network Configuration, and right-click the protocols for the ePO server.</description>
+            </step>
+            <step>
+               <description>(U//FOUO) Click Properties. From the Certificates tab, ensure that there is a certificate present, and it has been issued from a DoD CA. If there is not a certificate or it has not been issued from a DoD CA, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question><!--<boolean_question id="ocil:gov.dod.cndrtpmo:question:7093">
+         <notes>(U) NA until DoD SEPM exists.</notes>
+         <question_text>(U) NA until DoD SEPM exists.</question_text>
+         <instructions>
+            <title>NA until DoD SEPM exists</title>
+            <step>
+               <description>(U) NA until DoD SEPM exists.</description>
+            </step>
+         </instructions>
+      </boolean_question>-->
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7094">
+         <notes>(U) If automated e-mail responses are enabled, ensure that no sensitive data is included in the subject and body of the e-mail message.</notes>
+         <question_text>(U) Is any sensitive data included in the subject and body of the e-mail automated e-mail response messages?</question_text>
+         <instructions>
+            <title>Inspect the ePO Server Settings</title>
+            <step>
+               <description>(U) From the ePO console, select Automation.</description>
+            </step>
+            <step>
+               <description>(U) For all Enabled Responses, view the Response.</description>
+            </step>
+            <step>
+               <description>(U) If the Actions category indicated Send Email, click Edit, then select the Actions tab and examine the Subject and Body of e-mail. If sensitive data is included in the e-mail, this is a finding.</description>
+            </step>
+            <step>
+               <description>(U) After examining the response, click Cancel to exit.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7095">
+         <notes>(U) Verify that the account being used by the Rollup server to connect to the Site ePO is not part of the 'System Administrators' server role. Verify that the account being used by the Rollup server to connect to the Site ePO does not have a greater privilege to the ePO database than read.</notes>
+         <question_text>(U) Is the account being used by the Rollup server to connect to the Site ePO not part of the 'System Administrators' server role? Does the account used by the Rollup server to connect to the Site ePO not have a greater privilege to the ePO database than read?</question_text>
+         <instructions>
+            <title>Inspect the ePO Server Settings</title>
+            <step>
+               <description>(U) Through SQL Server Management Studio, verify that the account being used by the Rollup server to connect to the Site ePO is not part of the 'System Administrators' server role.</description>
+            </step>
+            <step>
+               <description>(U) If the account is part of the 'System Administrators' role, this is a finding. Verify that the account being used by the Rollup server to connect to the Site ePO does not have a greater privilege to the ePO database (and underlying data tables) than read. If the permission is greater than read-only access, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7096">
+         <notes>(U//FOUO) Ensure that the notification Secure Port connector address is step to the loopback address.</notes>
+         <question_text>(U//FOUO) Is the notification Secure Port connector address is step to the loopback address (127.0.0.1)?</question_text>
+         <instructions>
+            <title>Inspect the System Network Settings</title>
+            <step>
+               <description>(U//FOUO) Open the Tomcat server.xml in Notepad. Locate the notification-secure-port connector.</description>
+            </step>
+            <step>
+               <description>(U//FOUO) Verify that the address is set to 127.0.0.1. If the connector is not set to 127.0.0.1, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7097">
+         <notes>(U) This check applies only to classified systems. Verify that the HBSS audit data is being backed up weekly to another media or system. Any backup mechanism must ensure the data is encrypted at rest.</notes>
+         <question_text>(U) Is the HBSS audit data being backed up and encrypted on a weekly basis?</question_text>
+         <instructions>
+            <title>Inspect the ePO Server Settings</title>
+            <step>
+               <description>(U) Verify that the HBSS audit data is being backed up weekly to another media or system. Any backup mechanism must ensure the data is encrypted at rest. If the audit data is not being backed at least weekly or the backup mechanism is not encrypting the data at rest, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+      <boolean_question id="ocil:gov.dod.cndrtpmo:question:7098">
+         <notes>(U//FOUO) Examine any backup jobs or any other management connections for HBSS. No HBSS credentials can be stored for use in this way. (For example, a backup job cannot store credentials for execution from the backup server.) If any credentials are found, this is a finding. Note: Scanning credentials are permitted in accordance with check H40220.</notes>
+         <question_text>(U) Are any HBSS credentials being stored outside HBSS (by backup jobs or any other management connections)?</question_text>
+         <instructions>
+            <title>Inspect the ePO Server Settings</title>
+            <step>
+               <description>(U//FOUO) Examine any backup jobs or any other management connections for HBSS. No HBSS credentials can be stored for use in this way. (For example, a backup job cannot store credentials for execution from the backup server.)</description>
+            </step>
+            <step>
+               <description>(U//FOUO) If any credentials are found, this is a finding.</description>
+            </step>
+         </instructions>
+      </boolean_question>
+   </questions>
+   <artifacts>
+      <artifact id="ocil:gov.dod.cndrtpmo:artifact:1">
+         <title>Artifact 1</title>
+         <description>Storing the location of the path to the CRL files.</description>
+      </artifact>
+   </artifacts>
+</ocil>

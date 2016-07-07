@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jxb:bindings version="2.0" xmlns:jxb="http://java.sun.com/xml/ns/jaxb" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<jxb:globalBindings>
+		<jxb:serializable uid="1" />
+	</jxb:globalBindings>
+	<jxb:bindings schemaLocation="xlink.xsd" node="/xsd:schema">
+		<jxb:bindings node="//xsd:attribute[@name='title']">
+      		<jxb:property name="titleAttribute"/>
+    	</jxb:bindings> 
+		<jxb:schemaBindings>
+			<jxb:package name="com.g2inc.xlink"/>
+		</jxb:schemaBindings>
+	</jxb:bindings>	
+	<jxb:bindings schemaLocation="catalog.xsd" node="/xsd:schema">
+		<jxb:schemaBindings>
+			<jxb:package name="com.g2inc.oasis.xml.catalog"/>
+		</jxb:schemaBindings>
+	</jxb:bindings>	
+	<jxb:bindings schemaLocation="scap-source-data-stream_1.2.xsd" node="/xsd:schema">
+		<jxb:schemaBindings>
+			<jxb:package name="com.g2inc.scap.library.domain.datastream"/>
+		</jxb:schemaBindings>
+	</jxb:bindings>
+	<jxb:bindings schemaLocation="xmldsig-core-schema.xsd" node="/xsd:schema">
+		<jxb:schemaBindings>
+			<jxb:package name="com.g2inc.scap.library.domain.xmldsig"/>
+		</jxb:schemaBindings>
+	</jxb:bindings>
+</jxb:bindings>

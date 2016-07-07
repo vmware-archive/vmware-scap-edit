@@ -1,0 +1,172 @@
+package com.g2inc.scap.editor.gui.wizards.xccdf.group.create;
+/* ESCAPE Software Copyright 2010 G2, Inc. - All rights reserved.
+*
+* ESCAPE is open source software distributed under GNU General Public License Version 3.  ESCAPE is not in the public domain 
+* and G2, Inc. holds its copyright.  Redistribution and use in source and binary forms, with or without modification, are
+* permitted provided that the following conditions are met:
+
+* 1. Redistributions of ESCAPE source code must retain the above copyright notice, this list of conditions and the following disclaimer. 
+* 2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the ESCAPE Software distribution. 
+* 3. Neither the name of G2, Inc. nor the names of any contributors may be used to endorse or promote products derived from this software without specific prior written permission. 
+
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES,
+* INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+* IN NO EVENT SHALL G2, INC., THE AUTHORS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,
+* OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+* OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+* OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+* POSSIBILITY OF SUCH DAMAGE.
+
+* You should have received a copy of the GNU General Public License Version 3 along with this program. 
+* If not, see http://www.gnu.org/licenses/ for a copy.
+*/
+
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+import com.g2inc.scap.editor.gui.wizards.Wizard;
+import com.g2inc.scap.editor.gui.wizards.WizardPage;
+import com.g2inc.scap.library.domain.xccdf.XCCDFBenchmark;
+
+public class CreateXCCDFGroupWizardPage extends WizardPage implements ChangeListener
+{
+    private CreateXCCDFGroupWizard parentWiz;
+
+    private static final String NAME_CAPTION_BASE = "Group name";
+
+    private void initText()
+    {
+        nameField.addChangeListener(this);
+        nameField.setPattern(XCCDFBenchmark.NCNAME_PATTERN);
+    }
+
+    private void initComponents2() {
+        initText();
+    }
+
+    /** Creates new form ChoseVariableTypeWizardPage */
+    public CreateXCCDFGroupWizardPage()
+    {
+        initComponents();
+        initComponents2();
+
+        nameCaption.setText(NAME_CAPTION_BASE + "(EMPTY)");
+        nameCaption.setForeground(nameField.getErrorTextColor());
+    }
+
+    
+    @Override
+	public Object getData()
+    {
+        return null;
+    }
+
+    
+    @Override
+	public void setData(Object data)
+    {
+    }
+
+    
+    @Override
+	public void setWizard(Wizard wizard)
+    {
+        parentWiz = (CreateXCCDFGroupWizard) wizard;
+    }
+
+    
+    @Override
+	public String getPageTitle()
+    {
+        return "Add Group";
+    }
+
+    
+    @Override
+	public void performFinish()
+    {
+    }
+
+    public String getNewGroupName()
+    {
+        return nameField.getValue();
+    }
+
+    @Override
+    public void stateChanged(ChangeEvent e)
+    {
+        Object src = e.getSource();
+
+        if(src == nameField)
+        {
+            if(nameField.isValidInput())
+            {
+                String groupName = nameField.getValue();
+
+                XCCDFBenchmark benchmark = parentWiz.getBenchmark();
+
+                if(!benchmark.containsId(groupName))
+                {
+                    nameCaption.setForeground(nameField.getNormalTextColor());
+                    nameCaption.setText(NAME_CAPTION_BASE);
+                    if(parentWiz != null)
+                    	parentWiz.enableNextButton();
+                }
+                else
+                {
+                    nameCaption.setForeground(nameField.getErrorTextColor());
+                    nameCaption.setText(NAME_CAPTION_BASE + "(ID ALREADY EXISTS)" );
+                    if(parentWiz != null)
+                    	parentWiz.disableNextButton();
+                }
+            }
+            else
+            {
+                nameCaption.setForeground(nameField.getErrorTextColor());
+                nameCaption.setText(NAME_CAPTION_BASE + "(INVALID AGAINST PATTERN \"" + nameField.getPatternString() + "\")" );
+                if(parentWiz != null)
+                	parentWiz.disableNextButton();
+            }
+        }
+    }
+
+    /** This method is called from within the constructor to
+     * initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is
+     * always regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
+
+        nameCaption = new javax.swing.JLabel();
+        nameField = new com.g2inc.scap.editor.gui.dialogs.editors.oval.datatype.string.PatternedStringField();
+
+        setMaximumSize(null);
+        setMinimumSize(new java.awt.Dimension(377, 96));
+        setPreferredSize(new java.awt.Dimension(377, 96));
+        setLayout(new java.awt.GridBagLayout());
+
+        nameCaption.setText("Group name");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 8, 0, 0);
+        add(nameCaption, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(3, 8, 5, 8);
+        add(nameField, gridBagConstraints);
+    }// </editor-fold>//GEN-END:initComponents
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel nameCaption;
+    private com.g2inc.scap.editor.gui.dialogs.editors.oval.datatype.string.PatternedStringField nameField;
+    // End of variables declaration//GEN-END:variables
+}

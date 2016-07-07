@@ -1,0 +1,1069 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" 
+      xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" 
+      xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" 
+      xmlns:win-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" 
+      xmlns:ind-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" 
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows http://oval.mitre.org/language/download/schema/version5.3/ovaldefinition/complete/windows-definitions-schema.xsd
+      http://oval.mitre.org/XMLSchema/oval-definitions-5#independent http://oval.mitre.org/language/download/schema/version5.3/ovaldefinition/complete/independent-definitions-schema.xsd
+      http://oval.mitre.org/XMLSchema/oval-definitions-5 http://oval.mitre.org/language/download/schema/version5.3/ovaldefinition/complete/oval-definitions-schema.xsd
+      http://oval.mitre.org/XMLSchema/oval-common-5 http://oval.mitre.org/language/download/schema/version5.3/ovaldefinition/complete/oval-common-schema.xsd">
+      <generator>
+            <oval:product_name>National Institute of Standards and Technology</oval:product_name>
+            <oval:schema_version>5.3</oval:schema_version>
+            <oval:timestamp>2008-10-15T10:13:20.000-04:00</oval:timestamp>
+      </generator>
+      <!-- ==================================================================================================== -->
+      <!-- ==========================================  DEFINITIONS  =========================================== -->
+      <!-- ==================================================================================================== -->
+      <definitions>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6491" version="1" class="compliance">
+                  <metadata>
+                        <title>IPv6 Block of Protocols 41</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-2865-4"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-1795"/>
+                        <description>todo</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6491" comment="IPv6 Block of Protocols 41"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6492" version="1" class="compliance">
+                  <metadata>
+                        <title>IPv6 Block of UDP 3544</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3508-9"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-1293"/>
+                        <description>todo</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6492" comment="IPv6 Block of UDP 3544"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6401" version="1" class="compliance">
+                  <metadata>
+                        <title>Log Dropped Packets</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3260-7"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-251"/>
+                        <description>The "Log Dropped Packets" option for the Windows Firewall should be configured correctly for the Domain Profile.</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6401" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging!LogDroppedPackets = variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6402" version="1" class="compliance">
+                  <metadata>
+                        <title>Logged Successful Connections</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3414-0"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-617"/>
+                        <description>The "Log Successful Connections" option for the Windows Firewall should be configured correctly for the Domain Profile.</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6402" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging!LogSuccessfulConnections = variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6403" version="1" class="compliance">
+                  <metadata>
+                        <title>Name</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-2533-8"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-793"/>
+                        <description>The log file path and name for the Windows Firewall should be configured correctly for the Domain Profile.</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6403" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging!LogFilePath matches variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6404" version="1" class="compliance">
+                  <metadata>
+                        <title>Size Limit</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3299-5"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-57"/>
+                        <description>The log file size limit for the Windows Firewall should be configured correctly for the Domain Profile.</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6404" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging!LogFileSize = variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6518" version="1" class="compliance">
+                  <metadata>
+                        <title>Display a Notification - Domain Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3365-4"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-762"/>
+                        <description>Display a Notification - Domain Profile</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6518" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile!DisableNotifications = variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6521" version="1" class="compliance">
+                  <metadata>
+                        <title>Apply Local Connection Security Rules - Domain Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-2977-7 CCE-3452-0"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-584"/>
+                        <description>Apply Local Connection Security Rules - Domain Profile</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6521" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile!AllowLocalIPsecPolicyMerge = variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6520" version="1" class="compliance">
+                  <metadata>
+                        <title>Apply Local Firewall Rules - Domain Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3457-9"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-400"/>
+                        <description>Apply Local Firewall Rules - Domain Profile</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6520" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile!AllowLocalPolicyMerge = variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6519" version="1" class="compliance">
+                  <metadata>
+                        <title>Allow Unicast Response - Domain Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3436-3"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-696"/>
+                        <description>Allow Unicast Response - Domain Profile</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6519" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile!DisableUnicastResponsesToMulticastBroadcast = variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6515" version="1" class="compliance">
+                  <metadata>
+                        <title>Firewall state - Domain Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3054-4"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-806"/>
+                        <description>Firewall state - Domain Profile</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6515" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile!EnableFirewall = variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6516" version="1" class="compliance">
+                  <metadata>
+                        <title>Inbound Connections - Domain Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-2999-1"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-249"/>
+                        <description>Inbound Connections - Domain Profile</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6516" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile!DefaultInboundAction = variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6517" version="1" class="compliance">
+                  <metadata>
+                        <title>Outbound Connections - Domain Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3439-7"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-485"/>
+                        <description>Outbound Connections - Domain Profile</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6517" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile!DefaultOutboundAction = variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6411" version="1" class="compliance">
+                  <metadata>
+                        <title>Log Dropped Packets</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-4597-1"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-325"/>
+                        <description>The "Log Dropped Packets" option for the Windows Firewall should be configured correctly for the Private Profile.</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6411" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging!LogDroppedPackets = variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6412" version="1" class="compliance">
+                  <metadata>
+                        <title>Logged Successful Connections</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-4963-5"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-327"/>
+                        <description>The "Log Successful Connections" option for the Windows Firewall should be configured correctly for the Private Profile.</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6412" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging!LogSuccessfulConnections = variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6413" version="1" class="compliance">
+                  <metadata>
+                        <title>Name</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-4206-9"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-999"/>
+                        <description>The log file path and name for the Windows Firewall should be configured correctly for the Private Profile.</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6413" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging!LogFilePath matches variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6414" version="1" class="compliance">
+                  <metadata>
+                        <title>Size Limit</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-4207-7"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-1091"/>
+                        <description>The log file size limit for the Windows Firewall should be configured correctly for the Private Profile.</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6414" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging!LogFileSize = variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6525" version="1" class="compliance">
+                  <metadata>
+                        <title>Display a Notification - Private Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3417-3"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-38"/>
+                        <description>Display a Notification - Private Profile</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6525" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile!DisableNotifications = variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6528" version="1" class="compliance">
+                  <metadata>
+                        <title>Apply Local Connection Security Rules - Private Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-2854-8"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-199"/>
+                        <description>Apply Local Connection Security Rules - Private Profile</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6528" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile!AllowLocalIPsecPolicyMerge = variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6527" version="1" class="compliance">
+                  <metadata>
+                        <title>Apply Local Firewall Rules - Private Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3360-5"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-117"/>
+                        <description>Apply Local Firewall Rules - Private Profile</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6527" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile!AllowLocalPolicyMerge = variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6526" version="1" class="compliance">
+                  <metadata>
+                        <title>Allow Unicast Response - Private Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-2924-9"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-70"/>
+                        <description>Allow Unicast Response - Private Profile</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6526" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile!DisableUnicastResponsesToMulticastBroadcast = variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6522" version="1" class="compliance">
+                  <metadata>
+                        <title>Firewall state - Private Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3373-8"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-7"/>
+                        <description>Firewall state - Private Profile</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6522" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile!EnableFirewall = variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6523" version="1" class="compliance">
+                  <metadata>
+                        <title>Inbound Connections - Private Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3395-1"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-29"/>
+                        <description>Inbound Connections - Private Profile</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6523" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile!DefaultInboundAction = variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6524" version="1" class="compliance">
+                  <metadata>
+                        <title>Outbound Connections - Private Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3166-6"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-32"/>
+                        <description>Outbound Connections - Private Profile</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6524" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile!DefaultOutboundAction = variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6421" version="1" class="compliance">
+                  <metadata>
+                        <title>Log Dropped Packets</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-4507-0"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-1165"/>
+                        <description>The "Log Dropped Packets" option for the Windows Firewall should be configured correctly for the Public Profile.</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6421" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging!LogDroppedPackets = variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6422" version="1" class="compliance">
+                  <metadata>
+                        <title>Logged Successful Connections</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-5128-4"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-534"/>
+                        <description>The "Log Successful Connections" option for the Windows Firewall should be configured correctly for the Public Profile.</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6422" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging!LogSuccessfulConnections = variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6423" version="1" class="compliance">
+                  <metadata>
+                        <title>Name</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-4639-1"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-1263"/>
+                        <description>The log file path and name for the Windows Firewall should be configured correctly for the Public Profile.</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6423" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging!LogFilePath matches variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6424" version="1" class="compliance">
+                  <metadata>
+                        <title>Size Limit</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-4278-8"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-1313"/>
+                        <description>The log file size limit for the Windows Firewall should be configured correctly for the Public Profile.</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6424" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging!LogFileSize = variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6532" version="1" class="compliance">
+                  <metadata>
+                        <title>Display a Notification - Public Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-2998-3"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-390"/>
+                        <description>Display a Notification - Public Profile</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6532" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging!DisableNotifications = variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6535" version="1" class="compliance">
+                  <metadata>
+                        <title>Apply Local Connection Security Rules - Public Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3426-4"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-437"/>
+                        <description>Apply Local Connection Security Rules - Public Profile</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6535" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging!AllowLocalIPsecPolicyMerge = variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6534" version="1" class="compliance">
+                  <metadata>
+                        <title>Apply Local Firewall Rules - Public Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-2650-0"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-421"/>
+                        <description>Apply Local Firewall Rules - Public Profile</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6534" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging!AllowLocalPolicyMerge = variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6533" version="1" class="compliance">
+                  <metadata>
+                        <title>Allow Unicast Response - Public Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-2641-9"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-414"/>
+                        <description>Allow Unicast Response - Public Profile</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6533" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging!DisableUnicastResponsesToMulticastBroadcast = variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6529" version="1" class="compliance">
+                  <metadata>
+                        <title>Firewall state - Public Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3246-6"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-295"/>
+                        <description>Firewall state - Public Profile</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6529" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging!EnableFirewall = variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6530" version="1" class="compliance">
+                  <metadata>
+                        <title>Inbound Connections - Public Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3263-1"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-338"/>
+                        <description>Inbound Connections - Public Profile</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6530" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging!DefaultInboundAction = variable"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:6531" version="1" class="compliance">
+                  <metadata>
+                        <title>Outbound Connections - Public Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3351-4"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-342"/>
+                        <description>Outbound Connections - Public Profile</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <extend_definition definition_ref="oval:gov.nist.fdcc.vistafirewall:def:2" comment="Microsoft Windows Vista is installed"/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:6531" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging!DefaultOutboundAction = variable"/>
+                  </criteria>
+            </definition>
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~  EXTENDED DEFINITIONS  ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <definition id="oval:gov.nist.fdcc.vistafirewall:def:2" version="1" class="inventory">
+                  <metadata>
+                        <title>Windows Vista is installed</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows Vista</platform>
+                              <product>Windows Vista</product>
+                        </affected>
+                        <description>Microsoft Windows Vista is installed</description>
+                  </metadata>
+                  <criteria>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:1" comment="The operating system installed on the system is part of Microsoft Windows family."/>
+                        <criterion test_ref="oval:gov.nist.fdcc.vistafirewall:tst:2" comment="Microsoft Windows Vista is installed"/>
+                  </criteria>
+            </definition>
+      </definitions>
+      <!-- ==================================================================================================== -->
+      <!-- =============================================  TESTS  ============================================== -->
+      <!-- ==================================================================================================== -->
+      <tests>
+            <family_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.nist.fdcc.vistafirewall:tst:1" version="1" check="only one" comment="The operating system installed on the system is part of Microsoft Windows family.">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:1"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:1"/>
+            </family_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:2" version="1" check="at least one" comment="Windows Vista is installed">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:2"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:2"/>
+            </registry_test>
+            <unknown_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.nist.fdcc.vistafirewall:tst:6491" version="1" check="all" comment="IPv6 Block of Protocols 41"/>
+            <unknown_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.nist.fdcc.vistafirewall:tst:6492" version="1" check="all" comment="IPv6 Block of UDP 3544"/>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6401" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging!LogDroppedPackets = variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6401"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6401"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6402" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging!LogSuccessfulConnections = variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6402"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6402"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6403" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging!LogFilePath matches variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6403"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6403"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6404" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging!LogFileSize = variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6404"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6404"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6518" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile!DisableNotifications = variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6518"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6518"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6521" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile!AllowLocalIPsecPolicyMerge = variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6521"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6521"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6520" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile!AllowLocalPolicyMerge = variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6520"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6520"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6519" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile!DisableUnicastResponsesToMulticastBroadcast = variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6519"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6519"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6515" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile!EnableFirewall = variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6515"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6515"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6516" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile!DefaultInboundAction = variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6516"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6516"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6517" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile!DefaultOutboundAction = variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6517"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6517"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6411" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging!LogDroppedPackets = variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6411"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6411"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6412" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging!LogSuccessfulConnections = variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6412"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6412"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6413" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging!LogFilePath matches variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6413"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6413"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6414" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging!LogFileSize = variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6414"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6414"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6525" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile!DisableNotifications = variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6525"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6525"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6528" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile!AllowLocalIPsecPolicyMerge = variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6528"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6528"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6527" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile!AllowLocalPolicyMerge = variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6527"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6527"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6526" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile!DisableUnicastResponsesToMulticastBroadcast = variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6526"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6526"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6522" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile!EnableFirewall = variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6522"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6522"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6523" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile!DefaultInboundAction = variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6523"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6523"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6524" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile!DefaultOutboundAction = variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6524"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6524"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6421" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging!LogDroppedPackets = variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6421"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6421"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6422" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging!LogSuccessfulConnections = variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6422"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6422"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6423" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging!LogFilePath matches variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6423"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6423"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6424" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging!LogFileSize = variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6424"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6424"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6532" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging!DisableNotifications = variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6532"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6532"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6535" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging!AllowLocalIPsecPolicyMerge = variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6535"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6535"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6534" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging!AllowLocalPolicyMerge = variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6534"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6534"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6533" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging!DisableUnicastResponsesToMulticastBroadcast = variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6533"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6533"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6529" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging!EnableFirewall = variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6529"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6529"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6530" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging!DefaultInboundAction = variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6530"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6530"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:tst:6531" version="1" check="all" comment="Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging!DefaultOutboundAction = variable">
+                  <object object_ref="oval:gov.nist.fdcc.vistafirewall:obj:6531"/>
+                  <state state_ref="oval:gov.nist.fdcc.vistafirewall:ste:6531"/>
+            </registry_test>
+      </tests>
+      <!-- ==================================================================================================== -->
+      <!-- ============================================  OBJECTS  ============================================= -->
+      <!-- ==================================================================================================== -->
+      <objects>
+            <family_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.nist.fdcc.vistafirewall:obj:1" version="1"/>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:2" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Microsoft\Windows NT\CurrentVersion</key>
+                  <name>CurrentVersion</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6401" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging</key>
+                  <name operation="equals">LogDroppedPackets</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6402" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging</key>
+                  <name operation="equals">LogSuccessfulConnections</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6403" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging</key>
+                  <name operation="equals">LogFilePath</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6404" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging</key>
+                  <name operation="equals">LogFileSize</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6518" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile</key>
+                  <name operation="equals">DisableNotifications</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6521" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile</key>
+                  <name operation="equals">AllowLocalIPsecPolicyMerge</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6520" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile</key>
+                  <name operation="equals">AllowLocalPolicyMerge</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6519" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile</key>
+                  <name operation="equals">DisableUnicastResponsesToMulticastBroadcast</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6515" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile</key>
+                  <name operation="equals">EnableFirewall</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6516" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile</key>
+                  <name operation="equals">DefaultInboundAction</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6517" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile</key>
+                  <name operation="equals">DefaultOutboundAction</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6411" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging</key>
+                  <name operation="equals">LogDroppedPackets</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6412" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging</key>
+                  <name operation="equals">LogSuccessfulConnections</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6413" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging</key>
+                  <name operation="equals">LogFilePath</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6414" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging</key>
+                  <name operation="equals">LogFileSize</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6525" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile</key>
+                  <name operation="equals">DisableNotifications</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6528" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile</key>
+                  <name operation="equals">AllowLocalIPsecPolicyMerge</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6527" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile</key>
+                  <name operation="equals">AllowLocalPolicyMerge</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6526" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile</key>
+                  <name operation="equals">DisableUnicastResponsesToMulticastBroadcast</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6522" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile</key>
+                  <name operation="equals">EnableFirewall</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6523" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile</key>
+                  <name operation="equals">DefaultInboundAction</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6524" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile</key>
+                  <name operation="equals">DefaultOutboundAction</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6421" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging</key>
+                  <name operation="equals">LogDroppedPackets</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6422" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging</key>
+                  <name operation="equals">LogSuccessfulConnections</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6423" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging</key>
+                  <name operation="equals">LogFilePath</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6424" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging</key>
+                  <name operation="equals">LogFileSize</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6532" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile</key>
+                  <name operation="equals">DisableNotifications</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6535" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile</key>
+                  <name operation="equals">AllowLocalIPsecPolicyMerge</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6534" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile</key>
+                  <name operation="equals">AllowLocalPolicyMerge</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6533" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile</key>
+                  <name operation="equals">DisableUnicastResponsesToMulticastBroadcast</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6529" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile</key>
+                  <name operation="equals">EnableFirewall</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6530" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile</key>
+                  <name operation="equals">DefaultInboundAction</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:obj:6531" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key operation="equals">SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile</key>
+                  <name operation="equals">DefaultOutboundAction</name>
+            </registry_object>
+      </objects>
+      <!-- ==================================================================================================== -->
+      <!-- =============================================  STATES  ============================================= -->
+      <!-- ==================================================================================================== -->
+      <states>
+            <family_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:gov.nist.fdcc.vistafirewall:ste:1" version="1">
+                  <family>windows</family>
+            </family_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:2" version="1">
+                  <value>6.0</value>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6401" version="1">
+                  <type operation="equals">reg_dword</type>
+                  <value datatype="int" operation="equals" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6401"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6402" version="1">
+                  <type operation="equals">reg_dword</type>
+                  <value datatype="int" operation="equals" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6402"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6403" version="1">
+                  <type operation="equals">reg_sz</type>
+                  <value datatype="string" operation="pattern match" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6403"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6404" version="1">
+                  <type operation="equals">reg_dword</type>
+                  <value datatype="int" operation="greater than or equal" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6404"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6518" version="1">
+                  <type operation="equals">reg_dword</type>
+                  <value datatype="int" operation="equals" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6518"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6521" version="1">
+                  <type operation="equals">reg_dword</type>
+                  <value datatype="int" operation="equals" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6521"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6520" version="1">
+                  <type operation="equals">reg_dword</type>
+                  <value datatype="int" operation="equals" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6520"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6519" version="1">
+                  <type operation="equals">reg_dword</type>
+                  <value datatype="int" operation="equals" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6519"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6515" version="1">
+                  <type operation="equals">reg_dword</type>
+                  <value datatype="int" operation="equals" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6515"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6516" version="1">
+                  <type operation="equals">reg_dword</type>
+                  <value datatype="int" operation="equals" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6516"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6517" version="1">
+                  <type operation="equals">reg_dword</type>
+                  <value datatype="int" operation="equals" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6517"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6411" version="1">
+                  <type operation="equals">reg_dword</type>
+                  <value datatype="int" operation="equals" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6411"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6412" version="1">
+                  <type operation="equals">reg_dword</type>
+                  <value datatype="int" operation="equals" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6412"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6413" version="1">
+                  <type operation="equals">reg_sz</type>
+                  <value datatype="string" operation="pattern match" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6413"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6414" version="1">
+                  <type operation="equals">reg_dword</type>
+                  <value datatype="int" operation="equals" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6414"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6525" version="1">
+                  <type operation="equals">reg_dword</type>
+                  <value datatype="int" operation="equals" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6525"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6528" version="1">
+                  <type operation="equals">reg_dword</type>
+                  <value datatype="int" operation="equals" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6528"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6527" version="1">
+                  <type operation="equals">reg_dword</type>
+                  <value datatype="int" operation="equals" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6527"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6526" version="1">
+                  <type operation="equals">reg_dword</type>
+                  <value datatype="int" operation="equals" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6526"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6522" version="1">
+                  <type operation="equals">reg_dword</type>
+                  <value datatype="int" operation="equals" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6522"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6523" version="1">
+                  <type operation="equals">reg_dword</type>
+                  <value datatype="int" operation="equals" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6523"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6524" version="1">
+                  <type operation="equals">reg_dword</type>
+                  <value datatype="int" operation="equals" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6524"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6421" version="1">
+                  <type operation="equals">reg_dword</type>
+                  <value datatype="int" operation="equals" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6421"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6422" version="1">
+                  <type operation="equals">reg_dword</type>
+                  <value datatype="int" operation="equals" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6422"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6423" version="1">
+                  <type operation="equals">reg_sz</type>
+                  <value datatype="string" operation="pattern match" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6423"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6424" version="1">
+                  <type operation="equals">reg_dword</type>
+                  <value datatype="int" operation="equals" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6424"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6532" version="1">
+                  <type operation="equals">reg_dword</type>
+                  <value datatype="int" operation="equals" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6532"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6535" version="1">
+                  <type operation="equals">reg_dword</type>
+                  <value datatype="int" operation="equals" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6535"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6534" version="1">
+                  <type operation="equals">reg_dword</type>
+                  <value datatype="int" operation="equals" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6534"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6533" version="1">
+                  <type operation="equals">reg_dword</type>
+                  <value datatype="int" operation="equals" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6533"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6529" version="1">
+                  <type operation="equals">reg_dword</type>
+                  <value datatype="int" operation="equals" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6529"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6530" version="1">
+                  <type operation="equals">reg_dword</type>
+                  <value datatype="int" operation="equals" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6530"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.vistafirewall:ste:6531" version="1">
+                  <type operation="equals">reg_dword</type>
+                  <value datatype="int" operation="equals" var_ref="oval:gov.nist.fdcc.vistafirewall:var:6531"/>
+            </registry_state>
+      </states>
+      <!-- ==================================================================================================== -->
+      <!-- ===========================================  VARIABLES  ============================================ -->
+      <!-- ==================================================================================================== -->
+      <variables>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6401" datatype="int" comment="Log Dropped Packets - Domain Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6402" datatype="int" comment="Logged Successful Connections - Domain Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6403" datatype="string" comment="Name - Domain Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6404" datatype="int" comment="Size Limit - Domain Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6518" datatype="int" comment="Display a Notification - Domain Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6521" datatype="int" comment="Apply Local Connection Security Rules - Domain Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6520" datatype="int" comment="Apply Local Firewall Rules - Domain Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6519" datatype="int" comment="Allow Unicast Response - Domain Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6515" datatype="int" comment="Firewall state - Domain Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6516" datatype="int" comment="Inbound Connections - Domain Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6517" datatype="int" comment="Outbound Connections - Domain Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6411" datatype="int" comment="Log Dropped Packets - Private Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6412" datatype="int" comment="Logged Successful Connections - Private Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6413" datatype="string" comment="Name - Private Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6414" datatype="int" comment="Size Limit - Private Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6525" datatype="int" comment="Display a Notification - Private Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6528" datatype="int" comment="Apply Local Connection Security Rules - Private Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6527" datatype="int" comment="Apply Local Firewall Rules - Private Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6526" datatype="int" comment="Allow Unicast Response - Private Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6522" datatype="int" comment="Firewall state - Private Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6523" datatype="int" comment="Inbound Connections - Private Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6524" datatype="int" comment="Outbound Connections - Private Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6421" datatype="int" comment="Log Dropped Packets - Public Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6422" datatype="int" comment="Logged Successful Connections - Public Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6423" datatype="string" comment="Name - Public Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6424" datatype="int" comment="Size Limit - Public Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6532" datatype="int" comment="Display a Notification - Public Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6535" datatype="int" comment="Apply Local Connection Security Rules - Public Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6534" datatype="int" comment="Apply Local Firewall Rules - Public Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6533" datatype="int" comment="Allow Unicast Response - Public Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6529" datatype="int" comment="Firewall state - Public Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6530" datatype="int" comment="Inbound Connections - Public Profile" version="1"/>
+            <external_variable id="oval:gov.nist.fdcc.vistafirewall:var:6531" datatype="int" comment="Outbound Connections - Public Profile" version="1"/>
+      </variables>
+      <!-- ==================================================================================================== -->
+      <!-- ==================================================================================================== -->
+      <!-- ==================================================================================================== -->
+</oval_definitions>

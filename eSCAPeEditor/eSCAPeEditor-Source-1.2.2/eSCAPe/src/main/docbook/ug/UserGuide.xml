@@ -1,0 +1,148 @@
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "../../../../docbook-xml-4.5/docbookx.dtd">
+<book>
+	<bookinfo>
+ 		<title>User Guide for eSCAPe</title> 
+		<titleabbrev>User Guide</titleabbrev>
+	</bookinfo>
+<chapter>
+		<title>Overview of eSCAPe</title>
+		<section>
+			<title>Purpose of eSCAPe</title>
+			<para></para>
+		</section>
+		<section>
+			<title>Target Audience</title>
+			<para>eSCAPe has two modes that target different audiences.</para>
+			<para>Wizard mode targets users that are knowledgeable about security and checking systems for vulnerabilities, but may not know all the in's and out's of SCAP documents.  The user simple selects a task and then answers some questions.  The result is valid SCAP content they can run and use to check target systems.</para>
+			<para>Standard mode targets users who are familiar with SCAP constructs but wish to avoid writing XML.  The document structure is shown but in a simpler way.  Users can add Definitions, Objects, States, etc but through the use of wizards that limit the choices to what the particular version of the schema allows.  The user can also validate existing documents.  Editors have been supplied for the various datatypes that SCAP allows and they tell you if what you are trying to set for that value is valid for that datatype.</para>
+		</section>
+		<section>
+			<title>Key Features</title>
+			<para>eSCAPe has numerous features that make creating and editing of SCAP documents easier.  Here are a few:</para>
+		              <itemizedlist>
+				<listitem>
+					<para>Key feature 1</para>
+				</listitem>
+				<listitem>
+					<para>Key feature 2</para>
+				</listitem>
+				<listitem>
+					<para>Key feature 3</para>
+				</listitem>
+			</itemizedlist>
+		</section>
+		<section>
+			<title>System Requirements</title>
+			<para>In order to run eSCAPe your system will need to meet the following requirements:
+			<itemizedlist>
+				<listitem>
+					<para>A <emphasis>JAVA Runtime Environment(JRE) of version 1.6 or later must be installed.</emphasis></para>
+				</listitem>
+				<listitem>
+					<para><emphasis>The system should have at least 1GB of memory.</emphasis></para>
+				</listitem>
+			</itemizedlist>
+			</para>
+			<para>Administrative priviliges are NOT required for eSCAPe to operate.  Since eSCAPe is written in JAVA, it should run on virtually any operating system that has JAVA installed.  A graphical environment is required however.</para>
+		</section>
+		<section>
+			<title>Installation and launch</title>
+			<para>In the place you extracted the installation archive, you should find startEditor.bat and startEditor.sh.  These files can be used to start eSCAPe.  They will call Java with the appropriate arguments.   These can be edited if you need to give JAVA more memory or set some other system property.  But do not edit these unless you have to. </para>
+			<para>On windows you can browse to the directory containing startEditor.bat and double-click it to launch eSCAPe.  On non-windows platforms, you can use the convention of that system to launch the startEditor.sh file.  Once started, you should see the main window that looks like the following:			
+			</para>
+			<para><inlinegraphic fileref="img/editor_main.jpg" format="JPG" align="left" valign="top"/></para>
+			<para>From here you can use the file menu to open an existing SCAP document or create a new one.</para>
+		</section>
+</chapter>
+  <chapter>
+		<title>Introduction</title>
+		<section>
+			<title>Purpose</title>
+			<para></para>
+		</section>
+		<section>
+			<title>Scope</title>
+			<para></para>
+		</section>
+		<section>
+			<title>System Organization</title>
+			<para></para>
+		</section>
+</chapter>
+<chapter>
+		<title>Creating a new SCAP documents</title>
+		<section><title>Creating a new OVAL document</title>
+			<para>With the editor open you can proceed to open the &quot;File&quot; menu and select &quot;New Oval&quot;.  The first screen will ask you pick the target schema version.  Newer versions of oval support more platforms and more test types.  The version you pick here should be the highest one that your target scanner will support.  Many SCAP-validated tools only support 5.3 at the time of this writing.	
+			</para>
+			<para><inlinegraphic format="JPG" fileref="img/new_oval_wizard_schema_ver.jpg" align="left" valign="top"/></para>
+			<para>Clicking next on the wizard will bring you to the platforms page.   Here you should select the platforms you wish to support with your oval document.  New platforms can be added later, so just select the one or two you are most interested for now.</para>
+			<para><inlinegraphic fileref="img/new_oval_wizard_platforms.jpg" format="JPG" align="left" valign="top"/></para>
+			<para>The last page of the wizard will ask you to choose a file to write the new oval document to.  Once you have chosen a file, click &quot;Finish&quot; to complete the wizard.  The new oval document will be opened for editing.</para>
+			<para><inlinegraphic format="JPG" fileref="img/new_oval_wizard_filename.jpg" align="left" valign="top"/></para>		
+		</section>
+		<section>
+			<title>Creating a new XCCDF benchmark</title>
+			<para>Not Implemented</para>
+		</section>
+		<section>
+			<title>Creating a new XCCDF benchmark from an OVAL document</title>
+			<para>Most SCAP scanners are unable to run a scan based on just the OVAL document.  Many of them require that you have an XCCDF benchmark &quot;wrapper&quot; that has rules that point to the OVAL definitions you want to run.  eSCAPe has a wizard for producing an XCCDF benchmark for exactly this purpose.</para>
+			<para>With the editor open and an OVAL document open you can proceed to open the &quot;File&quot; menu and select &quot;New XCCDF from OVAL&quot;.  Simply fill in the required fields and click &quot;Finish&quot;.  A new XCCDF benchmark will be created in the	same directory as the OVAL document you have open in the editor.  This new benchmark will be opened for editing as soon as the wizard completes.</para>
+			<para>	<inlinegraphic format="JPG" fileref="img/new_xccdf_from_oval_wizard.jpg" align="left" valign="top"/></para>
+		</section>
+		<section>
+			<title>Creating a new CPE dictionary</title>
+			<para>A CPE dictionary provides a way to specify names for commonly used platforms or programs. Each item also alows you to point to OVAL definitions that can validate if that CPE item applies to the running system.</para>
+			<para>With the editor open you can proceed to open the &quot;File&quot; menu and select &quot;New CPE dictionary&quot;.  The wizard will appear and you will need to pick the specific version of CPE you would like to use for your new dictionary.  Unless you have a specific need to go to an earlier version, pick the default, which is the latest.  You will also need to pick the filename you want to save the new dictionary as.  After you have done this, click &quot;Finish&quot;.</para>
+			<para>	<inlinegraphic format="JPG" fileref="img/new_cpe_dict_wizard_version.jpg" align="left" valign="top"/>						</para>
+		</section>	
+</chapter>
+<chapter>
+		<title>Document Validation</title>
+		<section>
+			<title>Validating an open document</title>
+			<para>The eSCAPe tool makes it very easy to see if your content is valid according to the schema.</para>
+			<para>While a document is open go to the &quot;Tools&quot; menu an select the &quot;Validate&quot; menu item.  If the document is not valid, a window showing what validation errors there are will appear.  Simply run the validation again when you have fixed all the errors to see that they are gone.</para>
+		</section>
+</chapter>
+ <chapter id="concepts">
+		<title>Concepts</title>
+		<table>
+			<title>Concepts to understand</title>
+			<tgroup cols="2" align="left" colsep="1" rowsep="1">
+			<colspec colname="c1"/>
+			<colspec colname="c2"/>
+			<thead>
+				<row>
+					<entry>Term</entry>
+					<entry>Definition</entry>
+				</row>
+			</thead>
+			<tbody>
+				<row>
+					<entry>OVAL</entry>
+					<entry>Stands for Open Vulnerability Assessment Language.  OVAL is an XML 							based language for expressing the necessary logic to check for 								vulnerabilities, compliance, installed software, and patches.
+						See 
+						<ulink url="http://oval.mitre.org"><citetitle>Oval Website - http://oval.mitre.org</citetitle></ulink>
+					</entry>
+				</row>
+				<row>
+					<entry>SCAP</entry>
+					<entry>Stands for Security Content Automation Protocol.  SCAP represents a 							suite of XML document specifications and other standards used in trying 							to develop a common way to assess compliance and vulnerability issues.  						Specifications like XCCDF, OVAL, CCE, CPE, CVE, and CVSS used in 							concert allow policy makers and sysadmins alike to assess their systems 						for compliance and vulnerability in a standard, non-proprietary way.
+						See
+ <ulink url="http://scap.nist.gov/revision/1.0/index.html"><citetitle>SCAP 1.0 Specifications - http://scap.nist.gov/revision/1.0/index.html</citetitle></ulink>
+					</entry>
+				</row>
+				<row>
+					<entry>XCCDF</entry>
+					<entry>Stands for the eXtensible Configuration Checklist Description Format.  An XCCDF benchmark defines a number of rules who generally reference definitions in an OVAL document.  Rules can be grouped together in a number of different ways and are usually selected by a profile under the benchmark.
+						See
+ <ulink url="http://scap.nist.gov/specifications/xccdf/index.html"><citetitle>XCCDF Website - http://scap.nist.gov/specifications/xccdf/index.html</citetitle></ulink>
+					</entry>
+				</row>
+			</tbody>
+			</tgroup>	
+		</table>
+  </chapter>
+</book>
+

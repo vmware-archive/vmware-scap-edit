@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration debug="true">
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<!-- Print the date in ISO 8601 format -->
+			<param name="ConversionPattern" value="%d [%t] %-5p %c - %m%n" />
+		</layout>
+	</appender>
+        <appender name="ROLL" class="org.apache.log4j.rolling.RollingFileAppender">
+                <!-- The active file to log to -->
+                <param name="file" value="logs/main.log" />
+                <param name="append" value="true" />
+                <param name="encoding" value="UTF-8" />
+
+                <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+                        <!-- The file to roll to, this is a fairly intelligent parameter, if the file
+                        ends in .gz, it gzips it, based on the date stamp it rolls at that time, 
+                        default is yyyy-MM-dd, (rolls at midnight)
+                        See: http://logging.apache.org/log4j/companions/extras/apidocs/org/apache/log4j/rolling/TimeBasedRollingPolicy.html -->
+                        <param name="FileNamePattern" value="logs/gui.%d.zip" />
+                </rollingPolicy>
+
+                <layout class="org.apache.log4j.PatternLayout">
+                        <!-- The log message pattern -->
+                        <param name="ConversionPattern" value="%5p %d{ISO8601} [%t][%x] %c - %m%n" />
+                </layout>
+        </appender>      
+        
+        <!-- Debugging loggers -->
+        
+        <logger name="com.g2inc.scap">
+                <level value="DEBUG"/>
+                <appender-ref ref="ROLL" />
+        </logger>
+        
+        <logger name="junit">
+                <level value="DEBUG"/>
+                <appender-ref ref="ROLL" />
+        </logger>
+                
+        <root>
+                <priority value="DEBUG" />
+                <appender-ref ref="CONSOLE" />
+        </root>
+        
+</log4j:configuration>

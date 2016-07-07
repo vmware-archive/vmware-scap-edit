@@ -1,0 +1,1463 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" 
+      xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" 
+      xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" 
+      xmlns:win-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" 
+      xmlns:ind-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" 
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows http://oval.mitre.org/language/download/schema/version5.3/ovaldefinition/complete/windows-definitions-schema.xsd
+      http://oval.mitre.org/XMLSchema/oval-definitions-5#independent http://oval.mitre.org/language/download/schema/version5.3/ovaldefinition/complete/independent-definitions-schema.xsd
+      http://oval.mitre.org/XMLSchema/oval-definitions-5 http://oval.mitre.org/language/download/schema/version5.3/ovaldefinition/complete/oval-definitions-schema.xsd
+      http://oval.mitre.org/XMLSchema/oval-common-5 http://oval.mitre.org/language/download/schema/version5.3/ovaldefinition/complete/oval-common-schema.xsd">
+      <generator>
+            <oval:product_name>National Institute of Standards and Technology</oval:product_name>
+            <oval:schema_version>5.3</oval:schema_version>
+            <oval:timestamp>2008-10-30T13:24:55.000-04:00</oval:timestamp>
+      </generator>
+      <!-- ==================================================================================================== -->
+      <!-- ==========================================  DEFINITIONS  =========================================== -->
+      <!-- ==================================================================================================== -->
+      <definitions>
+            <definition id="oval:gov.nist.fdcc.xpfirewall:def:5005" version="1" class="compliance">
+                  <metadata>
+                        <title>Allow file and print sharing exception - Domain Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows XP</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3247-4"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-555"/>
+                        <description>This setting allows file and printer sharing by configuring Windows Firewall to open UDP ports 137 and 138 and TCP ports 139 and 445. If you enable this policy setting, Windows Firewall opens these ports so that the computer can receive print jobs and requests for access to shared files. You must specify the IP addresses or subnets from which these incoming messages are allowed. If you disable this policy setting, Windows Firewall blocks these ports and prevents the computer from sharing files and printers. Because the computers in your environment running Windows XP will not normally be sharing files and printers, this appendix recommends you configure this setting as Disabled in all environments. Note: If any policy setting opens TCP port 445, Windows Firewall allows inbound ICMP echo request messages (such as those sent by the Ping utility), even if the Windows Firewall: Allow ICMP exceptions policy setting would block them. Policy settings that
+                              can open TCP port 445 include Windows Firewall: Allow file and printer sharing exception, Windows Firewall: Allow remote administration exception, and Windows Firewall: Define port exceptions.</description>
+                        <oval_repository>
+                              <dates>
+                                    <submitted date="2007-06-26T17:43:08.000-05:00">
+                                          <contributor organization="Secure Elements, Inc.">Sudhir Gandhe</contributor>
+                                    </submitted>
+                              </dates>
+                              <status>DRAFT</status>
+                        </oval_repository>
+                  </metadata>
+                  <criteria operator="AND">
+                        <criteria operator="OR">
+                              <extend_definition comment="Microsoft Windows XP SP2" definition_ref="oval:org.mitre.oval:def:754"/>
+                              <extend_definition comment="Microsoft Windows XP SP3" definition_ref="oval:org.mitre.oval:def:5631"/>
+                        </criteria>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Services\FileAndPrint!Enabled  exists" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50051"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Services\FileAndPrint!Enabled  is set to the variable defined in the profile" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50052"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.xpfirewall:def:5006" version="1" class="compliance">
+                  <metadata>
+                        <title>Allow ICMP exceptions (Allow inbound echo request and block everything else) - Domain Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows XP</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3141-9"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-277"/>
+                        <description>The Windows Firewall: Allow ICMP exceptions setting defines the set of Internet Control Message Protocol (ICMP) message types that Windows Firewall allows. Utilities can use ICMP messages to determine the status of other computers. For example, Ping uses the echo request message. If you set this policy setting to Enabled, you must specify which ICMP message types Windows Firewall allows the computer to send or receive. When you set this policy to Disabled, Windows Firewall blocks all unsolicited incoming ICMP message types and the listed outgoing ICMP message types. As a result, utilities that use the blocked ICMP messages will not be able to send those messages to or from the computer. Many attacker tools take advantage of computers that accept ICMP message types and use these messages to mount a variety of attacks. However, some applications require some ICMP messages in order to function properly. For that reason, this appendix recommends that
+                              you configure this setting to Disabled whenever possible. If your environment requires some ICMP messages to get through Windows Firewall, configure the setting with the appropriate message types. Note: If any policy setting opens TCP port 445, Windows Firewall allows inbound ICMP echo request messages (such as those sent by the Ping utility), even if the Windows Firewall: Allow ICMP exceptions policy setting would block them. Policy settings that can open TCP port 445 include Windows Firewall: Allow file and printer sharing exception, Windows Firewall: Allow remote administration exception, and Windows Firewall: Define port exceptions.</description>
+                        <oval_repository>
+                              <dates>
+                                    <submitted date="2007-06-26T17:43:08.000-05:00">
+                                          <contributor organization="Secure Elements, Inc.">Sudhir Gandhe</contributor>
+                                    </submitted>
+                              </dates>
+                              <status>DRAFT</status>
+                        </oval_repository>
+                  </metadata>
+                  <criteria operator="AND">
+                        <criteria operator="OR">
+                              <extend_definition comment="Microsoft Windows XP SP2" definition_ref="oval:org.mitre.oval:def:754"/>
+                              <extend_definition comment="Microsoft Windows XP SP3" definition_ref="oval:org.mitre.oval:def:5631"/>
+                        </criteria>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings!AllowInboundEchoRequest is set to 1" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50061"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings!AllowInboundMaskRequest is set to 0" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50062"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings!AllowInboundRouterRequest is set to 0" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50063"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings!AllowInboundTimestampRequest is set to 0" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50064"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings!AllowOutboundDestinationUnreachable is set to 0" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50065"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings!AllowOutboundPacketTooBig is set to 0" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50066"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings!AllowOutboundParameterProblem is set to 0" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50067"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings!AllowOutboundSourceQuench is set to 0" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50068"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings!AllowOutboundTimeExceeded is set to 0" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50069"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings!AllowRedirect is set to 0" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50060"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.xpfirewall:def:5013" version="1" class="compliance">
+                  <metadata>
+                        <title>Allow local port exceptions - Domain Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows XP</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3258-1"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-370"/>
+                        <description>The Windows Firewall: Allow local port exceptions setting allows administrators to use the Windows Firewall component in Control Panel to define a local port exceptions list. Windows Firewall can use two port exceptions lists; the other is defined by the Windows Firewall: Define port exceptions policy setting. If you enable this policy setting, the Windows Firewall component in Control Panel allows administrators to define a local port exceptions list. If you disable this policy setting, the Windows Firewall component in Control Panel does not allow administrators to define such a list. Typically, local administrators are not authorized to override organizational policy and establish their own port exceptions list in enterprise or high security environments. For that reason, this appendix recommends configuring this option as Disabled.</description>
+                        <oval_repository>
+                              <dates>
+                                    <submitted date="2007-06-26T17:43:08.000-05:00">
+                                          <contributor organization="Secure Elements, Inc.">Sudhir Gandhe</contributor>
+                                    </submitted>
+                              </dates>
+                              <status>DRAFT</status>
+                        </oval_repository>
+                  </metadata>
+                  <criteria operator="AND">
+                        <criteria operator="OR">
+                              <extend_definition comment="Microsoft Windows XP SP2" definition_ref="oval:org.mitre.oval:def:754"/>
+                              <extend_definition comment="Microsoft Windows XP SP3" definition_ref="oval:org.mitre.oval:def:5631"/>
+                        </criteria>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\GloballyOpenPorts!AllowUserPrefMerge  exists" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50131"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\GloballyOpenPorts!AllowUserPrefMerge  is set to the variable defined in the profile" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50132"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.xpfirewall:def:5003" version="1" class="compliance">
+                  <metadata>
+                        <title>Allow local program exceptions - Domain Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows XP</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-2828-2"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-502"/>
+                        <description>The Windows Firewall: Allow local program exceptions setting allows administrators to use the Windows Firewall component in Control Panel to define a local program exceptions list. Disabling this policy setting does not allow administrators to define a local program exceptions list, and ensures that program exceptions only come from Group Policy. Setting this policy to Enabled allows local administrators to use Control Panel to define program exceptions locally. For enterprise client computers, there may be conditions that justify having the client define local program exceptions. These conditions may include applications that were not analyzed when creating the organization's firewall policy or new applications that require nonstandard port configuration. In those cases, you may choose to enable this setting, recognizing that the attack surface of the affected computers is increased.</description>
+                        <oval_repository>
+                              <dates>
+                                    <submitted date="2007-06-26T17:43:08.000-05:00">
+                                          <contributor organization="Secure Elements, Inc.">Sudhir Gandhe</contributor>
+                                    </submitted>
+                              </dates>
+                              <status>DRAFT</status>
+                        </oval_repository>
+                  </metadata>
+                  <criteria operator="AND">
+                        <criteria operator="OR">
+                              <extend_definition comment="Microsoft Windows XP SP2" definition_ref="oval:org.mitre.oval:def:754"/>
+                              <extend_definition comment="Microsoft Windows XP SP3" definition_ref="oval:org.mitre.oval:def:5631"/>
+                        </criteria>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\AuthorizedApplications!AllowUserPrefMerge  exists" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50031"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\AuthorizedApplications!AllowUserPrefMerge  is set to the variable defined in the profile" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50032"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.xpfirewall:def:5014" version="1" class="compliance">
+                  <metadata>
+                        <title>Allow Logging: Log Dropped Packets - Domain Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows XP</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-2965-2"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-251"/>
+                        <description>Allows Windows Firewall to record information about the unsolicited incoming messages that it receives. If you enable this policy setting, Windows Firewall writes the information to a log file. You must provide the name, location, and maximum size of the log file. The location can contain environment variables. You must also specify whether to record information about incoming messages that the firewall blocks (drops) and information about successful incoming and outgoing connections. Windows Firewall does not provide an option to log successful incoming messages. If you disable this policy setting, Windows Firewall does not record information in the log file. If you enable this policy setting, and Windows Firewall creates the log file and adds information, then upon disabling this policy setting, Windows Firewall leaves the log file intact. In the Windows Firewall component of Control Panel, the "Security Logging" settings are cleared and
+                              administrators cannot select them. If you do not configure this policy setting, Windows Firewall behaves as if the policy setting were disabled, except that administrators can choose whether to select the "Security Logging" settings.</description>
+                        <oval_repository>
+                              <dates>
+                                    <submitted date="2007-06-26T17:43:08.000-05:00">
+                                          <contributor organization="Secure Elements, Inc.">Sudhir Gandhe</contributor>
+                                    </submitted>
+                              </dates>
+                              <status>DRAFT</status>
+                        </oval_repository>
+                  </metadata>
+                  <criteria operator="AND">
+                        <criteria operator="OR">
+                              <extend_definition comment="Microsoft Windows XP SP2" definition_ref="oval:org.mitre.oval:def:754"/>
+                              <extend_definition comment="Microsoft Windows XP SP3" definition_ref="oval:org.mitre.oval:def:5631"/>
+                        </criteria>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging!LogDroppedPackets  exists" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50141"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging!LogDroppedPackets  is set to the variable defined in the profile" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50142"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.xpfirewall:def:5015" version="1" class="compliance">
+                  <metadata>
+                        <title>Allow Logging: Log Successful Connections - Domain Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows XP</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3090-8"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-617"/>
+                        <description>Allows Windows Firewall to record information about the unsolicited incoming messages that it receives. If you enable this policy setting, Windows Firewall writes the information to a log file. You must provide the name, location, and maximum size of the log file. The location can contain environment variables. You must also specify whether to record information about incoming messages that the firewall blocks (drops) and information about successful incoming and outgoing connections. Windows Firewall does not provide an option to log successful incoming messages. If you disable this policy setting, Windows Firewall does not record information in the log file. If you enable this policy setting, and Windows Firewall creates the log file and adds information, then upon disabling this policy setting, Windows Firewall leaves the log file intact. In the Windows Firewall component of Control Panel, the "Security Logging" settings are cleared and
+                              administrators cannot select them. If you do not configure this policy setting, Windows Firewall behaves as if the policy setting were disabled, except that administrators can choose whether to select the "Security Logging" settings.</description>
+                        <oval_repository>
+                              <dates>
+                                    <submitted date="2007-06-26T17:43:08.000-05:00">
+                                          <contributor organization="Secure Elements, Inc.">Sudhir Gandhe</contributor>
+                                    </submitted>
+                              </dates>
+                              <status>DRAFT</status>
+                        </oval_repository>
+                  </metadata>
+                  <criteria operator="AND">
+                        <criteria operator="OR">
+                              <extend_definition comment="Microsoft Windows XP SP2" definition_ref="oval:org.mitre.oval:def:754"/>
+                              <extend_definition comment="Microsoft Windows XP SP3" definition_ref="oval:org.mitre.oval:def:5631"/>
+                        </criteria>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging!LogSuccessfulConnections  exists" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50151"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging!LogSuccessfulConnections  is set to the variable defined in the profile" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50152"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.xpfirewall:def:5016" version="1" class="compliance">
+                  <metadata>
+                        <title>Allow Logging: Log Size - Domain Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows XP</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-2958-7"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-57"/>
+                        <description>Allows Windows Firewall to record information about the unsolicited incoming messages that it receives. If you enable this policy setting, Windows Firewall writes the information to a log file. You must provide the name, location, and maximum size of the log file. The location can contain environment variables. You must also specify whether to record information about incoming messages that the firewall blocks (drops) and information about successful incoming and outgoing connections. Windows Firewall does not provide an option to log successful incoming messages. If you disable this policy setting, Windows Firewall does not record information in the log file. If you enable this policy setting, and Windows Firewall creates the log file and adds information, then upon disabling this policy setting, Windows Firewall leaves the log file intact. In the Windows Firewall component of Control Panel, the "Security Logging" settings are cleared and
+                              administrators cannot select them. If you do not configure this policy setting, Windows Firewall behaves as if the policy setting were disabled, except that administrators can choose whether to select the "Security Logging" settings.</description>
+                        <oval_repository>
+                              <dates>
+                                    <submitted date="2007-06-26T17:43:08.000-05:00">
+                                          <contributor organization="Secure Elements, Inc.">Sudhir Gandhe</contributor>
+                                    </submitted>
+                              </dates>
+                              <status>DRAFT</status>
+                        </oval_repository>
+                  </metadata>
+                  <criteria operator="AND">
+                        <criteria operator="OR">
+                              <extend_definition comment="Microsoft Windows XP SP2" definition_ref="oval:org.mitre.oval:def:754"/>
+                              <extend_definition comment="Microsoft Windows XP SP3" definition_ref="oval:org.mitre.oval:def:5631"/>
+                        </criteria>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging!LogFileSize  exists" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50161"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging!LogFileSize  is set to the variable defined in the profile" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50162"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.xpfirewall:def:5017" version="1" class="compliance">
+                  <metadata>
+                        <title>Allow Logging: Log Path - Domain Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows XP</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-2923-1"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-793"/>
+                        <description>Allows Windows Firewall to record information about the unsolicited incoming messages that it receives. If you enable this policy setting, Windows Firewall writes the information to a log file. You must provide the name, location, and maximum size of the log file. The location can contain environment variables. You must also specify whether to record information about incoming messages that the firewall blocks (drops) and information about successful incoming and outgoing connections. Windows Firewall does not provide an option to log successful incoming messages. If you disable this policy setting, Windows Firewall does not record information in the log file. If you enable this policy setting, and Windows Firewall creates the log file and adds information, then upon disabling this policy setting, Windows Firewall leaves the log file intact. In the Windows Firewall component of Control Panel, the "Security Logging" settings are cleared and
+                              administrators cannot select them. If you do not configure this policy setting, Windows Firewall behaves as if the policy setting were disabled, except that administrators can choose whether to select the "Security Logging" settings.</description>
+                        <oval_repository>
+                              <dates>
+                                    <submitted date="2007-06-26T17:43:08.000-05:00">
+                                          <contributor organization="Secure Elements, Inc.">Sudhir Gandhe</contributor>
+                                    </submitted>
+                              </dates>
+                              <status>DRAFT</status>
+                        </oval_repository>
+                  </metadata>
+                  <criteria operator="AND">
+                        <criteria operator="OR">
+                              <extend_definition comment="Microsoft Windows XP SP2" definition_ref="oval:org.mitre.oval:def:754"/>
+                              <extend_definition comment="Microsoft Windows XP SP3" definition_ref="oval:org.mitre.oval:def:5631"/>
+                        </criteria>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging!LogFilePath  exists" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50171"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging!LogFilePath  is set to the variable defined in the profile" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50172"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.xpfirewall:def:5004" version="1" class="compliance">
+                  <metadata>
+                        <title>Allow remote administration exceptions - Domain Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows XP</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-2476-0"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-771"/>
+                        <description>Many organizations take advantage of remote computer administration in their daily operations. However, some attacks have exploited the ports typically used by remote administration programs; Windows Firewall can block these ports. To provide flexibility for remote administration, the Windows Firewall: Allow remote administration exception setting is available. Configuring this setting to Enabled allows the computer to receive the unsolicited incoming messages associated with remote administration on TCP ports 135 and 445. This policy setting also allows SVCHOST.EXE and LSASS.EXE to receive unsolicited incoming messages and allows hosted services to open additional dynamically-assigned ports, typically in the range of 1024 to 1034 but potentially anywhere from 1024 to 65535. Enabling this setting also requires you to specify the IP addresses or subnets from which these incoming messages are allowed. If you configure this policy setting as Disabled,
+                              Windows Firewall makes none of the described exceptions. This appendix recommends you enable this setting for enterprise computers if necessary, and to always disable the setting for high security computers. Computers in your environment should accept remote administration requests from as few computers as possible. To maximize the protection provided by the Windows Firewall, make sure to specify only the necessary IP addresses and subnets of computers used for remote administration. Note: If any policy setting opens TCP port 445, Windows Firewall allows inbound ICMP echo request messages (such as those sent by the Ping utility), even if the Windows Firewall: Allow ICMP exceptions policy setting would block them. Policy settings that can open TCP port 445 include Windows Firewall: Allow file and printer sharing exception, Windows Firewall: Allow remote administration exception, and Windows Firewall: Define port exceptions.</description>
+                        <oval_repository>
+                              <dates>
+                                    <submitted date="2007-06-26T17:43:08.000-05:00">
+                                          <contributor organization="Secure Elements, Inc.">Sudhir Gandhe</contributor>
+                                    </submitted>
+                              </dates>
+                              <status>DRAFT</status>
+                        </oval_repository>
+                  </metadata>
+                  <criteria operator="AND">
+                        <criteria operator="OR">
+                              <extend_definition comment="Microsoft Windows XP SP2" definition_ref="oval:org.mitre.oval:def:754"/>
+                              <extend_definition comment="Microsoft Windows XP SP3" definition_ref="oval:org.mitre.oval:def:5631"/>
+                        </criteria>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\RemoteAdminSettings!Enabled  exists" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50041"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\RemoteAdminSettings!Enabled  is set to the variable defined in the profile" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50042"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.xpfirewall:def:5007" version="1" class="compliance">
+                  <metadata>
+                        <title>Allow Remote Desktop exception - Domain Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows XP</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3304-3"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-832"/>
+                        <description>Many organizations use Remote Desktop connections in their normal troubleshooting procedures or operations. However, some attacks have occurred that exploited the ports typically used by Remote Desktop. To provide flexibility for remote administration, the Windows Firewall: Allow Remote Desktop exception setting is available. Enabling this setting configures Windows Firewall to open TCP port 3389 for inbound connections. You must also specify the IP addresses or subnets from which these incoming messages are allowed. If you disable this policy setting, Windows Firewall blocks this port and prevents the computer from receiving Remote Desktop requests. If an administrator attempts to open this port by adding it to a local port exceptions list, Windows Firewall does not open the port. Some attacks can exploit an open port 3389. To maintain the enhanced management capabilities provided by Remote Desktop, you should configure this setting to Enabled and
+                              specify the IP addresses and subnets of the computers used for remote administration. Computers in your environment should accept Remote Desktop requests from as few computers as possible.</description>
+                        <oval_repository>
+                              <dates>
+                                    <submitted date="2007-06-26T17:43:08.000-05:00">
+                                          <contributor organization="Secure Elements, Inc.">Sudhir Gandhe</contributor>
+                                    </submitted>
+                              </dates>
+                              <status>DRAFT</status>
+                        </oval_repository>
+                  </metadata>
+                  <criteria operator="AND">
+                        <criteria operator="OR">
+                              <extend_definition comment="Microsoft Windows XP SP2" definition_ref="oval:org.mitre.oval:def:754"/>
+                              <extend_definition comment="Microsoft Windows XP SP3" definition_ref="oval:org.mitre.oval:def:5631"/>
+                        </criteria>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Services\RemoteDesktop!Enabled  exists" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50071"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Services\RemoteDesktop!Enabled  is set to the variable defined in the profile" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50072"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.xpfirewall:def:5008" version="1" class="compliance">
+                  <metadata>
+                        <title>Allow UPnP framework exception - Domain Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows XP</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3176-5"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-590"/>
+                        <description>The Windows Firewall: Allow UPnP framework exception setting allows a computer to receive unsolicited Plug and Play messages sent by network devices, such as routers with built-in firewalls. To receive these messages, Windows Firewall opens TCP port 2869 and UDP port 1900. If you enable this policy setting, Windows Firewall opens these ports so that the computer can receive Plug and Play messages. You must specify the IP addresses or subnets from which these incoming messages are allowed. If you disable this policy setting, Windows Firewall blocks these ports and prevents the computer from receiving Plug and Play messages.</description>
+                        <oval_repository>
+                              <dates>
+                                    <submitted date="2007-06-26T17:43:08.000-05:00">
+                                          <contributor organization="Secure Elements, Inc.">Sudhir Gandhe</contributor>
+                                    </submitted>
+                              </dates>
+                              <status>DRAFT</status>
+                        </oval_repository>
+                  </metadata>
+                  <criteria operator="AND">
+                        <criteria operator="OR">
+                              <extend_definition comment="Microsoft Windows XP SP2" definition_ref="oval:org.mitre.oval:def:754"/>
+                              <extend_definition comment="Microsoft Windows XP SP3" definition_ref="oval:org.mitre.oval:def:5631"/>
+                        </criteria>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Services\UPnPFramework!Enabled  exists" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50081"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Services\UPnPFrameworkt!Enabled  is set to the variable defined in the profile" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50082"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.xpfirewall:def:6008" version="1" class="compliance">
+                  <metadata>
+                        <title>Define port exceptions - Domain Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows XP</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-2866-2"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-114"/>
+                        <description>The Windows Firewall port exceptions list should be defined by Group Policy, which allows you to centrally manage and deploy your port exceptions and ensure that local administrators do not create less secure settings. The Windows Firewall: Define port exceptions policy setting allows you to centrally manage these settings. If you enable this policy setting, you can view and change the port exceptions list defined by Group Policy. To view and modify the port exceptions list, configure the policy setting to Enabled and then click the Show button. Note that if you type an invalid definition string, Windows Firewall adds it to the list without checking for errors, which means you can accidentally create multiple entries for the same port with conflicting Scope or Status values. If you disable this policy setting, the port exceptions list defined by Group Policy is deleted but other policy settings can continue to open or block ports. Also, if a local
+                              port exceptions list exists, it is ignored unless you enable the Windows Firewall: Allow local port exceptions policy setting. Environments with nonstandard applications that require specific ports to be open should consider deploying program exceptions. This appendix recommends enabling this setting and specifying a list of port exceptions only when program exceptions cannot be defined. Program exceptions allow the Windows Firewall to accept unsolicited network traffic only while the specified program is running, and port exceptions keep the specified ports open at all times. Note: If any policy setting opens TCP port 445, Windows Firewall allows inbound ICMP echo request messages (such as those sent by the Ping utility), even if the Windows Firewall: Allow ICMP exceptions policy setting would block them. Policy settings that can open TCP port 445 include Windows Firewall: Allow file and printer sharing exception, Windows Firewall: Allow remote
+                              administration exception, and Windows Firewall: Define port exceptions.</description>
+                  </metadata>
+                  <criteria operator="AND">
+                        <criteria operator="OR">
+                              <extend_definition comment="Microsoft Windows XP SP2" definition_ref="oval:org.mitre.oval:def:754"/>
+                              <extend_definition comment="Microsoft Windows XP SP3" definition_ref="oval:org.mitre.oval:def:5631"/>
+                        </criteria>
+                        <criterion negate="true" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\GloballyOpenPorts!Enabled  exists" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50085"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.xpfirewall:def:5009" version="1" class="compliance">
+                  <metadata>
+                        <title>Prohibit notification - Domain Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows XP</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3198-9"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-762"/>
+                        <description>Windows Firewall can display notifications to users when a program requests that Windows Firewall add the program to the program exceptions list. This situation occurs when programs attempt to open a port and are not allowed to do so based on current Windows Firewall rules. The Windows Firewall: Prohibit notifications setting configures whether these settings are shown to the users. If you set this policy to Enabled, Windows Firewall prevents the display of these notifications. If you set it to Disabled, Windows Firewall allows the display of these notifications.</description>
+                        <oval_repository>
+                              <dates>
+                                    <submitted date="2007-06-26T17:43:08.000-05:00">
+                                          <contributor organization="Secure Elements, Inc.">Sudhir Gandhe</contributor>
+                                    </submitted>
+                              </dates>
+                              <status>DRAFT</status>
+                        </oval_repository>
+                  </metadata>
+                  <criteria operator="AND">
+                        <criteria operator="OR">
+                              <extend_definition comment="Microsoft Windows XP SP2" definition_ref="oval:org.mitre.oval:def:754"/>
+                              <extend_definition comment="Microsoft Windows XP SP3" definition_ref="oval:org.mitre.oval:def:5631"/>
+                        </criteria>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile!DisableNotifications  exists" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50091"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile!DisableNotifications  is set to the variable defined in the profile" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50092"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.xpfirewall:def:5011" version="1" class="compliance">
+                  <metadata>
+                        <title>Prohibit unicast response to multicast or broadcast requests - Domain Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows XP</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-2972-8"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-696"/>
+                        <description>The Windows Firewall: Prohibit unicast response to multicast or broadcast requests setting prevents a computer from receiving unicast responses to its outgoing multicast or broadcast messages. When this policy setting is enabled and the computer sends multicast or broadcast messages to other computers, Windows Firewall blocks the unicast responses sent by those other computers. When the setting is disabled and this computer sends a multicast or broadcast message to other computers, Windows Firewall waits up to three seconds for unicast responses from the other computers and then blocks all later responses. Typically, you would not want to receive unicast responses to multicast or broadcast messages. Such responses can indicate a denial of service (DoS) attack or an attacker attempting to probe a known live computer. This appendix recommends you configure this policy setting to Enabled to help prevent this type of attack. Note: This policy setting
+                              has no effect if the unicast message is a response to a Dynamic Host Configuration Protocol (DHCP) broadcast message sent by the computer. Windows Firewall always permits those DHCP unicast responses. However, this policy setting can interfere with the NetBIOS messages that detect name conflicts.</description>
+                        <oval_repository>
+                              <dates>
+                                    <submitted date="2007-06-26T17:43:08.000-05:00">
+                                          <contributor organization="Secure Elements, Inc.">Sudhir Gandhe</contributor>
+                                    </submitted>
+                              </dates>
+                              <status>DRAFT</status>
+                        </oval_repository>
+                  </metadata>
+                  <criteria operator="AND">
+                        <criteria operator="OR">
+                              <extend_definition comment="Microsoft Windows XP SP2" definition_ref="oval:org.mitre.oval:def:754"/>
+                              <extend_definition comment="Microsoft Windows XP SP3" definition_ref="oval:org.mitre.oval:def:5631"/>
+                        </criteria>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile!DisableUnicastResponsesToMulticastBroadcast  exists" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50111"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile!DisableUnicastResponsesToMulticastBroadcast  is set to the variable defined in the profile" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50112"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.xpfirewall:def:5000" version="1" class="compliance">
+                  <metadata>
+                        <title>Protect all Network Connections - Domain Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows XP</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3154-2"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-806"/>
+                        <description>The Windows Firewall: Protect all network connections setting turns on Windows Firewall, which replaces Internet Connection Firewall on all computers that are running Windows XP SP2. This appendix recommends configuring this setting to Enabled to protect all network connections for computers in all environments. If this setting is configured as Disabled, Windows Firewall is turned off and all other settings for Windows Firewall are ignored. Note: If you enable this policy setting, Windows Firewall runs and ignores the Computer Configuration\Administrative Templates\Network\Network Connections\Prohibit use of Internet Connection Firewall on your DNS domain network policy setting.</description>
+                        <oval_repository>
+                              <dates>
+                                    <submitted date="2007-06-26T17:43:08.000-05:00">
+                                          <contributor organization="Secure Elements, Inc.">Sudhir Gandhe</contributor>
+                                    </submitted>
+                              </dates>
+                              <status>DRAFT</status>
+                        </oval_repository>
+                  </metadata>
+                  <criteria operator="AND">
+                        <criteria operator="OR">
+                              <extend_definition comment="Microsoft Windows XP SP2" definition_ref="oval:org.mitre.oval:def:754"/>
+                              <extend_definition comment="Microsoft Windows XP SP3" definition_ref="oval:org.mitre.oval:def:5631"/>
+                        </criteria>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile!EnableFirewall exists" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50001"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile!EnableFirewall is set to the variable defined in the profile" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:50002"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.xpfirewall:def:5105" version="1" class="compliance">
+                  <metadata>
+                        <title>Allow file and print sharing exception - Standard Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows XP</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3262-3"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-626"/>
+                        <description>This setting allows file and printer sharing by configuring Windows Firewall to open UDP ports 137 and 138 and TCP ports 139 and 445. If you enable this policy setting, Windows Firewall opens these ports so that the computer can receive print jobs and requests for access to shared files. You must specify the IP addresses or subnets from which these incoming messages are allowed. If you disable this policy setting, Windows Firewall blocks these ports and prevents the computer from sharing files and printers. Because the computers in your environment running Windows XP will not normally be sharing files and printers, this appendix recommends you configure this setting as Disabled in all environments. Note: If any policy setting opens TCP port 445, Windows Firewall allows inbound ICMP echo request messages (such as those sent by the Ping utility), even if the Windows Firewall: Allow ICMP exceptions policy setting would block them. Policy settings that
+                              can open TCP port 445 include Windows Firewall: Allow file and printer sharing exception, Windows Firewall: Allow remote administration exception, and Windows Firewall: Define port exceptions.</description>
+                        <oval_repository>
+                              <dates>
+                                    <submitted date="2007-06-26T17:43:08.000-05:00">
+                                          <contributor organization="Secure Elements, Inc.">Sudhir Gandhe</contributor>
+                                    </submitted>
+                              </dates>
+                              <status>DRAFT</status>
+                        </oval_repository>
+                  </metadata>
+                  <criteria operator="AND">
+                        <criteria operator="OR">
+                              <extend_definition comment="Microsoft Windows XP SP2" definition_ref="oval:org.mitre.oval:def:754"/>
+                              <extend_definition comment="Microsoft Windows XP SP3" definition_ref="oval:org.mitre.oval:def:5631"/>
+                        </criteria>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\Services\FileAndPrint!Enabled  exists" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:51051"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\Services\FileAndPrint!Enabled  is set to the variable defined in the profile" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:51052"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.xpfirewall:def:5106" version="1" class="compliance">
+                  <metadata>
+                        <title>Allow ICMP exceptions (Allow inbound echo request and block everything else) - Standard Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows XP</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3081-7"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-797"/>
+                        <description>The Windows Firewall: Allow ICMP exceptions setting defines the set of Internet Control Message Protocol (ICMP) message types that Windows Firewall allows. Utilities can use ICMP messages to determine the status of other computers. For example, Ping uses the echo request message. If you set this policy setting to Enabled, you must specify which ICMP message types Windows Firewall allows the computer to send or receive. When you set this policy to Disabled, Windows Firewall blocks all unsolicited incoming ICMP message types and the listed outgoing ICMP message types. As a result, utilities that use the blocked ICMP messages will not be able to send those messages to or from the computer. Many attacker tools take advantage of computers that accept ICMP message types and use these messages to mount a variety of attacks. However, some applications require some ICMP messages in order to function properly. For that reason, this appendix recommends that
+                              you configure this setting to Disabled whenever possible. If your environment requires some ICMP messages to get through Windows Firewall, configure the setting with the appropriate message types. Note: If any policy setting opens TCP port 445, Windows Firewall allows inbound ICMP echo request messages (such as those sent by the Ping utility), even if the Windows Firewall: Allow ICMP exceptions policy setting would block them. Policy settings that can open TCP port 445 include Windows Firewall: Allow file and printer sharing exception, Windows Firewall: Allow remote administration exception, and Windows Firewall: Define port exceptions.</description>
+                        <oval_repository>
+                              <dates>
+                                    <submitted date="2007-06-26T17:43:08.000-05:00">
+                                          <contributor organization="Secure Elements, Inc.">Sudhir Gandhe</contributor>
+                                    </submitted>
+                              </dates>
+                              <status>DRAFT</status>
+                        </oval_repository>
+                  </metadata>
+                  <criteria operator="AND">
+                        <criteria operator="OR">
+                              <extend_definition comment="Microsoft Windows XP SP2" definition_ref="oval:org.mitre.oval:def:754"/>
+                              <extend_definition comment="Microsoft Windows XP SP3" definition_ref="oval:org.mitre.oval:def:5631"/>
+                        </criteria>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings!AllowInboundEchoRequest is set to 0" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:51061"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings!AllowInboundMaskRequest is set to 0" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:51062"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings!AllowInboundRouterRequest is set to 0" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:51063"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings!AllowInboundTimestampRequest is set to 0" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:51064"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings!AllowOutboundDestinationUnreachable is set to 0" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:51065"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings!AllowOutboundPacketTooBig is set to 0" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:51066"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings!AllowOutboundParameterProblem is set to 0" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:51067"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings!AllowOutboundSourceQuench is set to 0" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:51068"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings!AllowOutboundTimeExceeded is set to 0" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:51069"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings!AllowRedirect is set to 0" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:51060"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.xpfirewall:def:5113" version="1" class="compliance">
+                  <metadata>
+                        <title>Allow local port exceptions - Standard Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows XP</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-2989-2"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-77"/>
+                        <description>The Windows Firewall: Allow local port exceptions setting allows administrators to use the Windows Firewall component in Control Panel to define a local port exceptions list. Windows Firewall can use two port exceptions lists; the other is defined by the Windows Firewall: Define port exceptions policy setting. If you enable this policy setting, the Windows Firewall component in Control Panel allows administrators to define a local port exceptions list. If you disable this policy setting, the Windows Firewall component in Control Panel does not allow administrators to define such a list. Typically, local administrators are not authorized to override organizational policy and establish their own port exceptions list in enterprise or high security environments. For that reason, this appendix recommends configuring this option as Disabled.</description>
+                        <oval_repository>
+                              <dates>
+                                    <submitted date="2007-06-26T17:43:08.000-05:00">
+                                          <contributor organization="Secure Elements, Inc.">Sudhir Gandhe</contributor>
+                                    </submitted>
+                              </dates>
+                              <status>DRAFT</status>
+                        </oval_repository>
+                  </metadata>
+                  <criteria operator="AND">
+                        <criteria operator="OR">
+                              <extend_definition comment="Microsoft Windows XP SP2" definition_ref="oval:org.mitre.oval:def:754"/>
+                              <extend_definition comment="Microsoft Windows XP SP3" definition_ref="oval:org.mitre.oval:def:5631"/>
+                        </criteria>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\GloballyOpenPorts!AllowUserPrefMerge  exists" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:51131"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\GloballyOpenPorts!AllowUserPrefMerge  is set to the variable defined in the profile" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:51132"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.xpfirewall:def:5103" version="1" class="compliance">
+                  <metadata>
+                        <title>Allow local program exceptions - Standard Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows XP</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3183-1"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-352"/>
+                        <description>The Windows Firewall: Allow local program exceptions setting allows administrators to use the Windows Firewall component in Control Panel to define a local program exceptions list. Disabling this policy setting does not allow administrators to define a local program exceptions list, and ensures that program exceptions only come from Group Policy. Setting this policy to Enabled allows local administrators to use Control Panel to define program exceptions locally. For enterprise client computers, there may be conditions that justify having the client define local program exceptions. These conditions may include applications that were not analyzed when creating the organization's firewall policy or new applications that require nonstandard port configuration. In those cases, you may choose to enable this setting, recognizing that the attack surface of the affected computers is increased.</description>
+                        <oval_repository>
+                              <dates>
+                                    <submitted date="2007-06-26T17:43:08.000-05:00">
+                                          <contributor organization="Secure Elements, Inc.">Sudhir Gandhe</contributor>
+                                    </submitted>
+                              </dates>
+                              <status>DRAFT</status>
+                        </oval_repository>
+                  </metadata>
+                  <criteria operator="AND">
+                        <criteria operator="OR">
+                              <extend_definition comment="Microsoft Windows XP SP2" definition_ref="oval:org.mitre.oval:def:754"/>
+                              <extend_definition comment="Microsoft Windows XP SP3" definition_ref="oval:org.mitre.oval:def:5631"/>
+                        </criteria>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\AuthorizedApplications!AllowUserPrefMerge  exists" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:51031"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\AuthorizedApplications!AllowUserPrefMerge  is set to the variable defined in the profile" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:51032"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.xpfirewall:def:51041" version="1" class="compliance">
+                  <metadata>
+                        <title>Allow remote administration exceptions disable - Standard Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows XP</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-2954-6"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-467"/>
+                        <description>Many organizations take advantage of remote computer administration in their daily operations. However, some attacks have exploited the ports typically used by remote administration programs; Windows Firewall can block these ports. To provide flexibility for remote administration, the Windows Firewall: Allow remote administration exception setting is available. Configuring this setting to Enabled allows the computer to receive the unsolicited incoming messages associated with remote administration on TCP ports 135 and 445. This policy setting also allows SVCHOST.EXE and LSASS.EXE to receive unsolicited incoming messages and allows hosted services to open additional dynamically-assigned ports, typically in the range of 1024 to 1034 but potentially anywhere from 1024 to 65535. Enabling this setting also requires you to specify the IP addresses or subnets from which these incoming messages are allowed. If you configure this policy setting as Disabled,
+                              Windows Firewall makes none of the described exceptions. This appendix recommends you enable this setting for enterprise computers if necessary, and to always disable the setting for high security computers. Computers in your environment should accept remote administration requests from as few computers as possible. To maximize the protection provided by the Windows Firewall, make sure to specify only the necessary IP addresses and subnets of computers used for remote administration. Note: If any policy setting opens TCP port 445, Windows Firewall allows inbound ICMP echo request messages (such as those sent by the Ping utility), even if the Windows Firewall: Allow ICMP exceptions policy setting would block them. Policy settings that can open TCP port 445 include Windows Firewall: Allow file and printer sharing exception, Windows Firewall: Allow remote administration exception, and Windows Firewall: Define port exceptions.</description>
+                        <oval_repository>
+                              <dates>
+                                    <submitted date="2007-06-26T17:43:08.000-05:00">
+                                          <contributor organization="Secure Elements, Inc.">Sudhir Gandhe</contributor>
+                                    </submitted>
+                              </dates>
+                              <status>DRAFT</status>
+                        </oval_repository>
+                  </metadata>
+                  <criteria operator="AND">
+                        <criteria operator="OR">
+                              <extend_definition comment="Microsoft Windows XP SP2" definition_ref="oval:org.mitre.oval:def:754"/>
+                              <extend_definition comment="Microsoft Windows XP SP3" definition_ref="oval:org.mitre.oval:def:5631"/>
+                        </criteria>
+                        <criteria operator="OR">
+                              <criterion negate="true" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\RemoteAdminSetting!Enabled  exists" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:51041"/>
+                              <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\RemoteAdminSetting!Enabled  is set to the variable defined in the profile" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:51042"/>
+                        </criteria>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.xpfirewall:def:5107" version="1" class="compliance">
+                  <metadata>
+                        <title>Allow Remote Desktop exception - Standard Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows XP</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3213-6"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-354"/>
+                        <description>Many organizations use Remote Desktop connections in their normal troubleshooting procedures or operations. However, some attacks have occurred that exploited the ports typically used by Remote Desktop. To provide flexibility for remote administration, the Windows Firewall: Allow Remote Desktop exception setting is available. Enabling this setting configures Windows Firewall to open TCP port 3389 for inbound connections. You must also specify the IP addresses or subnets from which these incoming messages are allowed. If you disable this policy setting, Windows Firewall blocks this port and prevents the computer from receiving Remote Desktop requests. If an administrator attempts to open this port by adding it to a local port exceptions list, Windows Firewall does not open the port. Some attacks can exploit an open port 3389. To maintain the enhanced management capabilities provided by Remote Desktop, you should configure this setting to Enabled and
+                              specify the IP addresses and subnets of the computers used for remote administration. Computers in your environment should accept Remote Desktop requests from as few computers as possible.</description>
+                        <oval_repository>
+                              <dates>
+                                    <submitted date="2007-06-26T17:43:08.000-05:00">
+                                          <contributor organization="Secure Elements, Inc.">Sudhir Gandhe</contributor>
+                                    </submitted>
+                              </dates>
+                              <status>DRAFT</status>
+                        </oval_repository>
+                  </metadata>
+                  <criteria operator="AND">
+                        <criteria operator="OR">
+                              <extend_definition comment="Microsoft Windows XP SP2" definition_ref="oval:org.mitre.oval:def:754"/>
+                              <extend_definition comment="Microsoft Windows XP SP3" definition_ref="oval:org.mitre.oval:def:5631"/>
+                        </criteria>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\Services\RemoteDesktop!Enabled  exists" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:51071"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\Services\RemoteDesktop!Enabled  is set to the variable defined in the profile" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:51072"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.xpfirewall:def:5108" version="1" class="compliance">
+                  <metadata>
+                        <title>Allow UPnP framework exception - Standard Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows XP</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3235-9"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-266"/>
+                        <description>The Windows Firewall: Allow UPnP framework exception setting allows a computer to receive unsolicited Plug and Play messages sent by network devices, such as routers with built-in firewalls. To receive these messages, Windows Firewall opens TCP port 2869 and UDP port 1900. If you enable this policy setting, Windows Firewall opens these ports so that the computer can receive Plug and Play messages. You must specify the IP addresses or subnets from which these incoming messages are allowed. If you disable this policy setting, Windows Firewall blocks these ports and prevents the computer from receiving Plug and Play messages.</description>
+                        <oval_repository>
+                              <dates>
+                                    <submitted date="2007-06-26T17:43:08.000-05:00">
+                                          <contributor organization="Secure Elements, Inc.">Sudhir Gandhe</contributor>
+                                    </submitted>
+                              </dates>
+                              <status>DRAFT</status>
+                        </oval_repository>
+                  </metadata>
+                  <criteria operator="AND">
+                        <criteria operator="OR">
+                              <extend_definition comment="Microsoft Windows XP SP2" definition_ref="oval:org.mitre.oval:def:754"/>
+                              <extend_definition comment="Microsoft Windows XP SP3" definition_ref="oval:org.mitre.oval:def:5631"/>
+                        </criteria>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\Services\UPnPFramework!Enabled  exists" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:51081"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\Services\UPnPFrameworkt!Enabled  is set to the variable defined in the profile" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:51082"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.xpfirewall:def:5101" version="1" class="compliance">
+                  <metadata>
+                        <title>Do not allow exceptions - Standard Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows XP</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3179-9"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-440"/>
+                        <description>The Windows Firewall: Do not allow exceptions setting specifies that Windows Firewall blocks all unsolicited incoming messages. This policy setting overrides all other Windows Firewall policy settings that allow such messages. If you enable this policy setting in the Windows Firewall component of Control Panel, the Don't allow exceptions check box is selected and administrators cannot clear it. Many environments contain applications and services that must be allowed to receive inbound unsolicited communications as part of their normal operation. In those cases, you may need to consider configuring this policy to Disabled to allow those applications and services to run properly. However, before making any change to this policy, you should test the environment to determine exactly what to allow and what to disallow. Note: This setting provides a strong defense against external attackers and should be set to Enabled in situations where you require
+                              complete protection from external attacks such as the outbreak of a new network worm. Setting this policy to Disabled allows Windows Firewall to apply other policy settings that allow unsolicited incoming messages.</description>
+                        <oval_repository>
+                              <dates>
+                                    <submitted date="2007-06-26T17:43:08.000-05:00">
+                                          <contributor organization="Secure Elements, Inc.">Sudhir Gandhe</contributor>
+                                    </submitted>
+                              </dates>
+                              <status>DRAFT</status>
+                        </oval_repository>
+                  </metadata>
+                  <criteria operator="AND">
+                        <criteria operator="OR">
+                              <extend_definition comment="Microsoft Windows XP SP2" definition_ref="oval:org.mitre.oval:def:754"/>
+                              <extend_definition comment="Microsoft Windows XP SP3" definition_ref="oval:org.mitre.oval:def:5631"/>
+                        </criteria>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile!DoNotAllowExceptions exists" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:51011"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile!DoNotAllowExceptions is set to the variable defined in the profile" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:51012"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.xpfirewall:def:5109" version="1" class="compliance">
+                  <metadata>
+                        <title>Prohibit notification - Standard Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows XP</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3134-4"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-901"/>
+                        <description>Windows Firewall can display notifications to users when a program requests that Windows Firewall add the program to the program exceptions list. This situation occurs when programs attempt to open a port and are not allowed to do so based on current Windows Firewall rules. The Windows Firewall: Prohibit notifications setting configures whether these settings are shown to the users. If you set this policy to Enabled, Windows Firewall prevents the display of these notifications. If you set it to Disabled, Windows Firewall allows the display of these notifications.</description>
+                        <oval_repository>
+                              <dates>
+                                    <submitted date="2007-06-26T17:43:08.000-05:00">
+                                          <contributor organization="Secure Elements, Inc.">Sudhir Gandhe</contributor>
+                                    </submitted>
+                              </dates>
+                              <status>DRAFT</status>
+                        </oval_repository>
+                  </metadata>
+                  <criteria operator="AND">
+                        <criteria operator="OR">
+                              <extend_definition comment="Microsoft Windows XP SP2" definition_ref="oval:org.mitre.oval:def:754"/>
+                              <extend_definition comment="Microsoft Windows XP SP3" definition_ref="oval:org.mitre.oval:def:5631"/>
+                        </criteria>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile!DisableNotifications  exists" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:51091"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile!DisableNotifications  is set to the variable defined in the profile" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:51092"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.xpfirewall:def:5111" version="1" class="compliance">
+                  <metadata>
+                        <title>Prohibit unicast response to multicast or broadcast requests - Standard Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows XP</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3103-9"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-632"/>
+                        <description>The Windows Firewall: Prohibit unicast response to multicast or broadcast requests setting prevents a computer from receiving unicast responses to its outgoing multicast or broadcast messages. When this policy setting is enabled and the computer sends multicast or broadcast messages to other computers, Windows Firewall blocks the unicast responses sent by those other computers. When the setting is disabled and this computer sends a multicast or broadcast message to other computers, Windows Firewall waits up to three seconds for unicast responses from the other computers and then blocks all later responses. Typically, you would not want to receive unicast responses to multicast or broadcast messages. Such responses can indicate a denial of service (DoS) attack or an attacker attempting to probe a known live computer. This appendix recommends you configure this policy setting to Enabled to help prevent this type of attack. Note: This policy setting
+                              has no effect if the unicast message is a response to a Dynamic Host Configuration Protocol (DHCP) broadcast message sent by the computer. Windows Firewall always permits those DHCP unicast responses. However, this policy setting can interfere with the NetBIOS messages that detect name conflicts.</description>
+                        <oval_repository>
+                              <dates>
+                                    <submitted date="2007-06-26T17:43:08.000-05:00">
+                                          <contributor organization="Secure Elements, Inc.">Sudhir Gandhe</contributor>
+                                    </submitted>
+                              </dates>
+                              <status>DRAFT</status>
+                        </oval_repository>
+                  </metadata>
+                  <criteria operator="AND">
+                        <criteria operator="OR">
+                              <extend_definition comment="Microsoft Windows XP SP2" definition_ref="oval:org.mitre.oval:def:754"/>
+                              <extend_definition comment="Microsoft Windows XP SP3" definition_ref="oval:org.mitre.oval:def:5631"/>
+                        </criteria>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile!DisableUnicastResponsesToMulticastBroadcast  exists" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:51111"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile!DisableUnicastResponsesToMulticastBroadcast  is set to the variable defined in the profile" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:51112"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:gov.nist.fdcc.xpfirewall:def:5100" version="1" class="compliance">
+                  <metadata>
+                        <title>Protect all Network Connections - Standard Profile</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows XP</platform>
+                        </affected>
+                        <reference source="http://cce.mitre.org" ref_id="CCE-3284-7"/>
+                        <reference source="cce.mitre.org/version/4" ref_id="CCE-273"/>
+                        <description>The Windows Firewall: Protect all network connections setting turns on Windows Firewall, which replaces Internet Connection Firewall on all computers that are running Windows XP SP2. This appendix recommends configuring this setting to Enabled to protect all network connections for computers in all environments. If this setting is configured as Disabled, Windows Firewall is turned off and all other settings for Windows Firewall are ignored. Note: If you enable this policy setting, Windows Firewall runs and ignores the Computer Configuration\Administrative Templates\Network\Network Connections\Prohibit use of Internet Connection Firewall on your DNS domain network policy setting.</description>
+                        <oval_repository>
+                              <dates>
+                                    <submitted date="2007-06-26T17:43:08.000-05:00">
+                                          <contributor organization="Secure Elements, Inc.">Sudhir Gandhe</contributor>
+                                    </submitted>
+                              </dates>
+                              <status>DRAFT</status>
+                        </oval_repository>
+                  </metadata>
+                  <criteria operator="AND">
+                        <criteria operator="OR">
+                              <extend_definition comment="Microsoft Windows XP SP2" definition_ref="oval:org.mitre.oval:def:754"/>
+                              <extend_definition comment="Microsoft Windows XP SP3" definition_ref="oval:org.mitre.oval:def:5631"/>
+                        </criteria>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile!EnableFirewall exists" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:51001"/>
+                        <criterion comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile!EnableFirewall is set to the variable defined in the profile" test_ref="oval:gov.nist.fdcc.xpfirewall:tst:51002"/>
+                  </criteria>
+            </definition>
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~  EXTENDED DEFINITIONS  ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <definition id="oval:org.mitre.oval:def:754" version="2" class="inventory">
+                  <metadata>
+                        <title>Microsoft Windows XP SP2 is installed</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows XP</platform>
+                        </affected>
+                        <reference source="CPE" ref_id="cpe:/o:microsoft:windows_xp::sp2:x86"/>
+                        <description>A version of Microsoft Windows XP (x86) Service Pack 2 is installed.</description>
+                        <oval_repository>
+                              <dates>
+                                    <submitted date="2007-03-05T09:00:00">
+                                          <contributor organization="The MITRE Corporation">Andrew Buttner</contributor>
+                                    </submitted>
+                                    <status_change date="2007-03-05T09:00:00">DRAFT</status_change>
+                                    <status_change date="2007-03-21T16:17:26.869-04:00">INTERIM</status_change>
+                                    <status_change date="2007-04-10T13:44:28.583-04:00">ACCEPTED</status_change>
+                                    <modified comment="Changed the CPE reference" date="2008-04-04T11:17:00.434-04:00">
+                                          <contributor organization="The MITRE Corporation">Andrew Buttner</contributor>
+                                    </modified>
+                                    <status_change date="2008-04-04T11:29:22.458-04:00">INTERIM</status_change>
+                                    <status_change date="2008-04-21T04:00:24.359-04:00">ACCEPTED</status_change>
+                              </dates>
+                              <status>ACCEPTED</status>
+                        </oval_repository>
+                  </metadata>
+                  <criteria operator="AND">
+                        <criterion comment="the installed operating system is part of the Microsoft Windows family" test_ref="oval:org.mitre.oval:tst:99"/>
+                        <criterion comment="a version of Microsoft Windows XP is installed" test_ref="oval:org.mitre.oval:tst:3"/>
+                        <criterion comment="Win2K/XP/2003 service pack 2 is installed" test_ref="oval:org.mitre.oval:tst:3019"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:org.mitre.oval:def:5631" version="0" class="inventory">
+                  <metadata>
+                        <title>Microsoft Windows XP SP3 is installed</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows XP</platform>
+                        </affected>
+                        <reference source="CPE" ref_id="cpe:/o:microsoft:windows_xp::sp3:x86"/>
+                        <description>A version of Microsoft Windows XP (x86) Service Pack 3 is installed.</description>
+                        <oval_repository>
+                              <dates>
+                                    <submitted date="2008-06-10T14:50:00">
+                                          <contributor organization="Secure Elements, Inc.">Sudhir Gandhe</contributor>
+                                    </submitted>
+                                    <status_change date="2008-06-12T13:58:47.155-04:00">DRAFT</status_change>
+                              </dates>
+                              <status>DRAFT</status>
+                        </oval_repository>
+                  </metadata>
+                  <criteria operator="AND">
+                        <criterion comment="the installed operating system is part of the Microsoft Windows family" test_ref="oval:org.mitre.oval:tst:99"/>
+                        <criterion comment="a version of Microsoft Windows XP is installed" test_ref="oval:org.mitre.oval:tst:3"/>
+                        <criterion comment="Win2K/XP/2003 service pack 3 is installed" test_ref="oval:org.mitre.oval:tst:7814"/>
+                  </criteria>
+            </definition>
+      </definitions>
+      <!-- ==================================================================================================== -->
+      <!-- ============================================  TESTS  =============================================== -->
+      <!-- ==================================================================================================== -->
+      <tests>
+            <family_test id="oval:org.mitre.oval:tst:99" version="1" comment="the installed operating system is part of the Microsoft Windows family" check_existence="at_least_one_exists" check="only one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+                  <object object_ref="oval:org.mitre.oval:obj:99"/>
+                  <state state_ref="oval:org.mitre.oval:ste:99"/>
+            </family_test>
+            <registry_test id="oval:org.mitre.oval:tst:3" version="1" comment="a version of Microsoft Windows XP is installed" check_existence="at_least_one_exists" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+                  <object object_ref="oval:org.mitre.oval:obj:123"/>
+                  <state state_ref="oval:org.mitre.oval:ste:3"/>
+            </registry_test>
+            <registry_test id="oval:org.mitre.oval:tst:3019" version="1" comment="Win2K/XP/2003 service pack 2 is installed" check_existence="at_least_one_exists" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+                  <object object_ref="oval:org.mitre.oval:obj:717"/>
+                  <state state_ref="oval:org.mitre.oval:ste:2827"/>
+            </registry_test>
+            <registry_test id="oval:org.mitre.oval:tst:7814" version="1" comment="Win2K/XP/2003 service pack 3 is installed" check_existence="at_least_one_exists" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+                  <object object_ref="oval:org.mitre.oval:obj:717"/>
+                  <state state_ref="oval:org.mitre.oval:ste:3794"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50001" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile!EnableFirewall exists" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50001"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50002" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile!EnableFirewall is set to the variable defined in the profile" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50001"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:50002"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50031" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\AuthorizedApplications!AllowUserPrefMerge  exists" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50031"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50032" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\AuthorizedApplications!AllowUserPrefMerge  is set to the variable defined in the profile" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50031"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:50032"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50041" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\RemoteAdminSettings!Enabled  exists" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50041"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50042" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\RemoteAdminSettings!Enabled  is set to the variable defined in the profile" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50041"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:50042"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50051" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Services\FileAndPrint!Enabled  exists" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50051"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50052" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Services\FileAndPrint!Enabled  is set to the variable defined in the profile" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50051"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:50052"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50061" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings!AllowInboundEchoRequest is set to 1" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50061"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:50061"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50062" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings!AllowInboundMaskRequest is set to 0" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50062"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:50062"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50063" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings!AllowInboundRouterRequest is set to 0" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50063"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:50062"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50064" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings!AllowInboundTimestampRequest is set to 0" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50064"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:50062"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50065" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings!AllowOutboundDestinationUnreachable is set to 0" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50065"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:50062"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50066" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings!AllowOutboundPacketTooBig is set to 0" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50066"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:50062"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50067" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings!AllowOutboundParameterProblem is set to 0" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50067"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:50062"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50068" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings!AllowOutboundSourceQuench is set to 0" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50068"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:50062"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50069" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings!AllowOutboundTimeExceeded is set to 0" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50069"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:50062"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50060" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings!AllowRedirect is set to 0" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50060"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:50062"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50071" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Services\RemoteDesktop!Enabled  exists" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50071"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50072" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Services\RemoteDesktop!Enabled  is set to the variable defined in the profile" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50071"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:50072"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50081" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Services\UPnPFramework!Enabled  exists" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50081"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50082" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Services\UPnPFrameworkt!Enabled  is set to the variable defined in the profile" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50081"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:50082"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50085" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\GloballyOpenPorts!Enabled  exists" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50085"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50091" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile!DisableNotifications  exists" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50091"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50092" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile!DisableNotifications  is set to the variable defined in the profile" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50091"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:50092"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50111" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile!DisableUnicastResponsesToMulticastBroadcast  exists" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50111"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50112" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile!DisableUnicastResponsesToMulticastBroadcast  is set to the variable defined in the profile" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50111"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:50112"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50131" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\GloballyOpenPorts!AllowUserPrefMerge  exists" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50131"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50132" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\GloballyOpenPorts!AllowUserPrefMerge  is set to the variable defined in the profile" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50131"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:50132"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50141" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging!LogDroppedPackets  exists" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50141"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50142" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging!LogDroppedPackets  is set to the variable defined in the profile" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50141"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:50142"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50151" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging!LogSuccessfulConnections  exists" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50151"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50152" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging!LogSuccessfulConnections  is set to the variable defined in the profile" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50151"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:50152"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50161" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging!LogFileSize  exists" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50161"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50162" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging!LogFileSize  is set to the variable defined in the profile" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50161"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:50162"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50171" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging!LogFilePath  exists" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50171"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:50172" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging!LogFilePath  is set to the variable defined in the profile" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:50171"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:50172"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:51001" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile!EnableFirewall exists" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:51001"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:51002" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile!EnableFirewall is set to the variable defined in the profile" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:51001"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:51002"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:51011" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile!DoNotAllowExceptions exists" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:51011"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:51012" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile!DoNotAllowExceptions is set to the variable defined in the profile" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:51011"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:51012"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:51031" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\AuthorizedApplications!AllowUserPrefMerge  exists" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:51031"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:51032" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\AuthorizedApplications!AllowUserPrefMerge  is set to the variable defined in the profile" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:51031"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:51032"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:51041" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\RemoteAdminSetting!Enabled  exists" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:51041"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:51042" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\RemoteAdminSetting!Enabled  is set to the variable defined in the profile" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:51041"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:51042"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:51051" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\Services\FileAndPrint!Enabled  exists" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:51051"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:51052" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\Services\FileAndPrint!Enabled  is set to the variable defined in the profile" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:51051"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:51052"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:51061" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings!AllowInboundEchoRequest is set to 1" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:51061"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:51061"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:51062" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings!AllowInboundMaskRequest is set to 0" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:51062"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:51062"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:51063" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings!AllowInboundRouterRequest is set to 0" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:51063"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:51062"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:51064" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings!AllowInboundTimestampRequest is set to 0" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:51064"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:51062"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:51065" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings!AllowOutboundDestinationUnreachable is set to 0" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:51065"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:51062"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:51066" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings!AllowOutboundPacketTooBig is set to 0" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:51066"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:51062"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:51067" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings!AllowOutboundParameterProblem is set to 0" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:51067"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:51062"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:51068" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings!AllowOutboundSourceQuench is set to 0" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:51068"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:51062"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:51069" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings!AllowOutboundTimeExceeded is set to 0" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:51069"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:51062"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:51060" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings!AllowRedirect is set to 0" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:51060"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:51062"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:51071" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\Services\RemoteDesktop!Enabled  exists" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:51071"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:51072" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\Services\RemoteDesktop!Enabled  is set to the variable defined in the profile" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:51071"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:51072"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:51081" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\Services\UPnPFramework!Enabled  exists" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:51081"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:51082" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\Services\UPnPFrameworkt!Enabled  is set to the variable defined in the profile" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:51081"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:51082"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:51091" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile!DisableNotifications  exists" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:51091"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:51092" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile!DisableNotifications  is set to the variable defined in the profile" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:51091"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:51092"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:51111" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile!DisableUnicastResponsesToMulticastBroadcast  exists" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:51111"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:51112" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile!DisableUnicastResponsesToMulticastBroadcast  is set to the variable defined in the profile" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:51111"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:51112"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:51131" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\GloballyOpenPorts!AllowUserPrefMerge  exists" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:51131"/>
+            </registry_test>
+            <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:tst:51132" version="1" comment="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\GloballyOpenPorts!AllowUserPrefMerge  is set to the variable defined in the profile" check_existence="at_least_one_exists" check="all">
+                  <object object_ref="oval:gov.nist.fdcc.xpfirewall:obj:51131"/>
+                  <state state_ref="oval:gov.nist.fdcc.xpfirewall:ste:51132"/>
+            </registry_test>
+      </tests>
+      <!-- ==================================================================================================== -->
+      <!-- ===========================================  OBJECTS  ============================================== -->
+      <!-- ==================================================================================================== -->
+      <objects>
+            <family_object id="oval:org.mitre.oval:obj:99" version="1" comment="This is the default family object. Only one family object should exist." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"/>
+            <registry_object id="oval:org.mitre.oval:obj:717" version="1" comment="This registry key holds the service pack installed on the host if one is present." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Microsoft\Windows NT\CurrentVersion</key>
+                  <name>CSDVersion</name>
+            </registry_object>
+            <registry_object id="oval:org.mitre.oval:obj:123" version="1" comment="Registry key that hold the current windows os version" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Microsoft\Windows NT\CurrentVersion</key>
+                  <name>CurrentVersion</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:50001" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile</key>
+                  <name>EnableFirewall</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:50031" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\AuthorizedApplications</key>
+                  <name>AllowUserPrefMerge</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:50041" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\RemoteAdminSettings</key>
+                  <name>Enabled</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:50051" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Services\FileAndPrint</key>
+                  <name>Enabled</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:50061" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings</key>
+                  <name>AllowInboundEchoRequest</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:50062" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings</key>
+                  <name>AllowInboundMaskRequest</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:50063" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings</key>
+                  <name>AllowInboundRouterRequest</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:50064" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings</key>
+                  <name>AllowInboundTimestampRequest</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:50065" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings</key>
+                  <name>AllowOutboundDestinationUnreachable</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:50066" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings</key>
+                  <name>AllowOutboundPacketTooBig</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:50067" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings</key>
+                  <name>AllowOutboundParameterProblem</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:50068" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings</key>
+                  <name>AllowOutboundSourceQuench</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:50069" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings</key>
+                  <name>AllowOutboundTimeExceeded</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:50060" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings</key>
+                  <name>AllowRedirect</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:50071" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Services\RemoteDesktop</key>
+                  <name>Enabled</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:50081" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Services\UPnPFramework</key>
+                  <name>Enabled</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:50085" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\GloballyOpenPorts</key>
+                  <name>Enabled</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:50091" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile</key>
+                  <name>DisableNotifications</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:50111" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile</key>
+                  <name>DisableUnicastResponsesToMulticastBroadcast</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:50131" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\GloballyOpenPorts</key>
+                  <name>AllowUserPrefMerge</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:50141" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging</key>
+                  <name>LogDroppedPackets</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:50151" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging</key>
+                  <name>LogSuccessfulConnections</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:50161" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging</key>
+                  <name>LogFileSize</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:50171" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging</key>
+                  <name>LogFilePath</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:51001" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile</key>
+                  <name>EnableFirewall</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:51011" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile</key>
+                  <name>DoNotAllowExceptions</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:51031" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\AuthorizedApplications</key>
+                  <name>AllowUserPrefMerge</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:51041" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\RemoteAdminSettings</key>
+                  <name>Enabled</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:51051" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\Services\FileAndPrint</key>
+                  <name>Enabled</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:51061" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings</key>
+                  <name>AllowInboundEchoRequest</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:51062" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings</key>
+                  <name>AllowInboundMaskRequest</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:51063" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings</key>
+                  <name>AllowInboundRouterRequest</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:51064" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings</key>
+                  <name>AllowInboundTimestampRequest</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:51065" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings</key>
+                  <name>AllowOutboundDestinationUnreachable</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:51066" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings</key>
+                  <name>AllowOutboundPacketTooBig</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:51067" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings</key>
+                  <name>AllowOutboundParameterProblem</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:51068" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings</key>
+                  <name>AllowOutboundSourceQuench</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:51069" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings</key>
+                  <name>AllowOutboundTimeExceeded</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:51060" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings</key>
+                  <name>AllowRedirect</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:51071" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\Services\RemoteDesktop</key>
+                  <name>Enabled</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:51081" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\Services\UPnPFramework</key>
+                  <name>Enabled</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:51091" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile</key>
+                  <name>DisableNotifications</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:51111" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile</key>
+                  <name>DisableUnicastResponsesToMulticastBroadcast</name>
+            </registry_object>
+            <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:obj:51131" version="1">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\GloballyOpenPorts</key>
+                  <name>AllowUserPrefMerge</name>
+            </registry_object>
+      </objects>
+      <!-- ==================================================================================================== -->
+      <!-- =============================================  STATES  ============================================= -->
+      <!-- ==================================================================================================== -->
+      <states>
+            <family_state id="oval:org.mitre.oval:ste:99" version="1" comment="Microsoft Windows family" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+                  <family>windows</family>
+            </family_state>
+            <registry_state id="oval:org.mitre.oval:ste:2827" version="1" comment="The registry key has a value of Service Pack 2" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+                  <value>Service Pack 2</value>
+            </registry_state>
+            <registry_state id="oval:org.mitre.oval:ste:3" version="1" comment="The registry key has a value of 5.1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+                  <value>5.1</value>
+            </registry_state>
+            <registry_state id="oval:org.mitre.oval:ste:3794" version="1" comment="The registry key has a value of Service Pack 3" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+                  <value>Service Pack 3</value>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:ste:50002" version="1">
+                  <type>reg_dword</type>
+                  <value datatype="int" var_ref="oval:gov.nist.fdcc.xpfirewall:var:50001"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:ste:50032" version="1">
+                  <type>reg_dword</type>
+                  <value datatype="int" var_ref="oval:gov.nist.fdcc.xpfirewall:var:50031"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:ste:50042" version="1">
+                  <type>reg_dword</type>
+                  <value datatype="int" var_ref="oval:gov.nist.fdcc.xpfirewall:var:50041"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:ste:50052" version="1">
+                  <type>reg_dword</type>
+                  <value datatype="int" var_ref="oval:gov.nist.fdcc.xpfirewall:var:50051"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:ste:50061" version="1">
+                  <type>reg_dword</type>
+                  <value datatype="int">1</value>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:ste:50062" version="1">
+                  <type>reg_dword</type>
+                  <value datatype="int">0</value>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:ste:50072" version="1">
+                  <type>reg_dword</type>
+                  <value datatype="int" var_ref="oval:gov.nist.fdcc.xpfirewall:var:50071"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:ste:50082" version="1">
+                  <type>reg_dword</type>
+                  <value datatype="int" var_ref="oval:gov.nist.fdcc.xpfirewall:var:50081"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:ste:50092" version="1">
+                  <type>reg_dword</type>
+                  <value datatype="int" var_ref="oval:gov.nist.fdcc.xpfirewall:var:50091"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:ste:50112" version="1">
+                  <type>reg_dword</type>
+                  <value datatype="int" var_ref="oval:gov.nist.fdcc.xpfirewall:var:50111"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:ste:50132" version="1">
+                  <type>reg_dword</type>
+                  <value datatype="int" var_ref="oval:gov.nist.fdcc.xpfirewall:var:50131"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:ste:50142" version="1">
+                  <type>reg_dword</type>
+                  <value datatype="int" var_ref="oval:gov.nist.fdcc.xpfirewall:var:50141"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:ste:50152" version="1">
+                  <type>reg_dword</type>
+                  <value datatype="int" var_ref="oval:gov.nist.fdcc.xpfirewall:var:50151"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:ste:50162" version="1">
+                  <type>reg_dword</type>
+                  <value datatype="int" operation="greater than or equal" var_ref="oval:gov.nist.fdcc.xpfirewall:var:50161"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:ste:50172" version="1">
+                  <type>reg_sz</type>
+                  <value datatype="string" var_ref="oval:gov.nist.fdcc.xpfirewall:var:50171"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:ste:51002" version="1">
+                  <type>reg_dword</type>
+                  <value datatype="int" var_ref="oval:gov.nist.fdcc.xpfirewall:var:51001"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:ste:51012" version="1">
+                  <type>reg_dword</type>
+                  <value datatype="int" var_ref="oval:gov.nist.fdcc.xpfirewall:var:51011"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:ste:51032" version="1">
+                  <type>reg_dword</type>
+                  <value datatype="int" var_ref="oval:gov.nist.fdcc.xpfirewall:var:51031"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:ste:51042" version="1">
+                  <type>reg_dword</type>
+                  <value datatype="int" var_ref="oval:gov.nist.fdcc.xpfirewall:var:51041"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:ste:51052" version="1">
+                  <type>reg_dword</type>
+                  <value datatype="int" var_ref="oval:gov.nist.fdcc.xpfirewall:var:51051"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:ste:51061" version="1">
+                  <type>reg_dword</type>
+                  <value datatype="int">0</value>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:ste:51062" version="1">
+                  <type>reg_dword</type>
+                  <value datatype="int">0</value>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:ste:51072" version="1">
+                  <type>reg_dword</type>
+                  <value datatype="int" var_ref="oval:gov.nist.fdcc.xpfirewall:var:51071"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:ste:51082" version="1">
+                  <type>reg_dword</type>
+                  <value datatype="int" var_ref="oval:gov.nist.fdcc.xpfirewall:var:51081"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:ste:51092" version="1">
+                  <type>reg_dword</type>
+                  <value datatype="int" var_ref="oval:gov.nist.fdcc.xpfirewall:var:51091"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:ste:51112" version="1">
+                  <type>reg_dword</type>
+                  <value datatype="int" var_ref="oval:gov.nist.fdcc.xpfirewall:var:51111"/>
+            </registry_state>
+            <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:gov.nist.fdcc.xpfirewall:ste:51132" version="1">
+                  <type>reg_dword</type>
+                  <value datatype="int" var_ref="oval:gov.nist.fdcc.xpfirewall:var:51131"/>
+            </registry_state>
+      </states>
+      <!-- ==================================================================================================== -->
+      <!-- ===========================================  VARIABLES  ============================================ -->
+      <!-- ==================================================================================================== -->
+      <variables>
+            <external_variable id="oval:gov.nist.fdcc.xpfirewall:var:50001" version="1" comment="Protect all Network Connections - Domain Profile" datatype="int"/>
+            <external_variable id="oval:gov.nist.fdcc.xpfirewall:var:50031" version="1" comment="Allow local program exceptions - Domain Profile" datatype="int"/>
+            <external_variable id="oval:gov.nist.fdcc.xpfirewall:var:50041" version="1" comment="Allow remote administration exceptions - Domain Profile" datatype="int"/>
+            <external_variable id="oval:gov.nist.fdcc.xpfirewall:var:50051" version="1" comment="Allow file and print sharing exception - Domain Profile" datatype="int"/>
+            <external_variable id="oval:gov.nist.fdcc.xpfirewall:var:50071" version="1" comment="Allow Remote Desktop exception - Domain Profile" datatype="int"/>
+            <external_variable id="oval:gov.nist.fdcc.xpfirewall:var:50081" version="1" comment="Allow UPnP framework exception - Domain Profile" datatype="int"/>
+            <external_variable id="oval:gov.nist.fdcc.xpfirewall:var:50091" version="1" comment="Prohibit notification - Domain Profile" datatype="int"/>
+            <external_variable id="oval:gov.nist.fdcc.xpfirewall:var:50111" version="1" comment="Prohibit unicast response to multicast or broadcast requests - Domain Profile" datatype="int"/>
+            <external_variable id="oval:gov.nist.fdcc.xpfirewall:var:50131" version="1" comment="Allow local port exceptions - Domain Profile" datatype="int"/>
+            <external_variable id="oval:gov.nist.fdcc.xpfirewall:var:50141" version="1" comment="Allow Logging: Log Dropped Packets - Domain Profile" datatype="int"/>
+            <external_variable id="oval:gov.nist.fdcc.xpfirewall:var:50151" version="1" comment="Allow Logging: Log Successful Connections - Domain Profile" datatype="int"/>
+            <external_variable id="oval:gov.nist.fdcc.xpfirewall:var:50161" version="1" comment="Allow Logging: Log File Size - Domain Profile" datatype="int"/>
+            <external_variable id="oval:gov.nist.fdcc.xpfirewall:var:50171" version="1" comment="Allow Logging: Log File Path - Domain Profile" datatype="string"/>
+            <external_variable id="oval:gov.nist.fdcc.xpfirewall:var:51001" version="1" comment="Protect all Network Connections - Standard Profile" datatype="int"/>
+            <external_variable id="oval:gov.nist.fdcc.xpfirewall:var:51011" version="1" comment="Do not allow exceptions - Standard Profile" datatype="int"/>
+            <external_variable id="oval:gov.nist.fdcc.xpfirewall:var:51031" version="1" comment="Allow local program exceptions - Standard Profile" datatype="int"/>
+            <external_variable id="oval:gov.nist.fdcc.xpfirewall:var:51041" version="1" comment="Allow remote administration exceptions - Standard Profile" datatype="int"/>
+            <external_variable id="oval:gov.nist.fdcc.xpfirewall:var:51051" version="1" comment="Allow file and print sharing exception - Standard Profile" datatype="int"/>
+            <external_variable id="oval:gov.nist.fdcc.xpfirewall:var:51071" version="1" comment="Allow Remote Desktop exception - Standard Profile" datatype="int"/>
+            <external_variable id="oval:gov.nist.fdcc.xpfirewall:var:51081" version="1" comment="Allow UPnP framework exception - Standard Profile" datatype="int"/>
+            <external_variable id="oval:gov.nist.fdcc.xpfirewall:var:51091" version="1" comment="Prohibit notification - Standard Profile" datatype="int"/>
+            <external_variable id="oval:gov.nist.fdcc.xpfirewall:var:51111" version="1" comment="Prohibit unicast response to multicast or broadcast requests - Standard Profile" datatype="int"/>
+            <external_variable id="oval:gov.nist.fdcc.xpfirewall:var:51131" version="1" comment="Allow local port exceptions - Standard Profile" datatype="int"/>
+      </variables>
+      <!-- ==================================================================================================== -->
+      <!-- ==================================================================================================== -->
+      <!-- ==================================================================================================== -->
+</oval_definitions>

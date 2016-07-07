@@ -1,0 +1,2340 @@
+<html xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:req="http://scap.nist.gov/schema/validation/requirements/0.2" xmlns:xcf="nist:scap:xslt:function">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>SCAP Version 1.1 Requirements Matrix</title>
+   </head>
+   <body>
+      <p>This table provides a matrix of SCAP content requirements is provided implemented in the SCAP Content Validation tool v1.1.
+         The matrix indicates which requirements are checked by SCAP Content Validation tool. The section numbers in the matrix refer
+         to SP 800-126 Rev 1 which is available
+         <a xmlns:xls="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:mse="ms:office:2007:excel" href="http://csrc.nist.gov/publications/PubsSPs.html#800-126r1">here</a>
+         .
+      </p>
+      <table border="1" cellpadding="5">
+         <tr>
+            <th colspan="8">
+               <h2>GENERAL</h2>
+            </th>
+         </tr>
+         <tr>
+            <th>Requirement ID</th>
+            <th>800-126 Section</th>
+            <th>800-126 Statement</th>
+            <th>800-126 Derived Requirement</th>
+            <th>Requirement Type</th>
+            <th>Error Level</th>
+            <th>Requirement Category</th>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">2</td>
+            <td rowspan="1" align="center">3.2.1</td>
+            <td rowspan="1">The following general restrictions apply to SCAP XCCDF content:~The &lt;xccdf:Benchmark&gt; element SHALL have an @xml:lang attribute.~~If
+               an @xml:lang attribute is omitted within the content model, the @xml:lang attribute of the nearest ancestor element that has
+               the attribute defined SHALL be consulted. Possible ancestor elements are &lt;xccdf:Value&gt;, &lt;xccdf:Group&gt;, &lt;xccdf:Rule&gt;, and &lt;xccdf:Benchmark&gt;.
+            </td>
+            <td>@xml:lang attribute SHALL be provided on &lt;xccdf:Benchmark&gt; elements.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">3</td>
+            <td rowspan="1" align="center">3.2.3</td>
+            <td rowspan="1">The following requirements and recommendations apply to the &lt;xccdf:Benchmark&gt; element:~The REQUIRED @id attribute SHALL be
+               used to uniquely identify all revisions of a benchmark. Multiple revisions of a single benchmark SHOULD have identical identifiers,
+               so that someone who reviews the revisions can readily identify them as multiple versions of a single benchmark.
+            </td>
+            <td>The following requirements and recommendations apply to the &lt;xccdf:Benchmark&gt; element:~The REQUIRED @id attribute SHALL be
+               used to uniquely identify all revisions of a benchmark. Multiple revisions of a single benchmark SHOULD have identical identifiers,
+               so that someone who reviews the revisions can readily identify them as multiple versions of a single benchmark.
+            </td>
+            <td align="center">NOT_CHECKED</td>
+            <td align="center">NA</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">4</td>
+            <td rowspan="1" align="center">3.2.3</td>
+            <td rowspan="1">The following requirements and recommendations apply to the &lt;xccdf:Benchmark&gt; element:~The @style attribute SHALL have the
+               value “SCAP_1.1”.
+            </td>
+            <td>The style attribute of the &lt;xccdf:Benchmark&gt; element SHALL contain the value "SCAP_1.1".</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="2" align="center">5</td>
+            <td rowspan="2" align="center">3.2.3</td>
+            <td rowspan="2">The following requirements and recommendations apply to the &lt;xccdf:Benchmark&gt; element:~The &lt;xccdf:status&gt; element SHALL indicate
+               the current status of the benchmark document. The associated text value SHALL be “draft” for documents released in public
+               draft state and “accepted” for documents that have been officially released by an organization. The @date attribute SHALL
+               be populated with the date of the status change. Additional &lt;xccdf:status&gt; elements MAY be included to indicate historic status
+               transitions.
+            </td>
+            <td>The &lt;xccdf:status&gt; element SHALL have value 'draft' or 'accepted'</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+            <tr>
+               <td>The "date" attribute of the &lt;xccdf:status&gt; element SHALL be populated with the date of the last status change.</td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+         </tr>
+         <tr>
+            <td rowspan="3" align="center">6</td>
+            <td rowspan="3" align="center">3.2.3</td>
+            <td rowspan="3">The following requirements and recommendations apply to the &lt;xccdf:Benchmark&gt; element:~The &lt;xccdf:version&gt; element SHALL uniquely
+               identify the particular revision of the benchmark. Also, these revisions SHOULD have version values that indicate the revision
+               sequence, so that the history of changes from the original benchmark can be determined. The @time attribute of the &lt;xccdf:version&gt;
+               element SHOULD be used for a timestamp of when the benchmark was defined. The @update attribute of the &lt;xccdf:version&gt; element
+               SHOULD be used for a URI that specifies where updates to the benchmark can be obtained.
+            </td>
+            <td>The &lt;xccdf:version&gt; SHALL be provided on the &lt;xccdf:Benchmark&gt; element.</td>
+            <td align="center">SCHEMA</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+            <tr>
+               <td>The @time attribute should be provided on the &lt;xccdf:version&gt; element.</td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">WARNING</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+            <tr>
+               <td>The @update attribute should be provided on the &lt;xccdf:version&gt; element.</td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">WARNING</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+         </tr>
+         <tr>
+            <td rowspan="3" align="center">8</td>
+            <td rowspan="3" align="center">3.2.3</td>
+            <td rowspan="3">The following requirements and recommendations apply to the &lt;xccdf:Benchmark&gt; element:~The &lt;xccdf:metadata&gt; element SHALL
+               be provided and SHALL, at minimum, contain the Dublin Core terms from Table 3. Additional Dublin Core terms SHALL follow the
+               required terms within the element sequence.~Table 3. Use of Dublin Core Terms in XCCDF Metadata~Dublin Core Term~Description
+               of Use~~&lt;dc:creator&gt;~The person, organization, and/or service that created the XCCDF XML instance~~&lt;dc:publisher&gt;~The person,
+               organization, and/or service that published the XCCDF XML instance~~&lt;dc:contributor&gt;~The person, organization, and/or service
+               that contributed to the creation of the XCCDF XML instance~~&lt;dc:source&gt;~An identifier that indicates the organizational context
+               of the &lt;xccdf:Benchmark&gt; element’s @id attribute. An organizationally specific URI SHOULD be used.~~
+            </td>
+            <td>xccdf:Benchmark/xccdf:metadata SHALL contain, at minimum, one of each of the Dublin Core terms &lt;dc:creator&gt;, &lt;dc:publisher&gt;,
+               &lt;dc:contributor&gt;, &lt;dc:source&gt;
+            </td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+            <tr>
+               <td>The &lt;xccdf:metadata&gt; element SHALL be provided in the &lt;xccdf:Benchmark&gt; element.</td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+            <tr>
+               <td>xccdf:metadata/dc:source SHOULD contain a URI as defined in RFC 2396</td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">WARNING</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+         </tr>
+         <tr>
+            <td rowspan="2" align="center">9</td>
+            <td rowspan="2" align="center">3.2.1</td>
+            <td rowspan="2">The following metadata requirements and conventions apply to the &lt;xccdf:Benchmark&gt;, &lt;xccdf:Profile&gt;, &lt;xccdf:Value&gt;, &lt;xccdf:Group&gt;,
+               and &lt;xccdf:Rule&gt; elements:~One or more instances of the &lt;xccdf:title&gt; element SHALL be provided. Each instance MUST contain
+               a text value that indicates the purpose of the containing element and MAY include the OPTIONAL @xml:lang attribute. If more
+               than one &lt;xccdf:title&gt; element is provided, the @xml:lang attribute SHALL be provided.
+            </td>
+            <td>For all XCCDF Benchmark, Profile, Value, Group, and Rule, check for the existence of &lt;xccdf:title&gt;; if not found, the content
+               shall be considered to be in error.
+            </td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+            <tr>
+               <td>For all XCCDF Benchmark, Profile, Value, Group, and Rule, if more than one &lt;xccdf:title&gt; exists, then every &lt;xccdf:title&gt;
+                  must have a @xml:lang.
+               </td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">10</td>
+            <td rowspan="1" align="center">3.2.1</td>
+            <td rowspan="1">The following metadata requirements and conventions apply to the &lt;xccdf:Benchmark&gt;, &lt;xccdf:Profile&gt;, &lt;xccdf:Value&gt;, &lt;xccdf:Group&gt;,
+               and &lt;xccdf:Rule&gt; elements:~One or more instances of the &lt;xccdf:description&gt; element SHALL be provided. Each instance MUST
+               contain text values that represent the purpose of the containing element and MAY include the OPTIONAL @xml:lang attribute.
+               If more than one &lt;xccdf:description&gt; element is provided, the @xml:lang attribute SHALL be provided.
+            </td>
+            <td>For each &lt;xccdf:Benchmark&gt;, &lt;xccdf:Profile&gt;, &lt;xccdf:Value&gt;, &lt;xccdf:Group&gt;, and &lt;xccdf:Rule&gt; element, a &lt;xccdf:description&gt;
+               SHALL be provided.  If more than one &lt;xccdf:description&gt; element is specified for any &lt;xccdf:Benchmark&gt;, &lt;xccdf:Profile&gt;,
+               &lt;xccdf:Value&gt;, &lt;xccdf:Group&gt;, or &lt;xccdf:Rule&gt; element, then the @xml:lang attribute SHALL be specified for all of the sibling
+               &lt;xccdf:description&gt; elements.
+            </td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">14</td>
+            <td rowspan="1" align="center">3.2.2</td>
+            <td rowspan="1">For all SCAP content, the applicability of &lt;xccdf:Benchmark&gt;, &lt;xccdf:Profile&gt;, &lt;xccdf:Group&gt;, and &lt;xccdf:Rule&gt; elements to
+               specific IT platforms MAY be specified using one or more &lt;xccdf:platform&gt; @idref attributes. Each instance of the @idref attribute
+               SHALL reference either a CPE Name or the @id attribute of a &lt;cpe-lang:platform-specification/cpe-lang:platform&gt; element.
+            </td>
+            <td>If one or more &lt;xccdf:platform&gt; elements are specified for any &lt;xccdf:Benchmark&gt;, &lt;xccdf:Profile&gt;, &lt;xccdf:Group&gt;, or &lt;xccdf:Rule&gt;
+               element, then the @idref attribute for each &lt;xccdf:platform&gt; element must contain a CPE name or reference a &lt;cpe-lang:platform&gt;
+               element in the XCCDF component.
+            </td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="2" align="center">15</td>
+            <td rowspan="2" align="center">3.2.2</td>
+            <td rowspan="2">CPE Names used within an XCCDF document SHALL match the names of existing Official CPE Dictionary entries where names for
+               the desired platform exist. The matching algorithm from [CPE] to be used SHALL be CPE_Name_Match for a single CPE Name and
+               CPE_Language_Match for a compound CPE Name. If multiple matches are found within the dictionary (e.g., deprecated and current
+               CPE Names), the most current CPE Name SHOULD be used.
+            </td>
+            <td>The &lt;xccdf:platform&gt; element of the &lt;xccdf:Benchmark&gt; element that contains a CPE SHOULD reference a non-deprecated CPE name
+               in the Official CPE Dictionary.
+            </td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">WARNING</td>
+            <td align="center">SOURCE_CONTENT</td>
+            <tr>
+               <td>The &lt;xccdf:platform&gt; element of the &lt;xccdf:Benchmark&gt; element that contains a CPE SHALL contain a reference to a CPE name
+                  in the Official CPE Dictionary if such a name exists for the indicated platform.  Issue a warning if the CPE name specified
+                  in &lt;xccdf:platform&gt; does not match a CPE name in the Official CPE Dictionary.
+               </td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">WARNING</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">25</td>
+            <td rowspan="1" align="center">3.2.5</td>
+            <td rowspan="1">The following requirements and recommendations apply to the use of the &lt;xccdf:check&gt; and &lt;xccdf:complex-check&gt; elements:~The
+               &lt;xccdf:check-content&gt; element SHALL NOT be used to embed check content directly into XCCDF content.
+            </td>
+            <td>A XCCDF document SHALL NOT contain an &lt;xccdf:check-content&gt; element</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">31</td>
+            <td rowspan="1" align="center">3.2.5</td>
+            <td rowspan="1">If multiple &lt;xccdf:check-content-ref&gt; elements occur within an &lt;xccdf:check&gt; element, the &lt;xccdf:check-content-ref&gt; elements
+               are evaluated in the order they appear. The first resolvable &lt;xccdf:check-content-ref&gt; element is used to determine the &lt;xccdf:Rule&gt;
+               status. For each &lt;xccdf:check-content-ref&gt; element, an implementation attempts to retrieve the document referenced by the
+               element’s @href attribute. If not resolvable, the next available &lt;xccdf:check-content-ref&gt; element is evaluated. If none of
+               the &lt;xccdf:check-content-ref&gt; elements are resolvable, then the result of the rule evaluation is the XCCDF “unchecked” status
+               and processing of the &lt;xccdf:Rule&gt; ends. The @href attribute MAY map a remote URL to a local copy of the file in cases where
+               remote access is not available, allowed, or practical.
+            </td>
+            <td>All rules in SCAP XCCDF documents that have embedded OVAL definitions are considered to be in error.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">32</td>
+            <td rowspan="1" align="center">3.2.5.1</td>
+            <td rowspan="1">References from SCAP compliant XCCDF to OVAL Definitions SHALL use the form:~&lt;check-content-ref href="OVAL_Source_URI" [name="OVAL_Definition_Id"]/&gt;</td>
+            <td>References from SCAP compliant XCCDF to OVAL Definitions SHALL use the form:~&lt;check-content-ref href="OVAL_Source_URI" [name=”OVAL_Definition_Id"]/&gt;,
+               and the OVAL definition SHALL be resolvable in the current SCAP data stream.
+            </td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="3" align="center">38</td>
+            <td rowspan="3" align="center">3.2.5.2</td>
+            <td rowspan="3">The type and value binding of the specified XCCDF Value is constrained to match that lexical representation of the indicated
+               OVAL Variable Data Type. Table 4 summarizes the constraints regarding data type usage. Additional information regarding OVAL
+               and XCCDF data types can be found in the OVAL Common Schema documentation and the XCCDF specification [XCCDF].~Table 4. XCCDF-OVAL
+               Data Export Matching Constraints~OVAL Data Type~Matching XCCDF Data Type~~int~number~~float~number~~boolean~boolean~~string,
+               evr_string, version, ios_version, fileset_revision, binary~string~~
+            </td>
+            <td>Values of XCCDF datatype 'number', when bound to OVAL variables, the OVAL variables must be of the following OVAL types: int,
+               float
+            </td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+            <tr>
+               <td>Values of XCCDF datatype 'boolean', when bound to OVAL variables, the OVAL variables must be the following OVAL type: boolean</td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+            <tr>
+               <td>Values of XCCDF datatype 'string', when bound to OVAL variables, the OVAL variables must be of the following OVAL types: string,
+                  evr_string, version, ios_version, fileset_revision, binary
+               </td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">39</td>
+            <td rowspan="1" align="center">4.7</td>
+            <td rowspan="1">Regarding the definition and use of &lt;xccdf:Profile&gt; elements:~When using a profile during the processing of XCCDF content,
+               the test results SHALL embed an &lt;xccdf:profile&gt; element that contains the name of the utilized profile.
+            </td>
+            <td>If a profile is selected, that profile SHALL be included in the @idref of an &lt;xccdf:profile&gt; element inside the &lt;xccdf:TestResult&gt;
+               element.
+            </td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">RESULT_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="2" align="center">40</td>
+            <td rowspan="2" align="center">4.7</td>
+            <td rowspan="2">Regarding the definition and use of &lt;xccdf:Profile&gt; elements:~Reported rule results SHALL include all selected rules within
+               the specified Profile.
+            </td>
+            <td>For all of the &lt;xccdf:Profile&gt; elements referenced in &lt;xccdf:TestResults&gt;, all &lt;xccdf:Rule&gt; elements referenced from those
+               profiles SHALL have a corresponding &lt;xccdf:rule-result&gt;
+            </td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">RESULT_CONTENT</td>
+            <tr>
+               <td>If a profile is specified when running a scan, then a &lt;xccdf:profile&gt; SHALL be included under &lt;xccdf:TestResult&gt; with that
+                  profile referenced.
+               </td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">RESULT_CONTENT</td>
+            </tr>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">41</td>
+            <td rowspan="1" align="center">4.7</td>
+            <td rowspan="1">Regarding the definition and use of &lt;xccdf:Profile&gt; elements:~Reported value-settings SHALL include all those values that
+               are exported by the reported rules.  The specific settings are those determined by the reported Profile.
+            </td>
+            <td>For each &lt;xccdf:rule-result&gt;, there SHALL be a &lt;xccdf:set-value&gt; as a sibling of the &lt;xccdf:rule-result&gt; for each &lt;xccdf:check-export&gt;
+               in the original &lt;xccdf:Rule&gt; in the source content corresponding to the &lt;xxcdf:rule-result&gt;
+            </td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">RESULT_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">42</td>
+            <td rowspan="1" align="center">4.7</td>
+            <td rowspan="1">The &lt;xccdf:identity&gt; element SHALL identify the security principal used to access rule evaluation on the target(s).</td>
+            <td>At least one &lt;xccdf:identity&gt; element SHALL be provided.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">RESULT_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">43</td>
+            <td rowspan="1" align="center">4.7</td>
+            <td rowspan="1">The &lt;xccdf:rule-result&gt; elements SHALL report the result of the application of each selected rule against all specified targets.~The
+               @idref attribute of the &lt;xccdf:rule-result&gt; SHALL identify the selected rule.
+            </td>
+            <td>The @idref of &lt;xccdf:rule-result&gt; SHALL reference a &lt;xccdf:Rule&gt; in the source content.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">RESULT_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">44</td>
+            <td rowspan="1" align="center">4.7.1</td>
+            <td rowspan="1">If the target &lt;xccdf:Rule&gt; identified by the &lt;xccdf:rule-result idref=""&gt; attribute has one or more &lt;ident&gt; elements with
+               the “http://cve.mitre.org” or “CVE” system identifiers, then each &lt;xccdf:ident&gt; element SHALL also appear within the &lt;xccdf:rule-result&gt;
+               element.
+            </td>
+            <td>If the target &lt;xccdf:Rule&gt; identified by the &lt;xccdf:rule-result idref=""&gt; attribute has one or more &lt;ident&gt; elements with
+               the "http://cve.mitre.org" or "CVE" system identifier, then each &lt;xccdf:ident&gt; element SHALL also appear within the &lt;xccdf:rule-result&gt;
+               element.
+            </td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">RESULT_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">45</td>
+            <td rowspan="1" align="center">4.7.2</td>
+            <td rowspan="1">If the target &lt;xccdf:Rule&gt; identified by the &lt;xccdf:rule-result&gt; @idref attribute has one or more &lt;xccdf:ident&gt; elements with
+               the “http://cce.mitre.org” or “CCE” system identifiers, then each &lt;xccdf:ident&gt; element SHALL also appear within the &lt;rule-result&gt;
+               element.
+            </td>
+            <td>If the target &lt;xccdf:Rule&gt; identified by the &lt;xccdf:rule-result&gt; @idref attribute has one or more &lt;xccdf:ident&gt; elements with
+               the "http://cce.mitre.org" or "CCE" system identifier, then each &lt;xccdf:ident&gt; element SHALL also appear within the &lt;rule-result&gt;
+               element.
+            </td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">RESULT_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="2" align="center">51</td>
+            <td rowspan="2" align="center">3.3</td>
+            <td rowspan="2">While the default version of OVAL used in SCAP 1.1 SHALL be OVAL version 5.8, content authors SHOULD utilize the earliest
+               SCAP-supported version of OVAL (5.3 at minimum) that includes all required tests and is necessary to properly address the
+               content's purpose or use case.
+            </td>
+            <td>If OVAL content is marked as a particular version, but it validates against an earlier version, it SHOULD be marked as the
+               earlier version.  The content validated against OVAL version {0}.
+            </td>
+            <td align="center">APPLICATION</td>
+            <td align="center">WARNING</td>
+            <td align="center">SOURCE_CONTENT</td>
+            <tr>
+               <td>OVAL content marked as a particular version SHALL validate for that particular version as well as the default version of OVAL
+                  for this version of SCAP.  The content failed validation against OVAL version {0}.
+               </td>
+               <td align="center">APPLICATION</td>
+               <td align="center">ERROR</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">52</td>
+            <td rowspan="1" align="center">3.3</td>
+            <td rowspan="1">All of the OVAL content MUST contain an &lt;oval:generator&gt; element. The version of any particular document instance SHALL be
+               specified using the &lt;oval:schema_version&gt; content element of the &lt;oval:generator&gt; as in this example: ~  &lt;oval:generator&gt;~
+               &lt;oval:product_name&gt;The OVAL Repository&lt;/oval:product_name&gt;~    &lt;oval:schema_version&gt;5.8&lt;/oval:schema_version&gt;~  &lt;/oval:generator&gt;
+            </td>
+            <td>OVAL content SHALL include the &lt;oval:generator&gt; and &lt;oval:schema_version&gt; elements.</td>
+            <td align="center">SCHEMA</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">54</td>
+            <td rowspan="1" align="center">3.3</td>
+            <td rowspan="1">The version of an &lt;oval-var:oval_variables&gt; document SHALL be the same as that of the &lt;oval-def:oval_definitions&gt; document
+               whose external variables are bound by the variables document.
+            </td>
+            <td>All SCAP OVAL variables content that does not match the &lt;ovalcom:schema_version&gt; of it corresponding OVAL definitions source
+               it shall be considered in error.
+            </td>
+            <td align="center">NOT_CHECKED</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">68</td>
+            <td rowspan="1" align="center">4.7.3</td>
+            <td rowspan="1">SCAP-compliant content SHALL include full status reporting including Error, Unknown, Not Applicable, Not Evaluated, True,
+               and False.
+            </td>
+            <td>SCAP-compliant content SHALL include full status reporting including Error, Unknown, Not Applicable, Not Evaluated, True,
+               and False.
+            </td>
+            <td align="center">NOT_CHECKED</td>
+            <td align="center">NA</td>
+            <td align="center">RESULT_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="2" align="center">69</td>
+            <td rowspan="2" align="center">4.8</td>
+            <td rowspan="2">An SCAP OVAL result data stream component SHALL include the results of every OVAL Definition used to generate the reported
+               results.
+            </td>
+            <td>OVAL Definition evaluation results returned MUST be compliant with version 5.8 of the OVAL Results schema regardless of the
+               version of the OVAL Definitions document that was evaluated.
+            </td>
+            <td align="center">APPLICATION</td>
+            <td align="center">ERROR</td>
+            <td align="center">RESULT_CONTENT</td>
+            <tr>
+               <td>The &lt;oval-res:generator&gt;/&lt;oval-com:schema_version&gt; SHALL contain value '5.8'.</td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">RESULT_CONTENT</td>
+            </tr>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">70</td>
+            <td rowspan="1" align="center">4.8</td>
+            <td rowspan="1">In order to support SCAP instances where OVAL thin content (only the ID of the definition and the results) is preferred, SCAP
+               products SHALL support all valid values for the &lt;oval-res:directives&gt; controlling the expected content of the results file.
+            </td>
+            <td>In order to support SCAP instances where OVAL thin content (only the ID of the definition and the results) is preferred, SCAP
+               products SHALL support all valid values for the &lt;oval-res:directives&gt; controlling the expected content of the results file.
+            </td>
+            <td align="center">NOT_CHECKED</td>
+            <td align="center">NA</td>
+            <td align="center">RESULT_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">71</td>
+            <td rowspan="1" align="center">3.5</td>
+            <td rowspan="1">The referenced OVAL inventory definition SHALL specify the technical procedure for determining whether or not a specific target
+               asset is an instance of the CPE Name specified by the &lt;cpe_dict:cpe-item&gt; element. This usage is encouraged for a CPE dictionary
+               source data stream component.
+            </td>
+            <td>The referenced OVAL inventory definition SHALL specify the technical procedure for determining whether or not a specific target
+               asset is an instance of the CPE Name specified by the &lt;cpe_dict:cpe-item&gt; element. This usage is encouraged for a CPE dictionary
+               source data stream component.
+            </td>
+            <td align="center">NOT_CHECKED</td>
+            <td align="center">NA</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">72</td>
+            <td rowspan="1" align="center">3.5</td>
+            <td rowspan="1">If a &lt;cpe_dict:cpe-item&gt; contained in a CPE dictionary data stream component references an OVAL “inventory” definition, then
+               that definition SHALL be resolved by an @href attribute referencing a CPE Inventory source data stream component in the same
+               data stream.
+            </td>
+            <td>For all SCAP &lt;cpe-dict:cpe-item&gt;'s specified the CPE dictionary component of an SCAP datastream that contain a cpe-dict:check
+               element, that cpe-dict:check element SHALL refer to an OVAL inventory definition in the same SCAP data stream
+            </td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">73</td>
+            <td rowspan="1" align="center">3.5</td>
+            <td rowspan="1">the title of the &lt;cpe_dict:cpe-item&gt; SHALL match the title of an affected platform bound to the referenced definition.</td>
+            <td>The title of the &lt;cpe_dict:cpe-item&gt; SHALL match the title of an affected platform bound to the referenced definition.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">74</td>
+            <td rowspan="1" align="center">3.6</td>
+            <td rowspan="1">SCAP content referencing a configuration setting SHALL use the official CCE identifier if a CCE entry for a particular configuration
+               setting exists in the Official CCE Dictionary.
+            </td>
+            <td>All CCE references SHOULD be in the official CCE dictionary.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">WARNING</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">110</td>
+            <td rowspan="1" align="center">4.1</td>
+            <td rowspan="1">Products supporting SCAP 1.1 SHALL process SCAP 1.0 content as described under the SCAP 1.0 version of NIST SP 800-126.</td>
+            <td>Products supporting SCAP 1.1 SHALL process SCAP 1.0 content as described under the SCAP 1.0 version of NIST SP 800-126.</td>
+            <td align="center">NOT_CHECKED</td>
+            <td align="center">NA</td>
+            <td align="center">TOOL</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">111</td>
+            <td rowspan="1" align="center">3.2.1</td>
+            <td rowspan="1">The following general restrictions apply to SCAP XCCDF content:~The use of the @xml:base attribute SHALL NOT be allowed. This
+               attribute is not compatible with the SCAP data stream model.
+            </td>
+            <td>@xml:base attribute SHALL NOT be included on any XCCDF element.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="2" align="center">112</td>
+            <td rowspan="2" align="center">3.2.2</td>
+            <td rowspan="2">Each reference to a CPE Name SHALL be declared in the required CPE dictionary data stream component, and each OVAL inventory
+               class definition referenced from the dictionary data stream component SHALL be specified in the required CPE inventory data
+               stream component.
+            </td>
+            <td>OVAL inventory class definition referenced from the dictionary stream SHALL be specified in the required CPE inventory stream.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+            <tr>
+               <td>If an &lt;xccdf:platform&gt; element references a CPE name, that CPE name SHALL be included in the CPE Dictionary stream.</td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+         </tr>
+         <tr>
+            <td rowspan="0" align="center">113</td>
+            <td rowspan="0" align="center">3.2.2</td>
+            <td rowspan="0">If compound CPE Name statements are necessary, a CPE Language &lt;cpe-lang:platform-specification&gt; element SHALL be defined as
+               a child of the &lt;xccdf:Benchmark&gt; element.
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+         </tr>
+         <tr>
+            <td rowspan="0" align="center">118</td>
+            <td rowspan="0" align="center">3.2.5</td>
+            <td rowspan="0">The following requirements and recommendations apply to the use of the &lt;xccdf:check&gt; and &lt;xccdf:complex-check&gt; elements:~~Use
+               of XCCDF check systems as specified in the &lt;xccdf:check&gt; element’s @system attribute SHALL be restricted as follows:~~The
+               following check systems are supported by SCAP:~Use of the OVAL check system SHALL be indicated by the http://oval.mitre.org/XMLSchema/oval-definitions-5
+               system identifier.
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+         </tr>
+         <tr>
+            <td rowspan="0" align="center">119</td>
+            <td rowspan="0" align="center">3.2.5</td>
+            <td rowspan="0">The following requirements and recommendations apply to the use of the &lt;xccdf:check&gt; and &lt;xccdf:complex-check&gt; elements:~~Use
+               of XCCDF check systems as specified in the &lt;xccdf:check&gt; element’s @system attribute SHALL be restricted as follows:~~The
+               following check systems are supported by SCAP:~Use of the OCIL check system SHALL be indicated by the http://scap.nist.gov/schema/ocil/2
+               system identifier.
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+         </tr>
+         <tr>
+            <td rowspan="0" align="center">121</td>
+            <td rowspan="0" align="center">3.2.5</td>
+            <td rowspan="0">The following requirements and recommendations apply to the use of the &lt;xccdf:check&gt; and &lt;xccdf:complex-check&gt; elements:~~Use
+               of XCCDF check systems as specified in the &lt;xccdf:check&gt; element’s @system attribute SHALL be restricted as follows:~If a
+               check system is used in XCCDF content that is not supported by SCAP, then this content SHALL NOT be considered well-formed
+               with regards to SCAP.
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">122</td>
+            <td rowspan="1" align="center">4.5</td>
+            <td rowspan="1">Use of XCCDF check systems as specified in the &lt;xccdf:check&gt; element’s @system attribute SHALL be restricted as follows:~SCAP
+               scanning products SHALL implement the SCAP supported check systems that are required for the SCAP capability or capabilities
+               that the products offer. The SCAP supported check systems are:~OVAL check system. Use of the OVAL check system SHALL be indicated
+               by the http://oval.mitre.org/XMLSchema/oval-definitions-5 system identifier.~OCIL check system. Use of the OCIL check system
+               SHALL be indicated by the http://scap.nist.gov/schema/ocil/2 system identifier.
+            </td>
+            <td>The @system attribute of the &lt;xccdf:check&gt; element SHALL be 'http://oval.mitre.org/XMLSchema/oval-definitions-5' OR 'http://scap.nist.gov/schema/ocil/2'</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">123</td>
+            <td rowspan="1" align="center">4.5</td>
+            <td rowspan="1">Use of XCCDF check systems as specified in the &lt;xccdf:check&gt; element’s @system attribute SHALL be restricted as follows:~SCAP
+               scanning tools MAY implement check systems that are not supported by SCAP.
+            </td>
+            <td>Use of XCCDF check systems as specified in the &lt;xccdf:check&gt; element’s @system attribute SHALL be restricted as follows:~SCAP
+               scanning tools MAY implement non-SCAP check systems that are not supported by SCAP.
+            </td>
+            <td align="center">NOT_CHECKED</td>
+            <td align="center">NA</td>
+            <td align="center">TOOL</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">124</td>
+            <td rowspan="1" align="center">4.5</td>
+            <td rowspan="1">Use of XCCDF check systems as specified in the &lt;xccdf:check&gt; element’s @system attribute SHALL be restricted as follows:~Evaluation
+               of an &lt;xccdf:check&gt; containing a reference to a non-SCAP check system SHALL produce an “unchecked” result if an SCAP scanning
+               product does not implement the check system.
+            </td>
+            <td>Use of XCCDF check systems as specified in the &lt;xccdf:check&gt; element’s @system attribute SHALL be restricted as follows:~Evaluation
+               of an &lt;xccdf:check&gt; containing a reference to a non-SCAP check system SHALL produce an “unchecked” result if an SCAP scanning
+               product does not implement the check system.
+            </td>
+            <td align="center">NOT_CHECKED</td>
+            <td align="center">NA</td>
+            <td align="center">RESULT_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">125</td>
+            <td rowspan="1" align="center">3.2.5.2</td>
+            <td rowspan="1">One or more &lt;xccdf:check-export&gt; elements MAY be used to define the binding of &lt;xccdf:Value&gt; elements to OVAL variables. The
+               format of the &lt;xccdf:check-export&gt; element is:~&lt;xccdf:check-export value-id="XCCDF_Value_id" _x000B_export-name="OVAL_External_Variable_id"/&gt;
+            </td>
+            <td>One or more &lt;xccdf:check-export&gt; elements MAY be used to define the binding of &lt;xccdf:Value&gt; elements to OVAL variables. The
+               format of the &lt;xccdf:check-export&gt; element is:~&lt;xccdf:check-export value-id="XCCDF_Value_id" _x000B_export-name="OVAL_External_Variable_id"/&gt;
+            </td>
+            <td align="center">NOT_CHECKED</td>
+            <td align="center">NA</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">126</td>
+            <td rowspan="1" align="center">4.7.3</td>
+            <td rowspan="1">SCAP compliant processors that generate XCCDF &lt;xccdf:rule-result&gt; elements SHALL apply the mapping illustrated in Table 7
+               when deriving &lt;xccdf:Rule&gt; results from OVAL Definition processing. The corresponding &lt;xccdf:rule-result/xccdf:result&gt; value
+               SHALL be recorded based on the @class of the OVAL Definition where applicable.~Table 7. Deriving XCCDF Rule Results from OVAL
+               Definition Results~OVAL Definition Result~XCCDF Rule Result~~error~error~~unknown~unknown~~not applicable~notapplicable~~not
+               evaluated~notchecked~~Definition Class~Definition Result~~compliance~true~~vulnerability~false~~inventory~true~~patch~false~~~pass~~Definition
+               Class~Definition Result~~compliance~false~~vulnerability~true~~inventory~false~~patch~true~~~fail~~
+            </td>
+            <td>If the &lt;xccdf:result&gt; value for a &lt;xccdf:rule-result&gt; is 'error', 'unknown', 'notapplicable', or 'notchecked', then the result
+               of at least one OVAL definition referenced by that rule SHALL be 'error', 'unknown', 'not applicable', or 'not evaluated',
+               respectively.  If the &lt;xccdf:result&gt; value is 'fail' then the result of at least one of the OVAL definitions referenced SHALL
+               match the fail category as defined in the SCAP table.  If the &lt;xccdf:result&gt; value is 'pass' then the result of all of the
+               OVAL definitions referenced SHALL match the pass category as defined in the SCAP table.
+            </td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">RESULT_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">131</td>
+            <td rowspan="1" align="center">4.7</td>
+            <td rowspan="1">XCCDF test results SHALL be documented as the contents of an &lt;xccdf:TestResult&gt; element that either stands alone as the root
+               of an XML document or is embedded as a child-element of an &lt;xccdf:Benchmark&gt; root element. In the former case, the &lt;xccdf:TestResults&gt;
+               document requires an embedded &lt;xccdf:benchmark&gt; element that identifies the associated benchmark. In the latter case, the
+               associated benchmark is the embedding benchmark; &lt;xccdf:benchmark&gt; elements SHALL be ignored in &lt;xccdf:TestResult&gt; elements
+               that are embedded in their associated benchmark.
+            </td>
+            <td>If the &lt;xccdf:TestResult&gt; is not embedded in a &lt;xccdf:Benchmark&gt;, then an &lt;xccdf:Benchmark&gt; SHALL be embedded in &lt;xccdf:TestResult&gt;</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">RESULT_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">132</td>
+            <td rowspan="1" align="center">4.7</td>
+            <td rowspan="1">One or more &lt;xccdf:organization&gt; elements SHALL be provided to indicate the organizational units responsible for applying
+               the checklist.
+            </td>
+            <td>One or more &lt;xccdf:organization&gt; elements SHALL be provided to indicate the organizational units responsible for applying
+               the checklist.
+            </td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">RESULT_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">133</td>
+            <td rowspan="1" align="center">4.7</td>
+            <td rowspan="1">The @start-time and @end-time attributes SHALL be provided to indicate when the scan started and completed, respectively.</td>
+            <td>The @start-time and @end-time attributes SHALL be provided to indicate when the scan started and completed, respectively.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">RESULT_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">134</td>
+            <td rowspan="1" align="center">4.7</td>
+            <td rowspan="1">The @test-system attribute SHALL be provided with a CPE Name value indicating the product that evaluated the checklist. </td>
+            <td>The @test-system attribute SHALL be provided with a CPE Name value indicating the product that evaluated the checklist. </td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">RESULT_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">135</td>
+            <td rowspan="1" align="center">4.7</td>
+            <td rowspan="1">Regarding the definition and use of &lt;xccdf:Profile&gt; elements:~If no &lt;xccdf:Profile&gt; was selected, then the &lt;xccdf:Profile&gt;
+               SHALL be omitted.
+            </td>
+            <td>If no profile was selected for a scan, then &lt;xccdf:profile&gt; SHALL be excluded from &lt;xccdf:TestResult&gt;</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">RESULT_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="2" align="center">136</td>
+            <td rowspan="2" align="center">4.7</td>
+            <td rowspan="2">Each IP address associated with the &lt;xccdf:target&gt; SHALL be enumerated using the &lt;xccdf:target-address&gt; element.</td>
+            <td>The same number of &lt;xccdf:target&gt; and &lt;xccdf:target-address&gt; elements SHALL be provided.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">RESULT_CONTENT</td>
+            <tr>
+               <td>The &lt;xccdf:target-address&gt; SHALL contain an IP address</td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">RESULT_CONTENT</td>
+            </tr>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">137</td>
+            <td rowspan="1" align="center">4.7</td>
+            <td rowspan="1">Where applicable to the target system, each of the following &lt;xccdf:fact&gt; elements SHALL be provided:~Table 6. XCCDF Fact
+               Descriptions~XCCDF Fact~Description of Use~~urn:scap:fact:asset:identifier:mac~Ethernet media access control address~~urn:scap:fact:asset:identifier:ipv4~Internet
+               Protocol version 4 address~~urn:scap:fact:asset:identifier:ipv6~Internet Protocol version 6 address~~urn:scap:fact:asset:identifier:host_name~Host
+               name of the asset, if assigned~~urn:scap:fact:asset:identifier:fqdn~Fully qualified domain name~~urn:scap:fact:asset:identifier:ein~Equipment
+               identification number or other inventory tag number~~urn:scap:fact:asset:identifier:guid~Globally unique identifier for the
+               asset, if assigned~~urn:scap:fact:asset:environmental_information:owning_organization~Organization that tracks the asset on
+               its inventory~~urn:scap:fact:asset:environmental_information:current_region~Geographic region where the asset is located~~urn:scap:fact:asset:environmental_information:administration_unit~Name
+               of the organization that does system administration for the asset~~
+            </td>
+            <td>Where applicable to the target system, each of the following &lt;xccdf:fact&gt; elements SHALL be provided:~Table 6. XCCDF Fact
+               Descriptions~XCCDF Fact~Description of Use~~urn:scap:fact:asset:identifier:mac~Ethernet media access control address~~urn:scap:fact:asset:identifier:ipv4~Internet
+               Protocol version 4 address~~urn:scap:fact:asset:identifier:ipv6~Internet Protocol version 6 address~~urn:scap:fact:asset:identifier:host_name~Host
+               name of the asset, if assigned~~urn:scap:fact:asset:identifier:fqdn~Fully qualified domain name~~urn:scap:fact:asset:identifier:ein~Equipment
+               identification number or other inventory tag number~~urn:scap:fact:asset:identifier:guid~Globally unique identifier for the
+               asset, if assigned~~urn:scap:fact:asset:environmental_information:owning_organization~Organization that tracks the asset on
+               its inventory~~urn:scap:fact:asset:environmental_information:current_region~Geographic region where the asset is located~~urn:scap:fact:asset:environmental_information:administration_unit~Name
+               of the organization that does system administration for the asset~~
+            </td>
+            <td align="center">NOT_CHECKED</td>
+            <td align="center">NA</td>
+            <td align="center">RESULT_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">138</td>
+            <td rowspan="1" align="center">4.7.1</td>
+            <td rowspan="1">An &lt;xccdf:rule-result&gt; of “pass” SHALL indicate that the target platform satisfies all the conditions of the XCCDF rule and
+               is unaffected by the vulnerability or exposure referenced by the CVE.
+            </td>
+            <td>An &lt;xccdf:rule-result&gt; of “pass” SHALL indicate that the target platform satisfies all the conditions of the XCCDF rule and
+               is unaffected by the vulnerability or exposure referenced by the CVE.
+            </td>
+            <td align="center">NOT_CHECKED</td>
+            <td align="center">NA</td>
+            <td align="center">RESULT_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">139</td>
+            <td rowspan="1" align="center">4.7.2</td>
+            <td rowspan="1">An &lt;xccdf:rule-result&gt; of “pass” SHALL indicate that the target platform complies with the configuration setting guidance
+               expressed in the XCCDF rule.
+            </td>
+            <td>An &lt;xccdf:rule-result&gt; of “pass” SHALL indicate that the target platform complies with the configuration setting guidance
+               expressed in the XCCDF rule.
+            </td>
+            <td align="center">NOT_CHECKED</td>
+            <td align="center">NA</td>
+            <td align="center">RESULT_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">141</td>
+            <td rowspan="1" align="center">4.8</td>
+            <td rowspan="1">In order to be SCAP compliant, an SCAP scanning product SHALL be able to produce all the types of OVAL Results output described
+               below. The specific result output SHALL be configurable within the SCAP product.
+            </td>
+            <td>In order to be SCAP compliant, an SCAP scanning product SHALL be able to produce both thin and full OVAL Results output as
+               described below. The specific result output SHALL be configurable within the SCAP product.
+            </td>
+            <td align="center">NOT_CHECKED</td>
+            <td align="center">NA</td>
+            <td align="center">TOOL</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">148</td>
+            <td rowspan="1" align="center">3.5</td>
+            <td rowspan="1">Local enumerations are permitted, but if a CPE Name for a product or platform exists in the Official CPE Dictionary, the content
+               SHALL match the product or platform referenced by that official identifier.
+            </td>
+            <td>CPE items SHOULD exist in the official CPE dictionary.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">WARNING</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">149</td>
+            <td rowspan="1" align="center">3.5</td>
+            <td rowspan="1">For certain names, a &lt;cpe_dict:cpe-item&gt; MAY contain one or more &lt;check&gt; elements that reference OVAL system inventory definitions
+               using the following format:~&lt;cpe_dict:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5"~[href="oval_URL"]&gt;oval_inventory_definition_id&lt;/cpe_dict:check&gt;
+            </td>
+            <td>For certain names, a &lt;cpe_dict:cpe-item&gt; MAY contain one or more &lt;check&gt; elements that reference OVAL system inventory definitions
+               using the following format:~&lt;cpe_dict:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5"~[href="Oval_URL"]&gt;Oval_inventory_definition_id&lt;/cpe_dict:check&gt;
+            </td>
+            <td align="center">NOT_CHECKED</td>
+            <td align="center">NA</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">150</td>
+            <td rowspan="1" align="center">3.7</td>
+            <td rowspan="1">CVE references in SCAP content MAY include both “candidate” and “entry” status identifiers.  </td>
+            <td>CVE references in SCAP content MAY include both “candidate” and “entry” status identifiers.</td>
+            <td align="center">NOT_CHECKED</td>
+            <td align="center">NA</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">151</td>
+            <td rowspan="1" align="center">3.7</td>
+            <td rowspan="1">The use of deprecated CVE identifiers SHALL NOT be allowed.  </td>
+            <td>The use of deprecated CVE identifiers SHALL NOT be allowed.  </td>
+            <td align="center">NOT_CHECKED</td>
+            <td align="center">NA</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">152</td>
+            <td rowspan="1" align="center">3.7</td>
+            <td rowspan="1">If a CVE identifier exists for a particular vulnerability, the official CVE identifier SHALL be used.</td>
+            <td>If a CVE identifier exists for a particular vulnerability, the official CVE identifier SHALL be used.</td>
+            <td align="center">NOT_CHECKED</td>
+            <td align="center">NA</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">154</td>
+            <td rowspan="1" align="center">3.1</td>
+            <td rowspan="1">An SCAP source data stream is the expression of content for a specific use case using one or more stream components. For its
+               filenames, every SCAP source data stream SHALL use a common locator prefix that is appended to the URL base of the deployed
+               data source.
+            </td>
+            <td>For each data source in an SCAP feed, the beginning of the resource ID must be the same for all resources in that feed, and
+               the end must match the name conventions documented.  For example: (example-winxp-xccdf.xml, example-winxp-oval.xml) is valid,
+               but (sample-xccdf.xml, real-oval.xml) is not valid.
+            </td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">169</td>
+            <td rowspan="1" align="center">3.2.6.4</td>
+            <td rowspan="1">An OVAL instance document MAY be used to represent a series of checks to verify that patches have been installed. Historically,
+               an XCCDF convention has been used to identify such a reference. An XCCDF benchmark MAY include a patches up-to-date rule that
+               references an OVAL patch source data stream component. When implementing a patches up-to-date XCCDF rule, the following approach
+               SHALL be used:~The source data stream MUST include an OVAL Patch source data stream component.~ ~The &lt;xccdf:Rule&gt; element
+               that references an OVAL Patch source data stream component SHALL have the @id attribute value of “security_patches_up_to_date”.
+            </td>
+            <td>If an &lt;xccdf:check-content-ref&gt; references a Patch component, the corresponding rule for that element must have @id "security_patches_up_to_date".</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">170</td>
+            <td rowspan="1" align="center">3.2.6.4</td>
+            <td rowspan="1">An OVAL instance document MAY be used to represent a series of checks to verify that patches have been installed. Historically,
+               an XCCDF convention has been used to identify such a reference. An XCCDF benchmark MAY include a patches up-to-date rule that
+               references an OVAL patch source data stream component. When implementing a patches up-to-date XCCDF rule, the following approach
+               SHALL be used:~A single &lt;xccdf:check&gt; element SHALL be provided for the &lt;xccdf:Rule&gt; with a @system attribute value of “http://oval.mitre.org/XMLSchema/oval-definitions-5”.
+            </td>
+            <td>If a &lt;xccdf:Rule&gt; @id has a value of 'security_patches_up_to_date', then that rule SHALL have one, and only one, &lt;xccdf:check&gt;
+               element, and that element SHALL have a @system attribute of 'http://oval.mitre.org/XMLSchema/oval-definitions-5'
+            </td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">171</td>
+            <td rowspan="1" align="center">3.2.6.4</td>
+            <td rowspan="1">An OVAL instance document MAY be used to represent a series of checks to verify that patches have been installed. Historically,
+               an XCCDF convention has been used to identify such a reference. An XCCDF benchmark MAY include a patches up-to-date rule that
+               references an OVAL patch source data stream component. When implementing a patches up-to-date XCCDF rule, the following approach
+               SHALL be used:~Each &lt;xccdf:check-content-ref&gt; element SHALL have an @href attribute referencing a valid SCAP &lt;oval-def:oval_definitions&gt;
+               document instance with the @name attribute omitted.
+            </td>
+            <td>If a &lt;xccdf:check-content-ref&gt; references a Patch component, the @name SHALL be omitted from the &lt;xccdf:check-content-ref&gt;</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">172</td>
+            <td rowspan="1" align="center">4.3</td>
+            <td rowspan="1">If an &lt;xccdf:Profile&gt; element is not provided or selected, then profile processing SHALL be skipped and standard XCCDF benchmark
+               processing rules SHALL apply.
+            </td>
+            <td>If an &lt;xccdf:Profile&gt; element is not provided or selected, then profile processing SHALL be skipped and standard XCCDF benchmark
+               processing rules SHALL apply.
+            </td>
+            <td align="center">NOT_CHECKED</td>
+            <td align="center">NA</td>
+            <td align="center">TOOL</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">174</td>
+            <td rowspan="1" align="center">3.2.3</td>
+            <td rowspan="1">The following requirements and recommendations apply to the &lt;xccdf:Benchmark&gt; element:~One or more instances of the &lt;xccdf:notice&gt;
+               element MAY be provided indicating clarifications, suggestions, or warnings regarding the use of the benchmark, including
+               but not limited to terms of use, legal notices, or copyright statements.
+            </td>
+            <td>The following requirements and recommendations apply to the &lt;xccdf:Benchmark&gt; element:~One or more instances of the &lt;xccdf:notice&gt;
+               element MAY be provided indicating clarifications, suggestions, or warnings regarding the use of the benchmark, including
+               but not limited to terms of use, legal notices, or copyright statements.~~If used, the @href attribute SHALL be an absolute
+               URL, NOT a relative URL.
+            </td>
+            <td align="center">NOT_CHECKED</td>
+            <td align="center">NA</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">175</td>
+            <td rowspan="1" align="center">3.2.5</td>
+            <td rowspan="1">The following requirements and recommendations apply to the use of the &lt;xccdf:check&gt; and &lt;xccdf:complex-check&gt; elements:~At
+               least one &lt;xccdf:check-content-ref&gt; element MUST be provided for each &lt;xccdf:check&gt; .
+            </td>
+            <td>At least one &lt;xccdf:check-content-ref&gt; element MUST be provided in each &lt;xccdf:check&gt;</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">177</td>
+            <td rowspan="1" align="center">4.6</td>
+            <td rowspan="1">For its filenames, every SCAP result data stream SHALL use two common locator prefixes that are appended to the URL base of
+               the deployed result file.
+            </td>
+            <td>For each data source in an SCAP result feed, the beginning of the resource ID must be the same for all resources in that feed,
+               and the end must match the name conventions documented.  For example: (example-winxp-xccdf-res.xml, example-winxp-oval-res.xml)
+               is valid, but (sample-xccdf-res.xml, real-oval-res.xml) is not valid.
+            </td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">RESULT_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">178</td>
+            <td rowspan="1" align="center">4.6</td>
+            <td rowspan="1">The first locator prefix (a string followed by a hyphen) SHALL be associated with a specific result data stream. The first
+               locator prefix SHALL be consistent between multiple evaluations of the same source content. The second locator prefix (a string
+               followed by a hyphen) MAY be used to differentiate among similar result data streams
+            </td>
+            <td>The notation ‘xxxx-’ designates a locator prefix that SHALL be associated with a specific result data stream. The notation
+               ‘-yyy-‘ designates a locator prefix that MAY be used to differentiate among similar result data streams
+            </td>
+            <td align="center">NOT_CHECKED</td>
+            <td align="center">NA</td>
+            <td align="center">RESULT_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">179</td>
+            <td rowspan="1" align="center">4.8</td>
+            <td rowspan="1">data results SHALL be expressed as Single Machine Without System Characteristics, Single Machine With System Characteristics,
+               or Single Machine With Thin Results
+            </td>
+            <td>The &lt;oval-res:directives&gt; element SHALL be:&lt;definition_true content="full" reported="true"/&gt;~&lt;definition_false content="full"
+               reported="true"/&gt;~&lt;definition_unknown content="full" reported="true"/&gt;~&lt;definition_error content="full" reported="true"/&gt;~&lt;definition_not_evaluated
+               content="full" reported="true"/&gt;~&lt;definition_not_applicable content="full" reported="true"/&gt; or &lt;definition_true reported="true"/&gt;~&lt;definition_false
+               reported="true"/&gt;~&lt;definition_unknown reported="true"/&gt;~&lt;definition_error reported="true"/&gt;~&lt;definition_not_evaluated reported="true"/&gt;~&lt;definition_not_applicable
+               reported="true"/&gt; or &lt;definition_true content="thin" reported="true"/&gt;~&lt;definition_false content="thin" reported="true"/&gt;~&lt;definition_unknown
+               content="thin" reported="true"/&gt;~&lt;definition_error content="thin" reported="true"/&gt;~&lt;definition_not_evaluated content="thin"
+               reported="true"/&gt;~&lt;definition_not_applicable content="thin" reported="true"/&gt;
+            </td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">RESULT_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="0" align="center">180</td>
+            <td rowspan="0" align="center">4.8</td>
+            <td rowspan="0">Single Machine Without System Characteristics – A single result file that includes all OVAL definitions evaluated and “full”
+               results types as described in the ContentEnumeration element of the OVAL Results schema, without system characteristics. ~For
+               this format, the values for the &lt;oval-res:directives&gt; element SHALL be:~&lt;oval-res:definition_true content="full" reported="true"/&gt;~&lt;oval-res:definition_false
+               content="full" reported="true"/&gt;~&lt;oval-res:definition_unknown content="full" reported="true"/&gt;~&lt;oval-res:definition_error
+               content="full" reported="true"/&gt;~&lt;oval-res:definition_not_evaluated content="full" reported="true"/&gt;~&lt;oval-res:definition_not_applicable
+               content="full" reported="true"/&gt;
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">181</td>
+            <td rowspan="1" align="center">4.8</td>
+            <td rowspan="1">Single Machine With System Characteristics – A single result file that includes all OVAL definitions evaluated and “full”
+               results types as described in the ContentEnumeration element of the OVAL Results schema and the System Characteristics of
+               the target evaluated.~For this format, the values for the &lt;oval-res:directives&gt; element SHALL be:~&lt;oval-res:definition_true
+               content="full" reported="true"/&gt;~&lt;oval-res:definition_false content="full" reported="true"/&gt;~&lt;oval-res:definition_unknown
+               content="full" reported="true"/&gt;~&lt;oval-res:definition_error content="full" reported="true"/&gt;~&lt;oval-res:definition_not_evaluated
+               content="full" reported="true"/&gt;~&lt;oval-res:definition_not_applicable content="full" reported="true"/&gt; ~~When creating the
+               OVAL System Characteristics as defined by the &lt;oval-sc:oval_system_characteristics&gt; element, the &lt;oval-sc:collected_objects&gt;
+               and &lt;oval-sc:system_data&gt; elements SHALL be provided.
+            </td>
+            <td>Issue warning if oval-res directives definitions have @content='full' or @content is not provided and oval-res:oval_system_characteristics
+               does not have both oval-res:collected_objects and oval-res:system_data.  In that case it is Single Machine Without System
+               Characteristics.
+            </td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">WARNING</td>
+            <td align="center">RESULT_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="0" align="center">182</td>
+            <td rowspan="0" align="center">4.8</td>
+            <td rowspan="0">Single Machine With Thin Results – A single result file that includes all OVAL definitions evaluated and “thin” results types
+               as described in the OVAL Results schema. A value of “thin” means only the minimal amount of information will be provided.~For
+               this format, the values for the &lt;oval-res:directives&gt; element SHALL be:~&lt;oval-res:definition_true content="thin" reported="true"/&gt;~&lt;oval-res:definition_false
+               content="thin" reported="true"/&gt;~&lt;oval-res:definition_unknown content="thin" reported="true"/&gt;~&lt;oval-res:definition_error
+               content="thin" reported="true"/&gt;~&lt;oval-res:definition_not_evaluated content="thin" reported="true"/&gt;~&lt;oval-res:definition_not_applicable
+               content="thin" reported="true"/&gt;
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+         </tr>
+         <tr>
+            <td rowspan="0" align="center">193</td>
+            <td rowspan="0" align="center">3.2.5.1</td>
+            <td rowspan="0">When present, the @name attribute SHALL refer to a specific OVAL Definition in the designated source data stream component.</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+         </tr>
+         <tr>
+            <td rowspan="0" align="center">194</td>
+            <td rowspan="0" align="center">3.2.5.1</td>
+            <td rowspan="0">The @href attribute SHALL reference an OVAL source data stream component. </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">200</td>
+            <td rowspan="1" align="center">3.2.2</td>
+            <td rowspan="1">Within a given &lt;xccdf:Benchmark&gt;, &lt;xccdf:Profile&gt;, &lt;xccdf:Group&gt;, or &lt;xccdf:Rule&gt; context, if no &lt;xccdf:platform&gt; element
+               is defined, the &lt;xccdf:platform&gt; of its nearest ancestor that has an &lt;xccdf:platform&gt; element defined SHALL be inherited.
+               If none of its ancestors have an &lt;xccdf:platform&gt; element defined, the &lt;xccdf:Benchmark&gt;, &lt;xccdf:Profile&gt;, &lt;xccdf:Group&gt;,
+               or &lt;xccdf:Rule&gt; SHALL be considered to apply to any product.
+            </td>
+            <td>Within a given &lt;xccdf:Benchmark&gt;, &lt;xccdf:Profile&gt;, &lt;xccdf:Group&gt;, or  &lt;xccdf:Rule&gt; context, if no &lt;xccdf:platform&gt; element
+               is defined, the &lt;xccdf:platform&gt; of its nearest ancestor that has an &lt;xccdf:platform&gt; element defined SHALL be inherited.
+               If none of its ancestors have an &lt;xccdf:platform&gt; element defined, the &lt;xccdf:Benchmark&gt;, &lt;xccdf:Profile&gt;, &lt;xccdf:Group&gt;,
+               or  &lt;xccdf:Rule&gt;  SHALL be considered to apply to all applicable targets.
+            </td>
+            <td align="center">NOT_CHECKED</td>
+            <td align="center">NA</td>
+            <td align="center">TOOL</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">202</td>
+            <td rowspan="1" align="center">4.8</td>
+            <td rowspan="1">Each SCAP OVAL result data stream component SHALL use the &lt;oval-res:oval_results&gt; element as the document element. Each OVAL
+               result data stream component SHALL validate against version 5.8 of the OVAL Results schema regardless of the version of the
+               OVAL Definitions document that was evaluated.
+            </td>
+            <td>Each SCAP OVAL result data stream component SHALL use the &lt;oval-res:oval_results&gt; element as the document element. Each OVAL
+               result data stream component SHALL validate against version 5.8 of the OVAL Results schema regardless of the version of the
+               OVAL Definitions document that was evaluated.
+            </td>
+            <td align="center">APPLICATION</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="3" align="center">203</td>
+            <td rowspan="3" align="center">3.1</td>
+            <td rowspan="3">Every SCAP source data stream component SHALL have a filename comprised of the locator prefix (including a trailing hyphen)
+               followed by the appropriate component suffix, as listed in Table 2.~~Table 2. SCAP Source Data Stream Conventions~Component~Component
+               Suffix~Document Element~~XCCDF Benchmark~xccdf.xml~&lt;xccdf:Benchmark&gt;~~OVAL Compliance~oval.xml~&lt;oval-def:oval_definitions&gt;~~OVAL
+               Patch~patches.xml~&lt;oval-def:oval_definitions&gt;~~OVAL Vulnerability~oval.xml~&lt;oval-def:oval_definitions&gt;~~OCIL Questionnaire~ocil.xml~&lt;ocil:ocil&gt;~~CPE
+               Dictionary~cpe-dictionary.xml~&lt;cpe-dict:cpe-list&gt;~~CPE Inventory~cpe-oval.xml~&lt;oval-def:oval_definitions&gt;~~
+            </td>
+            <td>The table in section 3.1 must be followed.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+            <tr>
+               <td>The table in section 3.1 must be followed.</td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+            <tr>
+               <td>The table in section 3.1 must be followed.</td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">204</td>
+            <td rowspan="1" align="center">3.1</td>
+            <td rowspan="1">Each SCAP source data stream component SHALL validate against the corresponding schema and, if applicable, associated Schematron
+               stylesheet.
+            </td>
+            <td>Each SCAP source data stream component SHALL validate against the corresponding schema.</td>
+            <td align="center">SCHEMA</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="0" align="center">205</td>
+            <td rowspan="0" align="center">3.2.2</td>
+            <td rowspan="0">The @id attribute for each &lt;cpe-lang:platform&gt; element declared in this manner MAY be referenced within an &lt;xccdf:platform&gt;
+               element with a corresponding @idref attribute. Complex platforms MAY be referenced this way within &lt;xccdf:Benchmark&gt;, &lt;xccdf:Profile&gt;,
+               &lt;xccdf:Group&gt;, and &lt;xccdf:Rule&gt; elements.
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">206</td>
+            <td rowspan="1" align="center">3.2.6.5</td>
+            <td rowspan="1">Current CVSS scores acquired dynamically, such as from a data feed, SHOULD be used in place of static CVSS scores in the @weight
+               attribute within XCCDF vulnerability-related rules.
+            </td>
+            <td>Current CVSS scores acquired dynamically, such as from a data feed, SHOULD be used in place of static CVSS scores in the @weight
+               attribute within XCCDF vulnerability-related rules.
+            </td>
+            <td align="center">NOT_CHECKED</td>
+            <td align="center">NA</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">207</td>
+            <td rowspan="1" align="center">3.3</td>
+            <td rowspan="1">The following requirements apply to particular classes of OVAL definitions:~~For compliance class definitions:~If an OVAL
+               compliance class definition maps to one or more CCE identifiers, the definition SHOULD include &lt;oval-def:reference&gt; elements
+               that reference those identifiers using the following format: ~&lt;oval-def:reference source="http://cce.mitre.org" ref_id="CCE_identifier"/&gt;_x000B__x000B_The
+               source attribute SHALL be defined using either “CCE” or “http://cce.mitre.org” (preferred method).
+            </td>
+            <td>OVAL definitions of class 'compliance' should include a reference to a CCE, where applicable.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">WARNING</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">208</td>
+            <td rowspan="1" align="center">3.3</td>
+            <td rowspan="1">The following requirements apply to particular classes of OVAL definitions:~~For compliance class definitions:~Definitions
+               that are directly or indirectly extended SHALL be limited to inventory and compliance classes.
+            </td>
+            <td>For OVAL definitions of @class 'compliance', only definitions of class 'compliance' or 'inventory' can be extended.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">209</td>
+            <td rowspan="1" align="center">3.3</td>
+            <td rowspan="1">The following requirements apply to particular classes of OVAL definitions:~~For inventory class definitions:~If an OVAL inventory
+               class definition maps to one or more CPE identifiers, the definition SHOULD include &lt;oval-def:reference&gt; elements that reference
+               those identifiers using the following format: _x000B__x000B_&lt;oval-def:reference source="http://cpe.mitre.org" ref_id="CPE_identifier"/&gt;_x000B__x000B_The
+               source attribute SHALL be defined using either “CPE” or “http://cpe.mitre.org” (preferred method).
+            </td>
+            <td>OVAL definitions of class 'inventory' should include a reference to a CPE, where applicable.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">WARNING</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">210</td>
+            <td rowspan="1" align="center">3.3</td>
+            <td rowspan="1">The following requirements apply to particular classes of OVAL definitions:~~For inventory class definitions:~Definitions
+               that are directly or indirectly extended SHALL be limited to the inventory class.
+            </td>
+            <td>For OVAL definitions of @class 'inventory', only definitions of class 'inventory' can be extended.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">211</td>
+            <td rowspan="1" align="center">3.3</td>
+            <td rowspan="1">The following requirements apply to particular classes of OVAL definitions:~~For patch class definitions:~If an OVAL patch
+               class definition maps to one or more CVE identifiers, the definition MAY include &lt;oval-def:reference&gt; elements that reference
+               those identifiers using the following format:_x000B__x000B_&lt;oval-def:reference source="http://cve.mitre.org" ref_id="CVE_identifier"/&gt;_x000B__x000B_The
+               source attribute SHALL be defined using either “CVE” or “http://cve.mitre.org” (preferred method).
+            </td>
+            <td>Issue a warning if an OVAL patch class does not reference a CVE.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">WARNING</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="0" align="center">212</td>
+            <td rowspan="0" align="center">3.3</td>
+            <td rowspan="0">The following requirements apply to particular classes of OVAL definitions:~~For patch class definitions:~If an OVAL patch
+               class definition is associated with a source specific identifier (for example, Knowledge Base numbers for Microsoft patches),
+               these identifiers SHOULD be included in &lt;oval-def:reference&gt; elements contained by the definition. For example:_x000B__x000B_&lt;oval-def:reference
+               source="www.microsoft.com/Patch" ref_id="KB912919"/&gt;
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">213</td>
+            <td rowspan="1" align="center">3.3</td>
+            <td rowspan="1">The following requirements apply to particular classes of OVAL definitions:~~For patch class definitions:~Definitions that
+               are directly or indirectly extended SHALL be limited to inventory and patch classes.
+            </td>
+            <td>For OVAL definitions of @class 'patch', only definitions of class 'patch' or 'inventory' can be extended.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">214</td>
+            <td rowspan="1" align="center">3.3</td>
+            <td rowspan="1">The following requirements apply to particular classes of OVAL definitions:~~For vulnerability class definitions:~If an OVAL
+               vulnerability class definition maps to one or more CVE identifiers, the definition SHOULD include &lt;oval-def:reference&gt; elements
+               that reference those identifiers using the following format:_x000B__x000B_&lt;oval-def:reference source="http://cve.mitre.org"
+               ref_id="CVE_identifier"/&gt;_x000B__x000B_The source attribute SHALL be defined using either “CVE” or “http://cve.mitre.org”
+               (preferred method).
+            </td>
+            <td>OVAL definitions of class 'vulnerability' should include a reference to a CVE, where applicable.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">WARNING</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">215</td>
+            <td rowspan="1" align="center">3.3</td>
+            <td rowspan="1">The following requirements apply to particular classes of OVAL definitions:~~For vulnerability class definitions:~Definitions
+               that are directly or indirectly extended SHALL be limited to inventory and vulnerability classes.
+            </td>
+            <td>For OVAL definitions of @class 'vulnerability', only definitions of class 'inventory' or 'vulnerability' can be extended.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">216</td>
+            <td rowspan="1" align="center">4.1</td>
+            <td rowspan="1">Products supporting OVAL SHALL support OVAL Definition documents written against OVAL versions 5.3, 5.4, 5.5, 5.6, 5.7, and
+               5.8.
+            </td>
+            <td>OVAL documents must be written in one of the following versions: 5.3, 5.4, 5.5, 5.6, 5.7, 5.8</td>
+            <td align="center">APPLICATION</td>
+            <td align="center">ERROR</td>
+            <td align="center">TOOL</td>
+         </tr>
+         <tr>
+            <td rowspan="0" align="center">217</td>
+            <td rowspan="0" align="center">4.1</td>
+            <td rowspan="0">Within the OVAL Language, constructs may be deprecated. Deprecated constructs MUST be handled properly during OVAL Definition
+               evaluation.
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">218</td>
+            <td rowspan="1" align="center">4.2</td>
+            <td rowspan="1">An SCAP implementation that can import SCAP content SHALL be capable of validating the content against the appropriate schemas
+               and Schematron stylesheets, detecting and reporting errors, and failing gracefully if there are errors.
+            </td>
+            <td>An SCAP implementation that can import SCAP content SHALL be capable of validating the content against the appropriate schemas
+               and schematron rules, detecting and reporting errors, and failing gracefully if there are errors.
+            </td>
+            <td align="center">NOT_CHECKED</td>
+            <td align="center">NA</td>
+            <td align="center">TOOL</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">221</td>
+            <td rowspan="1" align="center">3.2.6.1</td>
+            <td rowspan="1">When referencing a CVE, CCE, or CPE identifier:~~The identifier type SHALL correspond to the OVAL definition class, as follows:~OVAL
+               compliance class definitions reference CCE identifiers.
+            </td>
+            <td>OVAL definitions of type compliance SHALL NOT reference CVE or CPE.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">222</td>
+            <td rowspan="1" align="center">3.2.6.1</td>
+            <td rowspan="1">When referencing a CVE, CCE, or CPE identifier:~~The identifier type SHALL correspond to the OVAL definition class, as follows:~OVAL
+               inventory class definitions reference CPE identifiers.
+            </td>
+            <td>OVAL definitions of type inventory SHALL NOT reference CVE or CCE.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">223</td>
+            <td rowspan="1" align="center">3.2.6.1</td>
+            <td rowspan="1">When referencing a CVE, CCE, or CPE identifier:~~The identifier type SHALL correspond to the OVAL definition class, as follows:~OVAL
+               patch and vulnerability class definitions reference CVE identifiers.
+            </td>
+            <td>OVAL definitions of type vulnerability or patch SHALL NOT reference CCE or CPE.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">224</td>
+            <td rowspan="1" align="center">3.2.6.1</td>
+            <td rowspan="1">When referencing a CVE, CCE, or CPE identifier:~~The system attribute for the &lt;xccdf:ident&gt; element SHALL be defined using
+               one of the following:~The CVE system identifier, either “CVE” or “http://cve.mitre.org” (preferred method)
+            </td>
+            <td>When xccdf:ident elements references a CVE, the @system attribute SHOULD be 'http://cve.mitre.org' or 'CVE'</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">WARNING</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">225</td>
+            <td rowspan="1" align="center">3.2.6.1</td>
+            <td rowspan="1">When referencing a CVE, CCE, or CPE identifier:~~The system attribute for the &lt;xccdf:ident&gt; element SHALL be defined using
+               one of the following:~The CCE system identifier, either “CCE” or “http://cce.mitre.org” (preferred method)
+            </td>
+            <td>When xccdf:ident elements references a CCE, the @system attribute SHOULD be 'http://cce.mitre.org' or 'CCE'</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">WARNING</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">226</td>
+            <td rowspan="1" align="center">3.2.6.1</td>
+            <td rowspan="1">When referencing a CVE, CCE, or CPE identifier:~~The system attribute for the &lt;xccdf:ident&gt; element SHALL be defined using
+               one of the following:~The CPE system identifier, either “CPE” or “http://cpe.mitre.org” (preferred method)
+            </td>
+            <td>When xccdf:ident elements references a CPE, the @system attribute SHALL be 'http://cpe.mitre.org' or 'CPE'</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="0" align="center">227</td>
+            <td rowspan="0" align="center">3.2.6.2</td>
+            <td rowspan="0">If an &lt;xccdf:Rule&gt; element references a specific OVAL Definition, then:~The referenced OVAL Definition MUST have its @class
+               attribute defined as “compliance” if it represents a check for the value of a specific configuration setting.
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+         </tr>
+         <tr>
+            <td rowspan="0" align="center">228</td>
+            <td rowspan="0" align="center">3.2.6.2</td>
+            <td rowspan="0">If an &lt;xccdf:Rule&gt; element references a specific OVAL Definition, then:~The referenced OVAL Definition MUST have its @class
+               attribute defined as “vulnerability” if it represents a check for the presence of a particular software flaw vulnerability.
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+         </tr>
+         <tr>
+            <td rowspan="0" align="center">229</td>
+            <td rowspan="0" align="center">3.2.6.2</td>
+            <td rowspan="0">If an &lt;xccdf:Rule&gt; element references a specific OVAL Definition, then:~The referenced OVAL Definition MUST have its @class
+               attribute defined as “patch” if it represents a check for the presence of a discrete patch.
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+         </tr>
+         <tr>
+            <td rowspan="0" align="center">230</td>
+            <td rowspan="0" align="center">3.2.6.2</td>
+            <td rowspan="0">If an &lt;xccdf:Rule&gt; element references a specific OVAL Definition, then:~The referenced OVAL Definition MUST have its @class
+               attribute defined as “inventory” if it represents a check for the presence of a product of interest.
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+         </tr>
+         <tr>
+            <td rowspan="0" align="center">231</td>
+            <td rowspan="0" align="center">4.5</td>
+            <td rowspan="0">In XCCDF content, if multiple &lt;xccdf:check-content-ref&gt; elements are provided, then the following evaluation method SHALL
+               be performed:~Evaluate each &lt;xccdf:check-content-ref&gt; element in the order that it appears in the &lt;xccdf:check&gt; element. The
+               first resolvable &lt;xccdf:check-content-ref&gt; element SHALL be used to determine the &lt;xccdf:Rule&gt; status.
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+         </tr>
+         <tr>
+            <td rowspan="0" align="center">232</td>
+            <td rowspan="0" align="center">4.5</td>
+            <td rowspan="0">In XCCDF content, if multiple &lt;xccdf:check-content-ref&gt; elements are provided, then the following evaluation method SHALL
+               be performed:~For each &lt;xccdf:check-content-ref&gt; element, a product will attempt to retrieve the document referenced by the
+               @href attribute. If not resolvable, the next available &lt;xccdf:check-content-ref&gt; element SHALL be evaluated. If none of the
+               &lt;xccdf:check-content-ref&gt; elements are resolvable, then the result of the rule evaluation SHALL be the XCCDF “unchecked” status
+               and processing of the &lt;xccdf:Rule&gt; SHALL end. Please note that it is acceptable to map a remote URL to a local copy of the
+               file in cases where remote access is not available, not allowed, or not practical.
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+         </tr>
+         <tr>
+            <td rowspan="0" align="center">233</td>
+            <td rowspan="0" align="center">4.5</td>
+            <td rowspan="0">In XCCDF content, if multiple &lt;xccdf:check-content-ref&gt; elements are provided, then the following evaluation method SHALL
+               be performed:~Once a resolvable &lt;xccdf:check-content-ref&gt; element is found, then check system processing SHALL proceed. When
+               evaluating a rule, an &lt;xccdf:rule-result/xccdf:message&gt; with the @severity attribute value of “info” SHALL be generated, indicating
+               the &lt;xccdf:check-content-ref&gt; @href and @name, if provided.
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">234</td>
+            <td rowspan="1" align="center">4.6</td>
+            <td rowspan="1">Every SCAP result data stream component SHALL have a filename comprised of the first locator prefix, the second locator prefix,
+               and the appropriate component suffix (as listed in Table 5), in that order. Each component SHALL use the element specified
+               in Table 5 as its document element. ~~~Table 5. SCAP Result Data Stream Naming Conventions~Component~Component Suffix~Document
+               Element~~XCCDF Benchmark~xccdf-res.xml~&lt;xccdf:Benchmark&gt; or &lt;xccdf:TestResults&gt;~~OVAL Compliance~oval-res.xml~&lt;oval-def:oval_definitions&gt;~~OVAL
+               Patch~patches-res.xml~&lt;oval-def:oval_definitions&gt;~~OVAL Vulnerability~oval-res.xml~&lt;oval-def:oval_definitions&gt;~~OCIL Questionnaire~ocil-res.xml~&lt;ocil:ocil&gt;~~CPE
+               Inventory~cpe-oval-res.xml~&lt;oval-def:oval_definitions&gt;~~
+            </td>
+            <td>The file naming convention for results should follow table 5 in section 4.6.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="0" align="center">235</td>
+            <td rowspan="0" align="center">4.9</td>
+            <td rowspan="0">An SCAP OCIL result data stream component SHALL include the results of every OCIL questionnaire, test_action, and question
+               used to generate the reported results.
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+         </tr>
+         <tr>
+            <td rowspan="2" align="center">251</td>
+            <td rowspan="2" align="center">3.2.6.1</td>
+            <td rowspan="2">Each &lt;xccdf:Rule&gt; element SHALL include an &lt;xccdf:ident&gt; element containing a CVE, CCE, or CPE identifier reference if an
+               appropriate reference exists. If the rule references an OVAL definition, then &lt;xccdf:ident&gt; element content SHALL match the
+               corresponding CVE, CCE, or CPE identifier found in the associated OVAL Definition(s) if an appropriate identifier exists.
+            </td>
+            <td>An xccdf:Rule should include an xccdf:ident containing a CVE, CCE, or CPE</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">WARNING</td>
+            <td align="center">SOURCE_CONTENT</td>
+            <tr>
+               <td>If an XCCDF rule references an OVAL definition, then &lt;xccdf:ident&gt; element content SHALL match the corresponding CVE, CCE,
+                  or CPE identifier found in the associated OVAL Definition(s)
+               </td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+         </tr>
+         <tr>
+            <td rowspan="6" align="center">252</td>
+            <td rowspan="6" align="center">3.2.5.3</td>
+            <td rowspan="6">When referencing OCIL questionnaires as checks, XCCDF content SHALL follow all requirements defined in Appendix B of NIST
+               Interagency Report (IR) 7692, Specifications for the Open Checklist Interactive Language (OCIL) Version 2.0 [OCIL].
+            </td>
+            <td>When xccdf:check-content-ref refers to an OCIL questionnaire, the @href MUST identify OCIL component, and the @name MUST identify
+               the questionnaire.
+            </td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+            <tr>
+               <td>When an XCCDF rule references a specific OCIL Questionnaire, an OCIL Questionnaire source SHALL be available to resolve the
+                  reference.
+               </td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+            <tr>
+               <td>Every variable required in a referenced OCIL questionnaire by an &lt;xccdf:Rule&gt; SHALL be bound in an &lt;xccdf:check-export&gt;.</td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+            <tr>
+               <td>If an XCCDF value of type 'number' is bound to an OCIL variable, the OCIL variable SHALL be of type 'NUMERIC'</td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+            <tr>
+               <td>If an XCCDF value of type 'string' or 'boolean' is bound to an OCIL variable, the OCIL variable SHALL be of type 'TEXT'</td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+            <tr>
+               <td>The required OCIL version is 2.0 and it SHALL be specified using the &lt;inter:schema_version&gt; inside the &lt;inter:generator&gt; element.</td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">253</td>
+            <td rowspan="1" align="center">4.7</td>
+            <td rowspan="1">If the &lt;xccdf:TestResult&gt; is the root XCCDF element, the &lt;xccdf:benchmark&gt; element’s @href attribute SHALL be an absolute
+               URL, NOT a relative URL.
+            </td>
+            <td>If the &lt;xccdf:TestResult&gt; is the root XCCDF element, the &lt;xccdf:benchmark&gt; element’s @href attribute SHALL be an absolute
+               URL, NOT a relative URL.
+            </td>
+            <td align="center">NOT_CHECKED</td>
+            <td align="center">NA</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">254</td>
+            <td rowspan="1" align="center">4.7</td>
+            <td rowspan="1">Each XCCDF result data stream component SHALL comply with the XCCDF Results schema.</td>
+            <td>Each XCCDF result data stream component SHALL comply with the XCCDF Results schema.</td>
+            <td align="center">APPLICATION</td>
+            <td align="center">ERROR</td>
+            <td align="center">RESULT_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">255</td>
+            <td rowspan="1" align="center">4.7.3</td>
+            <td rowspan="1">When evaluating an &lt;xccdf:Rule&gt; element that references an OVAL Definition, the &lt;xccdf:rule-result&gt; element SHALL be used
+               to capture the result of this evaluation. This result SHALL be determined by evaluating the referenced OVAL Definition on
+               a target host. The &lt;xccdf:result&gt; value recorded SHALL be mapped from the OVAL Definition Result produced during evaluation.
+            </td>
+            <td>When evaluating an &lt;xccdf:Rule&gt; element that references an OVAL Definition, the &lt;xccdf:rule-result&gt; element SHALL be used
+               to capture the result of this evaluation. This result SHALL be determined by evaluating the referenced OVAL Definition on
+               a target host.  The &lt;xccdf:result&gt; value recorded SHALL be mapped from the OVAL Definition Result produced during evaluation.
+            </td>
+            <td align="center">NOT_CHECKED</td>
+            <td align="center">NA</td>
+            <td align="center">RESULT_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">257</td>
+            <td rowspan="1" align="center">3.2.6.1</td>
+            <td rowspan="1">An &lt;xccdf:ident&gt; element referencing a CVE, CCE, or CPE identifier SHALL be ordered before other &lt;xccdf:ident&gt; elements referencing
+               non-SCAP identifiers. Identifiers from previous revisions of CCE or CPE MAY also be specified following the SCAP identifiers.
+            </td>
+            <td>An &lt;xccdf:ident&gt; element referencing a CVE, CCE, or CPE identifier (using the @system value specified in the 800-126) SHALL
+               be ordered before other &lt;xccdf:ident&gt; elements referencing non-SCAP identifiers.
+            </td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">258</td>
+            <td rowspan="1" align="center">4.7.3</td>
+            <td rowspan="1">If the &lt;xccdf:Rule&gt; under evaluation has an &lt;xccdf:check-content-ref&gt; element with the @name attribute omitted, then the result
+               of each evaluated OVAL Definition SHALL be recorded as a separate &lt;xccdf:rule-result&gt;. This will commonly occur for a “security_patches_up_to_date”
+               check, as defined in Section 3.2.6.4.
+            </td>
+            <td>If the &lt;xccdf:Rule&gt; under evaluation has an &lt;xccdf:check-content-ref&gt; element with the @name attribute omitted, then the result
+               of each OVAL Definition SHALL be evaluated as a separate &lt;xccdf:rule-result&gt;.  This will commonly occur for a “security_patches_up_to_date”
+               check, as defined in Section 3.2.6.4.
+            </td>
+            <td align="center">NOT_CHECKED</td>
+            <td align="center">NA</td>
+            <td align="center">RESULT_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">259</td>
+            <td rowspan="1" align="center">4.7</td>
+            <td rowspan="1">The &lt;xccdf:rule-result&gt; elements SHALL report the result of the application of each selected rule against all specified targets.~If
+               an evaluated rule references a check system (e.g., OVAL, OCIL) that the SCAP implementation does not support, the implementation
+               SHALL return a result of “notchecked” for each such rule.
+            </td>
+            <td>The &lt;xccdf:rule-result&gt; elements SHALL report the result of the application of each selected rule against all specified targets.~If
+               an evaluated rule references a check system (e.g., OVAL, OCIL) that the SCAP implementation does not support, the implementation
+               SHALL return a result of “notchecked” for each such rule.
+            </td>
+            <td align="center">NOT_CHECKED</td>
+            <td align="center">NA</td>
+            <td align="center">RESULT_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">260</td>
+            <td rowspan="1" align="center">4.7</td>
+            <td rowspan="1">The &lt;xccdf:rule-result&gt; elements SHALL report the result of the application of each selected rule against all specified targets.~The
+               &lt;xccdf:check/xccdf:check-content-ref&gt; element SHALL record the reference to the check system specific result file and check
+               name within the result file using the @href and @name attributes, respectively.
+            </td>
+            <td>Every &lt;xccdf:rule-result&gt; must have a &lt;xccdf:check&gt;/&lt;xccdf:check-content-ref&gt; that has attributes @href and @name</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">RESULT_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">267</td>
+            <td rowspan="1" align="center">3.1</td>
+            <td rowspan="1">Each SCAP source data stream component SHOULD NOT use any constructs that are deprecated in its associated specification.</td>
+            <td>Each SCAP source data stream component SHOULD NOT use any constructs that are deprecated in its associated specification.</td>
+            <td align="center">NOT_CHECKED</td>
+            <td align="center">WARNING</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">268</td>
+            <td rowspan="1" align="center">3.2.5.1</td>
+            <td rowspan="1">Use of the @name attribute is REQUIRED except for the patches up-to-date rule, as defined in Section 3.2.6.4.</td>
+            <td>If a &lt;xccdf:check-content-ref&gt; does not reference a Patch component, the @name SHALL be provided on the &lt;xccdf:check-content-ref&gt;</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">269</td>
+            <td rowspan="1" align="center">3.6</td>
+            <td rowspan="1">. If no CCE exists for the configuration setting of interest, the content author SHOULD seek to have a CCE identifier issued
+               for the configuration setting
+            </td>
+            <td>If no CCE exists for the configuration setting of interest, the content author SHOULD seek to have a CCE identifier issued
+               for the configuration setting.
+            </td>
+            <td align="center">NOT_CHECKED</td>
+            <td align="center">NA</td>
+            <td align="center">TOOL</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">270</td>
+            <td rowspan="1" align="center">4.5</td>
+            <td rowspan="1">When processing a patches-up-to-date rule, only OVAL patch class definitions SHALL be evaluated; all other classes of definitions
+               (e.g., inventory class definitions) SHALL NOT be evaluated.
+            </td>
+            <td>When processing a patches-up-to-date rule, only OVAL patch class definitions SHALL be evaluated; all other classes of definitions
+               (e.g., inventory class definitions) SHALL NOT be evaluated.
+            </td>
+            <td align="center">NOT_CHECKED</td>
+            <td align="center">NA</td>
+            <td align="center">TOOL</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">271</td>
+            <td rowspan="1" align="center">4.7.3</td>
+            <td rowspan="1">In this case the &lt;xccdf:rule-result/xccdf:check-content-ref&gt; SHALL identify the specific check result of each evaluated OVAL
+               definition using the @href and @name attributes as described in Section 4.7, item 8c. .
+            </td>
+            <td>Each &lt;xccdf:rule-result/xccdf:check-content-ref&gt; SHALL point to a check-system result using the @href and @name attributes.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">RESULT_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">272</td>
+            <td rowspan="1" align="center">4.4</td>
+            <td rowspan="1">CPEs referenced in an &lt;xccdf:platform&gt; element directly or by a &lt;cpe-lang:fact-ref&gt; contained within a referenced &lt;cpe-lang:platform-specification&gt;
+               element SHALL be evaluated as follows:~The &lt;cpe_dict:cpe-item&gt; element data SHALL be located from the CPE dictionary data
+               stream component in the same data stream with the @name attribute that is identical to the referenced CPE Name.
+            </td>
+            <td>The xccdf:platform/@id and cpe-lang:fact-ref/@name must reference a CPE entry in the CPE Dictionary in the source files.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">273</td>
+            <td rowspan="1" align="center">4.4</td>
+            <td rowspan="1">CPEs referenced in an &lt;xccdf:platform&gt; element directly or by a &lt;cpe-lang:fact-ref&gt; contained within a referenced &lt;cpe-lang:platform-specification&gt;
+               element SHALL be evaluated as follows:~The &lt;cpe_dict:check&gt; element data associated with the identified &lt;cpe_dict:cpe-item&gt;
+               element SHALL be evaluated using the referenced CPE inventory data stream component within the same data stream.
+            </td>
+            <td>The cpe_dict:cpe-item/cpe_dict:check must reference an inventory OVAL definition in the CPE Inventory in the source data stream.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">274</td>
+            <td rowspan="1" align="center">4.4</td>
+            <td rowspan="1">CPEs referenced in an &lt;xccdf:platform&gt; element directly or by a &lt;cpe-lang:fact-ref&gt; contained within a referenced &lt;cpe-lang:platform-specification&gt;
+               element SHALL be evaluated as follows:~The result of evaluation SHALL be handled according to Section 4.7.3 of this document,
+               with a result of “pass” indicating that the CPE Name was found on the machine.
+            </td>
+            <td>CPEs referenced in an &lt;xccdf:platform&gt; element directly or by a &lt;cpe-lang:fact-ref&gt; contained within a referenced &lt;cpe-lang:platform-specification&gt;
+               element SHALL be evaluated as follows:~The result of evaluation SHALL be handled according to Section 4.7.3 of this document,
+               with a result of “pass” indicating that the CPE Name was found on the machine.
+            </td>
+            <td align="center">NOT_CHECKED</td>
+            <td align="center">NA</td>
+            <td align="center">TOOL</td>
+         </tr>
+         <tr>
+            <td align="center">A1</td>
+            <td align="center">N/A</td>
+            <td>This is an application specific requirement. If content does not pass this check the SCAP Content Validation Tool may fail.</td>
+            <td>Working off-line, unable to download latest CCE and CPE dictionaries.</td>
+            <td align="center">APPLICATION</td>
+            <td align="center">WARNING</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td align="center">A2</td>
+            <td align="center">N/A</td>
+            <td>This is an application specific requirement. If content does not pass this check the SCAP Content Validation Tool may fail.</td>
+            <td>Version not found in OVAL file, unable to apply OVAL schematron rules.</td>
+            <td align="center">APPLICATION</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td align="center">A3</td>
+            <td align="center">N/A</td>
+            <td>This is an application specific requirement. If content does not pass this check the SCAP Content Validation Tool may fail.</td>
+            <td>A file that is required for the SCAP validation use case could not be located. Please ensure that the file is named in accordance
+               with the NIST SP 800-126 and that the file is not contained within a sub folder.
+            </td>
+            <td align="center">APPLICATION</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td align="center">A4</td>
+            <td align="center">N/A</td>
+            <td>This is an application specific requirement. If content does not pass this check the SCAP Content Validation Tool may fail.</td>
+            <td>Skipping unrecognized file in SCAP bundle.</td>
+            <td align="center">APPLICATION</td>
+            <td align="center">WARNING</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td align="center">A5</td>
+            <td align="center">N/A</td>
+            <td>This is an application specific requirement. If content does not pass this check the SCAP Content Validation Tool may fail.</td>
+            <td>SCAP use case not found in combined data stream.</td>
+            <td align="center">APPLICATION</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td align="center">A6</td>
+            <td align="center">N/A</td>
+            <td>This is an application specific requirement. If content does not pass this check the SCAP Content Validation Tool may fail.</td>
+            <td>SCAP version not found in combined data stream.</td>
+            <td align="center">APPLICATION</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td align="center">A7</td>
+            <td align="center">N/A</td>
+            <td>This is an application specific requirement. If content does not pass this check the SCAP Content Validation Tool may fail.</td>
+            <td>XCCDF document contains a reference to an unrecognized file type.</td>
+            <td align="center">APPLICATION</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td align="center">A8</td>
+            <td align="center">N/A</td>
+            <td>This is an application specific requirement. If content does not pass this check the SCAP Content Validation Tool may fail.</td>
+            <td>Working off-line, unable to resolve remote reference in XCCDF document.</td>
+            <td align="center">APPLICATION</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td align="center">A9</td>
+            <td align="center">N/A</td>
+            <td>This is an application specific requirement. If content does not pass this check the SCAP Content Validation Tool may fail.</td>
+            <td>Remote reference in XCCDF document could not be located or is too large to download.  To override the default maximum size
+               limit for remote references, set the -maxsize parameter
+            </td>
+            <td align="center">APPLICATION</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td align="center">A10</td>
+            <td align="center">N/A</td>
+            <td>This is an application specific requirement. If content does not pass this check the SCAP Content Validation Tool may fail.</td>
+            <td>Combined SCAP data stream failed schema validation.</td>
+            <td align="center">APPLICATION</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td align="center">A11</td>
+            <td align="center">N/A</td>
+            <td>This is an application specific requirement. If content does not pass this check the SCAP Content Validation Tool may fail.</td>
+            <td>Unrecognized schema reference.</td>
+            <td align="center">APPLICATION</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td align="center">A12</td>
+            <td align="center">N/A</td>
+            <td>This is an application specific requirement. If content does not pass this check the SCAP Content Validation Tool may fail.</td>
+            <td>In certain instances, a newer XML schema may be substituted for an older one for schema validation.</td>
+            <td align="center">APPLICATION</td>
+            <td align="center">WARNING</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td align="center">A14</td>
+            <td align="center">N/A</td>
+            <td>This is an application specific requirement. If content does not pass this check the SCAP Content Validation Tool may fail.</td>
+            <td>Content failed validation against Schematron.</td>
+            <td align="center">APPLICATION</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td align="center">A15</td>
+            <td align="center">N/A</td>
+            <td>This is an application specific requirement. If content does not pass this check the SCAP Content Validation Tool may fail.</td>
+            <td>Unused OVAL definitions exist</td>
+            <td align="center">APPLICATION</td>
+            <td align="center">WARNING</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td align="center">A16</td>
+            <td align="center">N/A</td>
+            <td>This is an additional, common-sense check.</td>
+            <td>CCE number is expected, but missing as a reference</td>
+            <td align="center">APPLICATION</td>
+            <td align="center">WARNING</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td align="center">A17</td>
+            <td align="center">N/A</td>
+            <td>This is an additional, common-sense check.</td>
+            <td>CCE number is in an invalid format or the check-digit does not match. It should be of format CCE-XXXX-X or CCE-XXXXX-X where
+               each X is a digit, and the final X is a check-digit.
+            </td>
+            <td align="center">APPLICATION</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td align="center">A18</td>
+            <td align="center">N/A</td>
+            <td>This is an additional, common-sense check.</td>
+            <td>The attribute @content-type on &lt;scap:check-system-content&gt; must match the content as such: OVAL_COMPLIANCE, OVAL_PATCH, CPE_INVENTORY,
+               OVAL_VULNERABILITY must contain an &lt;oval-def:oval_definitions&gt; element; OCIL_QUESTIONS must contain an &lt;ocil:ocil&gt; element.
+            </td>
+            <td align="center">APPLICATION</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td align="center">A19</td>
+            <td align="center">N/A</td>
+            <td>This is an application specific requirement. If content does not pass this check the SCAP Content Validation Tool may fail.
+
+            </td>
+            <td>A file that is required for the SCAP results validation could not be located. Please ensure that the file is named in accordance
+               with the NIST SP 800-126 and that the file is not contained within a sub folder.
+            </td>
+            <td align="center">APPLICATION</td>
+            <td align="center">ERROR</td>
+            <td align="center">RESULT_CONTENT</td>
+         </tr>
+         <tr>
+            <td align="center">A20</td>
+            <td align="center">N/A</td>
+            <td>This is an application specific requirement. If content does not pass this check the SCAP Content Validation Tool may fail.
+
+            </td>
+            <td>The profile provided on the command-line must exist in the source XCCDF document.</td>
+            <td align="center">APPLICATION</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td align="center">A21</td>
+            <td align="center">N/A</td>
+            <td>This requirement is intended to help the end-user, but it isn't required for content to pass validation.</td>
+            <td>The OVAL test type is not checked in the NIST SCAP Validation Program.</td>
+            <td align="center">APPLICATION</td>
+            <td align="center">INFO</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <th colspan="8">
+               <h2>CONFIGURATION</h2>
+            </th>
+         </tr>
+         <tr>
+            <th>Requirement ID</th>
+            <th>800-126 Section</th>
+            <th>800-126 Statement</th>
+            <th>800-126 Derived Requirement</th>
+            <th>Requirement Type</th>
+            <th>Error Level</th>
+            <th>Requirement Category</th>
+         </tr>
+         <tr>
+            <td rowspan="2" align="center">236</td>
+            <td rowspan="2" align="center">5.1</td>
+            <td rowspan="2">The SCAP source data stream component that MUST be included for compliance checking is the XCCDF Benchmark, which expresses
+               the checklist. Each rule in the XCCDF Benchmark SHALL reference one of the following
+            </td>
+            <td>XCCDF Benchmark must be included in the compliance use case.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+            <tr>
+               <td>Each xccdf:Rule must reference at least one of the follow components: OVAL Compliance, OCIL Questionnaire, OVAL Patches-Up-To-Date</td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+         </tr>
+         <tr>
+            <td rowspan="3" align="center">237</td>
+            <td rowspan="3" align="center">5.1</td>
+            <td rowspan="3">An OVAL compliance definition. This definition SHALL be contained in an OVAL Compliance component, which holds the definitions
+               of the compliance checks used by the checklist. The OVAL Compliance component SHALL have at least one OVAL definition of class
+               compliance, MAY have one or more additional OVAL definitions of classes compliance and/or inventory, and SHALL NOT have any
+               other classes of OVAL definitions. An XCCDF Benchmark’s rules MAY reference one or more OVAL compliance definitions in an
+               OVAL Compliance component.
+            </td>
+            <td>OVAL Compliance component must have at least one OVAL definition of @class 'compliance'</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+            <tr>
+               <td>OVAL Compliance component SHALL NOT have any OVAL definitons except of @class 'compliance' or 'inventory'</td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+            <tr>
+               <td>When an xccdf:Rule references an OVAL Compliance component, it must reference an OVAL compliance definition in that component.</td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">238</td>
+            <td rowspan="1" align="center">5.1</td>
+            <td rowspan="1">If the XCCDF Benchmark component references any CPE names, then the SCAP source data stream MUST include the following components,
+               in addition to those already mentioned:~CPE Dictionary: specifies the products or platforms of interest.
+            </td>
+            <td>If an XCCDF Benchmark references a CPE, then the CPE Dictionary component must be included.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="3" align="center">239</td>
+            <td rowspan="3" align="center">5.1</td>
+            <td rowspan="3">If the XCCDF Benchmark component references any CPE names, then the SCAP source data stream MUST include the following components,
+               in addition to those already mentioned:~CPE Inventory: contains the technical procedures for determining whether or not a
+               specific target asset has a product or platform of interest. The CPE Inventory component SHALL have one or more OVAL definitions
+               of class inventory and SHALL NOT have any other classes of OVAL definitions.
+            </td>
+            <td>If an XCCDF Benchmark references a CPE, then the CPE Inventory component must be included.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+            <tr>
+               <td>In a CPE Inventory component there must be at least one definition of @class 'inventory'</td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+            <tr>
+               <td>All OVAL definitions in CPE Inventory component must be of @class 'inventory'</td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+         </tr>
+         <tr>
+            <td rowspan="2" align="center">240</td>
+            <td rowspan="2" align="center">5.1</td>
+            <td rowspan="2">An OVAL Patch component. The OVAL Patch component holds definitions for patch compliance checks. These checks may be needed
+               if an organization includes patch verification in its compliance activities. The OVAL Patch component SHALL have at least
+               one OVAL definition of class patch, MAY have one or more additional OVAL definitions of classes compliance and/or inventory,
+               and SHALL NOT have any other classes of OVAL definitions. An XCCDF Benchmark MAY reference an OVAL Patch component through
+               a patches up-to-date rule in a manner consistent with Section 3.2.6.4.
+            </td>
+            <td>In a OVAL Patch component there must be at least one definition of @class 'patch'</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+            <tr>
+               <td>All OVAL definitions in OVAL Patch component must be of @class 'inventory', 'compliance' or 'patch'</td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">241</td>
+            <td rowspan="1" align="center">5.1</td>
+            <td rowspan="1">An OCIL questionnaire. This questionnaire SHALL be contained in an OCIL Questionnaire component, which holds the questionnaires
+               that collect information that OVAL is not being used to collect, such as posing questions to users or harvesting configuration
+               information from an existing database. An XCCDF Benchmark’s rules MAY reference one or more OCIL questionnaires in an OCIL
+               Questionnaire component.
+            </td>
+            <td>When an xccdf:Rule references an OCIL component, it must reference an OCIL questionnaire in that component.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">262</td>
+            <td rowspan="1" align="center">5.1</td>
+            <td rowspan="1">Each XCCDF Benchmark SHALL have at least one rule that references either an OVAL compliance definition in the OVAL Compliance
+               component or an OCIL questionnaire in the OCIL Questionnaire component.
+            </td>
+            <td>Each XCCDF Benchmark SHALL have at least one rule that references either an OVAL compliance definition in the OVAL Compliance
+               component or an OCIL questionnaire in the OCIL Questionnaire component.
+            </td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">263</td>
+            <td rowspan="1" align="center">5.1</td>
+            <td rowspan="1">All OVAL Compliance, OCIL Questionnaire, and OVAL Patch components referenced by the XCCDF Benchmark SHALL be included in
+               the SCAP source data stream.
+            </td>
+            <td>All OVAL Compliance, OCIL Questionnaire, and OVAL Patch components referenced by the XCCDF Benchmark SHALL be included in
+               the SCAP source data stream.
+            </td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <th colspan="8">
+               <h2>VULNERABILITY_XCCDF_OVAL</h2>
+            </th>
+         </tr>
+         <tr>
+            <th>Requirement ID</th>
+            <th>800-126 Section</th>
+            <th>800-126 Statement</th>
+            <th>800-126 Derived Requirement</th>
+            <th>Requirement Type</th>
+            <th>Error Level</th>
+            <th>Requirement Category</th>
+         </tr>
+         <tr>
+            <td rowspan="2" align="center">242</td>
+            <td rowspan="2" align="center">5.2</td>
+            <td rowspan="2">The SCAP source data stream component that MUST be included for vulnerability scanning is the XCCDF Benchmark, which expresses
+               the checklist of the flaws to be checked for. Each rule in the XCCDF Benchmark SHALL reference one of the following
+            </td>
+            <td>XCCDF Benchmark must be included in the vulnerability use case.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+            <tr>
+               <td>Each xccdf:Rule must reference at least one of the follow components: OVAL Vulnerability, OCIL Questionnaire, OVAL Patches-Up-To-Date</td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+         </tr>
+         <tr>
+            <td rowspan="3" align="center">243</td>
+            <td rowspan="3" align="center">5.2</td>
+            <td rowspan="3">An OVAL vulnerability definition. This definition SHALL be contained in an OVAL Vulnerability component, which holds the definitions
+               of the vulnerability checks used by the checklist. The OVAL Vulnerability component SHALL have at least one OVAL definition
+               of class vulnerability, MAY have one or more additional OVAL definitions of classes vulnerability and/or inventory, and SHALL
+               NOT have any other classes of OVAL definitions. An XCCDF Benchmark’s rules MAY reference one or more OVAL vulnerability definitions
+               in an OVAL Vulnerability component.
+            </td>
+            <td>OVAL Vulnerability component must have at least one OVAL definition of @class 'vulnerability'</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+            <tr>
+               <td>OVAL Vulnerability component SHALL NOT have any OVAL definitons except of @class 'vulnerability' or 'inventory'</td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+            <tr>
+               <td>When an xccdf:Rule references an OVAL Vulnerability component, it must reference an OVAL vulnerability definition in that
+                  component.
+               </td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">244</td>
+            <td rowspan="1" align="center">5.2</td>
+            <td rowspan="1">If the XCCDF Benchmark component references any CPE names, then the SCAP source data stream MUST include the following components,
+               in addition to those already mentioned:~CPE Dictionary: specifies the products or platforms of interest.
+            </td>
+            <td>If an XCCDF Benchmark references a CPE, then the CPE Dictionary component must be included.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="3" align="center">245</td>
+            <td rowspan="3" align="center">5.2</td>
+            <td rowspan="3">If the XCCDF Benchmark component references any CPE names, then the SCAP source data stream MUST include the following components,
+               in addition to those already mentioned:~CPE Inventory: contains the technical procedures for determining whether or not a
+               specific target asset has a product or platform of interest. The CPE Inventory component SHALL have one or more OVAL definitions
+               of class inventory and SHALL NOT have any other classes of OVAL definitions.
+            </td>
+            <td>If an XCCDF Benchmark references a CPE, then the CPE Inventory component must be included.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+            <tr>
+               <td>In a CPE Inventory component there must be at least one definition of @class 'inventory'</td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+            <tr>
+               <td>All OVAL definitions in CPE Inventory component must be of @class 'inventory'</td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+         </tr>
+         <tr>
+            <td rowspan="2" align="center">246</td>
+            <td rowspan="2" align="center">5.2</td>
+            <td rowspan="2">An OVAL Patch component. The OVAL Patch component holds definitions for patch compliance checks. These checks may be needed
+               if an organization includes patch verification in its vulnerability scanning activities. The OVAL Patch component SHALL have
+               at least one OVAL definition of class patch, MAY have one or more additional OVAL definitions of classes compliance and/or
+               inventory, and SHALL NOT have any other classes of OVAL definitions. An XCCDF Benchmark MAY reference an OVAL Patch component
+               through a patches up-to-date rule in a manner consistent with Section 3.2.6.4.
+            </td>
+            <td>In a OVAL Patch component there must be at least one definition of @class 'patch'</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+            <tr>
+               <td>All OVAL definitions in OVAL Patch component must be of @class 'inventory', 'compliance' or 'patch'</td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">247</td>
+            <td rowspan="1" align="center">5.2</td>
+            <td rowspan="1">An OCIL questionnaire. This questionnaire SHALL be contained in an OCIL Questionnaire component, which holds the questionnaires
+               that collect information that OVAL is not being used to collect, such as giving a system administrator step-by-step directions
+               for manually examining a system for a vulnerability that cannot be detected with OVAL, and then collecting information on
+               the results of that manual examination. An XCCDF Benchmark’s rules MAY reference one or more OCIL questionnaires in an OCIL
+               Questionnaire component.
+            </td>
+            <td>When an xccdf:Rule references an OCIL component, it must reference an OCIL questionnaire in that component.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">265</td>
+            <td rowspan="1" align="center">5.2</td>
+            <td rowspan="1">Each XCCDF Benchmark SHALL have at least one rule that references either an OVAL vulnerability definition in the OVAL Vulnerability
+               component or an OCIL questionnaire in the OCIL Questionnaire component.
+            </td>
+            <td>Each XCCDF Benchmark SHALL have at least one rule that references either an OVAL vulnerability definition in the OVAL Vulnerability
+               component or an OCIL questionnaire in the OCIL Questionnaire component.
+            </td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <td rowspan="1" align="center">266</td>
+            <td rowspan="1" align="center">5.2</td>
+            <td rowspan="1">All OVAL Vulnerability, OCIL Questionnaire, and OVAL Patch components referenced by the XCCDF Benchmark SHALL be included
+               in the SCAP source data stream.
+            </td>
+            <td>All OVAL Vulnerability, OCIL Questionnaire, and OVAL Patch components referenced by the XCCDF Benchmark SHALL be included
+               in the SCAP source data stream.
+            </td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+         </tr>
+         <tr>
+            <th colspan="8">
+               <h2>SYSTEM_INVENTORY</h2>
+            </th>
+         </tr>
+         <tr>
+            <th>Requirement ID</th>
+            <th>800-126 Section</th>
+            <th>800-126 Statement</th>
+            <th>800-126 Derived Requirement</th>
+            <th>Requirement Type</th>
+            <th>Error Level</th>
+            <th>Requirement Category</th>
+         </tr>
+         <tr>
+            <td rowspan="2" align="center">248</td>
+            <td rowspan="2" align="center">5.3</td>
+            <td rowspan="2">The SCAP source data stream components that MUST be included for inventory scanning are:~XCCDF Benchmark: references the CPE
+               Inventory and captures the results of the inventory. Each rule in the XCCDF Benchmark SHALL reference an OVAL inventory definition
+               in the CPE Inventory component.
+            </td>
+            <td>XCCDF Benchmark must be included in the inventory use case.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+            <tr>
+               <td>Each xccdf:Rule must reference at least one OVAL definition in CPE_INVENTORY</td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+         </tr>
+         <tr>
+            <td rowspan="3" align="center">249</td>
+            <td rowspan="3" align="center">5.3</td>
+            <td rowspan="3">The SCAP source data stream components that MUST be included for inventory scanning are:~CPE Inventory: contains the technical
+               procedures for determining whether or not a specific target asset has a product or platform of interest. The CPE Inventory
+               component SHALL have one or more OVAL definitions of class inventory and SHALL NOT have any other classes of OVAL definitions.
+            </td>
+            <td>CPE Inventory component is required for the inventory use case.</td>
+            <td align="center">SCHEMATRON</td>
+            <td align="center">ERROR</td>
+            <td align="center">SOURCE_CONTENT</td>
+            <tr>
+               <td>All OVAL definitions in CPE Inventory component must be of @class 'inventory'</td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+            <tr>
+               <td>In a CPE Inventory component there must be at least one definition of @class 'inventory'</td>
+               <td align="center">SCHEMATRON</td>
+               <td align="center">ERROR</td>
+               <td align="center">SOURCE_CONTENT</td>
+            </tr>
+         </tr>
+         <tr>
+            <th colspan="8">
+               <h2>OVAL_ONLY</h2>
+            </th>
+         </tr>
+         <tr>
+            <th>Requirement ID</th>
+            <th>800-126 Section</th>
+            <th>800-126 Statement</th>
+            <th>800-126 Derived Requirement</th>
+            <th>Requirement Type</th>
+            <th>Error Level</th>
+            <th>Requirement Category</th>
+         </tr>
+         <tr>
+            <td rowspan="0" align="center">250</td>
+            <td rowspan="0" align="center">5.4</td>
+            <td rowspan="0">The only SCAP source data stream component that MUST be included is an OVAL component that maps to the desired definition
+               classes (e.g., compliance class for configuration setting checks, inventory class for asset checks, patch class for patch
+               presence checks, vulnerability class for software flaw vulnerability presence checks). The mapping SHALL correspond to the
+               mappings defined in Section 3.2.6.2.
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+         </tr>
+      </table>
+   </body>
+</html>

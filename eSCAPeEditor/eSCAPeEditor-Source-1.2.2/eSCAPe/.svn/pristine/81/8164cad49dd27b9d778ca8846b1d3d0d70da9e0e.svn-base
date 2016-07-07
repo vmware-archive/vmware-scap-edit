@@ -1,0 +1,222 @@
+package com.g2inc.scap.editor.gui.windows.xccdf;
+
+/* ESCAPE Software   Copyright 2010 G2, Inc. - All rights reserved.
+*
+* ESCAPE is open source software distributed under GNU General Public License Version 3.  ESCAPE is not in the public domain 
+* and G2, Inc. holds its copyright.  Redistribution and use in source and binary forms, with or without modification, are
+* permitted provided that the following conditions are met:
+
+* 1. Redistributions of ESCAPE source code must retain the above copyright notice, this list of conditions and the following disclaimer. 
+* 2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the ESCAPE Software distribution. 
+* 3. Neither the name of G2, Inc. nor the names of any contributors may be used to endorse or promote products derived from this software without specific prior written permission. 
+
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES,
+* INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+* IN NO EVENT SHALL G2, INC., THE AUTHORS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,
+* OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+* OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+* OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+* POSSIBILITY OF SUCH DAMAGE.
+
+* You should have received a copy of the GNU General Public License Version 3 along with this program. 
+* If not, see http://www.gnu.org/licenses/ for a copy.
+*/
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+
+import org.apache.log4j.Logger;
+
+import com.g2inc.scap.editor.gui.windows.common.ChangeNotifierPanel;
+import com.g2inc.scap.library.domain.xccdf.RoleEnum;
+import com.g2inc.scap.library.domain.xccdf.RoleSeverity;
+import com.g2inc.scap.library.domain.xccdf.SeverityEnum;
+
+
+public class RoleSeverityPanel extends ChangeNotifierPanel implements ActionListener
+{
+
+    private static Logger log = Logger.getLogger(RoleSeverityPanel.class);
+    private RoleSeverity roleSeverity = null;
+    private JFrame parentWin = null;
+    private static final String UNSPECIFIED = "unspecified";
+
+    /** Creates new form DefinitionDetailTab */
+    public RoleSeverityPanel()
+    {
+        initComponents();
+        initComponents2();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent ae)
+    {
+        Object src = ae.getSource();
+
+        if(src == roleComboBox)
+        {
+            String roleString = (String) roleComboBox.getSelectedItem();
+            if (roleString != null && roleSeverity != null)
+            {
+                if (!roleString.equals(UNSPECIFIED))
+                {
+                    roleSeverity.setRole(RoleEnum.valueOf(roleString));
+                }
+                else
+                {
+                    roleSeverity.setRole(null);
+                }
+
+                notifyRegisteredListeners();
+            }
+        }
+        else if(src == severityComboBox)
+        {
+            String severityString = (String) severityComboBox.getSelectedItem();
+            if (severityString != null && roleSeverity != null)
+            {
+                if(!severityString.equals(UNSPECIFIED))
+                {
+                    roleSeverity.setSeverity(SeverityEnum.valueOf(severityString));
+                }
+                else
+                {
+                    roleSeverity.setSeverity(null);
+                }
+
+                notifyRegisteredListeners();
+            }
+        }
+    }
+
+    private void initComboBoxes()
+    {
+        log.debug("initComboBoxes ");
+        roleComboBox.addActionListener(this);
+        severityComboBox.addActionListener(this);
+
+        roleComboBox.removeAllItems();
+        RoleEnum[] roles = RoleEnum.values();
+        roleComboBox.addItem(UNSPECIFIED);
+        for (int i = 0; i < roles.length; i++)
+        {
+            roleComboBox.addItem(roles[i].toString());
+        }
+        severityComboBox.addItem(UNSPECIFIED);
+        SeverityEnum[] severities = SeverityEnum.values();
+        for (int i = 0; i < severities.length; i++)
+        {
+            severityComboBox.addItem(severities[i].toString());
+        }
+    }
+
+    public void initComponents2()
+    {
+        initComboBoxes();
+    }
+
+    /** This method is called from within the constructor to
+     * initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is
+     * always regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
+
+        roleCaption = new javax.swing.JLabel();
+        roleComboBox = new javax.swing.JComboBox();
+        severityCaption = new javax.swing.JLabel();
+        severityComboBox = new javax.swing.JComboBox();
+
+        setLayout(new java.awt.GridBagLayout());
+
+        roleCaption.setText("Role");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 0);
+        add(roleCaption, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 5, 0, 5);
+        add(roleComboBox, gridBagConstraints);
+
+        severityCaption.setText("Severity");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 0);
+        add(severityCaption, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 5, 0, 5);
+        add(severityComboBox, gridBagConstraints);
+    }// </editor-fold>//GEN-END:initComponents
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel roleCaption;
+    private javax.swing.JComboBox roleComboBox;
+    private javax.swing.JLabel severityCaption;
+    private javax.swing.JComboBox severityComboBox;
+    // End of variables declaration//GEN-END:variables
+
+    @Override
+    public JFrame getParentWin()
+    {
+        return parentWin;
+    }
+
+    @Override
+    public void setParentWin(JFrame parentWin)
+    {
+        this.parentWin = parentWin;
+    }
+
+    public RoleSeverity getData()
+    {
+        log.debug("getData - role = " + roleSeverity.getRole());
+        return roleSeverity;
+    }
+
+    public void setData(RoleSeverity roleSeverity)
+    {
+        this.roleSeverity = roleSeverity;
+
+        RoleEnum role = roleSeverity.getRole();
+        if (role != null)
+        {
+            roleComboBox.setSelectedItem(role.toString());
+        }
+        else
+        {
+            roleComboBox.setSelectedItem(roleSeverity.getDefaultRole().toString());
+        }
+        SeverityEnum severity = roleSeverity.getSeverity();
+        if (severity != null)
+        {
+            severityComboBox.setSelectedItem(roleSeverity.getSeverity().toString());
+        }
+        else
+        {
+            severityComboBox.setSelectedItem(roleSeverity.getDefaultSeverity().toString());
+        }
+    }
+}

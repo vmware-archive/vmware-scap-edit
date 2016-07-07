@@ -1,0 +1,19 @@
+This project is configured to be built using maven2. 
+
+You will need to have maven 2.2.1 or greater installed and configured to build properly.
+
+We'll assume you've checked out both the eSCAPe and eSCAPeLib project into a directory called /foo
+
+You can check out eSCAPeLib from 
+https://sourceforge.net/projects/escapelibrary/
+
+You can check out eSCAPe (the editor gui) from
+https://sourceforge.net/projects/escapeditor/
+
+First build eSCAPeLib:
+cd /foo/eSCAPeLib
+mvn clean install
+
+Second build eSCAPe:
+cd /foo/eSCAPe
+mvn clean install

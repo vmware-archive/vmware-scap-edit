@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" 
+                  xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" 
+                  xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" 
+                  xmlns:win-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" 
+                  xmlns:ind-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" 
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows http://oval.mitre.org/language/download/schema/version5.3/ovaldefinition/complete/windows-definitions-schema.xsd
+                  http://oval.mitre.org/XMLSchema/oval-definitions-5#independent http://oval.mitre.org/language/download/schema/version5.3/ovaldefinition/complete/independent-definitions-schema.xsd
+                  http://oval.mitre.org/XMLSchema/oval-definitions-5 http://oval.mitre.org/language/download/schema/version5.3/ovaldefinition/complete/oval-definitions-schema.xsd
+                  http://oval.mitre.org/XMLSchema/oval-common-5 http://oval.mitre.org/language/download/schema/version5.3/ovaldefinition/complete/oval-common-schema.xsd">
+      <generator>
+            <oval:product_name>National Institute of Standards and Technology</oval:product_name>
+            <oval:schema_version>5.3</oval:schema_version>
+            <oval:timestamp>2008-09-11T14:08:10.000-04:00</oval:timestamp>
+      </generator>
+      <!-- ==================================================================================================== -->
+      <!-- ==========================================  DEFINITIONS  =========================================== -->
+      <!-- ==================================================================================================== -->
+      <definitions>
+            <definition id="oval:org.mitre.oval:def:754" version="2" class="inventory">
+                  <metadata>
+                        <title>Microsoft Windows XP SP2 is installed</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows XP</platform>
+                        </affected>
+                        <reference source="CPE" ref_id="cpe:/o:microsoft:windows_xp::sp2:x86"/>
+                        <description>A version of Microsoft Windows XP (x86) Service Pack 2 is installed.</description>
+                        <oval_repository>
+                              <dates>
+                                    <submitted date="2007-03-05T09:00:00">
+                                          <contributor organization="The MITRE Corporation">Andrew Buttner</contributor>
+                                    </submitted>
+                                    <status_change date="2007-03-05T09:00:00">DRAFT</status_change>
+                                    <status_change date="2007-03-21T16:17:26.869-04:00">INTERIM</status_change>
+                                    <status_change date="2007-04-10T13:44:28.583-04:00">ACCEPTED</status_change>
+                                    <modified comment="Changed the CPE reference" date="2008-04-04T11:17:00.434-04:00">
+                                          <contributor organization="The MITRE Corporation">Andrew Buttner</contributor>
+                                    </modified>
+                                    <status_change date="2008-04-04T11:29:22.458-04:00">INTERIM</status_change>
+                                    <status_change date="2008-04-21T04:00:24.359-04:00">ACCEPTED</status_change>
+                              </dates>
+                              <status>ACCEPTED</status>
+                        </oval_repository>
+                  </metadata>
+                  <criteria operator="AND">
+                        <criterion comment="the installed operating system is part of the Microsoft Windows family" test_ref="oval:org.mitre.oval:tst:99"/>
+                        <criterion comment="a version of Microsoft Windows XP is installed" test_ref="oval:org.mitre.oval:tst:3"/>
+                        <criterion comment="Win2K/XP/2003 service pack 2 is installed" test_ref="oval:org.mitre.oval:tst:3019"/>
+                  </criteria>
+            </definition>
+            <definition id="oval:org.mitre.oval:def:5631" version="0" class="inventory">
+                  <metadata>
+                        <title>Microsoft Windows XP SP3 is installed</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows XP</platform>
+                        </affected>
+                        <reference source="CPE" ref_id="cpe:/o:microsoft:windows_xp::sp3:x86"/>
+                        <description>A version of Microsoft Windows XP (x86) Service Pack 3 is installed.</description>
+                        <oval_repository>
+                              <dates>
+                                    <submitted date="2008-06-10T14:50:00">
+                                          <contributor organization="Secure Elements, Inc.">Sudhir Gandhe</contributor>
+                                    </submitted>
+                                    <status_change date="2008-06-12T13:58:47.155-04:00">DRAFT</status_change>
+                              </dates>
+                              <status>DRAFT</status>
+                        </oval_repository>
+                  </metadata>
+                  <criteria operator="AND">
+                        <criterion comment="the installed operating system is part of the Microsoft Windows family" test_ref="oval:org.mitre.oval:tst:99"/>
+                        <criterion comment="a version of Microsoft Windows XP is installed" test_ref="oval:org.mitre.oval:tst:3"/>
+                        <criterion comment="Win2K/XP/2003 service pack 3 is installed" test_ref="oval:org.mitre.oval:tst:7814"/>
+                  </criteria>
+            </definition>
+      </definitions>
+      <!-- ==================================================================================================== -->
+      <!-- ============================================  TESTS  =============================================== -->
+      <!-- ==================================================================================================== -->
+      <tests>
+            <family_test id="oval:org.mitre.oval:tst:99" version="1" comment="the installed operating system is part of the Microsoft Windows family" check_existence="at_least_one_exists" check="only one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+                  <object object_ref="oval:org.mitre.oval:obj:99"/>
+                  <state state_ref="oval:org.mitre.oval:ste:99"/>
+            </family_test>
+            <registry_test id="oval:org.mitre.oval:tst:3" version="1" comment="a version of Microsoft Windows XP is installed" check_existence="at_least_one_exists" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+                  <object object_ref="oval:org.mitre.oval:obj:123"/>
+                  <state state_ref="oval:org.mitre.oval:ste:3"/>
+            </registry_test>
+            <registry_test id="oval:org.mitre.oval:tst:3019" version="1" comment="Win2K/XP/2003 service pack 2 is installed" check_existence="at_least_one_exists" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+                  <object object_ref="oval:org.mitre.oval:obj:717"/>
+                  <state state_ref="oval:org.mitre.oval:ste:2827"/>
+            </registry_test>
+            <registry_test id="oval:org.mitre.oval:tst:7814" version="1" comment="Win2K/XP/2003 service pack 3 is installed" check_existence="at_least_one_exists" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+                  <object object_ref="oval:org.mitre.oval:obj:717"/>
+                  <state state_ref="oval:org.mitre.oval:ste:3794"/>
+            </registry_test>
+      </tests>
+      <!-- ==================================================================================================== -->
+      <!-- ===========================================  OBJECTS  ============================================== -->
+      <!-- ==================================================================================================== -->
+      <objects>
+            <family_object id="oval:org.mitre.oval:obj:99" version="1" comment="This is the default family object. Only one family object should exist." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"/>
+            <registry_object id="oval:org.mitre.oval:obj:717" version="1" comment="This registry key holds the service pack installed on the host if one is present." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Microsoft\Windows NT\CurrentVersion</key>
+                  <name>CSDVersion</name>
+            </registry_object>
+            <registry_object id="oval:org.mitre.oval:obj:123" version="1" comment="Registry key that hold the current windows os version" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Microsoft\Windows NT\CurrentVersion</key>
+                  <name>CurrentVersion</name>
+            </registry_object>
+      </objects>
+      <!-- ==================================================================================================== -->
+      <!-- =============================================  STATES  ============================================= -->
+      <!-- ==================================================================================================== -->
+      <states>
+            <family_state id="oval:org.mitre.oval:ste:99" version="1" comment="Microsoft Windows family" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+                  <family>windows</family>
+            </family_state>
+            <registry_state id="oval:org.mitre.oval:ste:2827" version="1" comment="The registry key has a value of Service Pack 2" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+                  <value>Service Pack 2</value>
+            </registry_state>
+            <registry_state id="oval:org.mitre.oval:ste:3" version="1" comment="The registry key has a value of 5.1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+                  <value>5.1</value>
+            </registry_state>
+            <registry_state id="oval:org.mitre.oval:ste:3794" version="1" comment="The registry key has a value of Service Pack 3" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+                  <value>Service Pack 3</value>
+            </registry_state>
+      </states>
+      <!-- ==================================================================================================== -->
+      <!-- ==================================================================================================== -->
+      <!-- ==================================================================================================== -->
+</oval_definitions>

@@ -1,0 +1,545 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+    <title>SCAP Content Validation command-line Tool</title>
+	<style type="text/css">
+		<xsl:text disable-output-escaping="yes">
+	<!-- General Settings -->
+	<!-- set-up the fonts -->
+	body,div,p,blockquote,ol,ul,dl,li,dt,dd,td,th,pre {
+	font-family: Verdana, Geneva, Arial, helvetica, sans-serif;
+	}
+
+	body {
+	background-color: #ffffff;
+	color: #000154;
+	font-size: 0.85em;
+	margin: 2em;
+	width: 75%;
+	}
+
+
+	h3,h4,h5,h6 {
+	font-size:1em;
+	}
+
+	<!-- reset padding and margin for all block-level elements -->
+	html,form,div,ol,ul,dl,li,dt,dd,td,th,h1,h2,h3,h4,h5,h6,pre,p,blockquote,fieldset,img {
+	margin:0;
+	padding:0;
+	}
+
+	h1 {
+	margin: 1em -0.5em 0.5em;
+	font-size:1.5em;
+	border-bottom: solid 3px #cccccc;
+	width: 10em;
+	}
+
+	h2 {
+	margin: 1em -0.5em 0.5em;
+	padding: 2px 3px 2px;
+	font-size:1.25em;
+	border-bottom: solid 3px #cccccc;
+	background-color: #eeeeee;
+	width: 60em;
+	}
+
+	h3 {
+	margin: 1em -0.5em 0.5em 0.5em;
+	padding: 2px 3px 2px;
+	font-size:1em;
+	border-bottom: solid 3px #cccccc;
+	background-color: #eeeeee;
+	width: 60em;
+	}
+
+	pre {
+	background-color: #dddddd;
+	border: solid thin black;
+	margin: 0.5em 5em;
+	padding: 1em;
+	overflow: auto;
+	width: 100%;
+	font-size: 1.25em;
+	}
+
+	code, samp {
+	font-family: courier;
+	}
+
+	<!-- reset the border -->
+	a img,:link img,:visited img, img, fieldset {
+	border:none;
+	}
+
+	<!-- de-italicize address -->
+	address {
+	font-style:normal;
+	}
+
+	<!-- give paragraphs a margin -->
+	p {
+	margin: 0 0 0.3em 0;
+	}
+
+	<!-- provide feedback on abbreviations and acronyms -->
+	abbr, acronym, .help {
+	border-bottom: 1px dotted #333;
+	cursor: help;
+	}
+
+	.command {
+	font-size: 1em;
+	font-weight: bold;
+	}
+
+	.flag {
+	font-weight: bold;
+	}
+
+	.arg {
+	font-weight: bold;
+	font-style: italic;
+	}
+
+	div.section {
+	margin: 2em 1.25em 0em;
+	}
+
+	div.topOfPage {
+	font-size: 0.7em;
+	margin: 1em -1.5em 0em;
+	}
+
+	#parameters dd {
+	margin: 0.25em 1em;
+	}
+
+	#parameters dt {
+	margin-top: 1em;
+	}
+
+	#parameters dd ul {
+	list-style: none;
+	}
+
+	#parameters dd li {
+	margin: 0.25em 1em;
+	}
+
+	#remarks ul {
+	list-style: none;
+	}
+
+	#remarks li {
+	margin: 1em 1em;
+	}
+
+	div.example {
+	margin-left: 1em;
+	}
+
+	table {
+		border-width: 2px;
+		border-style: solid;
+		border-color: #cccccc;
+
+	}
+	td, th {
+		border-width: 2px;
+		border-style: solid;
+		border-color: #cccccc;
+		padding:10px;
+	}
+		</xsl:text>
+	</style>
+  </head>
+  <body>
+    <h1><a name="top"/>scapval</h1>
+    <p> Provides information about whether an SCAP data stream bundle (.zip file) conforms
+        to conventions and recommendations outlined in NIST Special Publication 800-126, <a
+            href="http://csrc.nist.gov/publications/PubsSPs.html#SP-800-126"> The Technical
+            Specification for the Security Content Automation Protocol (SCAP): SCAP Version
+            1.0 </a>. Validates the data stream according to one of the use cases for an
+        SCAP-validated tool listed in Section 5 of the 800-126, namely Configuration
+        Verification, Vulnerability Assessment, Path Validation, or Inventory Collection.
+        Checks component XCCDF and OVAL data streams (.xml files) against appropriate
+        schemas. Uses Schematron to perform additional checks within and across component
+        data streams. <strong>scapval</strong> produces validation results that conveys all
+        error and warning conditions detected; results are output in both XML and
+        HTML formats. For a listing of the SCAP requirements, refer
+        to the <a href="scap-val-requirements-1.0.html">SCAP Version 1.0 Requirements Matrix</a>
+        included with the tool.
+    </p>
+
+    <div id="version" class="section">
+      <h2><a name="syntax"/>Release Information</h2>
+      <p>Version 1.1.2 Released 2010-09
+      </p>
+      <div class="topOfPage">
+        <a href="#top">Top of page</a>
+      </div>
+    </div>
+
+    <div id="syntax" class="section">
+     <h2><a name="syntax"/>Syntax</h2>
+     <p>
+       <span class="command">scapval</span>
+       (<span class="flag">-file</span> | <span class="flag">-dir</span>) <span class="arg">source_file_or_directory</span>
+       <span class="flag">-usecase</span> <span class="arg">use_case</span>
+<!--
+       <span class="flag">-scapversion</span> <span class="arg">scap_version</span>
+       [<span class="flag">-result</span> <span class="arg">file_to_output_results_of_validation</span>]
+       [(<span class="flag">-resultfile</span> | <span class="flag">-resultdir</span>) <span class="arg">scap_result_zip_or_directory</span>]
+       [<span class="flag">-profile</span> <span class="arg">profile</span>]
+-->
+       [<span class="flag">-online</span>]
+          [(<span class="flag">-debug</span> | <span class="flag">-quiet</span>)]
+          [<span class="flag">-datastream</span> <span class="arg">file_to_output_scap_datastream</span>]
+          [<span class="flag">-xslreport</span> <span class="arg">xsl_to_transform_validation_output</span>]
+          [<span class="flag">-version</span>]
+          [<span class="flag">-batch</span>]
+     </p>
+     <div class="topOfPage">
+       <a href="#top">Top of page</a>
+     </div>
+    </div>
+
+    <div id="parameters" class="section">
+    <h2><a name="parameters"/>Parameters</h2>
+    <dl>
+      <dt>(<span class="flag">-file</span> | <span class="flag">-dir</span>) <span class="arg">source_file_or_directory</span></dt>
+      <dd>Required. -file specifies the SCAP data stream (.zip or .xml) input file that is being validated.  -dir specifies a directory
+      	where the files that would be included in a .zip SCAP data stream are located at the root of the directory.
+      </dd>
+<br/>
+      <dt><span class="flag">-usecase</span> <span class="arg">use_case</span></dt>
+      <dd>Required. Specifies an SCAP 1.0 or 1.1 use case. Valid <span class="arg">-use_case</span> values for SCAP 1.0 are:
+        <ul>
+          <li>CONFIGURATION</li>
+          <li>VULNERABILITY_XCCDF_OVAL</li>
+          <li>VULNERABILITY_OVAL</li>
+          <li>SYSTEM_INVENTORY</li>
+        </ul>
+        Valid <span class="arg">-use_case</span> values for SCAP 1.1 are:
+		        <ul>
+		          <li>CONFIGURATION</li>
+		          <li>VULNERABILITY_XCCDF_OVAL</li>
+		          <li>VULNERABILITY_OVAL</li>
+		          <li>SYSTEM_INVENTORY</li>
+		          <li>PATCH</li>
+        </ul>
+      </dd>
+<!--
+	  <dt><span class="flag">-scapversion</span> <span class="arg">scap_version</span></dt>
+	  <dd>
+	  	Required.  Specifies the version of SCAP corresponding with the source content.
+	  	Acceptable values are "1.0" and "1.1".
+
+	  </dd>
+<br/>
+      <dt><span class="flag">-result</span> <span class="arg">file_to_output_results_of_validation</span></dt>
+      <dd>An optional output filename. <strong>scapval</strong> will
+        write a validation result (.xml) file with this name. The result contains a detailed
+        listing of the issues discovered. Each message in this file refers to a file in the
+        SCAP bundle with an XPATH expression where the error was found. If <span class="flag">-result</span> is
+        not used, then the filename is scap-validation-result.xml.  A human-readable (.html) file
+        is also produced.
+      </dd>
+<br/>
+	  <dt>(<span class="flag">-resultfile</span> | <span class="flag">-resultdir</span>) <span class="arg">scap_result_zip_or_directory</span></dt>
+	  <dd>
+	  	This must be provided if SCAP results are to be validated.  -resultfile must point to a .zip that contains the result SCAP files that correspond
+	  	to the SCAP source content, or -resultdir must point to a directory that contains the result SCAP files that correspond to the SCAP source content.
+	  	Both the source and result content will be validated if this option is specified.
+	  </dd>
+<br/>
+	  <dt><span class="flag">-profile</span> <span class="arg">profile</span></dt>
+	  <dd>
+	  	Specify only when -resultfile or -resultdir is indicated.  The value of -profile should be the XCCDF profile selected in the source content
+	  	to generate the result content.  Do not specify -profile if no profile was selected.
+	  </dd>
+-->
+<br/>
+      <dt><span class="flag">-online</span></dt>
+      <dd>Permits <strong>scapval</strong> to connect through the Internet to download
+        files which are referenced within the SCAP bundle, but were not provided in the
+        bundle. A typical example would be the OVAL patch definitions which have both a
+        remote and a local reference. <span class="flag">-online</span> also permits <strong>scapval</strong> to download
+        the latest CCE and CPE dictionaries. By default, <strong>scapval</strong> will not connect to
+        the Internet.
+      </dd>
+<br/>
+      <dt><span class="flag">(-debug | -quiet)</span></dt>
+      <dd>-debug displays verbose messages about the validation process in the console.  -quiet
+      	Hides all console messages. If this option is specified, <strong>scapval</strong> still
+      	produces the validation result files.
+      </dd>
+<br/>
+      <dt><span class="flag">-datastream</span> <span class="arg">file_to_output_scap_datastream</span></dt>
+      <dd>An optional output filename. <strong>scapval</strong>
+        will create a consolidated SCAP (.xml) file with this name from the component files
+        in the SCAP bundle. This may be useful for troubleshooting <strong>scapval</strong>, although
+        it is not required. If this option is omitted, then <strong>scapval</strong> uses a temporary
+        file.
+      </dd>
+<br/>
+      <dt><span class="flag">-version</span></dt>
+      <dd>Displays the version of <strong>scapval</strong>.</dd>
+<br/>
+      <dt><span class="flag">-batch</span></dt>
+      <dd>Including this flag allows <strong>scapval</strong> to process multiple sets of SCAP content.  When -batch is indicated, result content
+        	may not be specified.  In addition, -file or -dir must point to a .zip or directory, respectively.  That ZIP file or directory
+        	must be comprised of .zip SCAP content, .xml SCAP content, or directories with SCAP component files at the root level of the directory.
+        	For example, this could be the content of the ZIP or directory.
+        <ul>
+          <li>scap_source_content_components_dir
+			<ul>
+			  <li>example-xccdf.xml</li>
+			  <li>example-oval.xml</li>
+			  <li>example-patches.xml</li>
+			  <li>example-cpe-dictionary.xml</li>
+			  <li>example-cpe-oval.xml</li>
+			</ul>
+		  </li>
+          <li>scap_source_content_data_stream.xml</li>
+          <li>scap_source_content.zip</li>
+        </ul>
+
+       </dd>
+    </dl>
+    <div class="topOfPage">
+      <a href="#top">Top of page</a>
+    </div>
+    </div>
+
+    <div id="remarks" class="section">
+    <h2><a name="remarks"/>Remarks</h2>
+    <ul>
+      <li>Requires Java JRE 1.6 or higher. If the JAVA_HOME variable is
+        set then the JRE which is at that location will be used.
+        Otherwise the JRE available on the path is used.
+      </li>
+      <li>A matrix of SCAP requirements is provided with this tool in
+        <a href="scap-val-requirements-1.0.html">SCAP Version 1.0 Requirements Matrix</a> and <a href="scap-val-requirements-1.1.html">SCAP Version 1.1 Requirements Matrix</a>.
+        The matrix indicates which requirements are checked by <strong>scapval</strong>.
+        The section numbers in the matrix refer to SP 800-126 which is available
+        <a href="http://csrc.nist.gov/publications/PubsSPs.html#SP-800-126">here</a>.
+      </li>
+      <li>Section 5 of SP 800-126 establishes a naming convention for files within
+        the SCAP bundle.  Files that fail to meet the convention are skipped
+        by  <strong>scapval</strong> and may result in errors; subfolders
+        are also skipped.
+      </li>
+      <li>OVAL 5.3 AND 5.4.  To validate OVAL content, <strong>scapval</strong> uses OVAL Definition Schematron
+        schemas that have been modified to use XPath 1.0 instead of XPath 2.0.  To use
+        XPath 1.0, the queryBinding="xslt2" attributes were removed from the root element
+        of the schematron schemas.  The modification was made to avoid an XPath exception
+        in the floor() function when the current element being processed is not a node.
+      </li>
+      <li>To validate Windows content, the OVAL 5.3, 5.4, 5.5, and 5.6 schema/schematron were
+         modified to allow the following oval-def:platforms (the versions where a platform was added because it does exist in the original Schematron is noted):
+         <pre><code>oval-def:platform='Microsoft Windows Server 2008' (5.3, 5.4)
+oval-def:platform='Microsoft Windows 7' (5.3, 5.4, 5.5)
+oval-def:platform='Microsoft Windows Server 2008 R2' (5.3, 5.4, 5.5, 5.6)</code></pre>
+      </li>
+      <li>In OVAL 5.3, a pattern with ID = "fileobjfilename" has a single rule with an erroneous assertion.  The test was corrected in OVAL 5.5, therefore the test from OVAL 5.5 is used in place of the OVAL 5.3 test.<br/>
+      Original test:
+         <pre><code>test="(not(@operation) or @operation='equals' or @operation='not equal')
+		and not(contains(.,'\') or contains(.,'/') or contains(.,':') or
+		contains(.,'*') or contains(.,'?')) or contains(.,'&gt;')
+		or contains(.,'|')"</code></pre>
+         New test:
+         <pre><code>test="(not(contains(.,'\') or contains(.,'/') or contains(.,':')
+		or contains(.,'*') or contains(.,'?') or contains(.,'&gt;')
+		or contains(.,'|'))) or (@operation='pattern match')"</code></pre>
+      </li>
+		<li>In OVAL 5.3, a pattern with ID = "regstevalue" has a single rule with an erroneous assertion.  The assertion was removed in OVAL 5.4 and later.  In order to fix the assertion in the OVAL 5.3 Schematron, the test was updated for this tool.<br/>
+		Original test:
+		   <pre><code>test="((@datatype='binary' and (not(@operation) or @operation='equals'
+	  or @operation='not equal')) or (@datatype='int' and (not(@operation)
+	  or @operation='equals' or @operation='not equal'
+	  or @operation='greater than' or @operation='greater than or equal'
+	  or @operation='less than' or @operation='less than or equal'
+	  or @operation='bitwise and' or @operation='bitwise or'))
+	  or ((@datatype='string' or not(@datatype)) and (not(@operation)
+	  or @operation='equals' or @operation='not equal'
+	  or @operation='pattern match')) or (@datatype='version'
+	  and (not(@operation) or @operation='equals' or @operation='not equal'
+	  or @operation='greater than' or @operation='greater than or equal'
+	  or @operation='less than' or @operation='less than or equal')))"</code></pre>
+		   New test:
+		   <pre><code>test="((@datatype='binary' and (not(@operation) or @operation='equals'
+	  or @operation='not equal')) or (@datatype='int' and (not(@operation)
+	  or @operation='equals' or @operation='not equal'
+	  or @operation='greater than' or @operation='greater than or equal'
+	  or @operation='less than' or @operation='less than
+	  or equal' or @operation='bitwise and' or @operation='bitwise or'))
+	  or ((@datatype='string' or not(@datatype)) and (not(@operation)
+	  or @operation='equals' or @operation='not equal'
+	  or @operation='pattern match')) or (@datatype='version'
+	  and (not(@operation) or @operation='equals' or @operation='not equal'
+	  or @operation='greater than' or @operation='greater than or equal'
+	  or @operation='less than' or @operation='less than or equal'))
+	  or (@datatype='boolean' and (not(@operation) or @operation='equals'
+	  or @operation='not equal')) or (@datatype='evr_string'
+	  and (not(@operation) or @operation='equals' or @operation='not equal'
+	  or @operation='greater than' or @operation='greater than or equal'
+	  or @operation='less than' or @operation='less than or equal'))
+	  or (@datatype='float' and (not(@operation) or @operation='equals'
+	  or @operation='not equal' or @operation='greater than'
+	  or @operation='greater than or equal' or @operation='less than'
+	  or @operation='less than or equal')) or (@datatype='ios_version'
+	  and (not(@operation) or @operation='equals' or @operation='not equal'
+	  or @operation='greater than' or @operation='greater than or equal'
+	  or @operation='less than' or @operation='less than or equal')))"</code></pre>
+		</li>
+		<li>In OVAL 5.4, pattern with ID = "entityrules" has an error in the first assertion.  <br/>
+		Original test:
+		   <pre><code>test="...(@datatype='string' and (not(@operation) or @operation='equals'
+		   or @operation='not equal' or @operation='pattern match'))..."</code></pre>
+		   New test:
+		   <pre><code>test="...(@datatype='string' and (not(@operation) or @operation='equals'
+		   or @operation='not equal' or @operation='case insensitive equals'
+		   or @operation='case insensitive not equal'
+		   or @operation='pattern match'))..."</code></pre>
+		</li>
+      <li>The official OVAL schema and schematron can be found at
+         <a href="http://oval.mitre.org/language/download/schema/version5.3/">http://oval.mitre.org/language/download/schema/version5.3/</a>,
+         <a href="http://oval.mitre.org/language/download/schema/version5.4/">http://oval.mitre.org/language/download/schema/version5.4/</a>,
+         <a href="http://oval.mitre.org/language/download/schema/version5.3/">http://oval.mitre.org/language/download/schema/version5.5/</a>,
+         <a href="http://oval.mitre.org/language/download/schema/version5.3/">http://oval.mitre.org/language/download/schema/version5.6/</a>.
+      </li>
+    </ul>
+    <div class="topOfPage">
+      <a href="#top">Top of page</a>
+    </div>
+    </div>
+
+    <div id="examples" class="section">
+      <h2><a name="examples"/>Examples</h2>
+      <h3>Happy Path</h3>
+      <div class="example">
+      <p>To validate the FDCC Microsoft IE7 bundle for the SCAP 1.0 Configuration use case:</p>
+      <pre><samp>C:\scapval>scapval.bat -dir C:\FDCC-Major-Version-1.2.1.0\ie7 -online -usecase CONFIGURATION -scapversion 1.0
+"C:\Sun\SDK\jdk\bin\java.exe" -jar scapval-1.1.2.jar -dir C:\FDCC-Major-Version-1.2.1.0\ie7 -online -usecase CONFIGURATION -scapversion 1.0
+INFO : SCAP 1.1 Validation - Tool Version 1.1.2
+INFO : Preparing to validate SCAP content C:\FDCC-Major-Version-1.2.1.0\ie7\_tempZipFile1281128243943_.zip...
+INFO : APPLICATION - SCAP version 1.0 use case is CONFIGURATION.
+INFO : APPLICATION - File is less than 12 hours old, skipping download for .\data_feeds\nvdcce-0.1-feed.xml.
+INFO : APPLICATION - File is less than 12 hours old, skipping download for .\data_feeds\official-cpe-dictionary_v2.2.xml.
+INFO : APPLICATION - Searching for XCCDF for references.
+INFO : APPLICATION - Reading contents of SCAP ZIP file.
+INFO : APPLICATION - Verifying that the files required for this use case are present.
+INFO : APPLICATION - Hashing inputs.
+INFO : APPLICATION - Validating component files against schemas.
+INFO : APPLICATION - Preparing to apply OVAL schematron rules.
+INFO : APPLICATION - Merging component files into combined SCAP file _tempZipFile1281128243943_.xml.
+INFO : APPLICATION - Validating SCAP bundle against XML schema.
+INFO : APPLICATION - Applying SCAP schematron rules to content.
+WARN : SCHEMATRON - [fdcc-ie7-xccdf.xml] For all XCCDF rules used for Configuration Verification that do not have CCE identifiers expressed using the <xccdf:ident> element shall be considered to be a warning. If no CCE exists for rule, suggest CCE be requested from MITRE.
+WARN : SCHEMATRON - [fdcc-ie7-xccdf.xml] For all XCCDF documents, if a value other than "en-US" is specified, a warning will be generated because not all SCAP-compliant tools can necessarily process information in other languages/encodings. Clearer guidance on this issue is expected in 800-126 v1.1.
+WARN : SCHEMATRON - [fdcc-ie7-xccdf.xml] For all XCCDF documents, if a value other than "en-US" is specified, a warning will be generated because not all SCAP-compliant tools can necessarily process information in other languages/encodings. Clearer guidance on this issue is expected in 800-126 v1.1.
+WARN : SCHEMATRON - [fdcc-ie7-xccdf.xml] For all XCCDF documents, if a value other than "en-US" is specified, a warning will be generated because not all SCAP-compliant tools can necessarily process information in other languages/encodings. Clearer guidance on this issue is expected in 800-126 v1.1.
+WARN : SCHEMATRON - [fdcc-ie7-xccdf.xml] For all XCCDF documents, if a value other than "en-US" is specified, a warning will be generated because not all SCAP-compliant tools can necessarily process information in other languages/encodings. Clearer guidance on this issue is expected in 800-126 v1.1.
+WARN : SCHEMATRON - [fdcc-ie7-xccdf.xml] For all a)XCCDF documents that do not contain the <xccdf:metadata> element, flag as a warning; and b) XCCDF documents that do contain the <xccdf:metadata> element and whose contents are not consistent with the Dublin Core terms flag as a warning.
+WARN : SCHEMATRON - [fdcc-ie7-oval.xml] CCE number is expected, but missing as a reference
+INFO : APPLICATION - Finished SCAP content validation in 00:00:43.140.
+INFO : See results in scap-validation-result.xml.</samp></pre>
+      <p>Since the <span class="flag">-online</span> flag was given, <strong>scapval</strong> downloads the latest CCE and CPE dictionaries.
+          The OVAL patch referenced in the data stream is also downloaded.</p>
+      <p>Since a directory was specified, a temporary ZIP of the SCAP content was created.
+      </p>
+      <p>Schematron warnings are given.  The validation results are written to scap-validation-result.xml and
+         scap-validation-result.html.</p>
+      </div>
+      <div class="example">
+      <h3>OVAL Schematron Failure</h3>
+      <p>In the sample validation log output below, the OVAL Schematron check failed.</p>
+      <pre><samp>C:\scapval>scapval.bat -file C:\FDCC-Major-Version-1.2.1.0\ie7\ie7.zip -online -usecase CONFIGURATION -scapversion 1.0
+"C:\Sun\SDK\jdk\bin\java.exe" -jar scapval-1.1.2.jar -file C:\FDCC-Major-Version-1.2.1.0\ie7\ie7.zip -online -usecase CONFIGURATION -scapversion 1.0
+INFO : SCAP 1.1 Validation - Tool Version 1.1.2
+INFO : Preparing to validate SCAP content C:\temp\FDCC-Major-Version-1.2.1.0\ie7\ie7.zip...
+INFO : APPLICATION - SCAP version 1.0 use case is CONFIGURATION.
+INFO : APPLICATION - File is less than 12 hours old, skipping download for .\data_feeds\nvdcce-0.1-feed.xml.
+INFO : APPLICATION - File is less than 12 hours old, skipping download for .\data_feeds\official-cpe-dictionary_v2.2.xml.
+INFO : APPLICATION - Searching for XCCDF for references.
+INFO : APPLICATION - Reading contents of SCAP ZIP file.
+INFO : APPLICATION - Verifying that the files required for this use case are present.
+INFO : APPLICATION - Hashing inputs.
+INFO : APPLICATION - Validating component files against schemas.
+INFO : APPLICATION - Preparing to apply OVAL schematron rules.
+ERROR: SCHEMATRON - [fdcc-ie7-oval.xml] Content failed validation against MITRE OVAL schematron validation.  The specific error is: oval:gov.nist.fdcc.ie7:ste:115 - the supplied operation attribute for the value entity of a registry_state is not valid given a datatype of 'string'
+INFO : APPLICATION - Merging component files into combined SCAP file ie7.xml.
+INFO : APPLICATION - Validating SCAP bundle against XML schema.
+INFO : APPLICATION - Applying SCAP schematron rules to content.
+WARN : SCHEMATRON - [fdcc-ie7-xccdf.xml] For all XCCDF rules used for Configuration Verification that do not have CCE identifiers expressed using the <xccdf:ident> element shall be considered to be a warning. If no CCE exists for rule, suggest CCE be requested from MITRE.
+WARN : SCHEMATRON - [fdcc-ie7-xccdf.xml] For all XCCDF documents, if a value other than "en-US" is specified, a warning will be generated because not all SCAP-compliant tools can necessarily process information in other languages/encodings. Clearer guidance on this issue is expected in 800-126 v1.1.
+WARN : SCHEMATRON - [fdcc-ie7-xccdf.xml] For all XCCDF documents, if a value other than "en-US" is specified, a warning will be generated because not all SCAP-compliant tools can necessarily process information in other languages/encodings. Clearer guidance on this issue is expected in 800-126 v1.1.
+WARN : SCHEMATRON - [fdcc-ie7-xccdf.xml] For all XCCDF documents, if a value other than "en-US" is specified, a warning will be generated because not all SCAP-compliant tools can necessarily process information in other languages/encodings. Clearer guidance on this issue is expected in 800-126 v1.1.
+WARN : SCHEMATRON - [fdcc-ie7-xccdf.xml] For all XCCDF documents, if a value other than "en-US" is specified, a warning will be generated because not all SCAP-compliant tools can necessarily process information in other languages/encodings. Clearer guidance on this issue is expected in 800-126 v1.1.
+WARN : SCHEMATRON - [fdcc-ie7-xccdf.xml] For all a)XCCDF documents that do not contain the <xccdf:metadata> element, flag as a warning; and b) XCCDF documents that do contain the <xccdf:metadata> element and whose contents are not consistent with the Dublin Core terms flag as a warning.
+WARN : SCHEMATRON - [fdcc-ie7-oval.xml] CCE number is expected, but missing as a reference
+INFO : APPLICATION - Finished SCAP content validation in 00:00:43.140.
+INFO : See results in scap-validation-result.xml.
+      </samp></pre>
+	  <p>Note the errors indicated.  OVAL Schematron errors give the object identifier, and a description of the error.  The file name is given
+	  before the error message.</p>
+      </div>
+      <div class="example">
+      <h3>Missing File</h3>
+      <p>In the sample validation log output below, the ZIP file is missing a required file that is referenced by the XCCDF.</p>
+	  <pre><samp>C:\scapval>scapval.bat -file C:\FDCC-Major-Version-1.2.1.0\ie7\ie7.zip -online -usecase CONFIGURATION -scapversion 1.0
+"C:\Sun\SDK\jdk\bin\java.exe" -jar scapval-1.1.2.jar -file C:\FDCC-Major-Version-1.2.1.0\ie7\ie7.zip -online -usecase CONFIGURATION -scapversion 1.0
+INFO : SCAP 1.1 Validation - Tool Version 1.1.2
+INFO : Preparing to validate SCAP content C:\FDCC-Major-Version-1.2.1.0\ie7\ie7.zip...
+INFO : APPLICATION - SCAP version 1.0 use case is CONFIGURATION.
+INFO : APPLICATION - File is less than 12 hours old, skipping download for .\data_feeds\nvdcce-0.1-feed.xml.
+INFO : APPLICATION - File is less than 12 hours old, skipping download for .\data_feeds\official-cpe-dictionary_v2.2.xml.
+INFO : APPLICATION - Searching for XCCDF for references.
+INFO : APPLICATION - Reading contents of SCAP ZIP file.
+INFO : APPLICATION - Verifying that the files required for this use case are present.
+INFO : APPLICATION - Hashing inputs.
+ERROR: APPLICATION - [fdcc-ie7-oval.xml] Remote reference in XCCDF document could not be located.
+ERROR: APPLICATION - [fdcc-ie7-oval.xml] Remote reference in XCCDF document could not be located.
+INFO : APPLICATION - Preparing to apply OVAL schematron rules.
+ERROR: APPLICATION - [fdcc-ie7-oval.xml] Remote reference in XCCDF document could not be located.
+INFO : APPLICATION - Finished SCAP content validation in 00:00:10.625.
+INFO : See results in scap-validation-result.xml.
+	  </samp></pre>
+	  <p>The errors noted above are due to the XCCDF referencing an OVAL file that cannot be resolved.
+      </div>
+      <div class="example">
+      <h3>Schema Validation Error</h3>
+      <p>In the sample validation log output below, the XCCDF file fails schema validation.</p>
+	  <pre><samp>C:\scapval>scapval.bat -file C:\FDCC-Major-Version-1.2.1.0\ie7\ie7.zip -online -usecase CONFIGURATION -scapversion 1.0
+"C:\Sun\SDK\jdk\bin\java.exe" -jar scapval-1.1.2.jar -file C:\FDCC-Major-Version-1.2.1.0\ie7\ie7.zip -online -usecase CONFIGURATION -scapversion 1.0
+INFO : SCAP 1.1 Validation - Tool Version 1.1.2
+INFO : Preparing to validate SCAP content C:\FDCC-Major-Version-1.2.1.0\ie7\ie7.zip...
+INFO : APPLICATION - SCAP version 1.0 use case is CONFIGURATION.
+INFO : APPLICATION - File is less than 12 hours old, skipping download for .\data_feeds\nvdcce-0.1-feed.xml.
+INFO : APPLICATION - File is less than 12 hours old, skipping download for .\data_feeds\official-cpe-dictionary_v2.2.xml.
+INFO : APPLICATION - Searching for XCCDF for references.
+INFO : APPLICATION - Reading contents of SCAP ZIP file.
+INFO : APPLICATION - Verifying that the files required for this use case are present.
+INFO : APPLICATION - Hashing inputs.
+INFO : APPLICATION - Validating component files against schemas.
+INFO : APPLICATION - Preparing to apply OVAL schematron rules.
+ERROR: SCHEMATRON - [fdcc-ie7-oval.xml] Content failed validation against MITRE OVAL schematron validation.  The specific error is: oval:gov.nist.fdcc.ie7:ste:115 - the supplied operation attribute for the value entity of a registry_state is not valid given a datatype of 'string'
+INFO : APPLICATION - Merging component files into combined SCAP file ie7.xml.
+INFO : APPLICATION - Validating SCAP bundle against XML schema.
+ERROR: SCHEMA - [ie7.xml5276323935903360506.xml] Combined SCAP data stream failed schema validation.: cvc-complex-type.2.4.a: Invalid content was found starting with element 'platforms'. One of '{"http://checklists.nist.gov/xccdf/1.1":reference, "http://checklists.nist.gov/xccdf/1.1":plain-text, "http://www.cisecurity.org/xccdf/platform/0.2.3":platform-definitions, "http://checklists.nist.gov/xccdf-p/1.1":Platform-Specification, "http://cpe.mitre.org/XMLSchema/cpe/1.0":cpe-list, "http://cpe.mitre.org/language/2.0":platform-specification, "http://checklists.nist.gov/xccdf/1.1":platform, "http://checklists.nist.gov/xccdf/1.1":version}' is expected.
+INFO : APPLICATION - Finished SCAP content validation in 00:00:29.156.
+INFO : See results in scap-validation-result.xml.
+	  </samp></pre>
+	  <p>The first error indicates that the fdcc-ie7-xccdf.xml file failed schema validation against the XCCDF schema.  Specifically the error is saying that the at element "platforms" in the XCCDF document the validator was expecting one of the other elements listed.
+	  	<strong>scapval</strong> then combines all of the component SCAP files into an SCAP data stream.  The schema validation for that combine SCAP data stream also fails on the XCCDF content, as indicated.
+      </div>
+      <div class="topOfPage">
+        <a href="#top">Top of page</a>
+      </div>
+      </div>
+    </body>
+</html>

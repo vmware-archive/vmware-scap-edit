@@ -1,0 +1,34 @@
+<test_types>
+   <test_type name="registry_test"
+              namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows"/>
+   <test_type name="unknown_test"
+              namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"/>
+   <test_type name="file_test"
+              namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows"/>
+   <test_type name="family_test"
+              namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"/>
+   <test_type name="auditeventpolicy_test"
+              namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows"/>
+   <test_type name="variable_test"
+              namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"/>
+   <test_type name="passwordpolicy_test"
+              namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows"/>
+   <test_type name="lockoutpolicy_test"
+              namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows"/>
+   <test_type name="user_sid_test"
+              namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows"/>
+   <test_type name="sid_sid_test"
+              namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows"/>
+   <test_type name="user_test"
+              namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows"/>
+   <test_type name="accesstoken_test"
+              namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows"/>
+   <test_type name="auditeventpolicysubcategories_test"
+              namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows"/>
+   <test_type name="wmi_test"
+              namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows"/>
+   <test_type name="fileeffectiverights53_test"
+              namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows"/>
+   <test_type name="sid_test"
+              namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows"/>
+</test_types>

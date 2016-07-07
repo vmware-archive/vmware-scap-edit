@@ -1,0 +1,17 @@
+This project is configured to be built using maven2. 
+
+An earlier release of eSCAPe and eSCAPeLib required some external maven artifacts (jars) to be manually added 
+to your local maven repository. The maven pom.xml files have been changed to eliminate this requirement. 
+A copy of the SCAP Validation tool is now inside eSCAPeLib, so its dependencies are no longer required to 
+be in the maven repository.
+
+We'll assume you've checked out the eSCAPeLib project into a directory called /foo
+
+You can check out eSCAPeLib from 
+https://sourceforge.net/projects/escapelibrary/
+
+cd /foo/eSCAPeLib
+mvn clean install
+
+All jars needed needed by the maven build will be downloaded automatically by maven.
+

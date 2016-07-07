@@ -1,0 +1,2385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    DOCUMENT:		ocil.xsd
+    CREATED ON:	7 February 2005 (Interactive Schema)
+    LAST UPDATED ON:	Aug 5, 2009 (OCIL)
+    AUTHORS:		David Waltermire, Jon Baker, Maria Casipe, Charles Schmidt
+    VERSION:		2.0
+    
+    DESCRIPTION:	XML Schema for defining interactive questions to be used as external checks
+-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:inter="http://www.mitre.org/ocil/2"
+	xmlns:xml="http://www.w3.org/XML/1998/namespace" targetNamespace="http://www.mitre.org/ocil/2"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+	<xsd:annotation>
+		<xsd:documentation>VERSION 2.0</xsd:documentation>
+		<xsd:documentation>The Open Checklist Interactive Language (OCIL) is a language to express a
+			set of questions to be presented to a user and procedures to interpret responses to
+			these questions for the purpose of developing security checklists. Although its intended
+			domain of use is IT security, its generic nature allows for other applications. For
+			instance, it could be used for authoring research surveys, academic course exams, and
+			instructional walkthroughs.</xsd:documentation>
+		<xsd:documentation>This document was originally developed by David Waltermire (The Center
+			for Internet Security) and has been revised by The MITRE Corp with input from the
+			security benchmark community. It is intended for developers and assumes familiarity with
+			XML.</xsd:documentation>
+	</xsd:annotation>
+
+	<xsd:import namespace="http://www.w3.org/XML/1998/namespace"
+		schemaLocation="http://www.w3.org/2001/03/xml.xsd">
+		<xsd:annotation>
+			<xsd:documentation>This namespace is required for xml:lang support.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:import>
+
+	<!-- **************************************************************************** -->
+	<!-- *   ocil (Root) Element                                          			* -->
+	<!-- **************************************************************************** -->
+	<xsd:element name="ocil">
+		<xsd:annotation>
+			<xsd:documentation>The ocil element is the root XML element of an OCIL document. It
+				contains information about one or more questionnaires. It may also contain results
+				elements to store prior responses.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="generator" type="inter:GeneratorType" minOccurs="1" maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation>The generator element contains information related to the
+							generation of the file. Specifically, a generator contains information
+							about the application used to create the file, when it was created, and
+							the schema to use to validate it.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="document" type="inter:DocumentType" minOccurs="0" maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation>This element contains document-level information,
+							including title, descriptions, and notices.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="questionnaires" type="inter:QuestionnairesType" minOccurs="1"
+					maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation>The questionnaires element contains all the questionnaire
+							constructs defined within the document.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="test_actions" type="inter:TestActionsType" minOccurs="1"
+					maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation>The test_actions element contains all the boolean,
+							choice, string, and numeric test actions defined within the
+							document.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="questions" type="inter:QuestionsType" minOccurs="1" maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation>The questions element contains all the boolean, choice,
+							string, and numeric questions, and any other supporting elements (e.g.
+							choice group) defined within the document.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="artifacts" type="inter:ArtifactsType" minOccurs="0" maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation>The artifacts element contains all the artifact
+							constructs to be retrieved (as necessary) during
+							evaluation.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="variables" type="inter:VariablesType" minOccurs="0" maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation>The variables element contains all the constant, local,
+							and external variables available to be used within the
+							document.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="results" type="inter:ResultsType" minOccurs="0" maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation>The results element contains the results of an evaluation
+							of the OCIL file. This includes records of all questionnaire results,
+							question results, and test_action results.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+
+		<!-- **************************************************************************** -->
+		<!-- *  Questionnaire  references		                                                      	* -->
+		<!-- **************************************************************************** -->
+		<xsd:key name="questionnaireIdKey">
+			<xsd:selector xpath=".//inter:questionnaire"/>
+			<xsd:field xpath="@id"/>
+		</xsd:key>
+		<xsd:keyref refer="inter:questionnaireIdKey" name="questionnaireKeyRef">
+			<xsd:selector xpath=".//inter:questionnaire_result"/>
+			<xsd:field xpath="@questionnaire_ref"/>
+		</xsd:keyref>
+
+		<!-- **************************************************************************** -->
+		<!-- *  Test Action  references		                                                      	* -->
+		<!-- **************************************************************************** -->
+		<xsd:key name="testActionIdKey">
+			<xsd:annotation>
+				<xsd:documentation>test_actions include question_test_action and
+					compound_test_action (Questionnaires are CompoundTestAction)</xsd:documentation>
+			</xsd:annotation>
+			<xsd:selector
+				xpath=".//inter:boolean_question_test_action|.//inter:choice_question_test_action|.//inter:numeric_question_test_action|.//inter:string_question_test_action|.//inter:questionnaire"/>
+			<xsd:field xpath="@id"/>
+		</xsd:key>
+		<xsd:keyref refer="inter:testActionIdKey" name="testActionKeyRef">
+			<xsd:selector xpath=".//inter:test_action_ref"/>
+			<xsd:field xpath="."/>
+		</xsd:keyref>
+		<xsd:keyref refer="inter:testActionIdKey" name="testActionResultKeyRef">
+			<xsd:selector xpath=".//inter:test_action_result"/>
+			<xsd:field xpath="@test_action_ref"/>
+		</xsd:keyref>
+
+		<!-- **************************************************************************** -->
+		<!-- *  Question references		                                                      	* -->
+		<!-- **************************************************************************** -->
+		<xsd:key name="booleanQuestionIdKey">
+			<xsd:selector xpath=".//inter:boolean_question"/>
+			<xsd:field xpath="@id"/>
+		</xsd:key>
+		<xsd:keyref refer="inter:booleanQuestionIdKey" name="booleanQuestionTestActionKeyRef">
+			<xsd:selector
+				xpath=".//inter:boolean_question_test_action|.//inter:boolean_question_result"/>
+			<xsd:field xpath="@question_ref"/>
+		</xsd:keyref>
+		<xsd:key name="choiceQuestionIdKey">
+			<xsd:selector xpath=".//inter:choice_question"/>
+			<xsd:field xpath="@id"/>
+		</xsd:key>
+		<xsd:keyref refer="inter:choiceQuestionIdKey" name="choiceQuestionTestActionKeyRef">
+			<xsd:selector
+				xpath=".//inter:choice_question_test_action|.//inter:choice_question_result"/>
+			<xsd:field xpath="@question_ref"/>
+		</xsd:keyref>
+		<xsd:key name="numericQuestionIdKey">
+			<xsd:selector xpath=".//inter:numeric_question"/>
+			<xsd:field xpath="@id"/>
+		</xsd:key>
+		<xsd:keyref refer="inter:numericQuestionIdKey" name="numericQuestionTestActionKeyRef">
+			<xsd:selector
+				xpath=".//inter:numeric_question_test_action|.//inter:numeric_question_result"/>
+			<xsd:field xpath="@question_ref"/>
+		</xsd:keyref>
+		<xsd:key name="stringQuestionIdKey">
+			<xsd:selector xpath=".//inter:string_question"/>
+			<xsd:field xpath="@id"/>
+		</xsd:key>
+		<xsd:keyref refer="inter:stringQuestionIdKey" name="stringQuestionTestActionKeyRef">
+			<xsd:selector
+				xpath=".//inter:string_question_test_action|.//inter:string_question_result"/>
+			<xsd:field xpath="@question_ref"/>
+		</xsd:keyref>
+
+		<!-- **************************************************************************** -->
+		<!-- *  Choice and choice_group reference keys		                   	* -->
+		<!-- **************************************************************************** -->
+		<xsd:key name="choiceIdKey">
+			<xsd:selector xpath=".//inter:choice"/>
+			<xsd:field xpath="@id"/>
+		</xsd:key>
+		<xsd:keyref refer="inter:choiceIdKey" name="choiceIdKeyRef">
+			<xsd:selector xpath=".//inter:when_choice/inter:choice_ref"/>
+			<xsd:field xpath="."/>
+		</xsd:keyref>
+		<xsd:keyref refer="inter:choiceIdKey" name="defaultAnswerKeyRef">
+			<xsd:selector xpath=".//inter:choice_question"/>
+			<xsd:field xpath="@default_answer_ref"/>
+		</xsd:keyref>
+		<xsd:key name="choiceGroupIdKey">
+			<xsd:selector xpath=".//inter:choice_group"/>
+			<xsd:field xpath="@id"/>
+		</xsd:key>
+		<xsd:keyref refer="inter:choiceGroupIdKey" name="choiceGroupIdKeyRef">
+			<xsd:selector xpath=".//inter:choice_question/inter:choice_group_ref"/>
+			<xsd:field xpath="."/>
+		</xsd:keyref>
+	</xsd:element>
+
+	<!-- **************************************************************************** -->
+	<!-- *   TestAction Elements                                                      		* -->
+	<!-- **************************************************************************** -->
+	<xsd:element name="test_action" type="inter:ItemBaseType" abstract="true">
+		<xsd:annotation>
+			<xsd:documentation>This is a common base element for the question_test_action
+				element.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="question_test_action" type="inter:QuestionTestActionType" abstract="true"
+		substitutionGroup="inter:test_action">
+		<xsd:annotation>
+			<xsd:documentation>The question_test_action element contains a reference to a single
+				question along with a set of handlers that indicate how processing should proceed
+				based on the answer provided by the user. This element is abstract and is
+				implemented in a document as a boolean_test_action, choice_test_action,
+				numeric_test_action, or string_test_action. The type of question_test_action must
+				match the type of question referenced. (E.g. a boolean_test_action MUST reference a
+				boolean_question, etc..)</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="boolean_question_test_action" type="inter:BooleanQuestionTestActionType"
+		substitutionGroup="inter:question_test_action">
+		<xsd:annotation>
+			<xsd:documentation>A boolean_question_test_action element references a boolean_question
+				and includes handlers for TRUE (YES) or FALSE (NO) responses.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="choice_question_test_action" type="inter:ChoiceQuestionTestActionType"
+		substitutionGroup="inter:question_test_action">
+		<xsd:annotation>
+			<xsd:documentation>A choice_question_test_action element references a choice_question
+				and includes handlers for the various choices set out in the
+				choice_question.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:unique name="choiceRefUniqueInTestAction">
+			<xsd:annotation>
+				<xsd:documentation>Ensure that no choice_test_action has multiple branches for a
+					single choice.</xsd:documentation>
+			</xsd:annotation>
+			<xsd:selector xpath="inter:when_choice/inter:choice_ref"/>
+			<xsd:field xpath="."/>
+		</xsd:unique>
+	</xsd:element>
+	<xsd:element name="numeric_question_test_action" type="inter:NumericQuestionTestActionType"
+		substitutionGroup="inter:question_test_action">
+		<xsd:annotation>
+			<xsd:documentation>A numeric_question_test_action element references a numeric_question
+				and includes handlers that indicate actions to perform based on whether the user's
+				response matches a particular value or falls within a particular
+				range.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="string_question_test_action" type="inter:StringQuestionTestActionType"
+		substitutionGroup="inter:question_test_action">
+		<xsd:annotation>
+			<xsd:documentation>A string_question_test_action element references a string_question
+				and includes handlers that indicate actions to perform based on whether the user's
+				response matches a given regular expression.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+
+	<!-- **************************************************************************** -->
+	<!-- *   Question Elements                                                      			* -->
+	<!-- **************************************************************************** -->
+	<xsd:element name="question" type="inter:QuestionType" abstract="true">
+		<xsd:annotation>
+			<xsd:documentation>A question element contains information one question that needs to be
+				answered by a user. It can be a boolean_question, choice_question, numeric_question,
+				or string_question depending on the set of acceptable answers.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="boolean_question" type="inter:BooleanQuestionType"
+		substitutionGroup="inter:question">
+		<xsd:annotation>
+			<xsd:documentation>A boolean_question is a type of question with valid responses of
+				either {TRUE, FALSE} or {YES, NO}.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="choice_question" type="inter:ChoiceQuestionType"
+		substitutionGroup="inter:question">
+		<xsd:annotation>
+			<xsd:documentation>A choice_question is a type of question element with one or more
+				acceptable answers specified by the author. The user will select one of these
+				specified answers as their response. Acceptable answers are specified either
+				explicitly using the choice element or implicitly using the choice_group_ref element
+				to reference a choice_group element. Choices are presented in the order in which
+				they are provided. All the choices in a choice_group are inserted in the order in
+				which they appear within the choice_group.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:unique name="choiceGroupIdUniqueInQuestion">
+			<xsd:selector xpath="inter:choice_group_ref"/>
+			<xsd:field xpath="."/>
+		</xsd:unique>
+	</xsd:element>
+	<xsd:element name="numeric_question" type="inter:NumericQuestionType"
+		substitutionGroup="inter:question">
+		<xsd:annotation>
+			<xsd:documentation>A numeric_question is a type of question_element that requires a
+				numeric answer. Acceptable values may be positive or negative and may include
+				decimals.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="string_question" type="inter:StringQuestionType"
+		substitutionGroup="inter:question">
+		<xsd:annotation>
+			<xsd:documentation>A string_question is a type of question element that requires a
+				string answer.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+
+	<!-- **************************************************************************** -->
+	<!-- *   Variable Elements                                                      			* -->
+	<!-- **************************************************************************** -->
+	<xsd:element name="variable" type="inter:VariableType" abstract="true">
+		<xsd:annotation>
+			<xsd:documentation>A variable element holds information defined by the author, an answer
+				value, or values from external sources.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="constant_variable" type="inter:ConstantVariableType"
+		substitutionGroup="inter:variable">
+		<xsd:annotation>
+			<xsd:documentation>A constant variable element holds a value defined by the author of
+				the document.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="local_variable" type="inter:LocalVariableType"
+		substitutionGroup="inter:variable">
+		<xsd:annotation>
+			<xsd:documentation>A local variable element holds a value defined during evaluation. It
+				will try to match and set the value based on the answer to a
+				question.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="external_variable" type="inter:ExternalVariableType"
+		substitutionGroup="inter:variable">
+		<xsd:annotation>
+			<xsd:documentation>An external variable element is a variable defined elsewhere (an
+				external source).</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+
+	<!-- **************************************************************************** -->
+	<!-- *   Target Elements                                                      			* -->
+	<!-- **************************************************************************** -->
+	<xsd:element name="target" type="inter:NamedItemBaseType" abstract="true">
+		<xsd:annotation>
+			<xsd:documentation>A target element describes the user, system, or role that applies to
+				all questionnaires in scope. For instance, specifying that user Joe Smith should
+				complete this document; applies to system with ip address of 123.45.67.89; applies
+				to all systems functioning as (role) web servers; or all (role) administrators
+				should complete this document. </xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="user" type="inter:UserType" substitutionGroup="inter:target">
+		<xsd:annotation>
+			<xsd:documentation>A user element contains information about a target user such as name,
+				organization, position, email, and role.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="system" type="inter:SystemTargetType" substitutionGroup="inter:target">
+		<xsd:annotation>
+			<xsd:documentation>The system element constains information about the organization it
+				belongs to, a set of ip addresses of computers/networks included in the system,
+				descrioption about it, and the roles it performs.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+
+	<!-- **************************************************************************** -->
+	<!-- *   Question Result Elements                                         			* -->
+	<!-- **************************************************************************** -->
+	<xsd:element name="question_result" type="inter:QuestionResultType" abstract="true">
+		<xsd:annotation>
+			<xsd:documentation> A question_result element contains result information associated
+				with a specific question. The specific type of question_result
+				(boolean_question_result, choice_question_result, etc.) depends on the type of the
+				associated question (boolean_question, choice_question, etc.) </xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="boolean_question_result" type="inter:BooleanQuestionResultType"
+		substitutionGroup="inter:question_result">
+		<xsd:annotation>
+			<xsd:documentation> A boolean_question_result element contains a reference to a
+				boolean_question, the user's response, and whether the question was successfully
+				posed. </xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="choice_question_result" type="inter:ChoiceQuestionResultType"
+		substitutionGroup="inter:question_result">
+		<xsd:annotation>
+			<xsd:documentation> A choice_question_result element contains a reference to a
+				choice_question, the user's response, and whether the question was successfully
+				posed. </xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="numeric_question_result" type="inter:NumericQuestionResultType"
+		substitutionGroup="inter:question_result">
+		<xsd:annotation>
+			<xsd:documentation> A numeric_question_result element contains a reference to a
+				numeric_question, the result provided by the user, and whether the question was
+				successfully posed. </xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="string_question_result" type="inter:StringQuestionResultType"
+		substitutionGroup="inter:question_result">
+		<xsd:annotation>
+			<xsd:documentation> A string_question_result element contains a reference to a
+				string_question, the string provided by the user in response, and whether the
+				question was successfully posed. </xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+
+	<!-- **************************************************************************** -->
+	<!-- *   Questionnaire-related Global Types                    			* -->
+	<!-- **************************************************************************** -->
+	<xsd:complexType name="QuestionnairesType">
+		<xsd:annotation>
+			<xsd:documentation>The QuestionnairesType type defines a container for a set of
+				questionnaire elements.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="questionnaire" type="inter:QuestionnaireType" minOccurs="1"
+				maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>A questionnaire contains a set of questions that determines
+						compliance with a check. Each questionnaire returns a value based on the
+						responses to the various questions that it references. Each questionnaire
+						should represent a single compliance check, such as might be referenced by
+						an XCCDF Rule.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="QuestionnaireType">
+		<xsd:annotation>
+			<xsd:documentation>The QuestionnaireType type defines a structure that represents
+				specific question or set of questions that evaluate to a single result. A
+				questionnaire may contain multiple test_actions. test_actions may be nested and
+				aggregated thru some acceptable operation to produce the result of a check.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="inter:CompoundTestActionType">
+				<xsd:attribute name="id" type="inter:QuestionnaireIDPattern" use="required">
+					<xsd:annotation>
+						<xsd:documentation> Each questionnaire is required to have a unique
+							identifier that conforms to the definition of NCName in the
+							Recommendation "Namespaces in XML 1.0", i.e., all XML 1.0 names that
+							does not contain colons. </xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="priority" type="inter:PriorityType" use="optional"
+					default="LOW">
+					<xsd:annotation>
+						<xsd:documentation> Priority is an optional attribute that can either be
+							HIGH, MEDIUM or LOW. It specifies the importance of a paritcular test
+							action reference. </xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="child_only" type="xsd:boolean" use="optional" default="false">
+					<xsd:annotation>
+						<xsd:documentation>This attribute specifies whether or not this
+							questionnaire should only appear as a child of another questionnaire.
+							All questionnaires must be defined within the body of the ocil element
+							and, by default, interpreters might simply grab all questionnaires and
+							present them to a user. However, questionnaires can reference other
+							questionnaires through a test_action_ref. If an author references a
+							questionnaire in this way they may not wish that the questionnaire be
+							presented to a user except as a child of another questionnaire. By
+							setting the child_only attribute to true, the author is indicating that
+							the given questionnaire should not be a "top-level" questionnaire but
+							should instead only be presented as the child of another
+							questionnaire.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="scope" type="inter:ScopeType" use="optional" default="FULL">
+					<xsd:annotation>
+						<xsd:documentation>This specifies the test_actions referenced by the questionnaires
+							in this document should be evaluated. If a value of FULL is provided, then all
+							test_actions in a questionnaire will be evaluated regardless of whether the
+							result can be known ahead of time. If a value of SHORT is provided a
+							questionnaire will stop evaluating test_actions as soon as the final result has
+							been determined. (For example, if one test_action evaluates to FAIL and the
+							test_actions of a questionnaire are being ANDed together, the result is
+							immediately known to be FAIL regardless of the results of other test_actions. If
+							the scope is FULL, even though it is known that the questionnaire will return
+							FAIL, the other test_actions will still be evaluated. If the scope is SHORT, no
+							further test_actions would be evaluated since the final result had been
+							determined.)</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>				
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="GeneratorType">
+		<xsd:annotation>
+			<xsd:documentation> The GeneratorType type defines an element that is used to hold
+				information about when a particular OCIL document was generated, what version of the
+				schema was used, what tool was used to generate the document, and what version of
+				the tool was used. </xsd:documentation>
+			<xsd:documentation>Additional generator information is also allowed although it is not
+				part of the official OCIL language. Individual organizations can place generator
+				information that they feel are important. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="product_name" type="xsd:string" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The optional product_name specifies the name of the
+						application used to generate the file.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="product_version" type="xsd:string" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The optional product_version specifies the version of the
+						application used to generate the file.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="author" type="inter:UserType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation> Identifies one of the authors of this document
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="schema_version" type="xsd:decimal" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The required schema_version specifies the version of the OCIL
+						schema that the document has been written in and that should be used for
+						validation.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="timestamp" type="xsd:dateTime" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The required timestamp specifies when the particular OCIL
+						document was generated. The format for the timestamp is yyyy-mm-ddThh:mm:ss.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:any minOccurs="0" maxOccurs="unbounded" processContents="skip"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="DocumentType">
+		<xsd:annotation>
+			<xsd:documentation> This type describes structures used to provide document-level
+				information, including title, descriptions, and notices. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="title" type="xsd:string" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation> Used to provide a title for this document
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="description" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation> Each description element contains part of an overall
+						description for the entire document. (Note that questionnaires contain their
+						own description for questionnaire specific descriptions.)
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="notice" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation> Each notice contains a notice or warning to the user of this
+						document. </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="ScopeType">
+		<xsd:annotation>
+			<xsd:documentation>Provides possible scope values that specifies when evaluation
+				stops.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="FULL">
+				<xsd:annotation>
+					<xsd:documentation>The FULL value indicates that all questions must be asked
+						regardless of whether or not it they are all needed to produce a result for
+						a questionnaire.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="SHORT">
+				<xsd:annotation>
+					<xsd:documentation>The SHORT value indicates that once a result value can be
+						computed for a questionnaire, then it is safe to stop asking
+						questions.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<!-- **************************************************************************** -->
+	<!-- *   TestAction-related Global Types                    			* -->
+	<!-- **************************************************************************** -->
+	<xsd:complexType name="TestActionsType">
+		<xsd:annotation>
+			<xsd:documentation>The TestActionsType type defines a container for a set of test action
+				elements.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element ref="inter:test_action" minOccurs="1" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>The test_action element contains information about what
+						action to take based on the answer to a referenced question element within a
+						questionnaire. It can be a compound_test_action,
+						boolean_question_test_action, choice_question_test_action,
+						numeric_question_test_action, or string_question_test_action.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="QuestionTestActionType">
+		<xsd:annotation>
+			<xsd:documentation> The QuestionTestActionType type defines structures that are used to
+				hold handlers for non-standard results (UNKNOWN, NOT_TESTED, NOT_APPLICABLE, and
+				ERROR) received from a referenced question. All children of question_test_action
+				extend this type. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="inter:ItemBaseType">
+				<xsd:sequence>
+					<xsd:element name="title" type="inter:TextType" minOccurs="0" maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation> The title element contains a descriptive heading for
+								this set of handlers. </xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="when_unknown" type="inter:ResultChoiceType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation> The when_unknown element contains processing
+								instructions for when when the received result is UNKNOWN.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="when_not_tested" type="inter:ResultChoiceType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation> The when_not_tested element contains processing
+								instructions for when when the received result is NOT_TESTED.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="when_not_applicable" type="inter:ResultChoiceType"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation> The when_not_applicable element contains processing
+								instructions for when when the received result is NOT_APPLICABLE.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="when_error" type="inter:ResultChoiceType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation> The when_error element contains processing
+								instructions for when when the received result is ERROR.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+				<xsd:attribute name="question_ref" type="inter:QuestionIDPattern" use="required">
+					<xsd:annotation>
+						<xsd:documentation> The question_ref attribute contains the id value of a
+							question element. </xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="id" type="inter:QuestionTestActionIDPattern" use="required">
+					<xsd:annotation>
+						<xsd:documentation> Each item is required to have a unique identifier that
+							conforms to the definition of NCName in the Recommendation "Namespaces
+							in XML 1.0", i.e., all XML 1.0 names that does not contain colons.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="BooleanQuestionTestActionType">
+		<xsd:annotation>
+			<xsd:documentation>The BooleanQuestionTestActionType type defines a structure that
+				references a boolean_question and includes handlers for TRUE (YES) or FALSE (NO)
+				responses.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="inter:QuestionTestActionType">
+				<xsd:sequence>
+					<xsd:element name="when_true" type="inter:ResultChoiceType" minOccurs="1"
+						maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>The element when_true specifies the action to do when
+								the answer is true.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="when_false" type="inter:ResultChoiceType" minOccurs="1"
+						maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>The element when_false specifies the action to do
+								when the answer is false.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ChoiceQuestionTestActionType">
+		<xsd:annotation>
+			<xsd:documentation>The ChoiceQuestionTestActionType type defines a structure that
+				references a choice_question and includes handlers for the various choices set out
+				in the choice_question. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="inter:QuestionTestActionType">
+				<xsd:sequence>
+					<xsd:element name="when_choice" type="inter:WhenChoiceType" minOccurs="1"
+						maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation> Specifies the action to perform when the indicated
+								choice is selected by the user. </xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="NumericQuestionTestActionType">
+		<xsd:annotation>
+			<xsd:documentation>The NumericQuestionTestActionType type defines a structure that
+				references a numeric_question and includes handlers that indicate actions to perform
+				based on whether the user's response matches a particular value or falls within a
+				particular range.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="inter:QuestionTestActionType">
+				<xsd:choice>
+					<xsd:annotation>
+						<xsd:documentation> This structure is used to ensure that any number of
+							when_equals and when_range handlers may appear, but there must be at
+							least one handler (of one type or the other) and any when_equals
+							handlers must precede any when_range. </xsd:documentation>
+					</xsd:annotation>
+					<xsd:sequence>
+						<xsd:element name="when_equals" type="inter:WhenEqualsType" minOccurs="1"
+							maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation> This element holds information on what to do
+									when the answer matches the specified value.
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="when_range" type="inter:WhenRangeType" minOccurs="0"
+							maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation> This element holds information on what to do
+									when the answer is within a specified range of values.
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+					<xsd:element name="when_range" type="inter:WhenRangeType" minOccurs="1"
+						maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation> This element holds information on what to do when
+								the answer is within a specified range of values.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="StringQuestionTestActionType">
+		<xsd:annotation>
+			<xsd:documentation>The StringQuestionTestActionType type defines a structure that
+				references a string_question and includes handlers that indicate actions to perform
+				based on whether the user's response matches a given regular expression.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="inter:QuestionTestActionType">
+				<xsd:sequence>
+					<xsd:element name="when_pattern" type="inter:WhenPatternType" minOccurs="1"
+						maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation> This element holds information on what to do when
+								the answer matches a specified regular expression pattern.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="TestActionRefType">
+		<xsd:annotation>
+			<xsd:documentation>The TestActionRefType type defines a structure that holds a reference
+				(id) to a test_action or questionnaire. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="inter:TestActionRefValuePattern">
+				<xsd:attribute name="negate" type="xsd:boolean" default="false">
+					<xsd:annotation>
+						<xsd:documentation> The negate attribute can be used to specify whether to
+							toggle the result from PASS to FAIL, and vice versa. A result other than
+							PASS or FAIL (e.g. ERROR, NOT_TESTED, etc.) will be unchanged by a
+							negate operation. </xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="priority" type="inter:PriorityType" use="optional"
+					default="LOW">
+					<xsd:annotation>
+						<xsd:documentation> Priority is an optional attribute that can either be
+							HIGH, MEDIUM or LOW. It specifies the importance of a priority test
+							action reference. </xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="WhenChoiceType">
+		<xsd:annotation>
+			<xsd:documentation>The WhenChoiceType type defines a structure that specifies the action
+				to take in a choice_test_action when a particular choice is selected by a user in
+				response to a choice_question.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="inter:ResultChoiceType">
+				<xsd:sequence>
+					<xsd:element name="choice_ref" type="inter:ChoiceIDPattern"
+						maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>The choice_ref element specifies the id of a choice.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="WhenEqualsType">
+		<xsd:annotation>
+			<xsd:documentation>The WhenEqualsType defines a structure that specifies the action to
+				take in a numeric_test_action when a particular value is given by a user in response
+				to a numeric_question.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="inter:ResultChoiceType">
+				<xsd:sequence>
+					<xsd:element name="value" type="xsd:decimal" minOccurs="1" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation> Each value holds what is to be matched.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+				<xsd:attribute name="var_ref" type="inter:VariableIDPattern" use="optional"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="WhenRangeType">
+		<xsd:annotation>
+			<xsd:documentation>The WhenRangeType type defines a structure that specifies the action
+				to take in a numeric_test_action when a value given by a user in response to a
+				numeric_question falls within the indicated range. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="inter:ResultChoiceType">
+				<xsd:sequence>
+					<xsd:element name="range" type="inter:RangeType" minOccurs="1"
+						maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation> Each range element holds a single numeric range.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="WhenPatternType">
+		<xsd:annotation>
+			<xsd:documentation> The WhenPatternType type defines a structure that specifies the
+				action to take in a string_test_action when a string given by a user in response to
+				a string_question matches the given regular expression. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="inter:ResultChoiceType">
+				<xsd:sequence>
+					<xsd:element name="pattern" type="inter:PatternType" minOccurs="1"
+						maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation> Each pattern element holds a regular expression
+								against which the user's response string is to be compared.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="PatternType">
+		<xsd:annotation>
+			<xsd:documentation>The PatternType type defines a structure that specifies a regular
+				expression against which a string will be compared. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>This contents of this field must be a Perl Compatable Regular
+						Expression (PCRE). </xsd:documentation>
+				</xsd:annotation>
+				<xsd:attribute name="var_ref" type="inter:VariableIDPattern" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="RangeType">
+		<xsd:annotation>
+			<xsd:documentation>The RangeType type defines a structure that specifies a range against
+				which a numeric user response is to be compared.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="min" type="inter:RangeValueType" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The min element contains a minimum value.
+					</xsd:documentation>
+				</xsd:annotation>
+
+			</xsd:element>
+			<xsd:element name="max" type="inter:RangeValueType" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The max element contains a maximum value.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ResultChoiceType">
+		<xsd:annotation>
+			<xsd:documentation>The ResultChoiceType complex type specifies processing instructions -
+				either produce a result or move on to another test. The ResultChoiceType is extended
+				by all handlers ("when_...") in test_actions.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:choice minOccurs="1" maxOccurs="1">
+				<xsd:element name="result" type="inter:ResultType">
+					<xsd:annotation>
+						<xsd:documentation> This element indicates that a final value (i.e. PASS,
+							FAIL, ERROR, UNKNOWN, NOT_TESTED, NOT_APPLICABLE) should be returned if
+							the encapsulating handler is invoked. </xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="test_action_ref" type="inter:TestActionRefType">
+					<xsd:annotation>
+						<xsd:documentation> This element indicates that a new test_action should be
+							processed if the encapsulating handler is invoked. </xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:choice>
+			<xsd:element name="artifacts" type="inter:ArtifactsType" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The artifacts element contains all the artifacts that must be
+						requested when a question, test action, or questionnaire has been
+						evaluated.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RangeValueType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:decimal">
+				<xsd:attribute name="inclusive" type="xsd:boolean" default="true">
+					<xsd:annotation>
+						<xsd:documentation>The inclusive attribute specifies whether the value
+							should be in the specified range. The default is true, indicating it is
+							included. </xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="var_ref" type="inter:VariableIDPattern" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+	<!-- **************************************************************************** -->
+	<!-- *   Question-related Global Types                                      		* -->
+	<!-- **************************************************************************** -->
+	<xsd:complexType name="QuestionsType">
+		<xsd:annotation>
+			<xsd:documentation>The QuestionsType type defines structures containing a set of
+				QuestionType and ChoiceGroupType elements.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element ref="inter:question" minOccurs="1" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>The question element contains information for a single
+						question to be answered. Based on the data type of acceptable answers to the
+						question, it can be a boolean_question, choice_question, numeric_question,
+						or string_question. </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="choice_group" type="inter:ChoiceGroupType" minOccurs="0"
+				maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Holds choice groups which represent possible sets of choices
+						for choice_questions. Choice_groups may be reused across multiple
+						choice_questions.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="QuestionType">
+		<xsd:annotation>
+			<xsd:documentation> The QuestionType complex type defines a structure to describe a
+				question and any instructions to help in determining an answer. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="inter:ItemBaseType">
+				<xsd:sequence>
+					<xsd:element name="question_text" type="xsd:string" minOccurs="1"
+						maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation> Provides the text of the question to pose to the
+								user. </xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="instructions" type="inter:InstructionsType" minOccurs="0"
+						maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation> An optional instructions field may be included to
+								hold additional instructions to assist the user in determining the
+								answer to the question. </xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+				<xsd:attribute name="id" type="inter:QuestionIDPattern" use="required">
+					<xsd:annotation>
+						<xsd:documentation> Each item is required to have a unique identifier that
+							conforms to the definition of NCName in the Recommendation "Namespaces
+							in XML 1.0", i.e., all XML 1.0 names that does not contain colons.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="BooleanQuestionType">
+		<xsd:annotation>
+			<xsd:documentation>The BooleanQuestionType type defines a question with valid responses
+				of either {TRUE, FALSE} or {YES, NO}. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="inter:QuestionType">
+				<xsd:attribute name="default_answer" type="xsd:boolean" use="optional">
+					<xsd:annotation>
+						<xsd:documentation> The default_answer attribute specifies the default value
+							of the boolean_question. Its value may be set to true or
+							false.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="model" default="MODEL_YES_NO" use="optional"
+					type="inter:BooleanQuestionModelType">
+					<xsd:annotation>
+						<xsd:documentation> The model attribute specifies whether to the user should
+							respond with {True, False} or {YES, NO}. If the value of this attribute
+							is not set, then it defaults to MODEL_YES_NO (i.e. response can either
+							be YES or NO). </xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ChoiceQuestionType">
+		<xsd:annotation>
+			<xsd:documentation>The ChoiceQuestionType type defines a question with one or more
+				acceptable answers specified by the author. The user will select one of these
+				specified answers as their response. Acceptable answers are specified either
+				explicitly using the choice element or implicitly using the choice_group_ref element
+				to reference a choice_group element. Choices are presented in the order in which
+				they are provided. All the choices in a choice_group are inserted in the order in
+				which they appear within the choice_group. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="inter:QuestionType">
+				<xsd:choice minOccurs="1" maxOccurs="unbounded">
+					<xsd:element name="choice" type="inter:ChoiceType">
+						<xsd:annotation>
+							<xsd:documentation> Holds the information associated with one of the
+								possible responses to this choice_question. </xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="choice_group_ref" type="inter:ChoiceGroupIDPattern">
+						<xsd:annotation>
+							<xsd:documentation> Holds a reference to a choice_group. The questions
+								described in this choice group are used as possible responses for
+								this choice_question. </xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:choice>
+				<xsd:attribute name="default_answer_ref" type="inter:ChoiceIDPattern" use="optional">
+					<xsd:annotation>
+						<xsd:documentation> The default_answer_ref specifies the choice id of the
+							default answer to the question. </xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="NumericQuestionType">
+		<xsd:annotation>
+			<xsd:documentation>The NumericQuestionType type defines a question that requires a
+				numeric answer. Acceptable values may be positive or negative and may include
+				decimals.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="inter:QuestionType">
+				<xsd:attribute name="default_answer" type="xsd:decimal" use="optional">
+					<xsd:annotation>
+						<xsd:documentation> An optional default value may be specified as the
+							answer. </xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="StringQuestionType">
+		<xsd:annotation>
+			<xsd:documentation>The StringQuestionType type defines a question that requires a string
+				answer. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="inter:QuestionType">
+				<xsd:attribute name="default_answer" type="xsd:string" use="optional">
+					<xsd:annotation>
+						<xsd:documentation> An optional default value may be specified as the
+							answer. </xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:simpleType name="BooleanQuestionModelType">
+		<xsd:annotation>
+			<xsd:documentation>Provides the acceptable models (i.e. set of acceptable responses) for
+				a boolean_question. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="MODEL_YES_NO">
+				<xsd:annotation>
+					<xsd:documentation> MODEL_YES_NO represents a response set of {YES, NO}.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MODEL_TRUE_FALSE">
+				<xsd:annotation>
+					<xsd:documentation> MODEL_TRUE_FALSE represents a response set of {TRUE, FALSE}.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="ChoiceType">
+		<xsd:annotation>
+			<xsd:documentation>The ChoiceType type defines structures that hold information about
+				one acceptable answer to a choice_question. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="id" type="inter:ChoiceIDPattern" use="required">
+					<xsd:annotation>
+						<xsd:documentation> All choices are tagged with a unique identifier that may
+							be referenced by a choice_test_action referencing the encapsulating
+							choice_question. </xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="var_ref" type="inter:VariableIDPattern" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="ChoiceGroupType">
+		<xsd:annotation>
+			<xsd:documentation>The ChoiceGroupType type defines a group of choices that may then be
+				reused in multiple choice_question elements. For example, a document may include
+				multiple choice_questions with the options of "Good", "Fair", or "Poor". By defining
+				these choices in a single choice_group, the author would not need to list them out
+				explicitly in every choice_question. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="choice" type="inter:ChoiceType" minOccurs="1" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation> Holds the information associated with one of the possible
+						responses for a choice_question. </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="inter:ChoiceGroupIDPattern" use="required">
+			<xsd:annotation>
+				<xsd:documentation> Holds the id of this choice group. This id is referenced within
+					choice_question elements to include the choices contained in a group.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="InstructionsType">
+		<xsd:annotation>
+			<xsd:documentation>The InstructionsType type defines a series of steps intended to guide
+				the user in answering a question.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="title" type="inter:TextType" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The title element contains a descriptive heading for the
+						instructions.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="step" type="inter:StepType" minOccurs="1" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>The step element contains a single step within the
+						instructions.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- **************************************************************************** -->
+	<!-- *   Result-related Global Types                                      			* -->
+	<!-- **************************************************************************** -->
+	<xsd:complexType name="ResultsType">
+		<xsd:annotation>
+			<xsd:documentation>The ResultsType type defines structures containing results from
+				questionnaires, test actions, questions, artifacts, and metadata about the start/end
+				time of evaluation, any targets, and a short caption or title.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="title" type="inter:TextType" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The title element contains a descriptive heading or caption
+						describing the result set.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="questionnaire_results" type="inter:QuestionnaireResultsType"
+				minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The questionnare_results element contains computed results of
+						all the evaluated questionnaires.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="test_action_results" type="inter:TestActionResultsType" minOccurs="0"
+				maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The test_action_results element contains computed results of
+						all the evaluated test action types.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="question_results" type="inter:QuestionResultsType" minOccurs="0"
+				maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The question_results element contains computed results of all
+						evaluated question types.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="artifact_results" type="inter:ArtifactResultsType" minOccurs="0"
+				maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The artifact_results element contains all artifacts that has
+						been retrieved during evaluation. Scope is the entire
+						document.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="targets" type="inter:TargetsType" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The targets element contains all the actual target users,
+						systems, roles in which the OCIL document has been
+						applied.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="start_time" type="xsd:dateTime" use="optional">
+			<xsd:annotation>
+				<xsd:documentation> The start_time attribute is an optional attribute the specifies
+					when the evaluation of this OCIL file started. </xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="end_time" type="xsd:dateTime" use="optional">
+			<xsd:annotation>
+				<xsd:documentation> The end_time attribute is an optional attribute the specifies
+					when the evaluation of this OCIL file ended. </xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="QuestionnaireResultsType">
+		<xsd:annotation>
+			<xsd:documentation>The QuestionnaireResultsType type defines structures containing
+				computed results of all the evaluated questionnaires.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="questionnaire_result" type="inter:QuestionnaireResultType"
+				minOccurs="1" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>The questionnaire_result element contains information about
+						the result of a particular questionnaire. </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="TestActionResultsType">
+		<xsd:annotation>
+			<xsd:documentation>The TestActionResultsType type defines structures containing computed
+				results of all the evaluated test action types.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="test_action_result" type="inter:TestActionResultType" minOccurs="1"
+				maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>The test_action_result element contains the result of a
+						test_action evaluation. One of these elements will appear for each
+						test_action evaluated.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="QuestionResultsType">
+		<xsd:annotation>
+			<xsd:documentation>The QuestionResultsType type defines structures containing computed
+				results of all evaluated question types.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element ref="inter:question_result" minOccurs="1" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation> A question_result element contains result information
+						associated with a specific question. The specific type of question_result
+						(boolean_question_result, choice_question_result, etc.) depends on the type
+						of the associated question (boolean_question, choice_question, etc.)
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="QuestionnaireResultType">
+		<xsd:annotation>
+			<xsd:documentation>The QuestionnaireResultType type defines structures containing the
+				computed result, associated artifacts and targets of a particular
+				questionnaire.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="artifact_results" type="inter:ArtifactResultsType" minOccurs="0"
+				maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The artifact_results element contains a set of retrieved
+						artifacts.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="questionnaire_ref" type="inter:QuestionnaireIDPattern" use="required">
+			<xsd:annotation>
+				<xsd:documentation> The questionnaire_ref attribute identifies a particular
+					questionnaire using its id. </xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="result" type="inter:ResultType" use="required">
+			<xsd:annotation>
+				<xsd:documentation>The result attribute holds the result of evaluating the specified
+					questionnaire.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="TestActionResultType">
+		<xsd:annotation>
+			<xsd:documentation>The TestActionResultType type defines structures containing all
+				computed results of a TestActionType. One of these elements will appear for each
+				test_action evaluated.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="artifact_results" type="inter:ArtifactResultsType" minOccurs="0"
+				maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The artifact_results element contains a set of retrieved
+						artifacts.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="test_action_ref" type="inter:TestActionRefValuePattern" use="required">
+			<xsd:annotation>
+				<xsd:documentation> The test_action_ref attribute identifies a specific test_action
+					using its id. </xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="result" type="inter:ResultType" use="required">
+			<xsd:annotation>
+				<xsd:documentation> The result attribute holds the result of evaluating the
+					specified test_action specified. </xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="QuestionResultType">
+		<xsd:annotation>
+			<xsd:documentation>The QuestionResultType complex type defines structures that hold
+				information about a question and the user's response to it.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="question_ref" type="inter:QuestionIDPattern" use="required">
+			<xsd:annotation>
+				<xsd:documentation> The question_ref attribute contains the id of a question.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="response" type="inter:UserResponseType" use="optional"
+			default="ANSWERED">
+			<xsd:annotation>
+				<xsd:documentation>The response attribute classifies the user response. If the user
+					provides a standard answer to the question the response is set to ANSWERED (the
+					default). If, however, the user selects an exceptional answer (UNKNOWN,
+					NOT_APPLICABLE, etc.) then this attribute will be set to the corresponding
+					exceptional result. </xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="BooleanQuestionResultType">
+		<xsd:annotation>
+			<xsd:documentation>The BooleanQuestionResultType type defines structures containing a
+				reference to a boolean_question, the user's response, and whether the question was
+				successfully posed. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="inter:QuestionResultType">
+				<xsd:sequence>
+					<xsd:element name="answer" type="xsd:boolean" maxOccurs="1" nillable="true">
+						<xsd:annotation>
+							<xsd:documentation>The value of the answer to the boolean_question. It
+								could either be TRUE or FALSE.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ChoiceQuestionResultType">
+		<xsd:annotation>
+			<xsd:documentation>The ChoiceQuestionResultType type defines structures containing a
+				reference to a choice_question, the user's response, and whether the question was
+				successfully posed. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="inter:QuestionResultType">
+				<xsd:sequence>
+					<xsd:element name="answer" type="inter:ChoiceAnswerType" maxOccurs="1"
+						nillable="true">
+						<xsd:annotation>
+							<xsd:documentation>The answer element contains a choice_ref attribute
+								that identifies the choice selected by the user.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="NumericQuestionResultType">
+		<xsd:annotation>
+			<xsd:documentation>The NumericQuestionResultType type defines structures containing a
+				reference to a numeric_question, the result provided by the user, and whether the
+				question was successfully posed.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="inter:QuestionResultType">
+				<xsd:sequence>
+					<xsd:element name="answer" type="xsd:decimal" maxOccurs="1" nillable="true">
+						<xsd:annotation>
+							<xsd:documentation>The decimal value of the answer to a numeric_question
+								as provided by the user.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="StringQuestionResultType">
+		<xsd:annotation>
+			<xsd:documentation> A string_question_result element contains a reference to a
+				string_question, the string provided by the user in response, and whether the
+				question was successfully posed.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="inter:QuestionResultType">
+				<xsd:sequence>
+					<xsd:element name="answer" type="xsd:string" maxOccurs="1" nillable="true">
+						<xsd:annotation>
+							<xsd:documentation> The string value of the answer to a string_question
+								provided by the user. </xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:simpleType name="ResultType">
+		<xsd:annotation>
+			<xsd:documentation>The ResultType simple type defines acceptable result values for
+				questionnaires and test_actions.</xsd:documentation>
+			<xsd:documentation> || P | F | E | U | NT | NA ||
+				---------------||-----------------------------||------------------||------------------------------------------
+				|| 1+ | 0 | 0 | 0 | 0 | 0+ || Pass || 0+ | 1+ | 0+ | 0+ | 0+ | 0+ || Fail AND || 0+
+				| 0 | 1+ | 0+ | 0+ | 0+ || Error || 0+ | 0 | 0 | 1+ | 0+ | 0+ || Unknown || 0+ | 0 |
+				0 | 0 | 1+ | 0+ || Not Tested || 0 | 0 | 0 | 0 | 0 | 1+ || Not Applicable || 0 | 0 |
+				0 | 0 | 0 | 0 || Not Tested
+				---------------||-----------------------------||------------------||------------------------------------------
+				|| 1+ | 0+ | 0+ | 0+ | 0+ | 0+ || Pass || 0 | 1+ | 0 | 0 | 0 | 0+ || Fail OR || 0 |
+				0+ | 1+ | 0+ | 0+ | 0+ || Error || 0 | 0+ | 0 | 1+ | 0+ | 0+ || Unknown || 0 | 0+ |
+				0 | 0 | 1+ | 0+ || Not Tested || 0 | 0 | 0 | 0 | 0 | 1+ || Not Applicable || 0 | 0 |
+				0 | 0 | 0 | 0 || Not Tested </xsd:documentation>
+		</xsd:annotation>
+		<xsd:union memberTypes="inter:ExceptionalResultType">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="PASS">
+						<xsd:annotation>
+							<xsd:documentation>A PASS value indicates that the check passed its
+								test.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:enumeration>
+					<xsd:enumeration value="FAIL">
+						<xsd:annotation>
+							<xsd:documentation>A FAIL value indicates that the check did not pass
+								its test.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:enumeration>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:union>
+	</xsd:simpleType>
+	<xsd:simpleType name="ExceptionalResultType">
+		<xsd:annotation>
+			<xsd:documentation>The ExceptionalResultType type defines possible exceptional results
+				of a question.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="UNKNOWN">
+				<xsd:annotation>
+					<xsd:documentation>An UNKNOWN value indicates that the result of a test cannot
+						be determined.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ERROR">
+				<xsd:annotation>
+					<xsd:documentation>An ERROR value indicates that an error occured while
+						processing the check.</xsd:documentation>
+					<xsd:documentation> Among other causes, this can indicate an unexpected response
+						from the user. </xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="NOT_TESTED">
+				<xsd:annotation>
+					<xsd:documentation>A NOT_TESTED value indicates that the check has not been
+						tested yet. </xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="NOT_APPLICABLE">
+				<xsd:annotation>
+					<xsd:documentation>A NOT_APPLICABLE value indicates that the check is not
+						relevant and can be skipped.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="UserResponseType">
+		<xsd:annotation>
+			<xsd:documentation>The UserResponseType type defines structures containing the type of
+				response made by the user. The user could either have answered the question or have
+				taken any of the ExceptionalResultType values.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:union memberTypes="inter:ExceptionalResultType">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="ANSWERED">
+						<xsd:annotation>
+							<xsd:documentation>Indicates that the user responded by answering the
+								question posed.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:enumeration>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:union>
+	</xsd:simpleType>
+	<xsd:complexType name="ChoiceAnswerType">
+		<xsd:annotation>
+			<xsd:documentation>The ChoiceAnswerType type defines structures containing a choice_ref
+				attribute that identifies the choice selected by the user.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="choice_ref" type="inter:ChoiceIDPattern">
+			<xsd:annotation>
+				<xsd:documentation>The choice_ref attribute specifies an id of the choice selected
+					by the user.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+
+	<!-- **************************************************************************** -->
+	<!-- *   Artifact-related Global Types                                       			* -->
+	<!-- **************************************************************************** -->
+	<xsd:complexType name="ArtifactsType">
+		<xsd:annotation>
+			<xsd:documentation>The ArtifactsType type defines structures containing a set of
+				artifact elements.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="artifact" type="inter:ArtifactType" minOccurs="1"
+				maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>An artifact is evidence supporting an answer, completed test
+						action/questionnaire. Examples include a file or a submitted
+						text.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ArtifactType">
+		<xsd:annotation>
+			<xsd:documentation>The ArtifactType type defines structures containing information about
+				an artifact such as title, description, persistence, datatype, and/or if it's
+				required to complete an answer to a question.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="title" type="inter:TextType" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The title element holds a short summary or a caption about
+						the artifact.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="description" type="inter:TextType" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The description element holds information that describes what
+						the artifact is about.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="inter:ArtifactIDPattern" use="required">
+			<xsd:annotation>
+				<xsd:documentation> Each item is required to have a unique identifier that conforms
+					to the definition of NCName in the Recommendation "Namespaces in XML 1.0", i.e.,
+					all XML 1.0 names that does not contain colons. </xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="persistent" type="xsd:boolean" use="optional" default="true">
+			<xsd:annotation>
+				<xsd:documentation>The persistent attribute specifies whether the artifact is time
+					sensitive or not. If the value is true, then a snapshot or a copy must be kept.
+					Otherwise, a pointer to the location of the artifact is enough. The default
+					value is true.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="datatype" type="inter:ArtifactDataType" use="optional" default="TEXT">
+			<xsd:annotation>
+				<xsd:documentation>The datatype attribute specifies how to treat the value of the
+					artifact. It can either be TEXT or REFERENCE. The default is
+					TEXT.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="required" type="xsd:boolean" use="optional" default="false">
+			<xsd:annotation>
+				<xsd:documentation>The required element specifies whether the artifact must be
+					included or not. If true, then it must be included. The questionnaire is not
+					considered complete without it. Otherwise, it is desired but not
+					necessary.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="ArtifactResultsType">
+		<xsd:annotation>
+			<xsd:documentation>The ArtifactResultsType type defines structures containing a set of
+				artifact_result elements.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="artifact_result" type="inter:ArtifactResultType" minOccurs="1"
+				maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>The artifact_result element contains an artifact, its value,
+						who submitted it, and who provided it.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ArtifactResultType">
+		<xsd:annotation>
+			<xsd:documentation>The ArtifactResultType type defines structures containing informaiton
+				about the submitted artifact, its value, who provided and submitted it, and when it
+				was submitted.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="value" type="xsd:string" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The value element contains either the artifact data itself or
+						a pointer to it.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="provider" type="inter:ProviderValuePattern" minOccurs="1"
+				maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The provider element contains information about the user or
+						system that provided the artifact.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="submitter" type="inter:UserType" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The submitter element contains information about the user who
+						submitted the artifact.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="artifact_ref" type="inter:ArtifactIDPattern" use="required">
+			<xsd:annotation>
+				<xsd:documentation>The artifact_ref holds the unique identifier of the artifact
+					object that describes what the artifact is about, the type of data it holds, and
+					other metadata.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="timestamp" type="xsd:dateTime" use="required">
+			<xsd:annotation>
+				<xsd:documentation>The timestamp attribute holds the date and time when the artifact
+					was collected.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:simpleType name="ArtifactDataType">
+		<xsd:annotation>
+			<xsd:documentation>The ArtifactDataType type defines the acceptable data values for an
+				artifact.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="TEXT">
+				<xsd:annotation>
+					<xsd:documentation>A TEXT value specifies that the artifact is an essay entered
+						during the evaluation.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="REFERENCE">
+				<xsd:annotation>
+					<xsd:documentation>A REFERENCE value specifies that the artifact holds a
+						reference to a file or a URL.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<!-- **************************************************************************** -->
+	<!-- *   Target-related Global Types                                       			* -->
+	<!-- **************************************************************************** -->
+	<xsd:complexType name="TargetsType">
+		<xsd:annotation>
+			<xsd:documentation>The TargetsType type defines structures containing a set of target
+				elements.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element ref="inter:target" minOccurs="1" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>A target element describes the user, system, or role that
+						applies to all questionnaires in scope. For instance, specifying that user
+						Joe Smith should complete this document; applies to system with ip address
+						of 123.45.67.89; applies to all systems functioning as (role) web servers;
+						or all (role) administrators should complete this document.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="UserType">
+		<xsd:annotation>
+			<xsd:documentation>The UserTargetType type defines structures containing information
+				about a user such as name, organization, position, email, and
+				role.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="inter:NamedItemBaseType">
+				<xsd:sequence>
+					<xsd:element name="organization" type="xsd:string" minOccurs="0"
+						maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>The organization element specifies the company or
+								institution that the user belongs to.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="position" type="xsd:string" minOccurs="0"
+						maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>The position element holds the job title or the
+								position of the user within his/her
+								organization.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="email" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>The email element holds the email address where the
+								user can be contacted.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="SystemTargetType">
+		<xsd:annotation>
+			<xsd:documentation>The SystemTargetType type defines structures containing information
+				about the organization it belongs to, a set of ip addresses of computers/networks
+				included in the system, descrioption about it, and the roles it
+				performs.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="inter:NamedItemBaseType">
+				<xsd:sequence>
+					<xsd:element name="organization" type="xsd:string" minOccurs="0" maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>The organization element specifies what company or
+								institution the system belongs to.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="ipaddress" type="xsd:string" minOccurs="0"
+						maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>The ipaddress element holds the ip address of a
+								target compuer/network.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="description" type="inter:TextType" minOccurs="0"
+						maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>The description element holds information what the
+								target system is about.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<!-- **************************************************************************** -->
+	<!-- *   Variable-related Global Types                                   			* -->
+	<!-- **************************************************************************** -->
+	<xsd:complexType name="VariablesType">
+		<xsd:annotation>
+			<xsd:documentation>The VariablesType type defines structures containing a set of
+				variables.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element ref="inter:variable" minOccurs="1" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>A variable element holds a value defined by the author, a
+						value based on a question's answer, or a value from an external
+						source.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="VariableType">
+		<xsd:annotation>
+			<xsd:documentation>The VariableType type defines structures used to hold a single
+				value.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="inter:ItemBaseType">
+				<xsd:sequence>
+					<xsd:element name="description" type="inter:TextType" minOccurs="0"
+						maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>The description element holds information that
+								describes the value stored on the variable.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+				<xsd:attribute name="id" type="inter:VariableIDPattern" use="required">
+					<xsd:annotation>
+						<xsd:documentation>Each item is required to have a unique identifier that
+							conforms to the definition of NCName in the Recommendation "Namespaces
+							in XML 1.0", i.e., all XML 1.0 names that does not contain
+							colons.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="datatype" type="inter:VariableDataType" use="required">
+					<xsd:annotation>
+						<xsd:documentation>The datatype attribute specifies how to treat the
+							variable's value. It can be TEXT or NUMERIC.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ConstantVariableType">
+		<xsd:annotation>
+			<xsd:documentation>The ConstantVariableType type defines structures containing a value
+				defined by the author of the document.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="inter:VariableType">
+				<xsd:sequence>
+					<xsd:element name="value" type="xsd:string" minOccurs="1" maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>The value element holds the data stored on the
+								variable.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="LocalVariableType">
+		<xsd:annotation>
+			<xsd:documentation>The LocalVariableType type defines structures containing a value
+				determined during evaluation. Value is computed based on the matched pattern,
+				choice_ref, or range value, and the answer to the linked
+				question</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="inter:VariableType">
+				<xsd:sequence>
+					<xsd:element name="set" type="inter:VariableSetType" minOccurs="0"
+						maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>The set element contains information describing how
+								to compute the value to be stored on the variable. It holds the
+								patterns, choice_refs, and range values to be matched with the
+								answer to the linked question; and the appropriate value to be
+								stored on the variable based on the match.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="default_value" type="xsd:string" minOccurs="0" maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>The optional default_value element holds the initial
+								value of the variable, if the linked question has not been evaluated
+								yet.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+				<xsd:attribute name="question_ref" type="inter:QuestionIDPattern" use="required">
+					<xsd:annotation>
+						<xsd:documentation>The question_ref attribute holds the unique identifier of
+							the question in which the variable is linked. </xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ExternalVariableType">
+		<xsd:annotation>
+			<xsd:documentation>The ExternalVariableType type defines structures containing a value
+				defined elsewhere or some external source.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="inter:VariableType">
+				<xsd:sequence>
+					<xsd:element name="default_value" minOccurs="0" maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>The optional default_value element holds the initial
+								value of the variable, if the value cannot be retrieved from the
+								external source.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="VariableSetType">
+		<xsd:annotation>
+			<xsd:documentation>The VariableSetType type defines structures containing information
+				describing how to compute a variable value. It holds the patterns, choice_refs, and
+				range values to be matched; and the appropriate value to be stored on the variable
+				based on the match.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:choice minOccurs="1" maxOccurs="unbounded">
+				<xsd:element name="when_pattern" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>The pattern element is a string representation of the
+							pattern to be matched.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="when_choice_ref" type="inter:ChoiceIDPattern">
+					<xsd:annotation>
+						<xsd:documentation>The choice_ref element holds a choice unique identifier
+							to be matched.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="when_range" type="inter:RangeType">
+					<xsd:annotation>
+						<xsd:documentation>The range element holds a range of decimal values to
+							matched.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:choice>
+			<xsd:element name="value" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The value element contains the data to be stored on the
+						variable if any of the patterns, choice_refs, or range values has been
+						matched.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="VariableDataType">
+		<xsd:annotation>
+			<xsd:documentation>The VariableDataType simple type defines how a variable data value
+				should be treated or used.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="TEXT">
+				<xsd:annotation>
+					<xsd:documentation>The TEXT value specifies that the variable data value should
+						be treated as text.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="NUMERIC">
+				<xsd:annotation>
+					<xsd:documentation>The NUMERIC value specifies that the variable data value
+						should be treated as number.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<!-- **************************************************************************** -->
+	<!-- *   Instructions-related Global Types 		           			* -->
+	<!-- **************************************************************************** -->
+	<xsd:complexType name="ReferenceType" mixed="true">
+		<xsd:annotation>
+			<xsd:documentation>The ReferenceType complex type defines structures used to hold
+				information about an external reference given its URI and
+				description.</xsd:documentation>
+			<xsd:documentation>This structure may be used to reference other standards such as CVE,
+				CCE, or CPE. To do so, the href attribute would give the relevant namespace. For
+				example, the namespace of the current version of CPE is
+				http://cpe.mitre.org/dictionary/2.0 and the body of this element would hold a
+				specific CPE identifier. References to other information (documents, web pages,
+				etc.) are also permitted.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="inter:TextType">
+				<xsd:attribute name="href" type="xsd:anyURI">
+					<xsd:annotation>
+						<xsd:documentation> The href attribute holds the URI of an external
+							reference. This may be the namespace associated with the information in
+							the body or a web URL containing relevant information.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="StepType">
+		<xsd:annotation>
+			<xsd:documentation>The StepType complex type defines structures that describe one step
+				(out of possibly multiple steps) that a user should take in order to respond to a
+				question. The steps would appear as part of the question's instructions
+				element.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="description" type="inter:TextType" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The description element contains some information about this
+						step type.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="reference" type="inter:ReferenceType" minOccurs="0"
+				maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>The reference element contains information about any external
+						references related to this step type.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="step" type="inter:StepType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>The step element contains is a substep for this step
+						type.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="is_done" type="xsd:boolean" use="optional" default="false">
+			<xsd:annotation>
+				<xsd:documentation>The is_done attribute indicates whether this step has been done.
+					The value is true when it is done. Otherwise, it is false, It is an optional
+					attribute that defaults to false.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="is_required" type="xsd:boolean" use="optional" default="true">
+			<xsd:annotation>
+				<xsd:documentation>The is_required attribute indicates whether a step is required or
+					not. If it is not, then it can be skipped. It is an optional attribute that
+					defaults to true.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+
+	<!-- **************************************************************************** -->
+	<!-- *   Global Types                                		   			* -->
+	<!-- **************************************************************************** -->
+	<xsd:complexType name="ItemBaseType">
+		<xsd:annotation>
+			<xsd:documentation>The ItemBaseType complex type defines structures allowing a set of
+				notes to be included. This type is inherited by many of the elements in the OCIL
+				language.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="notes" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>An optional set of notes to describe additional
+						information.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="NamedItemBaseType">
+		<xsd:annotation>
+			<xsd:documentation>The TargetType type defines the user, role, or system that applies to
+				a questionnaire or the whole OCIL document.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="inter:ItemBaseType">
+				<xsd:sequence>
+					<xsd:element name="name" type="xsd:string" minOccurs="1" maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>The name element holds the tile or caption for the
+								target.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="CompoundTestActionType">
+		<xsd:annotation>
+			<xsd:documentation>The CompoundTestActionType type describes the structures used to
+				combine multiple test_action elements into a single result.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="inter:ItemBaseType">
+				<xsd:sequence>
+					<xsd:element name="title" type="inter:TextType" minOccurs="0" maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>The title element contains a descriptive heading for
+								the set of test_actions.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="description" type="inter:TextType" minOccurs="0"
+						maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>The description element holds information describing
+								the set of test_actions.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="references" type="inter:ReferencesType" minOccurs="0"
+						maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>The references element holds one or more reference
+								elements. Examples could include references to other standards such
+								as CVE, CCE, or CPE.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="actions" type="inter:OperationType" minOccurs="1"
+						maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>The actions element holds one or more test_action
+								elements along with the operators used to combine them into a single
+								result.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="artifacts" type="inter:ArtifactsType" minOccurs="0"
+						maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>The artifacts element contains all the artifacts that
+								must be requested when a question, test action, or questionnaire has
+								been evaluated.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ReferencesType">
+		<xsd:annotation>
+			<xsd:documentation>The ReferenceType complex type contains a set of
+				references.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="reference" type="inter:ReferenceType" minOccurs="1"
+				maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>The reference element contains information about any external
+						references. Examples could include references to other standards such as
+						CVE, CCE, or CPE.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="OperationType">
+		<xsd:annotation>
+			<xsd:documentation> The OperationType type defines structures that hold a set of
+				test_actions and provide instructions as to how to aggregate their individual
+				results into a single result. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="test_action_ref" type="inter:TestActionRefType" minOccurs="1"
+				maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>The test_action_ref elements holds the identifier of a
+						test_action element. At least one test_action_ref must be
+						included.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="operation" type="inter:OperatorType" use="optional" default="AND">
+			<xsd:annotation>
+				<xsd:documentation>The operation attribute describes how to aggregate the results of
+					a set of test_actions. Its value defaults to the Boolean operator
+					"AND".</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="negate" type="xsd:boolean" use="optional" default="false">
+			<xsd:annotation>
+				<xsd:documentation>The negate attribute can be used to specify whether to toggle the
+					result from PASS to FAIL, and vice versa. A result other than PASS or FAIL (e.g.
+					ERROR, NOT_TESTED, etc.) will be unchanged by a negate
+					operation.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="priority" type="inter:PriorityType" use="optional" default="LOW">
+			<xsd:annotation>
+				<xsd:documentation>Priority is an optional attribute that can either be HIGH, MEDIUM
+					or LOW. It specifies the importance of the referenced set of test_action
+					elements.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:simpleType name="OperatorType">
+		<xsd:annotation>
+			<xsd:documentation>The OperatorType simple type provides a list of possible operator
+				values that operates on a set of test_action elements.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="AND">
+				<xsd:annotation>
+					<xsd:documentation>The AND operator produces a true result if every argument is
+						true. If one or more arguments are false, the result of the AND is false.
+						See the truth table provided in the ResultType type for a complete list of
+						how the various result types are combined by an AND
+						operation.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="OR">
+				<xsd:annotation>
+					<xsd:documentation>The OR operator produces a true result if one or more
+						arguments is true. If every argument is false, the result of the OR is
+						false. See the truth table provided in the ResultType type for a complete
+						list of how the various result types are combined by an AND
+						operation.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PriorityType">
+		<xsd:annotation>
+			<xsd:documentation>The PriorityType simple type provides a list of possible priority
+				attribute values for a set of test_action elements. The notion of importance is left
+				to the author's discretion.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="HIGH">
+				<xsd:annotation>
+					<xsd:documentation>A HIGH priority test_action is more important than both
+						MEDIUM and LOW priority test_actions.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MEDIUM">
+				<xsd:annotation>
+					<xsd:documentation>A MEDIUM priority test_action is more important than LOW
+						priority test_actions.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="LOW">
+				<xsd:annotation>
+					<xsd:documentation>A LOW priority test_action has less importance compared to
+						MEDIUM and HIGH priority test_actions.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="TextType">
+		<xsd:annotation>
+			<xsd:documentation>The TextType complex type defines an element that holds any
+				information.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="xsd:anyType">
+				<xsd:attribute ref="xml:lang">
+					<xsd:annotation>
+						<xsd:documentation>This attribute specifies the language in which to
+							interpret the information.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<!-- **************************************************************************** -->
+	<!-- *   ID Patterns                                                           			* -->
+	<!-- **************************************************************************** -->
+	<xsd:simpleType name="TestActionRefValuePattern">
+		<xsd:annotation>
+			<xsd:documentation> A test_action_ref may refer to either a test_action or a
+				questionnaire. This type represents the union of these two ID
+				patterns.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="ocil:[A-Za-z0-9_\-\.]+:testaction:[1-9][0-9]*"/>
+			<xsd:pattern value="ocil:[A-Za-z0-9_\-\.]+:questionnaire:[1-9][0-9]*"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="QuestionnaireIDPattern">
+		<xsd:annotation>
+			<xsd:documentation>ID values for questionnaires must match this pattern. Each ID must be
+				unique within an OCIL document.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="ocil:[A-Za-z0-9_\-\.]+:questionnaire:[1-9][0-9]*"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="QuestionTestActionIDPattern">
+		<xsd:annotation>
+			<xsd:documentation>ID values for test_actions must match this pattern. Each ID must be
+				unique within an OCIL document.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="ocil:[A-Za-z0-9_\-\.]+:testaction:[1-9][0-9]*"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="QuestionIDPattern">
+		<xsd:annotation>
+			<xsd:documentation>ID values for questions must match this pattern. Each ID must be
+				unique within an OCIL document.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="ocil:[A-Za-z0-9_\-\.]+:question:[1-9][0-9]*"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ChoiceIDPattern">
+		<xsd:annotation>
+			<xsd:documentation> ID values for choices in choice_questions must match this pattern.
+				Each ID must be unique within an OCIL document.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="ocil:[A-Za-z0-9_\-\.]+:choice:[1-9][0-9]*"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ChoiceGroupIDPattern">
+		<xsd:annotation>
+			<xsd:documentation> ID values for choice_group references in choice_questions must match
+				this pattern. Each ID must be unique within an OCIL document.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="ocil:[A-Za-z0-9_\-\.]+:choicegroup:[1-9][0-9]*"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="VariableIDPattern">
+		<xsd:annotation>
+			<xsd:documentation> ID values for variable references must match this pattern. Each ID
+				must be unique within an OCIL document.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="ocil:[A-Za-z0-9_\-\.]+:variable:[1-9][0-9]*"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ArtifactIDPattern">
+		<xsd:annotation>
+			<xsd:documentation>ID values for artifact references must match this pattern. Each ID
+				must be unique within an OCIL document.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="ocil:[A-Za-z0-9_\-\.]+:artifact:[1-9][0-9]*"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ProviderValuePattern">
+		<xsd:annotation>
+			<xsd:documentation>Provider for artifacts may be a user or a system. This type
+				represents the union of these two ID patterns.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="ocil:[A-Za-z0-9_\-\.]+:user:[1-9][0-9]*"/>
+			<xsd:pattern value="ocil:[A-Za-z0-9_\-\.]+:system:[1-9][0-9]*"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+</xsd:schema>

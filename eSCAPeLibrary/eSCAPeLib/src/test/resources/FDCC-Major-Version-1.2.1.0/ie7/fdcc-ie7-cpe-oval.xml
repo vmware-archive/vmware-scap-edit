@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" 
+                  xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" 
+                  xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" 
+                  xmlns:win-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" 
+                  xmlns:ind-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" 
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows http://oval.mitre.org/language/download/schema/version5.3/ovaldefinition/complete/windows-definitions-schema.xsd
+                  http://oval.mitre.org/XMLSchema/oval-definitions-5#independent http://oval.mitre.org/language/download/schema/version5.3/ovaldefinition/complete/independent-definitions-schema.xsd
+                  http://oval.mitre.org/XMLSchema/oval-definitions-5 http://oval.mitre.org/language/download/schema/version5.3/ovaldefinition/complete/oval-definitions-schema.xsd
+                  http://oval.mitre.org/XMLSchema/oval-common-5 http://oval.mitre.org/language/download/schema/version5.3/ovaldefinition/complete/oval-common-schema.xsd">
+      <generator>
+            <oval:product_name>National Institute of Standards and Technology</oval:product_name>
+            <oval:schema_version>5.3</oval:schema_version>
+            <oval:timestamp>2008-09-02T12:24:50.000-04:00</oval:timestamp>
+      </generator>
+      <!-- ==================================================================================================== -->
+      <!-- ==========================================  DEFINITIONS  =========================================== -->
+      <!-- ==================================================================================================== -->
+      <definitions>
+            <definition id="oval:gov.nist.fdcc.ie7:def:627" version="1" class="inventory">
+                  <metadata>
+                        <title>Microsoft Internet Explorer 7 is installed</title>
+                        <affected family="windows">
+                              <platform>Microsoft Windows XP</platform>
+                              <platform>Microsoft Windows Server 2003</platform>
+                              <platform>Microsoft Windows Vista</platform>
+                        </affected>
+                        <reference source="CPE" ref_id="cpe:/a:microsoft:ie:7"/>
+                        <description>A version of Microsoft Internet Explorer 7 is installed.</description>
+                  </metadata>
+                  <criteria>
+                        <criterion comment="Internet Explorer 7 is installed" test_ref="oval:gov.nist.fdcc.ie7:tst:178"/>
+                  </criteria>
+            </definition>
+      </definitions>
+      <!-- ==================================================================================================== -->
+      <!-- =============================================  TESTS  ============================================== -->
+      <!-- ==================================================================================================== -->
+      <tests>
+            <registry_test id="oval:gov.nist.fdcc.ie7:tst:178" version="1" comment="Internet Explorer 7 is installed" check_existence="at_least_one_exists" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+                  <object object_ref="oval:gov.nist.fdcc.ie7:obj:247"/>
+                  <state state_ref="oval:gov.nist.fdcc.ie7:ste:115"/>
+            </registry_test>
+      </tests>
+      <!-- ==================================================================================================== -->
+      <!-- ============================================  OBJECTS  ============================================= -->
+      <!-- ==================================================================================================== -->
+      <objects>
+            <registry_object id="oval:gov.nist.fdcc.ie7:obj:247" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+                  <hive>HKEY_LOCAL_MACHINE</hive>
+                  <key>SOFTWARE\Microsoft\Internet Explorer</key>
+                  <name>Version</name>
+            </registry_object>
+      </objects>
+      <!-- ==================================================================================================== -->
+      <!-- =============================================  STATES  ============================================= -->
+      <!-- ==================================================================================================== -->
+      <states>
+            <registry_state id="oval:gov.nist.fdcc.ie7:ste:115" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+                  <value operation="pattern match">^7\..*$</value>
+            </registry_state>
+      </states>
+      <!-- ==================================================================================================== -->
+      <!-- ==================================================================================================== -->
+      <!-- ==================================================================================================== -->
+</oval_definitions>

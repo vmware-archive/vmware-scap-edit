@@ -1,0 +1,1862 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Benchmark xmlns="http://checklists.nist.gov/xccdf/1.2" xmlns:ocilri="http://cndrt.dod.gov/ocilri" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cpe2="http://cpe.mitre.org/language/2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xhtml="http://www.w3.org/1999/xhtml" style="SCAP_1.1" id="xccdf_com.company_benchmark_HBSS_ePO_45_Site_STIG" resolved="0" xml:lang="en-US" xsi:schemaLocation="http://purl.org/dc/elements/1.1/ simpledc20021212.xsd http://cpe.mitre.org/language/2.0 cpe-language_2.3.xsd http://checklists.nist.gov/xccdf/1.2 xccdf_1.2.xsd">
+   <status date="2011-07-20">draft</status>
+   <title>HBSS McAfee ePO 4.5 Site Security Technical Implementation Guide</title>
+   <description>This benchmark contains OVAL definitions and OCIL questionnaires for requirements from the 29 Apr 2011 HBSS McAfee ePO 4.5 Site STIG.</description>
+   <reference>
+      <dc:publisher>CND R&amp;T PMO</dc:publisher>
+   </reference>
+   <cpe2:platform-specification>
+      <cpe2:platform id="epolicy_orchestrator">
+         <cpe2:title xml:lang="en-US">ePolicy Orchestrator</cpe2:title>
+         <cpe2:logical-test operator="AND" negate="false">
+            <cpe2:fact-ref description="ePolicy Orchestrator" name="epolicy_orchestrator">
+               <cpe2:ident system="http://www.mitre.org/CPE">cpe:2.3:a:mcafee:epolicy_orchestrator:*:*:*:*:*:*:*:*</cpe2:ident>
+            </cpe2:fact-ref>
+         </cpe2:logical-test>
+      </cpe2:platform>
+      <cpe2:platform id="epolicy_orchestrator_mac-1_public">
+         <cpe2:title xml:lang="en-US">ePolicy Orchestrator (MAC-1_Public)</cpe2:title>
+         <cpe2:logical-test operator="AND" negate="false">
+            <cpe2:fact-ref description="ePolicy Orchestrator" name="epolicy_orchestrator">
+               <cpe2:ident system="http://www.mitre.org/CPE">cpe:2.3:a:mcafee:epolicy_orchestrator:*:*:*:*:*:*:*:*</cpe2:ident>
+            </cpe2:fact-ref>
+            <cpe2:fact-ref description="MAC-1" name="mac-1">
+               <asset_property xmlns="http://com.g2.asset_properties/1.0">
+                  <mac_level>1</mac_level>
+               </asset_property>
+            </cpe2:fact-ref>
+            <cpe2:fact-ref description="Public" name="public">
+               <asset_property xmlns="http://com.g2.asset_properties/1.0">
+                  <confidentiality_level>Public</confidentiality_level>
+               </asset_property>
+            </cpe2:fact-ref>
+         </cpe2:logical-test>
+      </cpe2:platform>
+      <cpe2:platform id="everything">
+         <cpe2:title xml:lang="en-US">Everything</cpe2:title>
+         <cpe2:logical-test operator="AND" negate="false">
+            <cpe2:fact-ref description="cpe" name="cpe">
+               <cpe2:ident system="http://www.mitre.org/CPE">cpe:2.3:a:mcafee:epolicy_orchestrator:*:*:*:*:*:*:*:*</cpe2:ident>
+            </cpe2:fact-ref>
+            <cpe2:fact-ref description="mac_level" name="mac_level">
+               <asset_property xmlns="http://com.g2.asset_properties/1.0">
+                  <mac_level>2</mac_level>
+               </asset_property>
+            </cpe2:fact-ref>
+            <cpe2:fact-ref description="confidentiality_level" name="confidentiality_level">
+               <asset_property xmlns="http://com.g2.asset_properties/1.0">
+                  <confidentiality_level>Public</confidentiality_level>
+               </asset_property>
+            </cpe2:fact-ref>
+            <cpe2:fact-ref description="asset_type" name="asset_type">
+               <asset_property xmlns="http://com.g2.asset_properties/1.0">
+                  <asset_type>Computing Device</asset_type>
+               </asset_property>
+            </cpe2:fact-ref>
+            <cpe2:fact-ref description="asset_function" name="asset_function">
+               <asset_property xmlns="http://com.g2.asset_properties/1.0">
+                  <asset_function>Domain Controller</asset_function>
+               </asset_property>
+            </cpe2:fact-ref>
+            <cpe2:fact-ref description="network_zone" name="network_zone">
+               <asset_property xmlns="http://com.g2.asset_properties/1.0">
+                  <network_zone>DMZ</network_zone>
+               </asset_property>
+            </cpe2:fact-ref>
+            <cpe2:fact-ref description="security_requirement" name="security_requirement">
+               <asset_property xmlns="http://com.g2.asset_properties/1.0">
+                  <security_requirement>Blargh</security_requirement>
+               </asset_property>
+            </cpe2:fact-ref>
+            <cpe2:fact-ref description="fips199_confidentiality" name="fips199_confidentiality">
+               <asset_property xmlns="http://com.g2.asset_properties/1.0">
+                  <fips199_confidentiality>Low</fips199_confidentiality>
+               </asset_property>
+            </cpe2:fact-ref>
+            <cpe2:fact-ref description="fips199_integrity" name="fips199_integrity">
+               <asset_property xmlns="http://com.g2.asset_properties/1.0">
+                  <fips199_integrity>Moderate</fips199_integrity>
+               </asset_property>
+            </cpe2:fact-ref>
+            <cpe2:fact-ref description="fips199_availability" name="fips199_availability">
+               <asset_property xmlns="http://com.g2.asset_properties/1.0">
+                  <fips199_availability>High</fips199_availability>
+               </asset_property>
+            </cpe2:fact-ref>
+         </cpe2:logical-test>
+      </cpe2:platform>
+   </cpe2:platform-specification>
+   <platform idref="#epolicy_orchestrator"/>
+   <version time="2011-07-20T08:00:00" update="1">20110720</version>
+   <metadata>
+      <publisher xmlns="http://purl.org/dc/elements/1.1/">CND R&amp;T PMO</publisher>
+      <creator xmlns="http://purl.org/dc/elements/1.1/">CND R&amp;T PMO</creator>
+      <contributor xmlns="http://purl.org/dc/elements/1.1/">CND R&amp;T PMO</contributor>
+      <source xmlns="http://purl.org/dc/elements/1.1/">CND_RT_PMO</source>
+   </metadata>
+   <Profile id="xccdf_com.company_profile_MAC-1_Public">
+      <title>I - Mission Critical Public</title>
+      <description>MAC Level: I - Mission Critical Confidentiality: Public</description>
+      <select idref="xccdf_com.company_rule_V-14282" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14483" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14484" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14485" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14486" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14488" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14489" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14491" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14493" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14494" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14495" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14496" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14497" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14499" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14500" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14501" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14502" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14503" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14504" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14505" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14506" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14507" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14508" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14509" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14510" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14511" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14512" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14519" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14538" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14548" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14554" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14556" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14560" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14561" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14562" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14566" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14567" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14568" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14569" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14570" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14571" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14572" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14573" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14574" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14575" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14577" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14579" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14580" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14581" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14582" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14583" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14584" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14585" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14843" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14868" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14939" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15346" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15354" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15357" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15358" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17880" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17882" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17885" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17886" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17887" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17888" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17889" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17890" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17894" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17895" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17897" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17898" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17899" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24011" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24012" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24013" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24014" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24017" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24020" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24021" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24022" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24023" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24024" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24161" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24162" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24165" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24169" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24170" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24171" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24172" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24173" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24174" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24175" selected="true"/><!--<select idref="V-24305" selected="true"/>-->
+      <select idref="xccdf_com.company_rule_V-24306" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24307" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-25504" selected="true"/>
+   </Profile>
+   <Profile id="xccdf_com.company_profile_MAC-1_Sensitive">
+      <title>I - Mission Critical Sensitive</title>
+      <description>MAC Level: I - Mission Critical Confidentiality: Sensitive</description>
+      <select idref="xccdf_com.company_rule_V-14282" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14483" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14484" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14485" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14486" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14488" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14489" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14491" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14493" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14494" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14495" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14496" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14497" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14499" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14500" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14501" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14502" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14503" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14504" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14505" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14506" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14507" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14508" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14509" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14510" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14511" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14512" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14519" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14538" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14548" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14554" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14556" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14560" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14561" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14562" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14566" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14567" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14568" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14569" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14570" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14571" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14572" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14573" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14574" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14575" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14577" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14579" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14580" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14581" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14582" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14583" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14584" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14585" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14843" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14868" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14939" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15346" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15354" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15357" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15358" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17880" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17882" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17885" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17886" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17887" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17888" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17889" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17890" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17894" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17895" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17897" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17898" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17899" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24011" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24012" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24013" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24014" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24017" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24020" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24021" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24022" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24023" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24024" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24161" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24162" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24165" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24169" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24170" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24171" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24172" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24173" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24174" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24175" selected="true"/><!--<select idref="V-24305" selected="true"/>-->
+      <select idref="xccdf_com.company_rule_V-24306" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24307" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-25504" selected="true"/>
+   </Profile>
+   <Profile id="xccdf_com.company_profile_MAC-1_Classified">
+      <title>I - Mission Critical Classified</title>
+      <description>MAC Level: I - Mission Critical Confidentiality: Classified</description>
+      <select idref="xccdf_com.company_rule_V-14282" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14483" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14484" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14485" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14486" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14488" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14489" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14491" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14493" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14494" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14495" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14496" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14497" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14499" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14500" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14501" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14502" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14503" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14504" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14505" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14506" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14507" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14508" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14509" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14510" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14511" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14512" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14519" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14538" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14548" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14554" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14556" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14560" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14561" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14562" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14566" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14567" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14568" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14569" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14570" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14571" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14572" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14573" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14574" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14575" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14577" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14578" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14579" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14580" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14581" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14582" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14583" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14584" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14585" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14843" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14868" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14939" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15346" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15354" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15357" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15358" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17880" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17882" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17885" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17886" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17887" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17888" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17889" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17890" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17894" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17895" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17897" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17898" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17899" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24011" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24012" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24013" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24014" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24017" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24020" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24021" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24022" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24023" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24024" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24161" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24162" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24165" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24169" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24170" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24171" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24172" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24173" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24174" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24175" selected="true"/><!--<select idref="V-24305" selected="true"/>-->
+      <select idref="xccdf_com.company_rule_V-24306" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24307" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-25504" selected="true"/>
+   </Profile>
+   <Profile id="xccdf_com.company_profile_MAC-2_Public">
+      <title>II - Mission Support Public</title>
+      <description>MAC Level: II - Mission Support Confidentiality: Public</description>
+      <select idref="xccdf_com.company_rule_V-14282" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14483" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14484" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14485" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14486" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14488" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14489" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14491" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14493" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14494" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14495" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14496" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14497" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14499" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14500" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14501" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14502" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14503" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14504" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14505" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14506" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14507" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14508" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14509" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14510" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14511" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14512" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14519" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14538" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14548" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14554" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14556" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14560" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14561" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14562" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14566" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14567" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14568" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14569" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14570" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14571" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14572" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14573" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14574" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14575" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14577" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14579" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14580" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14581" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14582" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14583" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14584" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14585" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14843" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14868" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14939" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15346" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15354" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15357" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15358" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17880" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17882" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17885" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17886" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17887" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17888" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17889" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17890" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17894" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17895" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17897" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17898" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17899" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24011" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24012" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24013" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24014" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24017" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24020" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24021" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24022" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24023" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24024" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24161" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24162" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24165" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24169" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24170" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24171" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24172" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24173" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24174" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24175" selected="true"/><!--<select idref="V-24305" selected="true"/>-->
+      <select idref="xccdf_com.company_rule_V-24306" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24307" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-25504" selected="true"/>
+   </Profile>
+   <Profile id="xccdf_com.company_profile_MAC-2_Sensitive">
+      <title>II - Mission Support Sensitive</title>
+      <description>MAC Level: II - Mission Support Confidentiality: Sensitive</description>
+      <select idref="xccdf_com.company_rule_V-14282" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14483" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14484" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14485" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14486" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14488" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14489" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14491" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14493" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14494" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14495" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14496" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14497" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14499" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14500" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14501" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14502" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14503" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14504" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14505" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14506" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14507" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14508" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14509" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14510" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14511" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14512" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14519" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14538" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14548" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14554" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14556" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14560" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14561" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14562" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14566" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14567" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14568" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14569" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14570" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14571" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14572" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14573" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14574" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14575" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14577" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14579" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14580" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14581" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14582" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14583" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14584" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14585" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14843" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14868" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14939" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15346" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15354" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15357" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15358" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17880" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17882" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17885" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17886" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17887" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17888" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17889" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17890" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17894" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17895" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17897" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17898" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17899" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24011" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24012" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24013" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24014" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24017" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24020" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24021" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24022" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24023" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24024" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24161" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24162" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24165" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24169" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24170" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24171" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24172" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24173" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24174" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24175" selected="true"/><!--<select idref="V-24305" selected="true"/>-->
+      <select idref="xccdf_com.company_rule_V-24306" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24307" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-25504" selected="true"/>
+   </Profile>
+   <Profile id="xccdf_com.company_profile_MAC-2_Classified">
+      <title>II - Mission Support Classified</title>
+      <description>MAC Level: II - Mission Support Confidentiality: Classified</description>
+      <select idref="xccdf_com.company_rule_V-14282" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14483" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14484" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14485" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14486" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14488" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14489" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14491" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14493" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14494" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14495" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14496" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14497" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14499" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14500" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14501" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14502" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14503" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14504" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14505" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14506" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14507" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14508" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14509" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14510" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14511" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14512" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14519" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14538" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14548" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14554" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14556" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14560" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14561" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14562" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14566" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14567" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14568" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14569" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14570" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14571" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14572" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14573" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14574" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14575" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14577" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14578" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14579" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14580" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14581" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14582" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14583" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14584" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14585" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14843" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14868" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14939" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15346" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15354" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15357" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15358" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17880" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17882" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17885" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17886" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17887" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17888" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17889" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17890" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17894" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17895" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17897" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17898" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17899" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24011" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24012" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24013" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24014" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24017" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24020" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24021" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24022" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24023" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24024" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24161" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24162" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24165" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24169" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24170" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24171" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24172" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24173" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24174" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24175" selected="true"/><!--<select idref="V-24305" selected="true"/>-->
+      <select idref="xccdf_com.company_rule_V-24306" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24307" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-25504" selected="true"/>
+   </Profile>
+   <Profile id="xccdf_com.company_profile_MAC-3_Public">
+      <title>III - Administrative Public</title>
+      <description>MAC Level: III - Administrative Confidentiality: Public</description>
+      <select idref="xccdf_com.company_rule_V-14282" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14483" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14484" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14485" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14486" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14488" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14489" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14491" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14493" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14494" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14495" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14496" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14497" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14499" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14500" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14501" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14502" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14503" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14504" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14505" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14506" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14507" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14508" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14509" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14510" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14511" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14512" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14519" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14538" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14548" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14554" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14556" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14560" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14561" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14562" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14566" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14567" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14568" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14569" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14570" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14571" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14572" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14573" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14574" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14575" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14577" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14579" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14580" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14581" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14582" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14583" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14584" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14585" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14843" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14868" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14939" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15346" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15354" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15357" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15358" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17880" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17882" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17885" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17886" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17887" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17888" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17889" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17890" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17894" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17895" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17897" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17898" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17899" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24011" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24012" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24013" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24014" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24017" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24020" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24021" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24022" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24023" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24024" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24161" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24162" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24165" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24169" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24170" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24171" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24172" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24173" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24174" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24175" selected="true"/><!--<select idref="V-24305" selected="true"/>-->
+      <select idref="xccdf_com.company_rule_V-24306" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24307" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-25504" selected="true"/>
+   </Profile>
+   <Profile id="xccdf_com.company_profile_MAC-3_Sensitive">
+      <title>III - Administrative Sensitive</title>
+      <description>MAC Level: III - Administrative Confidentiality: Sensitive</description>
+      <select idref="xccdf_com.company_rule_V-14282" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14483" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14484" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14485" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14486" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14488" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14489" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14491" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14493" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14494" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14495" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14496" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14497" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14499" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14500" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14501" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14502" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14503" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14504" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14505" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14506" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14507" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14508" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14509" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14510" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14511" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14512" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14519" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14538" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14548" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14554" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14556" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14560" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14561" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14562" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14566" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14567" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14568" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14569" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14570" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14571" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14572" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14573" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14574" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14575" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14577" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14579" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14580" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14581" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14582" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14583" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14584" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14585" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14843" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14868" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14939" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15346" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15354" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15357" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15358" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17880" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17882" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17885" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17886" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17887" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17888" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17889" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17890" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17894" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17895" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17897" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17898" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17899" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24011" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24012" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24013" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24014" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24017" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24020" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24021" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24022" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24023" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24024" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24161" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24162" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24165" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24169" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24170" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24171" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24172" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24173" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24174" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24175" selected="true"/><!--<select idref="V-24305" selected="true"/>-->
+      <select idref="xccdf_com.company_rule_V-24306" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24307" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-25504" selected="true"/>
+   </Profile>
+   <Profile id="xccdf_com.company_profile_MAC-3_Classified">
+      <title>III - Administrative Classified</title>
+      <description>MAC Level: III - Administrative Confidentiality: Classified</description>
+      <select idref="xccdf_com.company_rule_V-14282" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14483" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14484" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14485" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14486" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14488" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14489" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14491" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14493" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14494" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14495" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14496" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14497" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14499" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14500" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14501" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14502" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14503" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14504" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14505" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14506" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14507" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14508" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14509" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14510" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14511" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14512" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14519" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14538" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14548" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14554" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14556" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14560" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14561" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14562" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14566" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14567" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14568" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14569" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14570" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14571" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14572" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14573" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14574" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14575" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14577" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14578" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14579" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14580" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14581" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14582" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14583" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14584" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14585" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14843" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14868" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-14939" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15346" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15354" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15357" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-15358" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17880" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17882" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17885" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17886" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17887" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17888" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17889" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17890" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17894" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17895" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17897" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17898" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-17899" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24011" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24012" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24013" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24014" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24017" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24020" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24021" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24022" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24023" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24024" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24161" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24162" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24165" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24169" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24170" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24171" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24172" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24173" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24174" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24175" selected="true"/><!--<select idref="V-24305" selected="true"/>-->
+      <select idref="xccdf_com.company_rule_V-24306" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-24307" selected="true"/>
+      <select idref="xccdf_com.company_rule_V-25504" selected="true"/>
+   </Profile>
+   <Rule id="xccdf_com.company_rule_V-14282" selected="false" severity="medium" weight="10.0">
+      <title>(U) A static IP address exists for the ePO server.</title>
+      <description>(U) Navigate to the ‘Start/Settings/ControlPanel/NetworkConnections’ and choose the ‘Local Area Network’ connection. From the ‘General’ tab, select ‘Properties’, and then select the ‘Internet Protocol’ (TCP/IP). Click the ‘Properties’ button. Ensure that an IP address is present, and that the ‘Obtain an IP address’ is not checked. If there is more than one Network Connection – all of the IPs addresses should be checked for compliance. If a static IP address is not assigned, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-14282</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7001"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14483" selected="false" severity="medium" weight="10.0">
+      <title>(U) The ePO server is located in a protected Enclave Security Services DMZ or screened subnet.</title>
+      <description>(U) Validate the scope of clients that the ePO server is servicing. If the ePO is servicing clients outside the local enclave, the requirement is that the ePO server must be in a protected Security Services Enclave DMZ (and not part of the public DMZ.) Review the network topology diagram. Check the ePO server IP address and subnet mask to validate that it is in the documented subnet for the non-public DMZ. (A network diagram must be available – or the checks should be done by looking at the firewall controlling the DMZ). If the ePO server is not in a Security Services Enclave DMZ, this is a finding. If it is in a public DMZ, this is a finding. If the ePO server is only serving clients inside the local enclave, the requirement is to be in a separate controlled access subnet and not part of the public DMZ that houses the public web servers. In addition, it needs to be isolated via a controlled access mechanism from the local general population LAN. Review the network topology diagram. Check the ePO IP address and subnet mask to validate that it is in the documented subnet for the non-public DMZ. Also, validate that it is in a controlled access subnet that is isolated from the general population LAN. The checks can be done by looking at a network diagram, or by looking at the network infrastructure devices controlling the network. If the ePO server is in a public DMZ, this is a finding. If the ePO server is not isolated from the general population LAN, this is a finding.</description>
+      <metadata>
+         <ocilri:target_role>NA</ocilri:target_role>
+      </metadata>
+      <ident system="https://vms.disa.mil">V-14483</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7002"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14484" selected="false" severity="medium" weight="10.0">
+      <title>(U//FOUO) The ePO server’s management workstations, outside the enclave, use NIST certified encrypted VPNs for access and the traffic is logged.</title>
+      <description>(U//FOUO) For the scenario where management (i.e., system or database administration) traffic must cross a DoD boundary, a VPN must be used to encapsulate and encrypt the remote access traffic using NIST certified encryption. The VPN must terminate at the firewall. An audit record of each session must also be logged. Verify if there are remote connections from outside the ePO's enclave. If there is not, this check should be considered NA. If there are, verify that this traffic is encapsulated and encrypted within the VPN tunnel, and the traffic is logged. In addition, the VPN must either translate remote console into specific IP addresses or designate a pool of IP addresses for remote consoles. If there is no VPN, this is a finding. If the VPN connection does not terminate at the firewall, this is a finding. If the session is not logged, this is a finding. If the IP address translation of remote console is not done via a designated pool of IP addresses or has dedicated IP assignments for them, this is a finding.</description>
+      <metadata>
+         <ocilri:target_role>NA</ocilri:target_role>
+      </metadata>
+      <ident system="https://vms.disa.mil">V-14484</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7003"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14485" selected="false" severity="medium" weight="10.0">
+      <title>(U) VPN traffic into the ePO is visible to a network intrusion detection system.</title>
+      <description>(U) Examine the network topology and the network intrusion detection system, and determine if the VPN data into the ePO is visible. If it is not visible, this is a finding.</description>
+      <metadata>
+         <ocilri:target_role>NA</ocilri:target_role>
+      </metadata>
+      <ident system="https://vms.disa.mil">V-14485</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7004"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14486" selected="false" severity="high" weight="10.0">
+      <title>(U) The ePO server perimeter protection is in deny by default with allowable exceptions.</title>
+      <description>(U//FOUO) This requirement is looking for the protection at the local enclave perimeter. It can be fulfilled by using any network protection except the local host-based firewall. Please refer to the Network Infrastructure STIG for additional guidance about perimeter protection. Ensure that there is a deny by default access control list (ACL) both inbound and outbound within the perimeter protecting the ePO server. If there is not, this is a finding. The only inbound allowable exceptions are as follows: VPN Client addresses (from the VPN concentrator). IP addresses (or ranges) of clients with specific ports inbound to the ePO server from outside the perimeter are permitted if they are being serviced by this ePO server. The only outbound allowable exceptions are as follows: Outbound-initiated traffic to access updates (DoD download servers) and only specific ports. (There will not be an allowance for IP addresses for this function without port restrictions.) Outbound-initiated traffic for updates and wakeup calls to serviced clients is allowed (including updates to distributed repositories).</description>
+      <metadata>
+         <ocilri:target_role>NA</ocilri:target_role>
+      </metadata>
+      <ident system="https://vms.disa.mil">V-14486</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7005"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14488" selected="false" severity="medium" weight="10.0">
+      <title>(U) The ePO server is being protected by a local network IDS.</title>
+      <description>(U) Verify that the traffic into the ePO server is visible to the local network IDS. If there is no local network IDS in place, this is a finding. Note: This cannot be closed or considered Not a Finding via the host-based product on the local ePO server. Note: The intent of this finding is to ensure traffic flowing to the ePO server is being monitored by the device that is already required or point out that the enclave does not have an IDS. In most cases, the ePO server will be on a screened subnet. As long as the interface for that subnet is being monitored, that will meet the intent of the finding.</description>
+      <ident system="https://vms.disa.mil">V-14488</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7006"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14489" selected="false" severity="medium" weight="10.0">
+      <title>(U) The site has registered the HBSS server within the Ports and Protocols database.</title>
+      <description>(U//FOUO) Verify that the server has been registered in the Ports and Protocols database (https://pnp.cert.smil.mil) for the site. If it is not registered, this is a finding. Verify the following ports are registered: 4.0 --------------- Agent-to-server: 80 (HTTP) Agent wake-up: 591 Agent broadcast: 8082 Event parser-to-application: 8445 Sensor-to-server: 8443 Console-to-application: 443 4.5 --------------- Agent-to-server: 80 (HTTP) / 443 (HTTPS) Agent wake-up: 591 Agent broadcast: 8082 Event parser-to-application: 8445 Sensor-to-server: 8443 Console-to-application: 8005 Console-to-application (PKI): 8007 Note: PM registration of the ports does not indicate compliance. Registration is also required at the site level.</description>
+      <metadata>
+         <ocilri:target_role>NA</ocilri:target_role>
+      </metadata>
+      <ident system="https://vms.disa.mil">V-14489</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7007"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14491" selected="false" severity="low" weight="10.0">
+      <title>(U) The HBSS is under direct control of a site CCB.</title>
+      <description>(U) Review the documented configuration management process for HBSS. The process must document and approve both configuration changes to the ePO server, as well as policy updates that are being applied to clients. This process also needs to include the exceptions to policy and alerts. Process must include a site Configuration Control Board (CCB). If a documented configuration management plan does not exist, this is a finding. If a documented configuration management plan exists and does not contain a CCB, this is a finding.</description>
+      <metadata>
+         <ocilri:target_role>IAO</ocilri:target_role>
+      </metadata>
+      <ident system="https://vms.disa.mil">V-14491</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7008"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14493" selected="false" severity="medium" weight="10.0">
+      <title>(U) The ePO server uses only the DoD-controlled source repository.</title>
+      <description>(U//FOUO) Ensure that the DoD-controlled entry (mcafee.csd.disa.mil) for source repositories is present. Note: If this is a disconnected network, this requirement can be met via the use of a manual distribution. The process must be documented and adhered to and must meet the requirements for frequency as defined in this document. Note: If the ePO server is outside of the .mil address space (such as, .edu, .gov, etc.), connection to the DoD-controlled servers for updates will not be possible and, in this case, updates from the vendor are acceptable and this check should be marked NA.</description>
+      <ident system="https://vms.disa.mil">V-14493</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7009"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14494" selected="false" severity="low" weight="10.0">
+      <title>(U) A DoD-controlled DNS server is used for resolution for the ePO server.</title>
+      <description>(U) Navigate to the Start/Settings/ControlPanel/NetworkConnections, and choose the Local Area Network connection. From the ‘General' tab, select ‘Properties.’ Select the 'Internet Protocol (TCP/IP)', and click the ‘Properties’ button. Note the DNS server IP addresses. At a command prompt, type in ‘ NSLOOKUP {DNS Server IP}’. If the NSLOOKUP of DNS server IP does not resolve to a .mil address, this is a finding. Note: If the ePO server is outside of the .mil address space (such as, .edu, .gov, etc.), connection to the DoD-controlled DNS servers for resolution will not be possible and, in this case, a locally-controlled DNS server is acceptable.</description>
+      <ident system="https://vms.disa.mil">V-14494</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7010"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14495" selected="false" severity="medium" weight="10.0">
+      <title>(U//FOUO) The ePO server firewall rules are set correctly.</title>
+      <description>(U//FOUO) All of the following checks must be true in order for the check to be considered Not a Finding: The firewall must be in deny by default for bi-directional traffic. Explicit rule must exist to only allow inbound TCP on Port 8005 (SPIPE) from the ePO Server and remote console IP addresses (or remote console IP addresses from the VPN Concentrator pool) using user authentication. Explicit rule must exist to only allow inbound TCP on Port 8007 (SPIPE) from the ePO Server and remote console IP addresses (or remote console IP addresses from the VPN Concentrator pool) using PKI authentication. Explicit rule to only allow inbound TCP on Port 80 and 443 from IP Ranges of clients serviced by the ePO server. (SPIPE) Explicit rule to only allow outbound TCP on Port 591 (SPIPE – Agent wakeup calls) to clients being serviced by the ePO server and Super Agent Distributed Repository IP addresses. Inbound only from itself. Explicit rule for WSUS updates to the DoD HBSS WSUS site, if it is being used, when approved. ***All other rules present must be explicitly identified by scope and purpose. If any of these items are not compliant, this is a finding. Note: The IP address of the site’s vulnerability scanner can be configured to allow all ports – but it must be restricted by IP for the vulnerability scanner IP only and the rule can only be active when there is an actual scheduled scan in process. Refer to checks H36220, H36260, and H40220 as to additional requirements for scanning the ePO server. If running ePO in a virtual environment and if the hosting platform has either inbound or outbound access to the Internet, this is a finding. If the firewall does not have explicit IP definitions for port 1433, this is a CAT I finding. If H20200: HBSS Specific Perimeter Defense, was a finding and the host firewall is not in a deny by default configuration for bidirectional traffic, this is a CAT I finding.</description>
+      <ident system="https://vms.disa.mil">V-14495</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7011"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14496" selected="false" severity="medium" weight="10.0">
+      <title>(U) HBSS is not operating on different classification levels or across mixed DoD and non-DoD systems or networks.</title>
+      <description>(U) Verify with the IAO and ePO administrators that the clients being serviced by the HBSS ePO server are from a single classification level and are not servicing clients from DoD information systems operating at different classification levels. Additionally there is no mixing of information from DoD and non-DoD systems or networks. Note: Non-DoD systems or networks (for this check) refers to the systems that are owned and controlled by a non-DoD agency or contractor that may, or may not, reside within DoD space.</description>
+      <metadata>
+         <ocilri:target_role>IAO</ocilri:target_role>
+      </metadata>
+      <ident system="https://vms.disa.mil">V-14496</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7012"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14497" selected="false" severity="high" weight="10.0">
+      <title>(U) The ePO server is dedicated to HBSS.</title>
+      <description>(U) Check for other web sites, other database installations (both SQL and others), and services. Search for other applications (such as Office products) or other management products (such as WSUS application or Hercules Server Application, etc.). If there are any other applications installed or running on this machine, this is a finding. Note: If the machine has multiple images in a virtual environment, this check can be satisfied by having a logically dedicated image or a thin client solution. Note: If the platform is being remotely managed, management software is permitted. See H30620 for the requirements of the machine to be used for remote management of the platform. Note: HBSS components/add-ons can be present on the server.</description>
+      <ident system="https://vms.disa.mil">V-14497</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7013"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14499" selected="false" severity="medium" weight="10.0">
+      <title>(U) The ePO software directories are adequately protected from unauthorized modification.</title>
+      <description>(U) Examine the ePO installation directory and ensure that only authorized users have update access to the files. These directories include, by default, McAfee directories under the ‘c:\program files\common files’ and ‘?:\program files\mcafee.’ (’?’ Indicates the drive letter). If any regular user groups, such as ‘Users’, or any other locally-defined groups, which contain non-privileged users, have modify, write, or full control, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-14499</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7014"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14500" selected="false" severity="medium" weight="10.0">
+      <title>(U)HBSS has the current security patches installed.</title>
+      <description> (U) For the ePO server, determine the current patch level by clicking on Help, and then, selecting About ePolicy Orchestrator. If the value is less than 4.5.1.851, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-14500</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60007"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14501" selected="false" severity="high" weight="10.0">
+      <title>(U) The ePO server is not using the default keys.</title>
+      <description>(U) Ensure that the default keys have been replaced on the ePO server. There are two methods to determine this finding. 1. From the ePO server console, select the ‘Configuration’ tab, then select ‘the Server Settings’ tab. Select the ‘Console Security Keys' category. Ensure that the legacy key 'HMW9L9yM2AbJY8qrvmNCNJpYXAI=' does not exist. Note: The character before the second = sign is a capital letter I, as in India. 2. From the SQL Server Management Studio: Ensure that the database pull-down has the ePO server database. Execute the following command by typing the command into the query window and then clicking on the ‘Execute’ button: Select NodeName, AgentGUID from epoLeafNode where ServerKeyHash ='HMW9L9yM2AbJY8qrvmNCNJpYXAI=' Note: The character before the second = sign is a capital letter I, as in India. Finding Determination: Determine if the ePO server is listed within these results. If the ePO server is listed from this query, this is a finding. Note: A typo in the query may result in a false negative. An error message may indicate that the wrong database is selected. Note: After fixing this finding, all affected ePO clients will need to have the client software reinstalled. This should be done before deployment to avoid duplication of work.</description>
+      <ident system="https://vms.disa.mil">V-14501</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60008"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14502" selected="false" severity="medium" weight="10.0">
+      <title>(U) The ePO server has all clients using non-default keys.</title>
+      <description>(U) Verify that no serviced clients are using the default key. This procedure will be run at least weekly. From the SQL Server Management Studio: Ensure that the database pull-down has the ePO server database. Execute the following command by typing the command into the query window and clicking on the ‘Execute’ button: Select NodeName, AgentGUID from epoLeafNode where ServerKeyHash ='HMW9L9yM2AbJY8qrvmNCNJpYXAI=' Note: The character before the second ‘=’ sign is a capital letter I, as in India. If there are records returned from this query, this is a finding. If the SA (or the DBA) is not running this process at least weekly, this is a finding. Note: The procedures for removing the default keys are detailed in the HBSS Configuration Guide. Note: A typo in the query may result in a false negative. An error message may indicate that the wrong database is selected.</description>
+      <ident system="https://vms.disa.mil">V-14502</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60009"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14503" selected="false" severity="medium" weight="10.0">
+      <title>(U) The ePO server has a scheduled task to pull updates daily from the authorized source repository.</title>
+      <description>(U) From the ePO server console, select the ‘Automation’ menu item, then select the ‘Server Tasks’ tab, and examine the list of tasks. Examine a task (by highlighting, and then clicking ‘View link’ that represents the ‘Repository Pull’). Verify that the task has a task type of ‘Repository Pull.’ It must be enabled and scheduled to run at least once per day (every hour is preferred). Ensure the source repository is the DoD server. If at least one task does not exist that meets all the above criteria, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-14503</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7018"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14504" selected="false" severity="medium" weight="10.0">
+      <title>(U) The ePO server has a scheduled task to replicate changes to distributed repositories daily.</title>
+      <description>(U) From the ePO server console, select the ‘Automation' menu option, then select ‘Server Tasks’ tab, and examine the list of tasks. Examine a task by highlighting and clicking the ‘View link’ that represents the daily replication. Verify that it is a task type of ‘Repository Replication.’ The task must be enabled and scheduled to run once per day after the pull task from H30500 has completed. The replication type must be ‘Incremental.’ All the distributed repositories must be accounted for. This can be accomplished through separate tasks or via the ‘Replicate to all the repositories.’ If at least one task does not exist that meets all the above criteria, this is a finding. Note: If check H30560 is being done daily, this check can be marked as NA.</description>
+      <ident system="https://vms.disa.mil">V-14504</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7019"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14505" selected="false" severity="medium" weight="10.0">
+      <title>(U) The ePO server has a scheduled task to do complete repository updates at least weekly. </title>
+      <description>(U) From the ePO server console, select the ‘Automation Tab,’ select the ‘Server Tasks’ tab, and examine the list of tasks. Examine a task by highlighting it and clicking the View link that represents the weekly replication. Verify that it is a task type of ‘Repository Replication.’ The task must be enabled and scheduled to run at least once per week. The type must be ‘Full Replication.’ All the distributed repositories must be accounted for. This can be accomplished through separate tasks or via the ‘Replicate to all the repositories.’ If at least one task does not exist that meets all the above criteria, this is a finding. Note: If this task is being done daily, check H30540 can be marked as NA.</description>
+      <ident system="https://vms.disa.mil">V-14505</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7020"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14506" selected="false" severity="medium" weight="10.0">
+      <title>(U) The ePO server has a scheduled task to identify Inactive Agents daily.</title>
+      <description>(U) From the ePO server console, select the ‘Automation’ menu option, then select the ‘Server Tasks’ tab, and examine the list of tasks. Examine a task by highlighting and then clicking the ‘View link’ that represents the inactive agent task. Verify that it is a task type of ‘Run Query’ with a query name of ‘ePO: Inactive Agents.’ The task must be enabled and scheduled to run at least daily. A specific action is not required, but a consistent action will be determined at the site level to ensure action for inactive agents. If at least one task does not exist that meets all the above criteria or if the SA is not examining the results of this task, it is a finding. This finding can be met by other means if the inactive agents are being reported to the SA, and the SA is taking action on them.</description>
+      <ident system="https://vms.disa.mil">V-14506</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7021"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14507" selected="false" severity="high" weight="10.0">
+      <title>(U//FOUO) The ePO server cannot be part of a domain. </title>
+      <description>(U//FOUO) From Windows Explorer, right-click on the ePO server name (or My Computer), and then click on the ‘properties’ link. Select the ‘Computer Name’ tab. If the Workgroup designator is present, this is not a finding. If the machine is part of a domain, this is a finding. If running the ePO server in a virtual environment and if the hosting platform is in a domain, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-14507</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7022"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14508" selected="false" severity="medium" weight="10.0">
+      <title>(U//FOUO) Only a dedicated machine can be use to manage the ePO server.</title>
+      <description>(U//FOUO) This requirement deals with remote management of the ePO server platform (i.e., the OS, database, etc.) using a tool such as Terminal Services. The ePO server can only be remotely managed via a tool like Terminal Services (where the userid is not stored on the management machine) from the dedicated machines. If remote administration is being performed from any other machine, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-14508</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7023"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14509" selected="false" severity="medium" weight="10.0">
+      <title>(U) The ePO server is regularly checked for file integrity.</title>
+      <description>(U) If the site does not use a tool to compare system files (*.exe, *.bat, *.com,*.cmd and *.dll) on servers against a baseline on a weekly basis, this is a finding. For the ePO server, this procedure must include all system files on all drives and all directories. This means that all system files on all drives and directories must be baselined and compared to a known baseline on a weekly basis. Note: This is an expansion of the Windows requirement -V0002907/1.024: System files are not checked for unauthorized changes. Note: The Asset module within HBSS does not meet this requirement. Note: A properly configured Policy Auditor 5.2, or later, File Integrity Monitor (FIM) module does meet the requirement for file integrity checking.</description>
+      <metadata>
+         <ocilri:target_role>SA</ocilri:target_role>
+      </metadata>
+      <ident system="https://vms.disa.mil">V-14509</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7024"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14510" selected="false" severity="high" weight="10.0">
+      <title>(U//FOUO) The ePO SQL database installation is dedicated to HBSS.</title>
+      <description>(U//FOUO) From the SQL Server Management Studio: Locate the SQL server used for ePO. Expand the databases folder. The following databases should exist: ePO4_{MachineName} master model msdb tempdb If any other databases exist, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-14510</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60005"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14511" selected="false" severity="low" weight="10.0">
+      <title>(U//FOUO) The SQL database installation partition is separated from the other parts of the application.</title>
+      <description>(U//FOUO) Ensure the SQL Server Installation partition and the SQL data files are separated (at least via separate directory structure – preferably separate partitions) from both the ePO installation directory and the Tomcat and Apache installation and data directories. If there is not a separation at least by directories, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-14511</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7026"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14512" selected="false" severity="medium" weight="10.0">
+      <title>(U) The SQL database connection account is configured as least privilege.</title>
+      <description>(U) Using a browser, navigate to https://localhost/core/config or https://eponame/core/config. Logon. Note the User Name field. Through the SQL Server Management Studio, verify that the accounts being used are not part of the 'System Administrators' server role. If the account is part of the System Administrators role, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-14512</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60024"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14519" selected="false" severity="medium" weight="10.0">
+      <title>(U) Rogue System Detection is in place.</title>
+      <description>(U//FOUO) Identify each of the network broadcast segments. Verify that there is coverage of the segment by a Rogue Sensor. If the network segment is not covered by a Rogue Sensor, this is a finding. The information concerning the network segments can be obtained from the site's network diagram. The site's HBSS implementation plan may also contain this information. It is recommended to include the site’s DHCP server as a Rogue Sensor. It is recommended to not use a Domain Controller as a Rogue Sensor.</description>
+      <metadata>
+         <ocilri:target_role>NA</ocilri:target_role>
+      </metadata>
+      <ident system="https://vms.disa.mil">V-14519</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7028"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14538" selected="false" severity="medium" weight="10.0">
+      <title>(U//FOUO) The ePO Server’s HIPS Trusted Network address list allows only acceptable networks.</title>
+      <description>(U//FOUO) This check needs to be completed for the policy that is assigned to the ePO server. From the ePO server console, select the asset to be checked, then select ‘Assigned Policies,’ followed by ‘Host Intrusion Prevention 7: General’ from the product list. From the ‘Trusted Networks’ category, select the applicable policy. From the ‘Trusted Networks’ section, examine the list of trusted network entries. The only two allowable trusted network entries that are trusted for Network IPS are the local ePO server and the IP address of the vulnerability scanner (no ranges). If any other entries are present that are trusted for IPS, this is a finding. Note: Other entries can exist, but they cannot be trusted for IPS.</description>
+      <ident system="https://vms.disa.mil">V-14538</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7029"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14548" selected="false" severity="medium" weight="10.0">
+      <title>(U//FOUO) The HIPS policy for Medium Severity is set properly.</title>
+      <description>(U//FOUO) This check needs to be checked for the active policy that controls the ePO server. From the ePO server console, select the asset to be checked, then select ‘Policies,’ followed by ‘Host Intrusion Prevention 7:IPS’ from the product list. From the ‘IPS Protection’ category, select the applicable policy. From the 'Reaction Based on signature protection level' section, ensure that for the Severity level of ‘Medium,’ the reaction is set to at least the level of ‘Log.’ If it is not set to ‘Log’ (recommended) or ‘Prevent,’ this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-14548</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60025"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14554" selected="false" severity="medium" weight="10.0">
+      <title>(U//FOUO) The HIPS policy includes the signature for protection of the ePO Server KeyStore.</title>
+      <description>(U//FOUO) This check needs to be checked for the active policy that controls the ePO server. From the ePO server console, then select the asset to be checked, select ‘Policies’, followed by ‘Host Intrusion Prevention 7:IPS’ from the product list. From the ‘IPS Rules’ category, select the applicable policy. From the ‘IPS Rules,’ select the ‘Signatures’ tab. Ensure that the signature of ‘Protect ePO Server Console Keystore’ is present. In addition to the signature being present, ‘Severity’ must be ‘high,’ ‘Log Status’ must be ‘enabled,’ and ‘Allow client rules’ must be ‘disabled.’ If the signature is not present or the properties are set incorrectly, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-14554</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60026"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14556" selected="false" severity="medium" weight="10.0">
+      <title>(U//FOUO) The HIPS policy includes the signature for protection of Server.ini.</title>
+      <description>(U//FOUO) From the ePO server console, select the asset to be checked, then select ‘Policies’, followed by ‘Host Intrusion Prevention 7:IPS’ from the product list. From the ‘IPS Rules’ category, select the applicable policy. From the ‘IPS Rules,’ select the ‘Signatures’ tab. Ensure that the signature of ‘Protect ePO Server.ini’ is present. In addition to the signature being present, ‘Severity’ must be ‘high,’ ‘Log Status’ must be ‘enabled,’ and ‘Allow client rules’ must be ‘disabled.’ If the signature is not present or the properties are set incorrectly, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-14556</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60027"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14560" selected="false" severity="medium" weight="10.0">
+      <title>(U) The HIPS for the ePO server has the firewall installed and enabled.</title>
+      <description>(U) From the ePO server console, select the asset to be checked, then select ‘Policies’, followed by ‘Host Intrusion Prevention 7: Firewall’ from the product list. From the ‘Firewall Options’ category, select the applicable policy. From the ‘Firewall Options’ section, ensure the ‘Enable Firewall’ option is checked. If the ‘Enabled Firewall’ option is not checked, this is a finding. Severity Determination: If H20200: HBSS Specific Perimeter Defense is a finding, this is a CAT I finding.</description>
+      <ident system="https://vms.disa.mil">V-14560</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60028"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14561" selected="false" severity="medium" weight="10.0">
+      <title>(U//FOUO) The HIPS for the ePO server has the firewall set for regular protection.</title>
+      <description>(U//FOUO) From the ePO server console, select the asset to be checked, then select ‘Policies’, followed by ‘Host Intrusion Prevention 7:Firewall’ from the product list. From the ‘Firewall Options’ category, select the applicable policy. From the Firewall Options Section, ensure the ‘Regular protection’ option is checked. If the ‘Regular protection’ is not checked, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-14561</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60029"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14562" selected="false" severity="medium" weight="10.0">
+      <title>(U//FOUO) The HIPS for the ePO server has the firewall set to not retain client rules.</title>
+      <description>(U//FOUO) From the ePO server console, select the asset to be checked, then select ‘Policies’, followed by ‘Host Intrusion Prevention 7: Firewall’ from the product list. From the ‘Firewall Options category,’ select the applicable policy. From the ‘Client rules’ section, ensure the ‘Retain existing Client Rules when this policy is enforced’ option is not checked. If the ‘Retain existing Client Rules when this policy is enforced’ is checked, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-14562</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60030"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14566" selected="false" severity="high" weight="10.0">
+      <title>(U) Default operating system passwords do not exist on the HBSS server.</title>
+      <description>(U) Attempt to logon to the Windows ePO server using the default credentials. Attempt to logon to the Windows ePO server using Admin with a blank password. If either of these attempts is successful, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-14566</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7036"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14567" selected="false" severity="high" weight="10.0">
+      <title>(U) Default passwords do not exist within the HBSS application.</title>
+      <description>(U) Attempt to logon to the ePO console using the default credentials. Attempt to logon to Windows using the default SQL server account credentials. Attempt to logon on SQL server using the default credentials. If any of the attempts is successful, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-14567</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7037"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14568" selected="false" severity="medium" weight="10.0">
+      <title>(U) The ePO has users assigned in appropriate roles.</title>
+      <description> (U) From the ePO console, select the ‘User Management' menu option, then select the ‘Users’ tab. For each of the users, highlight the user, and examine the Permission Sets option for the user. Verify that all accounts have the need for the access granted. Verify that all accounts that have Global Admin access have the need for, and are authorized for, administrative privileges for all client machines for this ePO. Verify that users with Site Admin permissions have the need for, and are authorized for, administrator privileges for all client machines within that site and sites under it. Any user who only needs to view data should be assigned as either a Global Reviewer or a Site Reviewer. Verify that all accounts that have Global Reviewer or Executive Reviewer access have the need for, and are authorized for, read permissions for all client machines for this ePO. For a user who only needs to view certain machines, Group Reviewer access should be granted. Verify that users with Group Reviewer permissions have the need for, and are authorized, to view data for all client machines within that site and groups under it. If access is granted for users who are not authorized, or do not have a need to know, this is a finding. If there are no individual userids assigned, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-14568</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7038"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14569" selected="false" severity="medium" weight="10.0">
+      <title>(U) The ePO users are granted access with proper procedures and/or verification of need to know. </title>
+      <description>(U) Ensure that for all userids identified in check H40140, the IAM maintains documentation (Form 2875 or equivalent) of the assignment of ePO accounts and roles. If not, this is a finding.</description>
+      <metadata>
+         <ocilri:target_role>SA</ocilri:target_role>
+      </metadata>
+      <ident system="https://vms.disa.mil">V-14569</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7039"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14570" selected="false" severity="medium" weight="10.0">
+      <title>(U//FOUO) The ePO has a comprehensive account management process.</title>
+      <description>(U//FOUO) If Windows security is being used within the application, this check does not apply. Since accounts are maintained at the application level, a comprehensive account management process must exist. These processes must include a manual process for inactivating dormant accounts (35 days of inactivity) and a process for deleting accounts (following 180 days after being disabled or when access is no longer needed). If PKI is not being used, a process must exist that also forces a password change at least every 60 days. If an account management plan does not exist for these items, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-14570</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7040"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14571" selected="false" severity="medium" weight="10.0">
+      <title>(U//FOUO) The account used for vulnerability scanning on the ePO server meets creation and deletion requirements.</title>
+      <description>(U//FOUO) A process must be in place to account for the required monthly vulnerability scans. Each time a scan is run, a new admin account is created and a complex password is assigned. The account will be deleted (not disabled) upon completion of the monthly scan. Interview the SA to determine which account is being used for the scan. Verify that the account does not exist. Verify that the site is following the procedure for account deletion. If the account exists or the site does not delete the account after completion of the required scan, this is a finding. Note: Allowance for other mandated required scanning is permitted; any account created for scanning must be deleted when scan is complete.</description>
+      <metadata>
+         <ocilri:target_role>SA</ocilri:target_role>
+      </metadata>
+      <ident system="https://vms.disa.mil">V-14571</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7041"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14572" selected="false" severity="medium" weight="10.0">
+      <title>(U) SA account is not used within the application.</title>
+      <description>(U) Using a browser, navigate to https://localhost/core/config or https://eponame/core/config. Logon. Examine the User Name field. If the user name is SA, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-14572</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60006"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14573" selected="false" severity="medium" weight="10.0">
+      <title>(U//FOUO) A plan for grouping of machines for updates and alerts is in place.</title>
+      <description>(U//FOUO) Verify the site has a written HBSS deployment plan that includes the grouping of machines for policy updates. If a plan does not exist or is not being used that details the grouping of the machines for receiving policy updates, this is a finding. Note: Care should be given to appropriately group machines with respect to function (servers and workstations) to aid in the implementation of HBSS policies.</description>
+      <metadata>
+         <ocilri:target_role>SA</ocilri:target_role>
+      </metadata>
+      <ident system="https://vms.disa.mil">V-14573</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7043"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14574" selected="false" severity="medium" weight="10.0">
+      <title>(U) Procedures exist and are followed to mark classified or sensitive data.</title>
+      <description>(U) Verify that written procedures exist and are followed to ensure proper markings in accordance with the HBSS classification guide. If procedures do not exist, this is a finding. Question users to determine if they are aware of the procedures and are following them. If they are not aware or are not following them, this is a finding.</description>
+      <metadata>
+         <ocilri:target_role>SA</ocilri:target_role>
+      </metadata>
+      <ident system="https://vms.disa.mil">V-14574</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7044"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14575" selected="false" severity="medium" weight="10.0">
+      <title>(U) HBSS Audit Logs are retained for at least one year.</title>
+      <description>(U) Determine if procedures and policies are in place to retain backups of HBSS audit data for at least one year. Verify that the procedures include the Windows event files, the SQL log files, the SQL table dbo.orion.audit.log (within the ePO database), and ProgramFiles/McAfee/ePolicy Orchestrator/DB/Logs. If the logs are not retained or do not include the directories listed, this is a finding.</description>
+      <metadata>
+         <ocilri:target_role>SA</ocilri:target_role>
+      </metadata>
+      <ident system="https://vms.disa.mil">V-14575</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7045"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14577" selected="false" severity="medium" weight="10.0">
+      <title>(U) HBSS audit log reviews are performed at least weekly.</title>
+      <description>(U) Verify that HBSS audit data (as defined in check H60100) is reviewed weekly and that any IA policy violations are analyzed and reported. It is important to note that this review needs to be non-dependent upon the functionality of HBSS itself. If the review is not being performed at least weekly, this is a finding.</description>
+      <metadata>
+         <ocilri:target_role>SA</ocilri:target_role>
+      </metadata>
+      <ident system="https://vms.disa.mil">V-14577</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7046"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14578" selected="false" severity="medium" weight="10.0">
+      <title>(U) HBSS audit data is backed up at least weekly to a different system or media.</title>
+      <description>(U) This check applies only to classified systems. Verify that the HBSS audit data is being backed up weekly to another media or system. Any backup mechanism must ensure the data is encrypted at rest. If the audit data is not being backed at least weekly or the backup mechanism is not encrypting the data at rest, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-14578</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7097"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14579" selected="false" severity="medium" weight="10.0">
+      <title>(U) The HBSS audit data is properly protected from unauthorized access.</title>
+      <description>(U) For each of the following tables or directories, ensure only the System and Auditors have full control (Admins and the SQL Server User account having read is allowed): SQL table dbo.orion.audit.log (SQL server table) ProgramFiles/McAfee/ePolicy Orchestrtor/DB/Logs (Directory). If any other account or group can update, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-14579</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7047"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14580" selected="false" severity="medium" weight="10.0">
+      <title>(U) The Remote Admin access of ePO is reviewed.</title>
+      <description>(U) Verify the review the log of every instance of remote access for privileged functions session (OS and database administration) is being performed on at least a weekly basis. This is for remote access of system and database admin functions. (This review includes the VPN logs.) If this review is not being performed at least weekly, this is a finding.</description>
+      <metadata>
+         <ocilri:target_role>SA</ocilri:target_role>
+      </metadata>
+      <ident system="https://vms.disa.mil">V-14580</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7048"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14581" selected="false" severity="medium" weight="10.0">
+      <title>(U) The disaster recovery plan includes HBSS.</title>
+      <description>(U//FOUO) Ask for a copy of the site’s Continuity of Operations Planning (COOP). Verify that the ePO server is specifically mentioned in the plan. Ensure that the plan addresses restoration of the ePO server within 24 hours of activation. Additionally, ensure that ePO restoration is validated a least annually as part of the normal COOP testing process. If any of these requirements are not met, this is a finding.</description>
+      <metadata>
+         <ocilri:target_role>SA</ocilri:target_role>
+      </metadata>
+      <ident system="https://vms.disa.mil">V-14581</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7049"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14582" selected="false" severity="medium" weight="10.0">
+      <title>(U) The ePO Data Backup Frequency or content is complete.</title>
+      <description>(U//FOUO) Data backup is performed daily, and recovery media are stored at an off-site location. This backup data should include, at a minimum, Windows OS (to include user account information), SQL databases, and the ePO product directories. If the data is not being backed up at least daily, is not stored offsite, and does not include the listed items, this is a finding. If a backup of the ePO server keys does not exist, this is a finding.</description>
+      <metadata>
+         <ocilri:target_role>SA</ocilri:target_role>
+      </metadata>
+      <ident system="https://vms.disa.mil">V-14582</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7050"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14583" selected="false" severity="medium" weight="10.0">
+      <title>(U//FOUO) The ePO server is registered in VMS.</title>
+      <description>(U//FOUO) Use VMS and navigate to the site’s assets. Ensure the ePO server is registered within VMS. If it is not registered, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-14583</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7051"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14584" selected="false" severity="medium" weight="10.0">
+      <title>(U//FOUO) The ePO has the correct attributes within VMS.</title>
+      <description>(U//FOUO) If check H90120 is a finding, this should be marked a finding also. If the asset is registered, verify that the following postures are registered. If any of the postures are not registered, this is a finding. The following postures must be present: Win2k3 Internet Explorer Database SQL Server Installation 2005 Database SQL Server Database 2005 – Model Database SQL Server Database 2005 – Master Database SQL Server Database 2005 – MSDB Database SQL Server Database 2005 – TempDB Database SQL Server Database 2005 – ePO _Server Name Antivirus Antispyware JVM J2SE ePolicy Orchestrator McAfee ePO Agent McAfee Host Intrusion Protection Module McAfee Policy Auditor McAfee Infocon Asset Tracking .Net Framework 1.1 .Net Framework 2 .Net Framework 3 Apache Instance 2.x (Default) Apache Site 2.x Tomcat Web Instance 5.x (Default) Tomcat Web Site 5x Tomcat 5.x (application server) Ensure that the ePO is registered as an HBSS program asset (tied to the HBSS program). If the ePO server is not tied to HBSS as a program, this is a finding. (This is viewed from the Organization tab of the asset.) If the machine was an HBSS project-provided machine, ensure that the serial number of the machine is recorded within VMS. If the serial number is not recorded, record this as a CAT III finding (if all other criteria of the finding is met). Note: If the SQL database is on a separate server from the ePO, the SQL server postures will not appear on the ePO server but must be accounted for on the database server to be considered Not a Finding.</description>
+      <ident system="https://vms.disa.mil">V-14584</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7052"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14585" selected="false" severity="medium" weight="10.0">
+      <title>(U//FOUO) HBSS is incorporated into the site’s incident response plan.</title>
+      <description>(U//FOUO) Verify that HBSS (along with designated thresholds) has been incorporated into the site’s incident response plan, including coordination with the appropriate Computer Network Defense Service Provider (CNDSP). If the incorporation into the incident response plan (including interaction with the site’s CNDSP) has not been completed or there is no incident response plan, this is a finding.</description>
+      <metadata>
+         <ocilri:target_role>SA</ocilri:target_role>
+      </metadata>
+      <ident system="https://vms.disa.mil">V-14585</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7053"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14843" selected="false" severity="medium" weight="10.0">
+      <title>(U) The site is using a proxy for http/https traffic.</title>
+      <description>(U//FOUO) Review the firewall specification sheet. Verify the data entering or leaving the site is being proxied to destinations outside the enclave or the firewall is configured to implement the content, protocol, and flow control inspections, defined below: HTTP inspection - Inspection of HTTP traffic to servers residing in the enclave is required. Inspection of HTTP traffic from clients in the enclave to servers outside the enclave is required. HTTP and HTTP/S inspection will be configured to filter Java applets and ActiveX objects to meet the enclave security policy. Review the security policy with the Information Assurance Officer and look for Java and ActiveX filters if the security policy requires restrictions. Note: Not required for web services. This is client only, in an outbound direction. At a minimum, http/https ports 443, 8443, 80, 8008, and 591 must be proxied. Verify by examining the enclave firewall that there are proxies present for the http ports being used by the ePO server. If there is no http/https proxing being done or all these ports are not being proxied, this is a finding.</description>
+      <metadata>
+         <ocilri:target_role>SA</ocilri:target_role>
+      </metadata>
+      <ident system="https://vms.disa.mil">V-14843</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7054"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14868" selected="false" severity="medium" weight="10.0">
+      <title>(U//FOUO) The account management process enforces password complexity. </title>
+      <description>(U//FOUO) This is a manual procedure to ensure that the password complexity rules are being used when passwords for accounts are created. This password complexity and length must be defined via policy. The password needs to be 15 characters in length and contain a mix of at least one lowercase, one uppercase, one numbers, and one special characters. If strong passwords are not being used, this is a finding. If Windows security is being used for the application or all accounts have been converted to use PKI, this check does not apply.</description>
+      <metadata>
+         <ocilri:target_role>SA</ocilri:target_role>
+      </metadata>
+      <ident system="https://vms.disa.mil">V-14868</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7055"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-14939" selected="false" severity="medium" weight="10.0">
+      <title>(U) The SQL database is configured as least privilege or only authorized users have access to data.</title>
+      <description>(U) Through SQL Server Management Studio, ensure that the only logins that have access into the ePO database are the accounts that are used for access from the application (see H50110 to determine the accounts) and the defined DBA group. Other read-only accounts are permitted (specifically for data reporting/metrics) if the access has been approved by IAM/IAO, and the need to know is documented. If any other account has access, this is a finding. Ensure that no non-privileged users have access to the master database. If any other non-privileged account has access, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-14939</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7056"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-15346" selected="false" severity="medium" weight="10.0">
+      <title>(U//FOUO) The site scans hosts before installation of the HBSS client.</title>
+      <description>(U//FOUO) For all existing/active systems, all organizations must perform a malware/spyware scan no more than one week before the installation of the HBSS client. This scan will include full anti-virus scans and scans for known bad hashes on all hosts before loading the HBSS client. This requirement is to minimize the chance of deploying the HBSS client on a host that already contains malware. If scans were not performed or there is no process to scan before installation on existing hosts, this is a finding. (See H90300 for requirement of installation on new hosts.)</description>
+      <metadata>
+         <ocilri:target_role>SA</ocilri:target_role>
+      </metadata>
+      <ident system="https://vms.disa.mil">V-15346</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7057"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-15354" selected="false" severity="medium" weight="10.0">
+      <title>(U//FOUO) Offline copies of the HBSS database are encrypted.</title>
+      <description>(U//FOUO) All offline copies of the HBSS database must be encrypted, via FIPS 140-2 validated encryption. If the data backup or any other copies of the HBSS database is not being encrypted by FIPS 140-2 validated encryption, this is a finding. Although keeping a backup copy of data on the ePO server is not recommended, if a backup copy of the data exists on the machine, it is deemed as offline for the purpose of this finding and also is required to be encrypted.</description>
+      <metadata>
+         <ocilri:target_role>SA</ocilri:target_role>
+      </metadata>
+      <ident system="https://vms.disa.mil">V-15354</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7058"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-15357" selected="false" severity="medium" weight="10.0">
+      <title>(U//FOUO) The HBSS SAs or Analysts have completed training.</title>
+      <description>(U//FOUO) Verify that the applicable SAs for HBSS and HBSS Analysts have completed classroom or computer based training (CBT) for HBSS. If the training has not been completed, this is a finding. Note: V0015357/H90200 does not apply to read-only/report-only access to the data maintained on a McAfee ePO Roll-Up server.</description>
+      <metadata>
+         <ocilri:target_role>SA</ocilri:target_role>
+      </metadata>
+      <ident system="https://vms.disa.mil">V-15357</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7059"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-15358" selected="false" severity="medium" weight="10.0">
+      <title>(U//FOUO) The site incorporates the installation of HBSS agents on new hosts prior to network connection.</title>
+      <description>(U//FOUO) Ensure that HBSS agent installation on all new hosts is part of the documented connection process for the site. An HBSS agent must be installed on new systems (defined as a system that has been freshly built and has not yet been added to the network) prior to being added to the network. If there is not a documented process or it is not being followed, this is a finding. (See H35000 for requirement on installation of existing hosts.)</description>
+      <metadata>
+         <ocilri:target_role>SA</ocilri:target_role>
+      </metadata>
+      <ident system="https://vms.disa.mil">V-15358</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7060"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-17880" selected="false" severity="medium" weight="10.0">
+      <title>(U) HBSS application has a DoD certificate installed.</title>
+      <description>(U) Launch the ePO console. Examine the properties of the server certificate. In Internet Explorer, this can be done by selecting ‘File/Properties’, and then selecting the ‘Certificates’ button. Ensure that the certification path leads back to a DoD root certificate. If there is not a certificate, or a non-DoD certificate exists, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-17880</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7061"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-17882" selected="false" severity="medium" weight="10.0">
+      <title>(U) HBSS is using the approved WSUS HBSS site for Microsoft patches.</title>
+      <description>(U) If the ePO server is using Windows update, it must use the DoD HBSS WSUS site. To determine if automatic updates are being utilized, examine: HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate\AU NoAutoUpdate. If the value is 0, validate that the DoD HBSS WSUS site is referenced. Using the Windows registry editor – navigate to: HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate and confirm that the values of 'WUServer' and 'WUStatusServer' point to the DoD HBSS WSUS site. Additionally, HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate\AU UseWUServer, must be 1. If automatic updates are being used, and if the three registry keys above are not set to be compliant, this is a finding. If automatic updates are not being used, this check can be considered Not Applicable.</description>
+      <ident system="https://vms.disa.mil">V-17882</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7062"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-17885" selected="false" severity="medium" weight="10.0">
+      <title>(U) The ePO server has MyAverts disabled.</title>
+      <description>(U) From the ePO server console, select the ‘Configuration’ option, followed by the ‘Server Setting’ tab, then select the ‘MyAverts Security Threats’. Ensure that the ‘Updating’ parameter is set to disabled. If the updating parameter is not set to disabled, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-17885</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60010"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-17886" selected="false" severity="medium" weight="10.0">
+      <title>(U) The ePO server displays the correct warning banner.</title>
+      <description>(U) Start the ePO interface. Verify that the DoD banner appears below the logon prompt. Validate the verbiage. If the banner is not present or it does not contain the following exact verbiage, this is a finding. *************** “You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. By using this IS (which includes any device attached to this IS), you consent to the following conditions: -The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations. -At any time, the USG may inspect and seize data stored on this IS. -Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose. -This IS includes security measures (e.g., authentication and access controls) to protect USG interests—not for your personal benefit or privacy. -Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.” *************** Note: Deviations are not permitted except as authorized by the Deputy Assistant Secretary of Defense for Information and Identity Assurance.</description>
+      <ident system="https://vms.disa.mil">V-17886</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7064"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-17887" selected="false" severity="medium" weight="10.0">
+      <title>(U) The ePO server has the user timeout parameter set properly.</title>
+      <description>(U) Open the ‘?: program files\mcafee\epolicy orchestrator\server\conf\web.xml file.’ (’?’ Indicates drive letter.) Examine the session-timeout parameter and ensure that it is set at 15 or less. If it is set to greater than 15, this is a finding. Note: The effectiveness of this parameter needs to be correlated to the dashboard refresh rate. The dashboard refresh rate should be set to a parameter greater than the session timeout parameter. Note: If the console is being used as part of an operations center type environment, requiring continuous, real-time screen display (which requires a lower rate), the following needs to be documented with the IAO: -The logon session does not have administrator rights. -The display station (i.e., keyboard, CRT, etc.) is located in a controlled access area.</description>
+      <ident system="https://vms.disa.mil">V-17887</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60003"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-17888" selected="false" severity="medium" weight="10.0">
+      <title>(U//FOUO) The HBSS console tabbed browsing is disabled.</title>
+      <description>(U//FOUO) Ensure that the browser used with the ePO console has tabbed browsing disabled. In the Registry Editor, navigate to the following registry key: Registry Hive: HKEY_LOCAL_MACHINE Subkey: SOFTWARE\Policies\Microsoft\Internet Explorer\TabbedBrowsing Value Name: Enabled Data Type: REG_DWORD Value Data: 00000000 If the Value Data is not set to ‘00000000,’ this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-17888</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60002"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-17889" selected="false" severity="medium" weight="10.0">
+      <title>(U//FOUO) The HBSS does not have vendor site supplied data dashboards in use.</title>
+      <description>(U//FOUO) From the ePO server console, select the ‘Dashboard’ tab, then select the ‘Manage Dashboards’ option. Ensure that there are no dashboards using any item from the categories of ‘McAfee Links’ or ‘MyAvert Web Service.’ If any dashboards exist using items from either of those categories, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-17889</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60033"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-17890" selected="false" severity="medium" weight="10.0">
+      <title>(U//FOUO) The HBSS dashboard refresh rate is set properly.</title>
+      <description>(U//FOUO) From the ePO server console, select the ‘Dashboard’ tab, followed by ‘Options’, and finally, ‘Edit Dashboard Preferences.’ Ensure that the ‘Dashboard page refresh interval’ is set to at least 20 minutes. Reference check H30760 for information about timeouts. If the interval is less than 20 minutes, this is a finding. Note: If the console is being used as part of an operations center type environment, requiring continuous, real-time screen display which requires a lower rate, the following needs to be documented with the IAO: -The logon session does not have Administrator rights. -The display station (i.e., keyboard, CRT, etc.) is located in a controlled access area.</description>
+      <ident system="https://vms.disa.mil">V-17890</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7068"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-17894" selected="false" severity="medium" weight="10.0">
+      <title>(U//FOUO) The HIPS policy includes the signature for protection of ePO Server Agent Keystore.</title>
+      <description>(U//FOUO) From the ePO server console, select the asset to be checked, then select ‘Policies’, followed by ‘Host Intrusion Prevention 7:IPS’ from the product list. From the ‘IPS Rules’ category, select the applicable policy. From the ‘IPS Rules,’ select the ‘Signatures’ tab. Ensure that the signature of ‘Protect ePO Server Agent Keystore’ is present. In addition to the signature being present, ‘Severity’ must be ‘high,’ ‘Log Status’ must be ‘enabled,’ and ‘Allow client rules’ must be ‘disabled.’ If the signature is not present or the properties are set incorrectly, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-17894</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60031"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-17895" selected="false" severity="medium" weight="10.0">
+      <title>(U//FOUO) The HIPS policy includes the signature for protection of Protect Product Folders.</title>
+      <description>(U//FOUO) From the ePO server console, select the asset to be checked, then select ‘Policies’, followed by ‘Host Intrusion Prevention 7:IPS’ from the product list. From the ‘IPS Rules’ category, select the applicable policy. From the ‘IPS Rules,’ select the ‘Signatures’ tab. Ensure that the signature of ‘Protect Product Folders’ is present. In addition to the signature being present, ‘Severity’ must be ‘high,’ ‘Log Status’ must be ‘enabled,’ and ‘Allow client rules’ must be ‘disabled.’ If the signature is not present or the properties are set incorrectly, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-17895</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60032"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-17897" selected="false" severity="medium" weight="10.0">
+      <title>(U) ePO accounts are not configured with shared Windows accounts.</title>
+      <description>(U) From SQL Server Management Studio: Ensure that the database pull-down has the ePO server database. Execute the following command by typing the command into the query window and then clicking on the ‘Execute’ button: Select count(name), AuthURI from dbo.orionusers where authURI like ‘auth:ntlm%’ group by AuthURI If any resulting AuthURI has a corresponding number other than ‘1’, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-17897</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60011"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-17898" selected="false" severity="medium" weight="10.0">
+      <title>(U) Application Report Header is configured correctly.</title>
+      <description>(U//FOUO) From the ePO server console, select the ‘Configuration’ option, then the ‘Server Setting’ tab. Examine the Printing and Exporting category and ensure that the Logo area (headers and footers for exported documents parameter) represents the proper marking for the system. For unclassified systems, the text should be FOR OFFICIAL USE ONLY. For SIPRNet systems, the text should be SECRET. If the appropriate markings are not present, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-17898</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7072"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-17899" selected="false" severity="medium" weight="10.0">
+      <title>(U) HBSS Event Logs are being retained for at least one year.</title>
+      <description>(U) Determine if procedures and policies are in place to retain backups of HBSS event data for at least one year. (This is the HIPS event data - not the system event/log files.) If the event data is not being retained, this is a finding.</description>
+      <metadata>
+         <ocilri:target_role>SA</ocilri:target_role>
+      </metadata>
+      <ident system="https://vms.disa.mil">V-17899</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7073"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-24011" selected="false" severity="medium" weight="10.0">
+      <title>(U) HBSS Client Authentication Module is enabled.</title>
+      <description>(U) From the ePO server console, select the ‘Configuration’ menu option, then select the ‘Server Settings’ tab. Select the ‘Console Certificates’ category. Ensure ‘Client Authentication’ is set to ‘Enabled’. If ‘Client Authentication’ is not set to ‘Enabled’, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-24011</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60012"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-24012" selected="false" severity="medium" weight="10.0">
+      <title>(U) HBSS Client Authentication is set to current version.</title>
+      <description>(U) From the ePO server console, select the ‘Software' menu option, then select the ‘Extensions’ tab. Under ‘McAfee’, select ‘ePolicy Orchestrator’. Examine the ‘Certificate Authentication’ extension’s version number. If the version is not at least 4.5.1.6, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-24012</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60013"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-24013" selected="false" severity="medium" weight="10.0">
+      <title>(U) Limit number of non-PK enabled accounts.</title>
+      <description>(U) From SQL Server Management Studio: Ensure that the database pull-down has the ePO server database. Execute the following command by typing the command into the query window and then clicking on the ‘Execute’ button: Select name, AuthURI from dbo.orionusers where authURI not like ‘auth:cert%’ Finding Determination: If there are more than two userids listed, this is finding.</description>
+      <ident system="https://vms.disa.mil">V-24013</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60014"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-24014" selected="false" severity="medium" weight="10.0">
+      <title>(U) Remove all user certificates after import.</title>
+      <description>(U) From Windows explorer, search for *.cer. If any user certificate is found, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-24014</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7077"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-24017" selected="false" severity="medium" weight="10.0">
+      <title>(U) Certificate Authority folder populated for intermediate CAs.</title>
+      <description>(U) From the ePO server console, select the ‘Configuration’ menu option, then select the ‘Server Settings’ tab. Select the ‘Console Certificates’ category. Click the Edit button. Note the name of the directory of the Trusted Store Certificates. From Windows explorer, find the noted directory. Ensure that the intermediate DoD Root certificates are present (dodCA-*.crt). If it is not present, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-24017</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7078"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-24020" selected="false" severity="medium" weight="10.0">
+      <title>(U) Permissions on the CRL directory must be set correctly.</title>
+      <description>(U) From the ePO server console, select the ‘Configuration’ menu option, then select the ‘Server Settings’ tab. Select the ‘Console Certificates’ category. Click the Edit button. Note the name of the directory of the Local Path to directory of the CRL files. From Windows explorer, find the noted directory. Examine the permissions on the directory. Only Administrators and System should be able to update or write into this directory. If any other user can update or write to this directory, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-24020</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7079"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-24021" selected="false" severity="medium" weight="10.0">
+      <title>(U) CRL Directory Content is complete.</title>
+      <description> (U) If the ePO is on a disconnected network, from the ePO server console, select the ‘Configuration’ menu option, then select the ‘Server Settings’ tab. Select the ‘Console Certificates’ category. Click the Edit button. Note the name of the directory of the Local Path to the directory of CRL files. From Windows explorer, find the noted directory. Ensure that the DoD Root certificate CRL is present. If it is not present, this is a finding. If the ePO is not on a disconnected network, this check is NA.</description>
+      <ident system="https://vms.disa.mil">V-24021</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7080"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-24022" selected="false" severity="medium" weight="10.0">
+      <title>(U) Local CRL checking is enabled.</title>
+      <description>(U) If the ePO is on a disconnected network, from the ePO server console, select the ‘Configuration’ menu option, then select the ‘Server Settings’ tab. Select the ‘Console Certificates’ category. Click the Edit button. Note the name of the directory of the Local Path to directory of CRL files. If the ePO is not on a disconnected network, this check is NA.</description>
+      <ident system="https://vms.disa.mil">V-24022</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7081"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-24023" selected="false" severity="medium" weight="10.0">
+      <title>(U) OCSP Responder URL configured.</title>
+      <description>(U) From the ePO server console, select the ‘Configuration’ menu option, then select ‘Server Settings’ tab. Select the ‘Console Certificates’ category. Click the Edit button. Ensure the OCSP responder URL is populated with http://ocsp.disa.mil (or an appropriate .mil CRL for the location). If it is not populated correctly, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-24023</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60015"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-24024" selected="false" severity="medium" weight="10.0">
+      <title>(U//FOUO) Port used for Console-to-Server communication is set correctly.</title>
+      <description>(U//FOUO) From the ePO server console, select the ‘Configuration’ menu option, then select the ‘Server Settings’ tab. Select the ‘Console Certificates’ category. Click the Edit button. If the Console-to-Server port is not set to ‘8007’, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-24024</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60016"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-24161" selected="false" severity="medium" weight="10.0">
+      <title>(U) The HBSS keystore permissions are set correctly.</title>
+      <description>(U) From Windows explorer, find the ?:\Program Files\McAfee\ePolicy Orchestrator\keystore directory (? is the drive letter). Examine the permissions on the directory. Only administrators and system should be able to update or write into this directory. If any other user can update or write into this directory, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-24161</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60004"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-24162" selected="false" severity="medium" weight="10.0">
+      <title>(U//FOUO) SSL in use for SQL Server.</title>
+      <description>(U//FOUO) From SQL Server Configuration Manager, expand SQL Server Network Configuration, and right-click the protocols for the ePO server. Click Properties. From the Flags tab, ensure that the Force Encryption Parameter is set to Yes. If it is not set to Yes, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-24162</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60017"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-24165" selected="false" severity="medium" weight="10.0">
+      <title>(U//FOUO) A DoD certificate is used for encryption.</title>
+      <description>(U//FOUO) From SQL Server Configuration Manager, expand SQL Server Network Configuration, and right-click the protocols for the ePO server. Click Properties. From the Certificates tab, ensure that there is a certificate present, and it has been issued from a DoD CA. If there is not a certificate or it has not been issued from a DoD CA, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-24165</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7086"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-24169" selected="false" severity="high" weight="10.0">
+      <title>(U//FOUO) Credentials cannot be stored outside HBSS.</title>
+      <description>(U//FOUO) Examine any backup jobs or any other management connections for HBSS. No HBSS credentials can be stored for use in this way. (For example, a backup job cannot store credentials for execution from the backup server.) If any credentials are found, this is a finding. Note: Scanning credentials are permitted in accordance with check H40220.</description>
+      <ident system="https://vms.disa.mil">V-24169</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7098"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-24170" selected="false" severity="medium" weight="10.0">
+      <title>(U) Agent-to-server communication port is set correctly.</title>
+      <description>(U//FOUO) From the ePO interface, select the Configuration option, then select the Server Settings option. Select the Ports option. Ensure the Agent-to-server communication is set to 80. If this is not set to 80, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-24170</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60018"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-24171" selected="false" severity="medium" weight="10.0">
+      <title>(U) Agent-to-server communication secure port is set correctly.</title>
+      <description>(U//FOUO) From the ePO interface, select the Configuration option, then select the server settings option. Select the Ports option. Ensure the Agent-to-server communication secure is set to 443. If this is not set to 443, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-24171</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60019"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-24172" selected="false" severity="medium" weight="10.0">
+      <title>(U) Agent wake-up communication port set correctly.</title>
+      <description>(U//FOUO) From the ePO interface, select the Configuration option, then select the server settings option. Select the Ports option. Ensure the Agent wakeup communication is set to 591. If this is not set to 591, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-24172</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60020"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-24173" selected="false" severity="medium" weight="10.0">
+      <title>(U) Agent broadcast port is set correctly.</title>
+      <description>(U//FOUO) From the ePO interface, select the Configuration option, then select the server settings option. Select the Ports option. Ensure the Agent broadcast is set to 8082. If this is not set to 8082, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-24173</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60021"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-24174" selected="false" severity="medium" weight="10.0">
+      <title>(U) Console-to-application server communication port is set correctly.</title>
+      <description>(U//FOUO) From the ePO interface, select the Configuration option, then select the server settings option. Select the Ports option. Ensure the Console-to-application server communication is set to 8005. If this is not set to 8005, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-24174</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60022"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-24175" selected="false" severity="medium" weight="10.0">
+      <title>(U) Client-to-server authenticated communication port is set correctly.</title>
+      <description>(U//FOUO) From the ePO interface, select the Configuration option, then select the server settings option. Select the Ports option. Ensure the Client-to-server authenticated communication is set to 8443. If this is not set to 8443, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-24175</ident>
+      <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+         <check-content-ref href="hbss-epo-45-site-oval.xml" name="oval:gov.dod.cndrtpmo:def:60023"/>
+      </check>
+   </Rule><!--<Rule id="V-24305" selected="false" severity="medium" weight="10.0">
+      <title>(U) The ePO server, if hosting Symantec AV, will only use the DoD-controlled SEPM server, when available.</title>
+      <description>(U) NA until DoD SEPM exists.</description>
+      <ident system="https://vms.disa.mil">V-24305</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7093"/>
+      </check>
+   </Rule>-->
+   <Rule id="xccdf_com.company_rule_V-24306" selected="false" severity="medium" weight="10.0">
+      <title>(U) Sensitive data is not included in e-mail notifications.</title>
+      <description>(U) From the ePO console, select Automation. For all Enabled Responses, view the Response. If the Actions category indicated Send Email, click Edit, then select the Actions tab and examine the Subject and Body of e-mail. If sensitive data is included in the e-mail, this is a finding. After examining the response, click Cancel to exit.</description>
+      <ident system="https://vms.disa.mil">V-24306</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7094"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-24307" selected="false" severity="medium" weight="10.0">
+      <title>(U) The Site ePO server has the account used by the Rollup server to pull data from the Site ePO to be configured with read-only access to the ePO data. </title>
+      <description>(U) Through SQL Server Management Studio, verify that the account being used by the Rollup server to connect to the Site ePO is not part of the 'System Administrators' server role. If the account is part of the 'System Administrators' role, this is a finding. Verify that the account being used by the Rollup server to connect to the Site ePO does not have a greater privilege to the ePO database (and underlying data tables) than read. If the permission is greater than read-only access, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-24307</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7095"/>
+      </check>
+   </Rule>
+   <Rule id="xccdf_com.company_rule_V-25504" selected="false" severity="medium" weight="10.0">
+      <title>(U//FOUO) The notification connector is set to the loopback adapter.</title>
+      <description>(U//FOUO) Open the Tomcat server.xml in Notepad. Locate the notification-secure-port connector. Verify that the address is set to 127.0.0.1. If the connector is not set to 127.0.0.1, this is a finding.</description>
+      <ident system="https://vms.disa.mil">V-25504</ident>
+      <check system="http://scap.nist.gov/schema/ocil/2">
+         <check-content-ref href="hbss-epo-45-site-ocil.xml" name="ocil:gov.dod.cndrtpmo:questionnaire:7096"/>
+      </check>
+   </Rule>
+</Benchmark>
