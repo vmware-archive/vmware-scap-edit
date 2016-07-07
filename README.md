@@ -12,29 +12,30 @@ similar capabilities but few subtle differences required to build OVAL content b
 
 * A Java Runtime Environment (JRE) preferably 1.8 or later.
 * 1 GB of memory.
-* Supported OS – Microsoft Windows and Linux (with support for JRE).
+* Supported OS â€“ Microsoft Windows and Linux (with support for JRE).
 
 ### Build
-This project is configured to be built using maven. 
-1. Go to eSCAPeLib Directory and execute the following Maven command:
+This project is configured to be built using maven.
+
+* Go to eSCAPeLib Directory and execute the following Maven command:
 ```shell
 mvn clean install
 ```	
-2. Next go to eSCAPe directory and execute the following Maven command:
+* Next go to eSCAPe directory and execute the following Maven command:
 ```shell
 mvn clean install
 ```
 
 ### Run
 * Run from distributable
-1. Extract the VMware SCAP Edit 1.0.0.zip file.
-2. Navigate to the extracted directory.
-3. If you are running a Microsoft Windows system, execute startEditor.bat file. This will launch the tool. If you are running a 
+ * Extract the VMware SCAP Edit 1.0.0.zip file.
+ * Navigate to the extracted directory.
+ * If you are running a Microsoft Windows system, execute startEditor.bat file. This will launch the tool. If you are running a 
 Linux system, execute startEditor.sh file to launch the tool.
 
 * Run From Build
-1. Go to eSCAPe/target directory. 
-2. Execute VMware SCAP Edit 1.0.0 jar to launch the tool.
+ * Go to eSCAPe/target directory. 
+ * Execute VMware SCAP Edit 1.0.0 jar to launch the tool.
 
 ## User Guide
 
