@@ -2,10 +2,6 @@
 
 # Contributing to vmware-scap-edit
 
-## Community
-
-## Getting Started
-
 ## Contribution Flow
 
 This is a rough outline of what a contributor's workflow looks like:
@@ -26,7 +22,7 @@ git push $USER my-new-feature
 
 ### Staying In Sync With Upstream
 
-When your branch gets out of sync with the vmware/master branch, use the following to update:
+When your branch gets out of sync with the vmware/vmware-scap-edit master branch, use the following to update:
 
 ``` shell
 git checkout my-new-feature
