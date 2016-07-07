@@ -57,8 +57,6 @@ git push --force-with-lease $USER my-new-feature
 Be sure to add a comment to the PR indicating your new changes are ready to review, as GitHub does not generate a
 notification when you git push.
 
-### Code Style
-
 ### Formatting Commit Messages
 
 We follow the conventions on [How to Write a Git Commit Message](http://chris.beams.io/posts/git-commit/).
@@ -70,5 +68,3 @@ and commits.
 ## Reporting Bugs and Creating Issues
 
 When opening a new issue, try to roughly follow the commit message format conventions above.
-
-## Repository Structure
