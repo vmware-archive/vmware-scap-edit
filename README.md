@@ -1,6 +1,7 @@
 
 
 # vmware-scap-edit
+# VMware has ended active development of this project, this repository will no longer be updated.
 
 ## Overview
 VMware SCAP Edit is an updated version of the [Enhanced SCAP Content Editor tool by G2, Inc.](http://www.g2-inc.com/escape). The modified tool builds on similar capabilities but few subtle differences required to build OVAL content based on latest OVAL schema.
